@@ -1,0 +1,75 @@
+<script setup lang="ts">
+import SpinnerLoading from '@/components/loaders/spinner.loading.vue';
+import { Button } from '@/components/ui/button';
+import { useModalStore } from '@/stores/modal.store'
+import { computed } from 'vue';
+
+const props = defineProps([
+   'name',
+   'title',
+   'description',
+   'isUpdated',
+   'loading',
+   'Func',
+]);
+
+
+const open = computed(() => {
+   return useModalStore().open
+})
+
+
+const emit = defineEmits(['open']);
+const setOpen = () => {
+   emit('open', useModalStore().open );
+   useModalStore().open ? (useModalStore().open = false) : (useModalStore().open = true);
+};
+
+const HanldeSubmit = () => {
+   props.Func()
+};
+</script>
+
+<template>
+   <div class="">
+      <Button class="bg-gray-800 font-bold text-base" @click="setOpen">
+         <i class="ri-add-line"></i>
+         <span class="">{{ name }}</span>
+      </Button>
+      <main
+         v-if="open"
+         class="w-full grid-rows-[auto_minmax(0,1fr)_auto] p-0 fixed z-50 inset-0 flex flex-col items-center justify-center"
+      >
+         <div
+            class="bg-gray-800/30 w-full fixed inset-0 h-full overflow-auto -z-40"
+         ></div>
+         <section class="bg-white w-4/12 rounded-lg">
+            <header class="flex justify-between p-4 pb-2">
+               <div class="flex flex-col">
+                  <span class="text-lg font-bold"> {{ title }} </span>
+                  <span class="text-sm">
+                     {{ description }}
+                  </span>
+               </div>
+
+               <!-- Close Modal -->
+               <div class="cursor-pointer" @click="setOpen">
+                  <i class="ri-close-large-line"></i>
+               </div>
+            </header>
+            <div class="grid gap-4 py-2 pb-4 overflow-y-auto px-6">
+               <div class="flex flex-col justify-between h-[50dvh]">
+                  <slot name="form" />
+               </div>
+            </div>
+            <footer class="p-4 flex justify-between">
+               <span class=""></span>
+               <Button type="submit" @click="HanldeSubmit">
+               <SpinnerLoading size="w-4 h-4" v-if="loading" />
+                  <span class="font-bold text-base" v-else >{{ !isUpdated ? 'Enregisté' : 'Modifier' }}</span>
+               </Button>
+            </footer>
+         </section>
+      </main>
+   </div>
+</template>
