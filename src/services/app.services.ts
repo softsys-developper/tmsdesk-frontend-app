@@ -1,7 +1,7 @@
 const Usimeca = {
     name: 'Usimeca',
     url: 'erp.usimeca.ci',
-    api: 'https://apps.usimeca.ci/api',
+    api: 'https://api.usimeca.ci/api',
     logo: ''
 }
 
