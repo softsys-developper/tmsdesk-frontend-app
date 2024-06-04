@@ -3,13 +3,11 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 </script>
 
 <template>
-   <Toaster />
+  <Toaster />
   <RouterView></RouterView>
 </template>
 
 <style>
-
-
 * {
   font-family: "Lato", sans-serif;
 }
