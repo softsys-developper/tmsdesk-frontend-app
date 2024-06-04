@@ -1,7 +1,9 @@
+import { AppService } from "@/services/app.services"
+
 export const MenuApp = [
    {
       name: 'CRM',
-      icon: 'https://tmsdesk.com/images/icons/crm.png',
+      icon: `https:/${AppService().url}/images/icons/crm.png`,
       list: 'Clients, prospects, partenaires',
       route: '',
       children: [
@@ -33,7 +35,7 @@ export const MenuApp = [
    },
    {
       name: 'R. HUMAINES',
-      icon: 'https://tmsdesk.com/images/icons/customer-service.png',
+      icon: `https://${AppService().url}/images/icons/customer-service.png`,
       list: 'Employés, salaires et permissions',
       route: '',
       children: [
@@ -71,7 +73,7 @@ export const MenuApp = [
    },
    {
       name: 'Proforma',
-      icon: 'https://tmsdesk.com/images/icons/receipt.png',
+      icon: `https://${AppService().url}/images/icons/receipt.png`,
       list: 'Prospects, clients, fourniseurs',
       route: '',
       children: [
@@ -103,7 +105,7 @@ export const MenuApp = [
    },
    {
       name: 'Comptabilités',
-      icon: 'https://tmsdesk.com/images/icons/budget.png',
+      icon: `https://${AppService().url}/images/icons/budget.png`,
       list: 'Factures, Porformas, Dépenses, caisse, Banque, Grand livre, Bilan',
       route: '',
       children: [
@@ -150,7 +152,7 @@ export const MenuApp = [
    },
    {
       name: 'logistiques',
-      icon: 'https://tmsdesk.com/images/icons/logistics.png',
+      icon: `https://${AppService().url}/images/icons/logistics.png`,
       list: 'Bon de commande, livraisons, Services & produits',
       route: '',
       children: [
@@ -183,7 +185,7 @@ export const MenuApp = [
    },
    {
       name: 'Système',
-      icon: 'https://tmsdesk.com/images/icons/content-management-system.png',
+      icon: `https://${AppService().url}/images/icons/content-management-system.png`,
       list: 'Messagerie, Parametres, Mails, Notes, Gestions des Documments',
       route: '',
       children: [

@@ -3,7 +3,7 @@
       <div class="h-16 w-full bg-black">
          <!--  -->
          <div class="flex items-center w-11/12 m-auto h-full justify-between">
-            <RouterLink :to="{name: 'HOME'}" class="text-2xl font-black"> Tmsdesk </RouterLink>
+            <RouterLink :to="{name: 'HOME'}" class="text-2xl font-black"> {{AppService().name}} </RouterLink>
 
             <div class="flex gap-4">
                <!-- Notifications -->
@@ -56,5 +56,6 @@ import MenuHeaderCard from '@/components/cards/menu_header.card.vue';
 import { MenuApp, MenuProfile } from '@/routes/menu.route';
 import BreadcumbHeader from '@/components/headers/breadcrumb.header.vue';
 import BtnMore from '../mores/btn.more.vue';
+import { AppService } from '@/services/app.services'
 </script>
 <style lang="scss" scoped></style>

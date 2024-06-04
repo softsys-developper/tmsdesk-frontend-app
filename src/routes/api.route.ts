@@ -1,10 +1,12 @@
+import { AppService } from "@/services/app.services";
+
 const MODE_APP = 'dev';
 export const DEFINED_APP = (dev: any, prod: any) => {
    return MODE_APP == 'dev' ? dev : prod;
 };
 
 export const BASE_URL = DEFINED_APP(
-   'https://apps.tmsdesk.com/api',
+   AppService().api,
    'https://apps.tmsdesk.com/api'
 );
 

@@ -23,6 +23,7 @@ import { Input } from '@/components/ui/input';
 import { authService } from '@/services/auth.services';
 import { reactive } from 'vue';
 import SpinnerLoading from '@/components/loaders/spinner.loading.vue';
+import { AppService } from '@/services/app.services';
 
 const formSchema = toTypedSchema(
    z.object({
@@ -74,11 +75,11 @@ const onSubmit = handleSubmit(async (values) => {
                      <CardTitle
                         class="flex flex-col justify-center items-center"
                      >
-                        <span class="text-4xl font-black">Tmsdesk</span>
+                        <span class="text-4xl font-black">{{AppService().name}}</span>
                         <span class="text-xl">Se connecter</span>
                      </CardTitle>
                      <CardDescription>
-                        <!-- Connectez-vous a votre espace d'adminstration Tmsdesk -->
+                        <!-- Connectez-vous a votre espace d'adminstration {{AppService()}} -->
                      </CardDescription>
                   </CardHeader>
                   <CardContent class="space-y-2">
