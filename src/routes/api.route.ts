@@ -1,6 +1,6 @@
 import { AppService } from "@/services/app.services";
 
-const MODE_APP = 'dev';
+const MODE_APP:string = 'prod';
 export const DEFINED_APP = (dev: any, prod: any) => {
    return MODE_APP == 'dev' ? dev : prod;
 };
