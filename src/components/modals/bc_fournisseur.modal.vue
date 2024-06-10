@@ -1,140 +1,168 @@
 <template>
-    <ModalLayout :Func="onSubmit">
-       <template v-slot:form>
-          <form class="w-full space-y-2" @submit="onSubmit">
-             <!-- Nom du prospect ou raison sociale -->
-             <FormField v-slot="{ componentField }" name="nom">
-                <FormItem>
-                   <FormLabel>Nom du prospect ou raison sociale</FormLabel>
-                   <FormControl>
-                      <Input
-                         id="nom"
-                         type="text"
-                         placeholder="Entrez le nom ou la raison sociale"
-                         v-bind="componentField"
-                      />
-                   </FormControl>
-                   <FormMessage class="text-xs" />
-                </FormItem>
-             </FormField>
- 
-             <!-- Type -->
- 
-             <!-- Email -->
-             <FormField v-slot="{ componentField }" name="email">
-                <FormItem>
-                   <FormLabel>Email</FormLabel>
-                   <FormControl>
-                      <Input
-                         id="email"
-                         type="email"
-                         placeholder="email@exemple.com"
-                         v-bind="componentField"
-                      />
-                   </FormControl>
-                   <FormMessage class="text-xs" />
-                </FormItem>
-             </FormField>
- 
-             <!-- Téléphone -->
-             <FormField v-slot="{ componentField }" name="telephone">
-                <FormItem>
-                   <FormLabel>Téléphone</FormLabel>
-                   <FormControl>
-                      <Input
-                         id="telephone"
-                         type="tel"
-                         placeholder="0123456789"
-                         v-bind="componentField"
-                      />
-                   </FormControl>
-                   <FormMessage class="text-xs" />
-                </FormItem>
-             </FormField>
- 
-             <!-- Adresse -->
-             <FormField v-slot="{ componentField }" name="adresse">
-                <FormItem>
-                   <FormLabel>Adresse</FormLabel>
-                   <FormControl>
-                      <Input
-                         id="adresse"
-                         type="text"
-                         placeholder="Entrez l'adresse"
-                         v-bind="componentField"
-                      />
-                   </FormControl>
-                   <FormMessage class="text-xs" />
-                </FormItem>
-             </FormField>
-          </form>
-       </template>
-    </ModalLayout>
- </template>
- <script lang="ts" setup>
- import ModalLayout from '@/layouts/modal.layout.vue';
- import { useForm } from 'vee-validate';
- import { toTypedSchema } from '@vee-validate/zod';
- import * as z from 'zod';
+  <ModalLayout :Func="onSubmit">
+    <template v-slot:form>
+      <form class="w-full space-y-2" @submit="onSubmit">
+        <FormField v-slot="{ componentField }" name="fournisseur">
+          <FormItem>
+            <FormLabel>Fournisseur</FormLabel>
+            <FormControl>
+              <Select v-bind="componentField">
+                <SelectTrigger>
+                  <SelectValue placeholder="Fournisseur" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Liste des fournisseurs </SelectLabel>
+                    <SelectItem :value="fournisseur.id.toString()" v-for="fournisseur in ListFourniseurs" > {{fournisseur.nom}} </SelectItem>
+                
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormMessage class="text-xs" />
+          </FormItem>
+        </FormField>
 
- import { Input } from '@/components/ui/input';
- import { useApiServices } from '@/services/api.services';
- import { API_URL } from '@/routes/api.route';
- import { useToast } from '@/components/ui/toast/use-toast';
- import { useDataStore } from '@/stores/data.store';
- const { toast } = useToast();
- 
- const formSchema = toTypedSchema(
-    z.object({
-       nom: z
-          .string()
-          .min(1, "Le champ 'nom du prospect ou raison sociale' est requis."),
-       type: z.string().default('prospect'),
-       email: z.string().email("L'adresse email n'est pas valide."),
-       telephone: z
-          .string()
-          .min(10, 'Le numéro de téléphone doit contenir au moins 10 chiffres.'),
-       adresse: z.string().optional(),
-    })
- );
- 
- const { handleSubmit } = useForm({
-    validationSchema: formSchema,
- });
- 
- const { createData } = useApiServices();
- 
- const onSubmit = handleSubmit((values) => {
-    createData(API_URL.CLIENT_CREATE, values)
-       .then((data: any) => {
-          if (data) {
-             const DataKey = Object.keys(values);
-             DataKey.forEach((el) => {
-                const query: any = document.querySelector('#' + el);
-                if (query) query.value = '';
-             });
- 
-             const Add:any = useDataStore().Clients
-             Add.unshift(data.data)
-             useDataStore().Clients = Add
- 
-             toast({
-                title: 'Enrégistre',
-                description: 'Clients ajouter avec succès',
-             });
-          }
-       })
-       .catch((err) => {
-          if (err) {
-             const isErr = Object.keys(err.response.data.errors);
-             console.log(err.response.data.errors, isErr);
-             toast({
-                title: isErr[0],
-                description: err.response.data.errors[isErr[0]][0],
-             });
-          }
-       });
- });
- </script>
- <style lang="scss" scoped></style>
- 
+        <FormField v-slot="{ componentField }" name="produitsServices">
+          <FormItem>
+            <FormLabel>Produits et services</FormLabel>
+            <FormControl>
+              <Select v-bind="componentField">
+                <SelectTrigger>
+                  <SelectValue placeholder="Produits et services" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Types de congé</SelectLabel>
+                    <SelectItem v-for="SP in ListProduitServices" value="SP.id">
+                      {{ SP.libelle }}
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </FormControl>
+            <FormMessage class="text-xs" />
+          </FormItem>
+        </FormField>
+
+        <!-- Quantités -->
+        <FormField v-slot="{ componentField }" name="quantites">
+          <FormItem>
+            <FormLabel>Quantités</FormLabel>
+            <FormControl>
+              <Input
+                id="quantites"
+                type="number"
+                placeholder="Entrez les quantités"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage class="text-xs" />
+          </FormItem>
+        </FormField>
+
+        <!-- Numéro de proforma fournisseur -->
+        <FormField
+          v-slot="{ componentField }"
+          name="numero_proforma_fournisseur"
+        >
+          <FormItem>
+            <FormLabel>Numéro de proforma fournisseur</FormLabel>
+            <FormControl>
+              <Input
+                id="numero_proforma_fournisseur"
+                type="text"
+                placeholder="Entrez le numéro de proforma fournisseur"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage class="text-xs" />
+          </FormItem>
+        </FormField>
+      </form>
+    </template>
+  </ModalLayout>
+</template>
+<script lang="ts" setup>
+import ModalLayout from "@/layouts/modal.layout.vue";
+import { useForm } from "vee-validate";
+import { toTypedSchema } from "@vee-validate/zod";
+import * as z from "zod";
+import { Input } from "@/components/ui/input";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const formSchema = toTypedSchema(
+  z.object({
+    fournisseur: z.string().min(1, { message: "Le fournisseur est requis" }),
+    produitsServices: z
+      .string()
+      .min(1, { message: "Le produits et services est requis" }),
+    quantites: z
+      .number()
+      .min(1, { message: "La quantité doit être supérieure à 0" }),
+    numero_proforma_fournisseur: z
+      .string()
+      .min(1, { message: "Le numéro de proforma fournisseur est requis" }),
+  })
+);
+
+const { handleSubmit } = useForm({
+  validationSchema: formSchema,
+});
+
+const onSubmit = handleSubmit((values) => {
+  console.log(values);
+});
+
+//
+import axios from "axios";
+import { API_URL } from "@/routes/api.route";
+import { onMounted, ref } from "vue";
+import { type FOURNISSEUR } from "@/types/fournisseur.type";
+import { type SERVICES } from "@/types/service.type";
+
+const ListFourniseurs = ref(<SERVICES[]>[]);
+const ListProduitServices = ref(<FOURNISSEUR[]>[]);
+
+const getFournisseurs = async () => {
+  try {
+    const { data } = await axios.get(API_URL.FOURNISSEURS_LIST);
+    if (data) ListFourniseurs.value = data.datas;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+const getProduitServices = async () => {
+  try {
+    const { data } = await axios.get(API_URL.PRODUCT_LIST);
+    if (data) ListProduitServices.value = data.datas;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+onMounted(() => {
+  getFournisseurs();
+  getProduitServices();
+});
+</script>
+<style lang="scss" scoped></style>
+@/types/fournisseur.type

@@ -3,7 +3,7 @@ import { AppService } from "@/services/app.services"
 export const MenuApp = [
    {
       name: 'CRM',
-      icon: `https:/${AppService().url}/images/icons/crm.png`,
+      icon: `https://${AppService().url}/images/icons/crm.png`,
       list: 'Clients, prospects, partenaires',
       route: '',
       children: [
@@ -36,7 +36,7 @@ export const MenuApp = [
    {
       name: 'R. HUMAINES',
       icon: `https://${AppService().url}/images/icons/customer-service.png`,
-      list: 'Employés, salaires et permissions',
+      list: 'Employés, salaires, heure sup et permissions',
       route: '',
       children: [
          {
@@ -52,7 +52,7 @@ export const MenuApp = [
             route: 'RH_SALAIRE_CONGE'
          },
          {
-            icon: 'ri-cash-line',
+            icon: 'ri-currency-line',
             id: 'HUMAINES_SALAIRE',
             name: 'Salaires',
             route: 'RH_SALAIRE'
@@ -62,6 +62,24 @@ export const MenuApp = [
             id: 'HUMAINES_PAID',
             name: 'Paiement de salaire',
             route: 'RH_SALAIRE_PAID'
+         },
+         {
+            icon: 'ri-calendar-schedule-line',
+            id: 'HUMAINES_PAID',
+            name: 'Heure supplémentaire ',
+            route: 'RH_HEURE_SUPPLEMANTAIRE'
+         },
+         {
+            icon: 'ri-building-line',
+            id: 'HUMAINES_DEPARTEMENT',
+            name: 'Departements',
+            route: 'RH_DEPARTEMENT'
+         },
+         {
+            icon: 'ri-scan-line',
+            id: 'HUMAINES_INDEMNITE_PRIME',
+            name: 'Indemnité & Prime',
+            route: 'RH_INDEMNITE_PRIME'
          },
          // {
          //    icon: 'ri-user-follow-line',
@@ -193,13 +211,13 @@ export const MenuApp = [
             icon: 'ri-chat-3-line',
             id: 'SYSTEM_MESSAGERIE',
             name: 'Messageries',
-            route: 'HOME'
+            route: 'SYSTEM_CHATS'
          },
          {
             icon: 'ri-settings-line',
             id: 'SYSTEM_PARAMETRES',
             name: 'Parametres',
-            route: 'HOME'
+            route: 'SYSTEM_PARAMETRE'
          },
          {
             icon: 'ri-mail-line',
@@ -248,19 +266,19 @@ export const MenuProfile = [
    {
       id: 'MENU_profile',
       name: 'Mon Profile',
-      icon: 'ri-mail-star-line',
+      icon: 'ri-user-2-line',
       route: 'HOME'
    },
    {
-      id: 'MENU_MAIL',
+      id: 'SYSTEM_PARAMETRES',
       name: 'Parametre',
-      icon: 'ri-booklet-line',
-      route: 'HOME'
+      icon: 'ri-settings-line',
+      route: 'SYSTEM_PARAMETRE'
    },
    {
       id: 'MENU_SIGNOUT',
       name: 'Se deconnecté',
-      icon: 'ri-folder-chart-line',
+      icon: 'ri-logout-box-line',
       route: 'HOME'
    },
 ];

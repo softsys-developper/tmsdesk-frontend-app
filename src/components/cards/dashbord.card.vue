@@ -1,10 +1,10 @@
 <template>
    <div
-      class="flex items-start bg-white py-8 px-6 gap-4 border-[1px] rounded-md h-[12rem]"
+      class="flex items-start bg-white py-8 px-6 gap-4 border-[1px] rounded-md min-h-[12rem]"
    >
       <!-- Icon Refrence -->
-      <div class="h-20">
-         <img :src="content.icon" alt="" class="h-full" />
+      <div class="h-20 w-20">
+         <img :src="content.icon" alt="" class="h-full w-full" />
       </div>
 
       <div class="flex gap-8 flex-col w-9/12">

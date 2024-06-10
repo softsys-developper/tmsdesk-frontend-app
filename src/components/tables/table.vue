@@ -31,6 +31,7 @@ import BtnMore from '../mores/btn.more.vue';
 // } from '@/components/ui/select';
 import { Search } from 'lucide-vue-next';
 import { ref, watch } from 'vue';
+import { AppService } from '@/services/app.services';
 
 const props = defineProps(['MenuActions', 'dataTables', 'display']);
 
@@ -164,7 +165,7 @@ const IsPageFun = () => {
    </Table>
 
    <div class="flex justify-between p-4">
-      <span class=""> {{ isPage }} </span>
+      <span class="text-xs font-extrabold uppercase"> {{  AppService().name  }} </span>
 
       <Pagination
          v-slot="{ page }"

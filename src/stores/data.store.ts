@@ -26,6 +26,9 @@ export const useDataStore = defineStore('counter', {
       Livres: [],
       Livraisons: [],
       Transactions: [],
-      BCs: []
+      BCs: [],
+      Heures: [],
+      Primes: [],
+      Services: []
    }),
 });

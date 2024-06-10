@@ -1,7 +1,7 @@
 export const SalaryTables = [
 
     {
-        label: 'Libelle',
+        label: 'Categories',
         field: 'libelle_salaire',
         status: null,
         color: null,

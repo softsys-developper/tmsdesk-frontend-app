@@ -1,0 +1,2 @@
+PUSH : git add ./ && git commit -m "updated App v0.12.1" && git push origin main
+PUSH_AND_DEPLOY : git add ./ && git commit -m "commit message" && git push origin main && 

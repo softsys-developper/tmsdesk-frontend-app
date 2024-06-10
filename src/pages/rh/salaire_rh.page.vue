@@ -4,9 +4,9 @@
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
             <ContentLayout title="R. Humaines | Paiements salaires">
                <template v-slot:created>
-                  <PersonalModal
-                     name="Ajouter un employer"
-                     title="Ajouter un employer"
+                  <SalaireModal
+                     name="Ajouter un salaire"
+                     title="Ajouter un salaire"
                   />
                </template>
             </ContentLayout>
@@ -38,7 +38,7 @@ import { API_URL } from '@/routes/api.route';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { SalaryTables } from '@/tables/salary.table';
-import PersonalModal from '@/components/modals/personal.modal.vue';
+import SalaireModal from '@/components/modals/salaire.modal.vue';
 
 const { readData } = useApiServices();
 const state = reactive({

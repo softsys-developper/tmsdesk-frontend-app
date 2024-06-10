@@ -2,17 +2,23 @@
    <ModalLayout :Func="onSubmit">
       <template v-slot:form>
          <form class="w-full space-y-2" @submit="onSubmit">
-            <!-- Name -->
-            <FormField v-slot="{ componentField }" name="name">
+            <!-- Categories -->
+            <FormField v-slot="{ componentField }" name="categorie">
                <FormItem>
-                  <FormLabel>Identifiant</FormLabel>
+                  <FormLabel>Categorie</FormLabel>
                   <FormControl>
-                     <Input
-                        id="name"
-                        type="text"
-                        placeholder="shadcn"
-                        v-bind="componentField"
-                     />
+                     <Input id="categorie" type="text" placeholder="shadcn" v-bind="componentField" />
+                  </FormControl>
+                  <FormMessage class="text-xs" />
+               </FormItem>
+            </FormField>
+
+            <!-- Montant -->
+            <FormField v-slot="{ componentField }" name="categorie">
+               <FormItem>
+                  <FormLabel>Montant</FormLabel>
+                  <FormControl>
+                     <Input id="montant" type="text" placeholder="shadcn" v-bind="componentField" />
                   </FormControl>
                   <FormMessage class="text-xs" />
                </FormItem>
@@ -39,13 +45,14 @@ import { Input } from '@/components/ui/input';
 import { useApiServices } from '@/services/api.services';
 import { API_URL } from '@/routes/api.route';
 import { useToast } from '@/components/ui/toast/use-toast';
- import { useDataStore } from '@/stores/data.store';
+import { useDataStore } from '@/stores/data.store';
 import { useModalStore } from '@/stores/modal.store';
- const { toast } = useToast();
+const { toast } = useToast();
 
 const formSchema = toTypedSchema(
    z.object({
-      name: z.string().min(1, "Le champ 'nom' est requis."),
+      categorie: z.string().min(1, "Le champ 'categorie' est requis."),
+      montant: z.string().min(1, "Le champ 'montant' est requis."),
    })
 );
 
@@ -56,40 +63,40 @@ const { handleSubmit } = useForm({
 const { createData } = useApiServices();
 const onSubmit = handleSubmit((values) => {
    createData(API_URL.SALAIRE_CREATE, values).then((data: any) => {
-          if (data) {
-             const DataKey = Object.keys(values);
-             DataKey.forEach((el) => {
-                const query: any = document.querySelector('#' + el);
-                if (query) query.value = '';
-             }); 
+      if (data) {
+         const DataKey = Object.keys(values);
+         DataKey.forEach((el) => {
+            const query: any = document.querySelector('#' + el);
+            if (query) query.value = '';
+         });
 
-             useModalStore().open = false
-             useDataStore().Salary = data.datas.map((salaire:any) => ({
+         useModalStore().open = false
+         useDataStore().Salary = data.datas.map((salaire: any) => ({
             libelle_salaire: salaire.libelle_salaire,
             montant: salaire.montant
          }));
 
- 
-             const Add:any = useDataStore().Salary
-             Add.unshift(data.data)
-             useDataStore().Clients = Add
- 
-             toast({
-                title: 'Enrégistre',
-                description: 'Clients ajouter avec succès',
-             });
-          }
-       })
-       .catch((err) => {
-          if (err) {
-             const isErr = Object.keys(err.response.data.errors);
-             console.log(err.response.data.errors, isErr);
-             toast({
-                title: isErr[0],
-                description: err.response.data.errors[isErr[0]][0],
-             });
-          }
-       });
+
+         const Add: any = useDataStore().Salary
+         Add.unshift(data.data)
+         useDataStore().Clients = Add
+
+         toast({
+            title: 'Enrégistre',
+            description: 'Salaire ajouter avec succès',
+         });
+      }
+   })
+      .catch((err) => {
+         if (err) {
+            const isErr = Object.keys(err.response.data.errors);
+            console.log(err.response.data.errors, isErr);
+            toast({
+               title: isErr[0],
+               description: err.response.data.errors[isErr[0]][0],
+            });
+         }
+      });
 });
 </script>
 <style lang="scss" scoped></style>

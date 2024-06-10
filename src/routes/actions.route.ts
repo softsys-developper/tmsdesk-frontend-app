@@ -1,10 +1,10 @@
 export const MenuClientActions = [
-   {
-      id: 'MUA_detail',
-      name: 'Voir les details',
-      icon: 'ri-eye-line',
-      route: 'HOME',
-   },
+   // {
+   //    id: 'MUA_detail',
+   //    name: 'Voir les details',
+   //    icon: 'ri-eye-line',
+   //    route: 'HOME',
+   // },
    {
       id: 'MUA_detail',
       name: 'Modifier',
@@ -20,12 +20,12 @@ export const MenuClientActions = [
 ];
 
 export const MenuPersonalActions = [
-   {
-      id: 'MUA_detail',
-      name: 'Voir les details',
-      icon: 'ri-eye-line',
-      route: 'HOME',
-   },
+   // {
+   //    id: 'MUA_detail',
+   //    name: 'Voir les details',
+   //    icon: 'ri-eye-line',
+   //    route: 'HOME',
+   // },
    {
       id: 'MUA_detail',
       name: 'Payer un salaire',
@@ -47,12 +47,12 @@ export const MenuPersonalActions = [
 ];
 
 export const MenuSalaryActions = [
-   {
-      id: 'MUA_detail',
-      name: 'Voir les details',
-      icon: 'ri-eye-line',
-      route: 'HOME',
-   },
+   // {
+   //    id: 'MUA_detail',
+   //    name: 'Voir les details',
+   //    icon: 'ri-eye-line',
+   //    route: 'HOME',
+   // },
    {
       id: 'MUA_detail',
       name: 'Payer un salaire',

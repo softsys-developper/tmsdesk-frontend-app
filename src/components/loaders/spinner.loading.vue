@@ -23,4 +23,4 @@
 <script lang="ts" setup>
     defineProps(['size'])
 </script>
-<style lang="scss" scoped></style>
+<style lang="css" scoped></style>

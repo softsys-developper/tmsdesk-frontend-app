@@ -14,7 +14,7 @@
                      <span class="text-[8px] font-bold">99</span>
                   </div>
                   <i class="ri-notification-2-line"></i>
-                  <span class="text-sm font-bold">Notifications</span>
+                  <span class="text-sm font-bold md:flex hidden ">Notifications</span>
                </div>
 
                <!-- Profile de user connecter -->
@@ -29,7 +29,7 @@
                      <AvatarFallback class="text-xs">LB</AvatarFallback>
                   </Avatar>
 
-                  <BtnMore
+                  <BtnMore class="z-50"
                      name="Laurant Binaté"
                      title="Profile"
                      :dataDropMenu="MenuProfile"
@@ -40,16 +40,19 @@
          </div>
       </div>
 
-      <div class="bg-white h-12">
+      <div class="bg-white h-14 w-full overflow-x-scroll no-scrollbar">
          <MenuHeaderCard :content="MenuApp" />
       </div>
 
-      <!-- Breadcrumb -->
+     
+   </section>
 
-      <div class="bg-white border-t-[1px]">
+
+    <!-- Breadcrumb -->
+
+    <div class="bg-white border-t-[1px] mt-[7.5rem] w-full overflow-x-scroll overflow-hidden no-scrollbar">
          <BreadcumbHeader />
       </div>
-   </section>
 </template>
 <script lang="ts" setup>
 import MenuHeaderCard from '@/components/cards/menu_header.card.vue';
@@ -58,4 +61,14 @@ import BreadcumbHeader from '@/components/headers/breadcrumb.header.vue';
 import BtnMore from '../mores/btn.more.vue';
 import { AppService } from '@/services/app.services'
 </script>
-<style lang="scss" scoped></style>
+<style lang="css" scoped>
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}</style>

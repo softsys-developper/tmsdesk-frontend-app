@@ -3,7 +3,9 @@
       <template v-slot:content>
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
             <ContentLayout title="COMPTABILITES | Bon de commandes">
-               <template v-slot:created> </template>
+               <template v-slot:created> 
+                  <Bc_fournisseurModal name="Nouveau BC" title="Ajouter un nouveau BC" />
+               </template>
             </ContentLayout>
             <Table
                v-if="storeBCs.length != 0"
@@ -30,6 +32,7 @@ import { onMounted } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { BCTables } from '@/tables/bc.tables';
 import { useBCHook } from '@/hooks/comptabilites/bc.hook.ts';
+import Bc_fournisseurModal from '@/components/modals/bc_fournisseur.modal.vue';
 
 const { FindBCAll, storeBCs, setBC } = useBCHook();
 

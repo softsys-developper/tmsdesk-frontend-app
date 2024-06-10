@@ -126,8 +126,31 @@ export const API_URL = {
     BILAN_CREATE: `${BASE_URL}/bilans/add`,
     BILAN_UPDATE: `${BASE_URL}/bilans/update`,
     BILAN_REMOVE: `${BASE_URL}/bilans/delete`,
-    BILAN_DETAILS: `${BASE_URL}/bilans/details`,
+    BILAN_DETAILS: `${BASE_URL}/bilans`,
 
+
+    SETTING_LIST: `${BASE_URL}/parametres`,
+    SETTING_UPDATE: `${BASE_URL}/parametres/update`,
+
+
+    HEURE_LIST: `${BASE_URL}/heure-supplementaires`,
+    HEURE_CREATE: `${BASE_URL}/heure-supplementaires/add`,
+    HEURE_UPDATE: `${BASE_URL}/heure-supplementaires/update`,
+    HEURE_REMOVE: `${BASE_URL}/heure-supplementaires/delete`,
+    HEURE_DETAILS: `${BASE_URL}/heure-supplementaires`,
+
+    PRIME_LIST: `${BASE_URL}/indemnite-primes`,
+    PRIME_CREATE: `${BASE_URL}/indemnite-primes/add`,
+    PRIME_UPDATE: `${BASE_URL}/indemnite-primes/update`,
+    PRIME_REMOVE: `${BASE_URL}/indemnite-primes/delete`,
+    PRIME_DETAILS: `${BASE_URL}/indemnite-primes`,
+
+    SERVICE_LIST: `${BASE_URL}/services`,
+    SERVICE_CREATE: `${BASE_URL}/services/add`,
+    SERVICE_UPDATE: `${BASE_URL}/services/update`,
+    SERVICE_REMOVE: `${BASE_URL}/services/delete`,
+    SERVICE_DETAILS: `${BASE_URL}/services`,
+    
 
     // Gestion fournisseurs
     FOURNISSEURS_LIST: `${BASE_URL}/fournisseurs`,

@@ -3,7 +3,7 @@
       <!--  -->
       <div class="flex justify-between px-8 py-4">
          <div class="">
-            <span class="text-2xl font-bold"> {{ title }} </span>
+            <span class="text-xl font-black"> {{ title }} </span>
          </div>
          <div class="">
             <slot name="created" />

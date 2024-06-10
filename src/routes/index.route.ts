@@ -6,6 +6,7 @@ import { routeRh } from './rh.route';
 import { routeLogisc } from './logisc.route';
 import { routeProforma } from './proforma.route';
 import { routeCompta } from './compta.route';
+import { routeSystem } from './system.route';
 
 const routes: any = [
    routeDashbord,
@@ -14,7 +15,8 @@ const routes: any = [
    routeRh,
    routeLogisc,
    routeProforma,
-   routeCompta
+   routeCompta,
+   routeSystem
 ];
 
 export const router = createRouter({
