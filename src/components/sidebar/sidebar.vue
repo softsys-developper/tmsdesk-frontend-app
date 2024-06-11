@@ -1,22 +1,30 @@
 <template>
-    <ul class="flex flex-col">
-       <li
-          class="h-10 px-2 cursor-pointer hover:bg-gray-300 rounded-md flex items-center text-sm font-semibold"
-          v-for="MENU in stateSideBar?.menu"
-          :class="$route.name == MENU.route ? 'opacity-100 font-bold' : 'opacity-70'"
-       >
-          <RouterLink
-             :to="{ name: MENU.route }"
-             class="w-full h-full flex items-center text-base"
-          >
-             {{ MENU.name }}
-          </RouterLink>
-       </li>
-    </ul>
- </template>
- <script setup>
- import { useSideBar } from '@/hooks/sidebar.hook';
- const { stateSideBar } = useSideBar();
- </script>
- <style lang="scss" scoped></style>
- 
+
+
+  <aside
+    id="sidebar-multi-level-sidebar"
+    class="fixed top-0 left-0 z-40   w-56 h-screen transition-transform sm:translate-x-0 shadow-right shadow-xl " :class="useModalStore().isMenu ? '-translate-x-full ' : 'translate-x-0' "
+    aria-label="Sidebar"
+  >
+    <div class="h-full px-3  overflow-y-auto bg-white dark:bg-gray-800 py-8">
+     
+
+      <MenuHeaderCard :content="isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'logistiques' && item.name != 'Systèmes' && item.name != 'Utilisateurs') : MenuApp" />
+    </div>
+  </aside>
+
+  <div class="p-0 sm:ml-56 ">
+    <div class="p-0 rounded-lg dark:border-gray-700">
+      <slot name="content" />
+    </div>
+  </div>
+</template>
+<script setup lang="ts">
+
+import MenuHeaderCard from "@/components/cards/menu_header.card.vue";
+import { MenuApp } from '@/routes/menu.route';
+import { useModalStore } from "@/stores/modal.store";
+import { isApp } from '@/services/app.services';
+
+</script>
+<style lang="scss" scoped></style>

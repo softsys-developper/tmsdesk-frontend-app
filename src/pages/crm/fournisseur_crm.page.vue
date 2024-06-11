@@ -19,7 +19,7 @@
                 :display="FournisseurTables"
              />
 
-             <PageLoader :loading="state.loading" :data="useDataStore().Fournisseurs" name="Aucun fournisseur" />
+             <PageLoader :loading="setFournisseur.loading" :data="useDataStore().Fournisseurs" name="Aucun fournisseur" />
           </section>
        </template>
     </BaseLayout>
@@ -30,31 +30,17 @@
  import ContentLayout from '@/layouts/content.layout.vue';
  import FournisseurModal from '@/components/modals/fournisseur.modal.vue';
  import { MenuClientActions } from '@/routes/actions.route';
- import { useApiServices } from '@/services/api.services';
- import { onMounted, reactive } from 'vue';
- import { API_URL } from '@/routes/api.route';
+ import { onMounted } from 'vue';
  import { useDataStore } from '@/stores/data.store';
  import PageLoader from '@/components/loaders/page.loader.vue';
 import { FournisseurTables } from '@/tables/fournisseur.table';
+import { useFournisseurHook } from '@/hooks/CRM/fournisseurs.hook';
 
- const state = reactive({
-   loading: false
-})
+const { FindFournisseurAll, setFournisseur } = useFournisseurHook();
 
-const FindAllFournisseur = () => {
-   state.loading = true
-   readData(API_URL.FOURNISSEURS_LIST).then((data: any) => {
-      useDataStore().Fournisseurs = data.datas;
-      state.loading = false
-   }).catch(() => {
-      state.loading = false
-   })
-}
- 
- const { readData } = useApiServices();
- onMounted(() => {
-   FindAllFournisseur()
- });
+onMounted(() => {
+   FindFournisseurAll();
+});
  </script>
  <style lang="scss" scoped></style>
  

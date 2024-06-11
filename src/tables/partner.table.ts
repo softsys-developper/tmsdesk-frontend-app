@@ -1,4 +1,11 @@
 export const PartnerTables = [
+   {
+    label: "ID",
+    field: "id",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
     {
        label: 'Nom',
        field: 'nom',
@@ -26,6 +33,13 @@ export const PartnerTables = [
        status: null,
        color: null,
        bgColor: null,
+    },
+    {
+      label: "Date de création",
+      field: "date_creation",
+      status: null,
+      color: null,
+      bgColor: null,
     },
     // {
     //    label: 'Nom Interlocuteur',

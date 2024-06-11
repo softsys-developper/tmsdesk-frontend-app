@@ -12,7 +12,7 @@
             </ContentLayout>
 
             <Table
-               v-if="useDataStore().Paid.length != 0"
+               v-if="useDataStore().Personals.length != 0"
                :dataTables="useDataStore().Personals"
                :MenuActions="MenuClientActions"
                :display="PersonalTables"
@@ -20,7 +20,7 @@
 
             <PageLoader
                :loading="state.loading"
-               :data="useDataStore().Paid"
+               :data="useDataStore().Personals"
                name="Aucun Paid"
             />
          </section>
@@ -49,6 +49,7 @@ const FindAllClient = () => {
    state.loading = true;
    readData(API_URL.USER_LIST)
       .then((data: any) => {
+         console.log(data)
          useDataStore().Personals = data.datas;
          state.loading = false;
       })

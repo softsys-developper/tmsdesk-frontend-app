@@ -3,65 +3,65 @@ import { API_URL } from '@/routes/api.route';
 import { useToast } from '@/components/ui/toast/use-toast';
 import { computed, reactive, ref } from 'vue';
 import { useDataStore } from './../../stores/data.store';
-// import { LIST_DEPENSE } from '@/types/Client.type';
+// import { LIST_DEPENSE } from '@/types/Partner.type';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
 import moment from 'moment';
 
-export const useClientHook = () => {
+export const usePartnerHook = () => {
    const { readData, createData } = useApiServices();
    const { EmptyFields } = useUtilHook();
-   const setClient = reactive({ loading: false, loadingCreate: false });
-   const stateClients = ref<any[]>([]);
-   stateClients.value = useDataStore().Clients;
+   const setPartner = reactive({ loading: false, loadingCreate: false });
+   const statePartners = ref<any[]>([]);
+   statePartners.value = useDataStore().Partners;
    const { toast } = useToast();
 
-   const formatClientData = (Clients: any) => {
-      return Clients.map((Client: any, index:number) => ({
+   const formatPartnerData = (Partners: any) => {
+      return Partners.map((Partner: any, index: number) => ({
          id: index  + 1,
-         nom: Client.nom,
-         email: Client.email,
-         telephone: Client.telephone,
-         adresse: Client.adresse,
-         date_creation: moment(Client.created_at).format("l") ,
+         nom: Partner.nom,
+         email: Partner.email,
+         telephone: Partner.telephone,
+         adresse: Partner.adresse,
+         date_creation: moment(Partner.created_at).format("l") ,
       }));
    };
 
 
-   const storeClients = computed(() => {
-      return useDataStore().Clients
+   const storePartners = computed(() => {
+      return useDataStore().Partners
    })
 
    //
-   const FindClientAll = () => {
-      setClient.loading = true;
-      readData(API_URL.CLIENT_LIST)
+   const FindPartnerAll = () => {
+      setPartner.loading = true;
+      readData(API_URL.PARTNER_LIST)
          .then((data: any) => {
-            useDataStore().Clients =  formatClientData(data.datas);
-            setClient.loading = false;
+            useDataStore().Partners =  formatPartnerData(data.datas);
+            setPartner.loading = false;
          })
          .catch(() => {
-            setClient.loading = false;
+            setPartner.loading = false;
          });
    };
 
    //
-   const FindClientOne = () => {};
+   const FindPartnerOne = () => {};
 
    //
-   const CreateClient = async(values: any) => {
-      setClient.loadingCreate = true;
-      const DataCreated = await createData(API_URL.CLIENT_CREATE, values)
+   const CreatePartner = async(values: any) => {
+      setPartner.loadingCreate = true;
+      const DataCreated = await createData(API_URL.PARTNER_CREATE, values)
          .then((data: any) => {
             if (data) {
                EmptyFields(values); // Vider les champs
-               setClient.loadingCreate = false;
-               let Clients = useDataStore().Clients
+               setPartner.loadingCreate = false;
+               let Partners = useDataStore().Partners
 
                //
-               const toAdd: [] = formatClientData([data.data]);
-               Clients.unshift(...toAdd);
-               useDataStore().Clients = Clients;
+               const toAdd: [] = formatPartnerData([data.data]);
+               Partners.unshift(...toAdd);
+               useDataStore().Partners = Partners;
                useModalStore().open = false
 
                toast({
@@ -71,7 +71,7 @@ export const useClientHook = () => {
             }
          })
          .catch((err) => {
-            setClient.loadingCreate = false;
+            setPartner.loadingCreate = false;
             if (err) {
                const isErr = Object.keys(err.response.data.errors);
                if (isErr) {
@@ -94,19 +94,19 @@ export const useClientHook = () => {
    };
 
    //
-   const FindClientUpdate = () => {};
+   const FindPartnerUpdate = () => {};
 
    //
-   const FindClientDelete = () => {};
+   const FindPartnerDelete = () => {};
 
    return {
-      FindClientAll,
-      FindClientOne,
-      CreateClient,
-      FindClientUpdate,
-      FindClientDelete,
-      stateClients,
-      setClient,
-      storeClients
+      FindPartnerAll,
+      FindPartnerOne,
+      CreatePartner,
+      FindPartnerUpdate,
+      FindPartnerDelete,
+      statePartners,
+      setPartner,
+      storePartners
    };
 };

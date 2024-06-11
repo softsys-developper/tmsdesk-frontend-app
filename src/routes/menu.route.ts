@@ -2,10 +2,17 @@ import { AppService } from "@/services/app.services"
 
 export const MenuApp = [
    {
+      name: 'Tableau de bord',
+      icon: `https://${AppService().url}/images/icons/dashboard.png`,
+      list: '',
+      route: 'HOME',
+      children: []
+   },
+   {
       name: 'CRM',
       icon: `https://${AppService().url}/images/icons/crm.png`,
       list: 'Clients, prospects, partenaires',
-      route: '',
+      route: 'CRM_CLIENTS',
       children: [
          {
             icon: 'ri-user-star-line',
@@ -37,7 +44,7 @@ export const MenuApp = [
       name: 'R. HUMAINES',
       icon: `https://${AppService().url}/images/icons/customer-service.png`,
       list: 'Employés, salaires, heure sup et permissions',
-      route: '',
+      route: 'RH_PERSONAL',
       children: [
          {
             icon: 'ri-user-2-line',
@@ -172,7 +179,7 @@ export const MenuApp = [
       name: 'logistiques',
       icon: `https://${AppService().url}/images/icons/logistics.png`,
       list: 'Bon de commande, livraisons, Services & produits',
-      route: '',
+      route: 'LOGISC_PRODUCTS',
       children: [
          {
             icon: 'ri-home-smile-2-line',
@@ -189,7 +196,7 @@ export const MenuApp = [
          {
             icon: 'ri-store-3-line',
             id: 'LOGISTIC_BON_COMMANDE_FOURNISSEUR',
-            name: 'Bon de commande fournisseur',
+            name: 'BC fournisseur',
             route: 'LOGISC_BC_PARTENAIRES'
          },
          {
@@ -202,43 +209,86 @@ export const MenuApp = [
       ],
    },
    {
-      name: 'Système',
-      icon: `https://${AppService().url}/images/icons/content-management-system.png`,
+      name: 'Utilisateurs',
+      icon: `https://${AppService().url}/images/icons/utilisateur.png`,
       list: 'Messagerie, Parametres, Mails, Notes, Gestions des Documments',
       route: '',
       children: [
          {
-            icon: 'ri-chat-3-line',
-            id: 'SYSTEM_MESSAGERIE',
-            name: 'Messageries',
-            route: 'SYSTEM_CHATS'
-         },
-         {
-            icon: 'ri-settings-line',
-            id: 'SYSTEM_PARAMETRES',
-            name: 'Parametres',
-            route: 'SYSTEM_PARAMETRE'
+            icon: 'ri-mail-line',
+            id: 'SYSTEM_MAILS',
+            name: 'Utilisateurs',
+            route: 'HOME'
          },
          {
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
-            name: 'Mails',
+            name: 'Roles',
             route: 'HOME'
          },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_NOTE',
-            name: 'Notes',
-            route: 'HOME'
-         },
-         {
-            icon: 'ri-article-line',
-            id: 'SYSTEM_GESTION_DOC',
-            name: 'Gestions de documents',
+            name: 'Permissions',
             route: 'HOME'
          },
       ],
    },
+   {
+      name: 'Systèmes',
+      icon: `https://${AppService().url}/images/icons/content-management-system.png`,
+      list: 'Général, Préférence',
+      route: '',
+      children: [
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_NOTE',
+            name: 'Parametre',
+            route: 'HOME'
+         },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_NOTE',
+            name: 'Gestion des documents',
+            route: 'HOME'
+         },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_NOTE',
+            name: 'Categories',
+            route: 'HOME'
+         },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_NOTE',
+            name: 'Marques',
+            route: 'HOME'
+         },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_NOTE',
+            name: 'Devises',
+            route: 'HOME'
+         },
+      ],
+   },
+   {
+      name: 'Mesageries',
+      icon: `https://${AppService().url}/images/icons/messagerie.png`,
+      list: 'Messagerie',
+      route: 'SYSTEM_CHATS',
+      children: [
+        
+      ],
+   },
+   {
+      name: 'Supports',
+      icon: `https://${AppService().url}/images/icons/support.png`,
+      list: 'Conctez softsys en cas de disfonctionnement de votre logicel',
+      route: '',
+      children: [
+      ],
+   }
 ];
 
 export const MenuPersonal = [

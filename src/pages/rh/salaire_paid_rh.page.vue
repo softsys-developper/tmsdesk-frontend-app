@@ -55,7 +55,6 @@ const FindAllClient = () => {
                return {
                   username: el.user.name,
                   ...el,
-                  
                }
             }
          )

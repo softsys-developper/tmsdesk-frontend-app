@@ -34,7 +34,7 @@ const HanldeSubmit = () => {
   <div class="flex">
     <Button class="bg-gray-800 font-bold text-base flex items-center jus gap-2" @click="setOpen">
       <i class="ri-add-line"></i>
-      <span class="truncate lg:w-full md:w-32 w-24 font-bold">{{ name }}</span>
+      <span class="truncate lg:w-full md:w-32 w-24 font-bold hidden lg:flex">{{ name }}</span>
     </Button>
     <main
       v-if="open"

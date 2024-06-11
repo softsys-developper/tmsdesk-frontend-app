@@ -19,7 +19,7 @@
             />
 
             <PageLoader
-               :loading="state.loading"
+               :loading="setClient.loading"
                :data="useDataStore().Clients"
                name="Aucun clients"
             />
@@ -33,34 +33,16 @@ import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 import ClientdModal from '@/components/modals/client.modal.vue';
 import { MenuClientActions } from '@/routes/actions.route';
-import { useApiServices } from '@/services/api.services';
-import { onMounted, reactive } from 'vue';
-import { API_URL } from '@/routes/api.route';
+import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { ClientTables } from '@/tables/client.tables';
+import { useClientHook } from '@/hooks/CRM/client.hook';
 
-const { readData } = useApiServices();
-const state = reactive({
-   loading: false,
-});
-
-
-
-const FindAllClient = () => {
-   state.loading = true;
-   readData(API_URL.CLIENT_LIST)
-      .then((data: any) => {
-         useDataStore().Clients = data.datas;
-         state.loading = false;
-      })
-      .catch(() => {
-         state.loading = false;
-      });
-};
+const { FindClientAll, setClient } = useClientHook();
 
 onMounted(() => {
-   FindAllClient();
+   FindClientAll();
 });
 </script>
 <style lang="scss" scoped></style>

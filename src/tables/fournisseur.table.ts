@@ -1,4 +1,11 @@
 export const FournisseurTables = [
+   {
+    label: "ID",
+    field: "id",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
     {
        label: 'Nom',
        field: 'nom',
@@ -26,5 +33,12 @@ export const FournisseurTables = [
        status: null,
        color: null,
        bgColor: null,
+    },
+    {
+      label: "Date de création",
+      field: "date_creation",
+      status: null,
+      color: null,
+      bgColor: null,
     },
  ];

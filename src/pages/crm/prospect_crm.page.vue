@@ -18,7 +18,7 @@
                :MenuActions="MenuClientActions"
                :display="ProspectTables"/>
 
-               <PageLoader :loading="state.loading" :data="useDataStore().Prospects" name="Aucun prospects" />
+               <PageLoader :loading="setProspect.loading" :data="useDataStore().Prospects" name="Aucun prospects" />
          </section>
       </template>
    </BaseLayout>
@@ -29,31 +29,16 @@ import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 import ProspectModal from '@/components/modals/prospect.modal.vue';
 import { MenuClientActions } from '@/routes/actions.route';
-import { useApiServices } from '@/services/api.services';
-import { onMounted, reactive } from 'vue';
-import { API_URL } from '@/routes/api.route';
+import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { ProspectTables } from '@/tables/prospect.table';
+import { useProspectHook } from '@/hooks/CRM/prospects.hook';
 
-const { readData } = useApiServices();
-const state = reactive({
-   loading: false
-})
-
-const FindAllProspect = () => {
-   state.loading = true
-   readData(API_URL.PROSPECT_LIST).then((data: any) => {
-      useDataStore().Prospects = data.datas;
-      state.loading = false
-   }).catch(() => {
-      state.loading = false
-   })
-}
-
+const { FindProspectAll, setProspect } = useProspectHook();
 
 onMounted(() => {
-   FindAllProspect()
+   FindProspectAll();
 });
 </script>
 <style lang="scss" scoped></style>

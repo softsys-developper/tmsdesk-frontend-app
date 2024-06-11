@@ -4,6 +4,9 @@ import { defineStore } from 'pinia';
 export const useModalStore = defineStore('Modal', {
    state: () => ({
       open: false,
-      isOpenSetting: 'Generale' 
+      isOpenSetting: 'Generale' ,
+      isOpenMenu: '',
+      isOpenSubMenu: '',
+      isMenu: false
    }),
 });

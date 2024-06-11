@@ -13,7 +13,7 @@
                :MenuActions="MenuClientActions"
                :display="PartnerTables" />
 
-               <PageLoader :loading="state.loading" :data="useDataStore().Clients" name="Aucun clients" />
+               <PageLoader :loading="setPartner.loading" :data="useDataStore().Partners" name="Aucun clients" />
           </section>
           
        </template>
@@ -25,31 +25,16 @@
  import ContentLayout from '@/layouts/content.layout.vue';
  import PartnerModal from '@/components/modals/partner.modal.vue';
  import {MenuClientActions} from "@/routes/actions.route"
- import { useApiServices } from '@/services/api.services';
-import { onMounted, reactive } from 'vue';
-import { API_URL } from '@/routes/api.route';
+import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { PartnerTables } from '@/tables/partner.table';
+import { usePartnerHook } from '@/hooks/CRM/partenaires.hook';
 
-const { readData } = useApiServices();
-const state = reactive({
-   loading: false
-})
-
-const FindAllPartner = () => {
-   state.loading = true
-   readData(API_URL.PARTNER_LIST).then((data: any) => {
-      useDataStore().Partners = data.datas;
-      state.loading = false
-   }).catch(() => {
-      state.loading = false
-   })
-}
-
+const { FindPartnerAll, setPartner } = usePartnerHook();
 
 onMounted(() => {
-   FindAllPartner()
+   FindPartnerAll();
 });
  </script>
  <style lang="scss" scoped></style>

@@ -50,7 +50,7 @@ const FindAllSalaire = () => {
    readData(API_URL.SALAIRE_LIST)
       .then((data: any) => {
          useDataStore().Salary = data.datas.map((salaire:any) => ({
-            libelle_salaire: salaire.libelle_salaire,
+            libelle_salaire: salaire.categorie,
             montant: salaire.montant
          }));
          state.loading = false;

@@ -178,14 +178,8 @@ import {
    SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { useApiServices } from '@/services/api.services';
-import { API_URL } from '@/routes/api.route';
 // import { onMounted, ref } from 'vue';
-import { useToast } from '@/components/ui/toast/use-toast';
-import { useDataStore } from '@/stores/data.store';
-import { useModalStore } from '@/stores/modal.store';
-
-const { toast } = useToast();
+import { useProspectHook } from '@/hooks/CRM/prospects.hook';
 
 const formSchema = toTypedSchema(
    z.object({
@@ -213,34 +207,10 @@ const { handleSubmit } = useForm({
    validationSchema: formSchema,
 });
 
-const { createData } = useApiServices();
+const { CreateProspect } = useProspectHook();
 
 const onSubmit = handleSubmit((values) => {
-   createData(API_URL.PROSPECT_CREATE, values)
-      .then((data) => {
-         const DataKey = Object.keys(values);
-
-         DataKey.forEach((el) => {
-            const query: any = document.querySelector('#' + el);
-            if (query) query.value = '';
-         });
-
-         const Add: any = useDataStore().Prospects;
-         Add.unshift(data.data);
-         useDataStore().Prospects = Add;
-
-         useModalStore().open = false
-      })
-      .catch((err) => {
-         if (err) {
-            const isErr = Object.keys(err.response.data.errors);
-            console.log(err.response.data.errors, isErr);
-            toast({
-               title: isErr[0],
-               description: err.response.data.errors[isErr[0]][0],
-            });
-         }
-      });
+   CreateProspect(values);
 });
 </script>
 <style lang="scss" scoped></style>

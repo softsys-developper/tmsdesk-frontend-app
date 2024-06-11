@@ -340,7 +340,7 @@ const { toast } = useToast();
 
 const formSchema = toTypedSchema(
    z.object({
-      name: z.string().min(1, "Le champ 'nom' est requis."),
+      name: z.string().min(1, "Le champ 'idenfiant' est requis."),
       nom: z.string().min(1, "Le champ 'nom' est requis."),
       prenoms: z.string().min(1, "Le champ 'prénoms' est requis."),
       email: z.string().email("L'adresse email n'est pas valide."),
