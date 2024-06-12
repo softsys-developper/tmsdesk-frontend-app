@@ -1,6 +1,6 @@
 // stores/counter.js
 import { defineStore } from 'pinia';
-import {CATEGORIE_DATA} from '@/types/systemes/categorie.type';
+
 
 type CAISSES  = {
    solde: any;

@@ -23,9 +23,9 @@ export const useBilanHook = () => {
    const formatBilanData = (bilans: any) => {
 
       return bilans.map((bilan: any) => ({
-            libelle: bilan.key.replace(/_/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase()),
+            libelle: bilan.key.replace(/_/g, ' ').replace(/(^\w|\s\w)/g, (m:any) => m.toUpperCase()),
             value: bilan.value,
-            date_creation: moment(Client.created_at).format("l") ,
+            date_creation: moment(bilan.created_at).format("l") ,
       }));
    };
 

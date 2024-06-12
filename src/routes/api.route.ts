@@ -156,6 +156,11 @@ export const API_URL = {
   CATEGORIE_UPDATE: `${BASE_URL}/categories/update`,
   CATEGORIE_REMOVE: `${BASE_URL}/categories/delete`,
 
+  FACTURE_LIST: `${BASE_URL}/factures`,
+  FACTURE_CREATE: `${BASE_URL}/factures/add`,
+  FACTURE_UPDATE: `${BASE_URL}/factures/update`,
+  FACTURE_REMOVE: `${BASE_URL}/factures/delete`,
+
   // Gestion fournisseurs
   FOURNISSEURS_LIST: `${BASE_URL}/fournisseurs`,
   FOURNISSEURS_CREATE: `${BASE_URL}/fournisseurs/add`,

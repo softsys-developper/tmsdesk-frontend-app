@@ -7,8 +7,7 @@ import { useDataStore } from "../../stores/data.store";
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
-import { FACTURE_DATA } from "@/types/systemes/categorie.type";
-import { useUpdateStore } from "@/stores/update.store";
+
 
 export const useFactureHook = () => {
   const { readData, createData, deleteData, updateData } = useApiServices();
@@ -23,11 +22,8 @@ export const useFactureHook = () => {
   stateFactures.value = useDataStore().Factures;
   const { toast } = useToast();
 
-  // Get Update
-  useUpdateStore().UpdateValue = useDataStore().Factures;
-
   const formatFactureData = (Factures: any) => {
-    return Factures.map((Facture: FACTURE_DATA) => ({
+    return Factures.map((Facture: any) => ({
       id: Facture.id,
       libelle: Facture.libelle,
       date_creation: moment(Facture.created_at).format("l"),

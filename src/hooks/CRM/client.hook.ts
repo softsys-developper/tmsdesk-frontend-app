@@ -17,7 +17,7 @@ export const useClientHook = () => {
    const { toast } = useToast();
 
    const formatClientData = (Clients: any) => {
-      return Clients.map((Client: any, index:number) => ({
+      return Clients.map((Client: any) => ({
          id: Client.id,
          nom: Client.nom,
          email: Client.email,
