@@ -6,7 +6,7 @@
          <template v-slot:content >
             <BaseHeader />
             <div class="object-cover w-full h-full -z-40 fixed inset-0 opacity">
-         <div class="h-full w-full bg-blue-500/50 absolute"></div>
+         <div class="h-full w-full bg-gray-500/90 absolute"></div>
          <img class="w-full h-full object-cover" src="https://img.freepik.com/vecteurs-libre/paysage-forestier-design-plat_23-2149155031.jpg?size=626&ext=jpg&ga=GA1.1.570627327.1707375469&semt=sph" alt="">
       </div>
 

@@ -70,19 +70,19 @@ export const BreadcrumbRoutes = [
 
   // CRM Partenaires
   {
-    route: "CRM_PARTNERS",
+    route: "PROFORMA_LIST",
     title: [
         {
             route: "HOME",
             title: "Tableau de bord",
           },
       {
-        route: "CRM_PARTNERS",
-        title: "CRM",
+        route: "PROFORMA_LIST",
+        title: "proformas",
       },
       {
-        route: "CRM_PARTNERS",
-        title: "Partenaires",
+        route: "PROFORMA_LIST",
+        title: "liste des proformas",
       },
     ],
   },

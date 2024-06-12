@@ -2,7 +2,7 @@
    <BaseLayout>
       <template v-slot:content>
          <div class="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1  gap-2 w-full">
-            <div v-for="DT_Menu in isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'logistiques' && item.name != 'Systèmes' && item.name != 'Utilisateurs') : MenuApp ">
+            <div v-for="DT_Menu in isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'logistiques' && item.name != 'Systèmes' && item.name != 'Supports' && item.name != 'Mesageries' && item.name != 'Utilisateurs' && item.name != 'Proforma' && item.name != 'Tableau de bord' ) : MenuApp ">
                <DashbordCard :content="DT_Menu" />
             </div>
          </div>

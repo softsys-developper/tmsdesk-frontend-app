@@ -6,6 +6,7 @@ import { useDataStore } from './../../stores/data.store';
 // import { LIST_DEPENSE } from '@/types/bilan.type';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
+import moment from 'moment';
 
 export const useBilanHook = () => {
    const { readData, createData } = useApiServices();
@@ -19,14 +20,14 @@ export const useBilanHook = () => {
 
    
 
-   // const formatBilanData = (bilans: any) => {
+   const formatBilanData = (bilans: any) => {
 
-   //  //   return bilans.map((bilan: any) => ({
-
-   //  //     return {bilan}
-       
-   //  //   }));
-   // };
+      return bilans.map((bilan: any) => ({
+            libelle: bilan.key.replace(/_/g, ' ').replace(/(^\w|\s\w)/g, m => m.toUpperCase()),
+            value: bilan.value,
+            date_creation: moment(Client.created_at).format("l") ,
+      }));
+   };
 
 
    const storeBilans = computed(() => {
@@ -38,7 +39,7 @@ export const useBilanHook = () => {
       setBilan.loading = true;
       readData(API_URL.BILAN_LIST)
          .then((data: any) => {
-            useDataStore().Bilans =  data.data;
+            useDataStore().Bilans =  formatBilanData(data.data);
             setBilan.loading = false;
          })
          .catch(() => {

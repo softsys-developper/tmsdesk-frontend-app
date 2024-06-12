@@ -2,25 +2,28 @@
    <BaseLayout>
       <template v-slot:content>
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-            <ContentLayout title="COMPTABILITES | Depenses">
+            <ContentLayout title="COMPTABILITES | Factures">
                <template v-slot:created>
-                  <DepenseModal
-                     name="Nouvelle depense"
-                     title="Ajouter une nouvelle depense"
-                  />
+              
+            <DeleteLayout
+              name="Ajouter un categorie"
+              title="Ajouter un nouvel categorie"
+              :funDelete="FactureDelete"
+              :id="useUpdateStore().isDelete.id"
+            />
                </template>
             </ContentLayout>
             <Table
-               v-if="storeDepenses.length != 0"
-               :dataTables="storeDepenses"
+               v-if="storeFactures.length != 0"
+               :dataTables="storeFactures"
                :MenuActions="MenuClientActions"
-               :display="DepenseTables"
+               :display="FactureTables"
             />
 
             <PageLoader
-               :loading="setDepense.loading"
-               :data="storeDepenses"
-               name="Aucune depenses"
+               :loading="setFacture.loading"
+               :data="storeFactures"
+               name="Aucune factures"
             />
          </section>
       </template>
@@ -30,17 +33,19 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import DepenseModal from '@/components/modals/depense.modal.vue';
+import FactureModal from '@/components/modals/facture.modal.vue';
 import { MenuClientActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
-import { DepenseTables } from '@/tables/depense.tables';
-import { useDepenseHook } from '@/hooks/comptabilites/depense.hook.ts';
+import { FactureTables } from '@/tables/facture.tables';
+import { useFactureHook } from '@/hooks/comptabilites/facture.hook.ts';
+import DeleteLayout from "@/layouts/delete.layout.vue";
+import { useUpdateStore } from "@/stores/update.store";
 
-const { FindDepenseAll, storeDepenses, setDepense } = useDepenseHook();
+const { FindFactureAll, storeFactures, FactureDelete,  setFacture } = useFactureHook();
 
 onMounted(() => {
-   FindDepenseAll();
+   FindFactureAll();
 });
 </script>
 <style lang="scss" scoped></style>

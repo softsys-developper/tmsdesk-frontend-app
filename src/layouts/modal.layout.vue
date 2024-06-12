@@ -2,6 +2,7 @@
 import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
 import { Button } from "@/components/ui/button";
 import { useModalStore } from "@/stores/modal.store";
+import { useUpdateStore } from "@/stores/update.store";
 import { computed } from "vue";
 
 const props = defineProps([
@@ -20,9 +21,12 @@ const open = computed(() => {
 const emit = defineEmits(["open"]);
 const setOpen = () => {
   emit("open", useModalStore().open);
-  useModalStore().open
-    ? (useModalStore().open = false)
-    : (useModalStore().open = true);
+  if (useModalStore().open) {
+    useModalStore().open = false;
+    useUpdateStore().isUpdate.is = false;
+  } else {
+    useModalStore().open = true;
+  }
 };
 
 const HanldeSubmit = () => {
@@ -32,10 +36,16 @@ const HanldeSubmit = () => {
 
 <template>
   <div class="flex">
-    <Button class="bg-gray-800 font-bold text-base flex items-center jus gap-2" @click="setOpen">
+    <Button
+      class="bg-gray-800 font-bold text-base flex items-center jus gap-2"
+      @click="setOpen"
+    >
       <i class="ri-add-line"></i>
-      <span class="truncate lg:w-full md:w-32 w-24 font-bold hidden lg:flex">{{ name }}</span>
+      <span class="truncate lg:w-full md:w-32 w-24 font-bold hidden lg:flex">{{
+        name
+      }}</span>
     </Button>
+
     <main
       v-if="open"
       class="w-full grid-rows-[auto_minmax(0,1fr)_auto] p-0 fixed z-50 inset-0 flex flex-col items-center justify-center"
@@ -43,12 +53,12 @@ const HanldeSubmit = () => {
       <div
         class="bg-gray-800/30 w-full fixed inset-0 h-full overflow-auto -z-40"
       ></div>
-      <section class="bg-white lg:w-4/12 md:w-8/12 w-11/12  rounded-lg">
+      <section class="bg-white lg:w-4/12 md:w-8/12 w-11/12 rounded-lg">
         <header class="flex justify-between p-4 pb-2">
           <div class="flex flex-col">
             <span class="text-lg font-bold"> {{ title }} </span>
             <span class="text-sm">
-              {{ description }}
+              {{ description }} 
             </span>
           </div>
 

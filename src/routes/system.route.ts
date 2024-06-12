@@ -1,8 +1,7 @@
-import Conge_rhPage from "@/pages/rh/conge_rh.page.vue";
-import Salaire_paid_rhPage from "@/pages/rh/salaire_paid_rh.page.vue";
-import Salaire_rhPage from "@/pages/rh/salaire_rh.page.vue";
 import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
-import Chats_systemPage from "@/pages/systeme/chat_system.page.vue";
+import Marques_systemPage from "@/pages/systeme/marques_system.page.vue";
+import Categorie_systemPage from "@/pages/systeme/categorie_system.page.vue";
+import Devises_systemPage from "@/pages/systeme/devises_system.page.vue";
 
 export const routeSystem = {
   path: "/system",
@@ -14,28 +13,25 @@ export const routeSystem = {
       children: [],
     },
     {
-      path: "chats",
-      name: "SYSTEM_CHATS",
-      component: Chats_systemPage,
+      path: "marques",
+      name: "SYSTEM_MARQUE",
+      component: Marques_systemPage,
+      children: [],
+    },
+{
+      path: "categories",
+      name: "SYSTEM_CATEGORY",
+      component: Categorie_systemPage,
       children: [],
     },
     {
-      path: "salaires",
-      name: "RH_SALAIRE",
-      component: Salaire_rhPage,
+      path: "devises",
+      name: "SYSTEM_DEVISE",
+      component: Devises_systemPage,
       children: [],
     },
-    {
-      path: "salaire-paid",
-      name: "RH_SALAIRE_PAID",
-      component: Salaire_paid_rhPage,
-      children: [],
-    },
-    {
-      path: "conge",
-      name: "RH_SALAIRE_CONGE",
-      component: Conge_rhPage,
-      children: [],
-    },
+    
+
+
   ],
 };

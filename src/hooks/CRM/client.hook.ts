@@ -18,7 +18,7 @@ export const useClientHook = () => {
 
    const formatClientData = (Clients: any) => {
       return Clients.map((Client: any, index:number) => ({
-         id: index  + 1,
+         id: Client.id,
          nom: Client.nom,
          email: Client.email,
          telephone: Client.telephone,

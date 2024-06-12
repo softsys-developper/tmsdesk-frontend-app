@@ -6,7 +6,7 @@
 
     <div v-for="menu in content" class="">
       <div
-        class="flex flex-col p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+        class="flex flex-col p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group bg-gray-50/50"
         @click="useModalStore().isOpenMenu = menu.name"
       >
         <div
@@ -33,7 +33,7 @@
 
         <!-- Menu Link -->
         <div
-          class="flex flex-col gap-1 py-4 gap-1transition duration-75 cursor-pointer"
+          class="flex flex-col gap-1 py-4 gap-1transition duration-75 cursor-pointer "
           v-if="
             (useModalStore().isOpenMenu == menu.name ||
               menu.route == $route.name) &&

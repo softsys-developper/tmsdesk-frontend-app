@@ -153,6 +153,7 @@ const IsPageFun = () => {
             <TableCell class="text-right w-[300px]">
                <div class="w-full flex justify-end" v-if="MenuActions">
                   <BtnMore
+                     :id="invoice.id"
                      name="Actions"
                      :actions="true"
                      title="Action"

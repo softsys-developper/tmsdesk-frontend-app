@@ -9,7 +9,7 @@
     <div class="h-full px-3  overflow-y-auto bg-white dark:bg-gray-800 py-8">
      
 
-      <MenuHeaderCard :content="isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'logistiques' && item.name != 'Systèmes' && item.name != 'Utilisateurs') : MenuApp" />
+      <MenuHeaderCard :content="isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'Proforma' && item.name != 'logistiques' && item.name != 'Systèmes' && item.name != 'Utilisateurs') : MenuApp" />
     </div>
   </aside>
 

@@ -11,9 +11,21 @@ export const MenuApp = [
    {
       name: 'CRM',
       icon: `https://${AppService().url}/images/icons/crm.png`,
-      list: 'Clients, prospects, partenaires',
+      list: 'prospects, proforma, clients, fournisseur',
       route: 'CRM_CLIENTS',
       children: [
+         {
+            icon: 'ri-user-search-line',
+            id: 'CRM_PROSPECTS',
+            name: 'Prospects',
+            route: 'CRM_PROSPECTS'
+         },
+         {
+            icon: 'ri-user-2-line',
+            id: 'PROFORMA_PROSPECTS',
+            name: 'Liste des proformas',
+            route: 'PROFORMA_LIST'
+         },
          {
             icon: 'ri-user-star-line',
             id: 'CRM_CLIENTS',
@@ -22,28 +34,22 @@ export const MenuApp = [
          },
          {
             icon: 'ri-user-search-line',
-            id: 'CRM_PROSPECTS',
-            name: 'Prospects',
-            route: 'CRM_PROSPECTS'
-         },
-         {
-            icon: 'ri-user-search-line',
             id: 'CRM_FOURNISSEURS',
             name: 'Fournisseurs',
             route: 'CRM_FOURNISSEURS'
          },
-         {
-            icon: 'ri-user-heart-line',
-            id: 'CRM_PARTNERS',
-            name: 'Partenaires',
-            route: 'CRM_PARTNERS'
-         },
+         // {
+         //    icon: 'ri-user-heart-line',
+         //    id: 'CRM_PARTNERS',
+         //    name: 'Partenaires',
+         //    route: 'CRM_PARTNERS'
+         // },
       ],
    },
    {
       name: 'R. HUMAINES',
       icon: `https://${AppService().url}/images/icons/customer-service.png`,
-      list: 'Employés, salaires, heure sup et permissions',
+      list: 'Employés, congés, salaires, heure sup et permissions, département ',
       route: 'RH_PERSONAL',
       children: [
          {
@@ -79,7 +85,7 @@ export const MenuApp = [
          {
             icon: 'ri-building-line',
             id: 'HUMAINES_DEPARTEMENT',
-            name: 'Departements',
+            name: 'Départements',
             route: 'RH_DEPARTEMENT'
          },
          {
@@ -131,14 +137,14 @@ export const MenuApp = [
    {
       name: 'Comptabilités',
       icon: `https://${AppService().url}/images/icons/budget.png`,
-      list: 'Factures, Porformas, Dépenses, caisse, Banque, Grand livre, Bilan',
+      list: 'Factures, Dépenses, caisse, banque, grand livre, bilan',
       route: '',
       children: [
          {
             icon: 'ri-file-list-3-line',
             id: 'COMPTABILITE_PROFORMA',
             name: 'Factures',
-            route: 'HOME'
+            route: 'COMPTA_FACTURE'
          },
 
 
@@ -146,7 +152,7 @@ export const MenuApp = [
          {
             icon: 'ri-bank-card-line',
             id: 'COMPTABILITE_DEPENSE',
-            name: 'Transactions caisse',
+            name: 'Caisse',
             route: 'COMPTA_DEPENSE'
          },
          {
@@ -242,33 +248,33 @@ export const MenuApp = [
       children: [
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
+            id: 'SYSTEM_MARQUE',
             name: 'Parametre',
-            route: 'HOME'
+            route: 'SYSTEM_MARQUE'
          },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_NOTE',
             name: 'Gestion des documents',
-            route: 'HOME'
+            route: 'SYSTEM_MARQUE'
          },
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
+            id: 'SYSTEM_CATEGORY',
             name: 'Categories',
-            route: 'HOME'
+            route: 'SYSTEM_CATEGORY'
          },
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
+            id: 'SYSTEM_DEVISE',
             name: 'Marques',
-            route: 'HOME'
+            route: 'SYSTEM_DEVISE'
          },
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
+            id: 'SYSTEM_MARQUE',
             name: 'Devises',
-            route: 'HOME'
+            route: 'SYSTEM_MARQUE'
          },
       ],
    },

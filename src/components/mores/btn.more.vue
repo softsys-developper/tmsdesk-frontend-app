@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Fun_Actions } from "@/services/action.services"
 
-defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg']);
+defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg', 'id']);
 
 
 </script>
@@ -40,7 +40,7 @@ defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg']);
             </RouterLink>
 
            <div v-else>  
-            <div class="flex gap-1 items-center" @click="Fun_Actions(Menu.id)" >
+            <div class="flex gap-1 items-center" @click="Fun_Actions(Menu, id)" >
                <i :class="Menu.icon" class="text-lg "></i>
                <span class="text-base font-sans"> {{ Menu.name }}</span>
             </div>
