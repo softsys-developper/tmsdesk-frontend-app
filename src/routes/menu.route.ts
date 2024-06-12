@@ -335,7 +335,7 @@ export const MenuProfile = [
       id: 'MENU_SIGNOUT',
       name: 'Se deconnecté',
       icon: 'ri-logout-box-line',
-      route: 'HOME'
+      route: 'MENU_SIGNOUT'
    },
 ];
 

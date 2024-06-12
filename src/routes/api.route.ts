@@ -1,6 +1,6 @@
 import { AppService } from "@/services/app.services";
 
-const MODE_APP: string = "prod";
+const MODE_APP: string = "dev";
 export const DEFINED_APP = (dev: any, prod: any) => {
   return MODE_APP == "dev" ? dev : prod;
 };
@@ -156,7 +156,7 @@ export const API_URL = {
   CATEGORIE_UPDATE: `${BASE_URL}/categories/update`,
   CATEGORIE_REMOVE: `${BASE_URL}/categories/delete`,
 
-  FACTURE_LIST: `${BASE_URL}/factures`,
+  FACTURE_LIST: `${BASE_URL}/facture-client`,
   FACTURE_CREATE: `${BASE_URL}/factures/add`,
   FACTURE_UPDATE: `${BASE_URL}/factures/update`,
   FACTURE_REMOVE: `${BASE_URL}/factures/delete`,

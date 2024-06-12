@@ -41,7 +41,7 @@ const ToDeleteActions = (Id:any) => {
 //
 export const Fun_Actions = (menu: any, id: any) => {
   const { MenuProfileSignOut } = useProfileServices();
-
+  console.log(menu)
   if (menu.route == "MENU_SIGNOUT") {
     MenuProfileSignOut();
   }

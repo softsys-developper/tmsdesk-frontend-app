@@ -51,7 +51,7 @@ const state = reactive({
 });
 
 const StatusHtml = (name:string, bg:string) => {
-   return `<span class="text-sm font-bold px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`
+   return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`
 }
 
 const FindAllClient = () => {
