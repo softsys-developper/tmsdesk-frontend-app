@@ -2,6 +2,7 @@ import { useProfileServices } from "@/services/profile.services";
 import { useDataStore } from "@/stores/data.store";
 import { useModalStore } from "@/stores/modal.store";
 import { useUpdateStore } from "@/stores/update.store";
+import { useRouter } from "vue-router";
 
 const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
@@ -12,7 +13,6 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     const InputKey = Object.keys(Find);
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
-      console.log(UpdateInput)
       if (UpdateInput) {
         UpdateInput.value = Find[el];
       }
@@ -34,6 +34,8 @@ const ToDeleteActions = (Id: any) => {
   };
 };
 
+
+
 //
 export const Fun_Actions = (menu: any, id: any) => {
   const { MenuProfileSignOut } = useProfileServices();
@@ -51,11 +53,28 @@ export const Fun_Actions = (menu: any, id: any) => {
   }
 
   // CRM / Prospects
+
   if (menu.route == "CRM_PROSPECTS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    } else {
+    } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Prospects);
+    }
+  }
+
+  // CRM / Prospects
+
+  if (menu.route == "PROFORMA_LIST") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else if (menu.id == "MUA_modify") {
+      ToUpdateActions(id, useDataStore().Prospects);
+    } else if (menu.id == "MUA_details") {
+      window.location.assign("/proforma/detail");
+    } else if (menu.id == "MUA_validate") {
+      console.log("test");
+    } else if (menu.id == "MUA_BC") {
+      console.log("MUA_BC");
     }
   }
 

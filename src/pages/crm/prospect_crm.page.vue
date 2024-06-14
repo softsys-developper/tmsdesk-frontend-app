@@ -1,51 +1,61 @@
 <template>
-   <BaseLayout>
-      <template v-slot:content>
-         <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-            <ContentLayout title="CRM | Pospects">
-               <template v-slot:created>
-                  <ProspectModal
-                     name="Nouveau Prospects"
-                     title="Nouveau Prospects"
-                     description="Ajouter un nouveau prospect"
-                  />
-                   <DeleteLayout
+  <BaseLayout>
+    <template v-slot:content>
+      <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
+        <ContentLayout title="CRM | Pospects">
+          <template v-slot:created>
+            <ProspectModal
+              :name="'Ajouter Prospect'"
+              :title="
+                useUpdateStore().isUpdate.is
+                  ? 'Modifier Prospect'
+                  : 'Ajouter Prospect'
+              "
+            />
+
+            <DeleteLayout
               name="Ajouter un categorie"
               title="Ajouter un nouvel categorie"
               :funDelete="ProspectDelete"
               :id="useUpdateStore().isDelete.id"
             />
-               </template>
-            </ContentLayout>
+          </template>
+        </ContentLayout>
 
-            <Table  v-if="useDataStore().Prospects.length != 0"
-               :dataTables="useDataStore().Prospects"
-               :MenuActions="MenuProspectActions"
-               :display="ProspectTables"/>
+        <Table
+          v-if="useDataStore().Prospects.length != 0"
+          :dataTables="useDataStore().Prospects"
+          :MenuActions="MenuProspectActions"
+          :display="ProspectTables"
+        />
 
-               <PageLoader :loading="setProspect.loading" :data="useDataStore().Prospects" name="Aucun prospects" />
-         </section>
-      </template>
-   </BaseLayout>
+        <PageLoader
+          :loading="setProspect.loading"
+          :data="useDataStore().Prospects"
+          name="Aucun prospects"
+        />
+      </section>
+    </template>
+  </BaseLayout>
 </template>
 <script lang="ts" setup>
-import Table from './../../components/tables/table.vue';
-import BaseLayout from './../../layouts/base.layout.vue';
-import ContentLayout from '@/layouts/content.layout.vue';
-import ProspectModal from '@/components/modals/prospect.modal.vue';
-import { MenuProspectActions } from '@/routes/actions.route';
-import { onMounted } from 'vue';
-import { useDataStore } from '@/stores/data.store';
-import PageLoader from '@/components/loaders/page.loader.vue';
-import { ProspectTables } from '@/tables/prospect.table';
-import { useProspectHook } from '@/hooks/CRM/prospects.hook';
-import { useUpdateStore } from '@/stores/update.store';
-import DeleteLayout from '@/layouts/delete.layout.vue';
+import Table from "./../../components/tables/table.vue";
+import BaseLayout from "./../../layouts/base.layout.vue";
+import ContentLayout from "@/layouts/content.layout.vue";
+import ProspectModal from "@/components/modals/prospect.modal.vue";
+import { MenuProspectActions } from "@/routes/actions.route";
+import { onMounted } from "vue";
+import { useDataStore } from "@/stores/data.store";
+import PageLoader from "@/components/loaders/page.loader.vue";
+import { ProspectTables } from "@/tables/prospect.table";
+import { useProspectHook } from "@/hooks/CRM/prospects.hook";
+import { useUpdateStore } from "@/stores/update.store";
+import DeleteLayout from "@/layouts/delete.layout.vue";
 
 const { FindProspectAll, setProspect, ProspectDelete } = useProspectHook();
 
 onMounted(() => {
-   FindProspectAll();
+  FindProspectAll();
 });
 </script>
 <style lang="scss" scoped></style>

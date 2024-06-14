@@ -30,12 +30,9 @@
                     name=""
                   />
                 </div>
-
-          
               </div>
             </div>
 
-      
             <!-- Informations sur le clients et l'entreprise -->
             <div class="">
               <div class="flex gap-4 w-full">
@@ -84,141 +81,163 @@
                     </SelectContent>
                   </Select>
                 </div>
-
-              
               </div>
             </div>
 
-
             <Separator class="my-4" />
             <!-- Add produit -->
-            <div class="w-full bg-white rounded-md flex flex-col gap-2">
-              <div class="p-4 bg-gray-200 rounded-t-md">
-                <span class="text-base font-bold">
-                  Ajouter des produits ou services
-                </span>
-              </div>
 
-              <!-- Ajouter des produit et services -->
+            <div class="flex w-full gap-4">
+              <div class="bg-white rounded-md flex flex-col gap-2 w-5/12">
+                <div class="bg-gray-200 rounded-t-md p-3">
+                  <span class="text-base font-bold">
+                    Ajouter des produits ou services
+                  </span>
+                </div>
 
-              <div class="grid grid-col-1 lg:grid-cols-2 gap-2 pb-8">
-                <div v-for="(AS, index) in ProductAndServices">
-                  <div
-                    class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4"
-                  >
-                    <div class="flex justify-between">
-                      <span class="text-sm font-black"
-                        >Ajouter #{{ index + 1 }}
-                      </span>
+                <!-- Ajouter des produit et services -->
 
-                      <i
+                <div class="gap-2 pb-2">
+                  <div>
+                    <div
+                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4"
+                    >
+                      <div class="flex justify-between">
+                        <span class="text-sm font-black"
+                          >Ajouter produit et services
+                        </span>
+
+                        <!-- <i
                         class="ri-close-large-fill cursor-pointer"
-                        @click="DeleteServices(AS.id)"
-                      ></i>
-                    </div>
-
-                    <div class="flex flex-col gap-2">
-                      <Label>Objet de la proforma </Label>
-                      <Select v-model="AS.service">
-                        <SelectTrigger>
-                          <SelectValue
-                            placeholder="Listes des produits & services "
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel
-                              >Listes des produits & services</SelectLabel
-                            >
-                            <SelectItem
-                              v-for="Prod in ListOfProduct"
-                              :value="JSON.stringify(Prod)"
-                            >
-                              {{ Prod.libelle }}
-                            </SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-
-                      <div class="flex flex-col gap-1">
-                        <Label>Objet de la proforma </Label>
-                        <Input
-                          placeholder="Quantités"
-                          v-model="AS.quantite"
-                          name=""
-                        />
+                  
+                      ></i> -->
                       </div>
 
-                      <div class="flex flex-col gap-1">
-                        <Label class=""> Prix du service </Label>
-                        <Input
-                          placeholder="Ex: 500.000 Fcfa"
-                          disabled
-                          :value="AS.service?.prix_unitaire"
-                          name=""
-                        />
+                      <div class="flex flex-col gap-2">
+                        <Label>Objet de la proforma </Label>
+                        <Select v-model="ServiceToAdd.service">
+                          <SelectTrigger>
+                            <SelectValue
+                              placeholder="Listes des produits & services "
+                            />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectGroup>
+                              <SelectLabel
+                                >Listes des produits & services</SelectLabel
+                              >
+                              <SelectItem
+                                v-for="Prod in ListOfProduct"
+                                :value="JSON.stringify(Prod)"
+                              >
+                                {{ Prod.libelle }}
+                              </SelectItem>
+                            </SelectGroup>
+                          </SelectContent>
+                        </Select>
+
+                        <div class="flex flex-col gap-1">
+                          <Label>Objet de la proforma </Label>
+                          <Input
+                            placeholder="Quantités"
+                            v-model="ServiceToAdd.quantite"
+                            name=""
+                          />
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                          <Label class=""> Prix du service </Label>
+                          <Input
+                            placeholder="Ex: 500.000 Fcfa"
+                            v-model="ServiceToAdd.price"
+                            name=""
+                          />
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                          <Label class=""> Prix du service </Label>
+                          <textarea
+                            class="rounded-md text-sm"
+                            placeholder="Ex: 500.000 Fcfa"
+                            v-model="ServiceToAdd.description"
+                            name="description"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-               <div class="flex  w-full m-auto">
+                <div class="flex w-full m-auto">
                   <span class=""></span>
                   <button
-                    @click="AddServices"
+                    :disabled="
+                      ServiceToAdd.service == '' && ServiceToAdd.quantite == 0
+                    "
+                    @click="AddServices(ServiceToAdd)"
                     class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md"
                   >
                     Ajouter
                   </button>
                 </div>
-            </div>
-            <Separator class="my-4" />
-            <!-- Les dates -->
-            <!-- <div class="flex gap-4 w-full m-auto">
-              <div class="flex flex-col gap-1 w-full">
-                <Label>fichier(Pdf) BC </Label>
-                <textarea
-                  class="border-[1px] rounded-md w-full p-2 text-sm"
-                  placeholder="Donne une description a la proforma"
-                  v-model="setInput.description"
-                ></textarea>
               </div>
-            </div> -->
 
-            <!--  -->
-            <Table class="bg-orange-50/50">
-              <TableHeader class="bg-gray-800">
-                <TableRow>
-                  <TableHead>Libelle</TableHead>
-                  <TableHead class="w-[100px]"> Quantités </TableHead>
-                  <TableHead class="text-right">Prix</TableHead>
-                  <!-- <TableHead class="text-right"> Actions </TableHead> -->
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                <TableRow
-                  v-for="(invoice, index) in ProductAndServices.filter(
-                    (el) => ParseJson(el.service)?.libelle
-                  )"
-                  :key="index"
-                >
-                  <TableCell>{{
-                    ParseJson(invoice.service).libelle
-                  }}</TableCell>
-                  <TableCell class="font-medium">
-                    {{ invoice.quantite }}
-                  </TableCell>
+              <!--  -->
+              <Table class="bg-orange-50/50 w-full">
+                <TableHeader class="bg-gray-800">
+                  <TableRow>
+                    <TableHead>Désignations</TableHead>
+                    <TableHead class="w-[100px]"> Quantités </TableHead>
+                    <TableHead class="">Prix Unitaire</TableHead>
+                    <TableHead class="">Prix Total</TableHead>
+                    <TableHead class=""> Actions </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow
+                    v-for="(invoice, index) in ProductAndServices.filter(
+                      (el) => ParseJson(el.service)?.libelle
+                    )"
+                    :key="index"
+                  >
+                    <TableCell>
+                      <div class="">
+                        <span class="flex flex-col gap-2">{{
+                          ParseJson(invoice.service).libelle
+                        }}</span>
+                        <span v-html="invoice.description" class="whitespace-pre-line" ></span>
+                      </div>
+                    </TableCell>
+                    <TableCell class="font-medium">
+                      {{ invoice.quantite }}
+                    </TableCell>
 
-                  <TableCell class="text-right">{{
-                    ParseJson(invoice.service)?.prix_unitaire
-                  }}</TableCell>
-                  <!-- <TableCell class="text-right">
-                   Supprimer
-                 </TableCell> -->
-                </TableRow>
-              </TableBody>
-            </Table>
+                    <TableCell class="font-medium">
+                      {{
+                        invoice.price
+                          ? invoice.price
+                          : ParseJson(invoice.service)?.prix_unitaire
+                      }}
+                    </TableCell>
+
+                    <TableCell class="font-medium">
+                      {{
+                        (invoice.price
+                          ? invoice.price
+                          : ParseJson(invoice.service)?.prix_unitaire) * invoice?.quantite
+                      }}
+                    </TableCell>
+
+                    <TableCell class="text-right">
+                      <i
+                        class="ri-close-fill cursor-pointer"
+                        @click="DeleteServices(invoice.id)"
+                      ></i>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
 
             <Table class="border-y-[1px]">
               <TableHeader class="">
@@ -239,16 +258,20 @@
                 <TableRow>
                   <TableCell class="font-medium"> </TableCell>
                   <TableCell class="text-right">
-                    REMISE {{ isRemise != 0 ? isRemise : 0 }}%
+                    REMISE
+                    <!-- {{ isRemise != 0 ? isRemise : 0 }}% -->
                   </TableCell>
-                  <TableCell class="text-right flex justify-end">
-                    <Input
-                      type="number"
-                      class="w-8/12 h-6"
-                      placeholder="M. Remise"
-                      @input="_isRemise"
+                  <TableCell class="text-right flex justify-end gap-1">
+                    
+                    <select
+                    @input="_isRemise"
+                      name=""
+                      id=""
                       :disabled="_AmountHT == 0 ? true : false"
-                    ></Input>
+                      class="w-6/12 text-2 text-xs rounded-md"
+                    >
+                      <option v-for="J in REMISE_LIST " :value="J"> {{J}}% </option>
+                    </select>
                   </TableCell>
                 </TableRow>
 
@@ -305,8 +328,8 @@
                 class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                 :disabled="loadingProforma"
               >
-              <SpinnerLoader size="w-6 h-6" v-if="loadingProforma" />
-                <span class="" v-else >Crée la proforma</span>
+                <SpinnerLoader size="w-6 h-6" v-if="loadingProforma" />
+                <span class="" v-else>Crée la proforma</span>
               </button>
             </div>
           </div>
@@ -318,7 +341,7 @@
   <!-- {{ ProductAndServices }} -->
 </template>
 <script lang="ts" setup>
-import SpinnerLoader from "@/components/loaders/spinner.loading.vue"
+import SpinnerLoader from "@/components/loaders/spinner.loading.vue";
 import BaseLayout from "./../../layouts/base.layout.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
 import { useApiServices } from "@/services/api.services";
@@ -370,6 +393,9 @@ interface PRODUCTS {
 
 const ListOfPartners = ref<PARTNERS[]>([]);
 const ListOfProduct = ref<PRODUCTS[]>([]);
+
+
+const REMISE_LIST = [1, 2, 3, 4, 5, ,5, 6, 7, 8, 9,8, 9, 10, 10, 11, 12, 13, 14, 15, 15, 16, 17, 18, 19, 20]
 
 const FindAllClient = () => {
   state.loading = true;
@@ -424,14 +450,16 @@ const FindAllDevises = () => {
 //    };
 //    price: any;
 // }
-const ProductAndServices = ref<any[]>([
-  {
-    id: 0,
-    quantite: 1,
-    service: "",
-    price: 0,
-  },
-]);
+
+const ServiceToAdd = ref({
+  id: 0,
+  quantite: 1,
+  service: "",
+  price: 0,
+  description: "",
+});
+
+const ProductAndServices = ref<any[]>([]);
 
 const _AmountHT = ref(0);
 const _AmountTTC = ref(0);
@@ -462,10 +490,10 @@ const AmountHT = computed(() => {
   _AmountHT.value = 0;
   if (ProductAndServices.value) {
     ProductAndServices.value.forEach((HT) => {
-      if (ParseJson(HT.service).prix_unitaire != undefined) {
-        _AmountHT.value =
-          _AmountHT.value +
-          Number(ParseJson(HT.service).prix_unitaire) * Number(HT.quantite);
+      const Price = HT.price ? HT.price : ParseJson(HT.service).prix_unitaire;
+
+      if (Price != undefined) {
+        _AmountHT.value = _AmountHT.value + Number(Price) * Number(HT.quantite);
         _AmountTTC.value = Number(_AmountHT.value.toFixed(2));
       }
     });
@@ -491,13 +519,19 @@ const setInput = reactive({
   description: "",
 });
 
-const AddServices = () => {
+const AddServices = (service: any) => {
   ProductAndServices.value.push({
     id: ProductAndServices.value.length + 1,
-    quantite: 1,
-    service: "",
-    price: 0,
+    quantite: service.quantite,
+    service: service.service,
+    price: service.price,
+    description: service.description,
   });
+
+  service.quantite = "";
+  service.service = "";
+  service.price = "";
+  service.description = "";
 };
 
 const DeleteServices = (id: number) => {
@@ -517,15 +551,15 @@ const proformaSchema = z.object({
     })
   ),
   quantites: z.array(z.string().min(1, "Le champ quantité est requis.")),
-  date_validite: z.string().min(1, "La date de validité est requise."),
+  // date_validite: z.string().min(1, "La date de validité est requise."),
   devise_client: z.number().min(1, "La devise du client est requise."),
 });
 
 // Create new Proforma
-const loadingProforma = ref(false)
+const loadingProforma = ref(false);
 const sendProformaToBackend = async () => {
   try {
-   loadingProforma.value = true
+    loadingProforma.value = true;
     const PS = ProductAndServices.value.filter(
       (el) => ParseJson(el.service)?.libelle
     );
@@ -568,7 +602,7 @@ const sendProformaToBackend = async () => {
 
     if (data) {
       const responseData = await data.data;
-      loadingProforma.value = false
+      loadingProforma.value = false;
       toast({
         title: "Proforma",
         description: "Proforma envoyée avec succès",
@@ -576,7 +610,7 @@ const sendProformaToBackend = async () => {
       console.log("Proforma envoyée avec succès:", responseData);
     }
   } catch (error: any) {
-   loadingProforma.value = false
+    loadingProforma.value = false;
     if (!error?.errors) {
       const isErr = Object.keys(error.response.data.errors);
       console.log(error.response.data.errors, isErr);

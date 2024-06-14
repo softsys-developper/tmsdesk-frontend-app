@@ -44,8 +44,9 @@ const setOpen = () => {
       }}</span>
     </Button>
 
-    <main
+    <form
       v-if="open"
+      @submit.prevent="Func"
       class="w-full grid-rows-[auto_minmax(0,1fr)_auto] p-0 fixed z-50 inset-0 flex flex-col items-center justify-center"
     >
       <div
@@ -72,7 +73,7 @@ const setOpen = () => {
         </div>
         <footer class="p-4 flex justify-between">
           <span class=""></span>
-          <Button type="submit" @submit="Func">
+          <Button type="submit" >
             <SpinnerLoading size="w-4 h-4" v-if="loading" />
             <span class="font-bold text-base" v-else>{{
               !isUpdated ? "Enregisté" : "Modifier"
@@ -80,6 +81,6 @@ const setOpen = () => {
           </Button>
         </footer>
       </section>
-    </main>
+    </form>
   </div>
 </template>

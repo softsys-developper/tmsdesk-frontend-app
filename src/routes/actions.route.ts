@@ -39,12 +39,12 @@ export const MenuProformaActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'PROFORMA_LIST',
    },
-   // {
-   //    id: 'MUA_details',
-   //    name: 'Voir les details',
-   //    icon: 'ri-delete-bin-3-line',
-   //    route: 'HUMAINES_SALAIRE',
-   // },
+   {
+      id: 'MUA_details',
+      name: 'Voir les details',
+      icon: 'ri-delete-bin-3-line',
+      route: 'PROFORMA_LIST',
+   },
    {
       id: 'MUA_validate',
       name: 'Validé',
@@ -52,7 +52,7 @@ export const MenuProformaActions = [
       route: 'PROFORMA_LIST',
    },
    {
-      id: 'MUA_validate',
+      id: 'MUA_BC',
       name: 'Ajouter N. BC',
       icon: 'ri-delete-bin-3-line',
       route: 'PROFORMA_LIST',

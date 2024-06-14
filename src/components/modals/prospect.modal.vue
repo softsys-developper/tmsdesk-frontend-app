@@ -1,7 +1,7 @@
 <template>
-  <form class="w-full space-y-2" @submit="onSubmit">
-    <ModalLayout :loading="setProspect.loadingCreate">
-      <template v-slot:form>
+  <ModalLayout :Func="onSubmit" :loading="setProspect.loadingCreate">
+    <template v-slot:form>
+      <div class="w-full space-y-2">
         <div class="" v-for="fr in ProspectForms">
           <InForm
             :title="fr.label"
@@ -12,9 +12,9 @@
             :select="fr.select"
           />
         </div>
-      </template>
-    </ModalLayout>
-  </form>
+      </div>
+    </template>
+  </ModalLayout>
 </template>
 <script lang="ts" setup>
 import ModalLayout from "@/layouts/modal.layout.vue";
@@ -28,7 +28,6 @@ import { ProspectForms } from "@/forms/CRM/prospect.forms";
 const { CreateProspect, ProspectUpdate, setProspect } = useProspectHook();
 
 const onSubmit = (e: any) => {
-   e.preventDefault();
   let values = new FormData(e.target);
   if (useUpdateStore().isUpdate.is) {
     ProspectUpdate(useUpdateStore().isUpdate.id, values);

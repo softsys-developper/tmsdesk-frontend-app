@@ -23,7 +23,7 @@ export const MenuApp = [
          {
             icon: 'ri-user-2-line',
             id: 'PROFORMA_PROSPECTS',
-            name: 'Liste des proformas',
+            name: 'Proformas',
             route: 'PROFORMA_LIST'
          },
          {

@@ -1,117 +1,38 @@
 <template>
-   <ModalLayout :Func="onSubmit" :loading="setFournisseur.loadingCreate">
-      <template v-slot:form>
-         <form class="w-full space-y-2" @submit="onSubmit">
-            <!-- Nom du prospect ou raison sociale -->
-            <FormField v-slot="{ componentField }" name="nom">
-               <FormItem>
-                  <FormLabel>Nom du fournisseur ou raison sociale</FormLabel>
-                  <FormControl>
-                     <Input
-                        id="nom"
-                        type="text"
-                        placeholder="Entrez le nom ou la raison sociale"
-                        v-bind="componentField"
-                     />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-
-            <!-- Type -->
-
-            <!-- Email -->
-            <FormField v-slot="{ componentField }" name="email">
-               <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                     <Input
-                        id="email"
-                        type="email"
-                        placeholder="email@exemple.com"
-                        v-bind="componentField"
-                     />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-
-            <!-- Téléphone -->
-            <FormField v-slot="{ componentField }" name="telephone">
-               <FormItem>
-                  <FormLabel>Téléphone</FormLabel>
-                  <FormControl>
-                     <Input
-                        id="telephone"
-                        type="tel"
-                        placeholder="0123456789"
-                        v-bind="componentField"
-                     />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-
-            <!-- Adresse -->
-            <FormField v-slot="{ componentField }" name="adresse">
-               <FormItem>
-                  <FormLabel>Adresse</FormLabel>
-                  <FormControl>
-                     <Input
-                        id="adresse"
-                        type="text"
-                        placeholder="Entrez l'adresse"
-                        v-bind="componentField"
-                     />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-         </form>
-      </template>
+   <ModalLayout :Func="onSubmit"  :loading="setFournisseur.loadingCreate">
+     <template v-slot:form>
+       <div class="w-full space-y-2">
+         <div class="" v-for="fr in FournisseurForms">
+           <InForm
+             :title="fr.label"
+             :name="fr.name"
+             :label="fr.label"
+             :type="fr.type"
+             :placeholder="fr.placeholder"
+             :select="fr.select"
+           />
+         </div>
+       </div>
+     </template>
    </ModalLayout>
-</template>
-<script lang="ts" setup>
-import ModalLayout from '@/layouts/modal.layout.vue';
-import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
-import * as z from 'zod';
-
-import {
-   FormControl,
-   FormField,
-   FormItem,
-   FormLabel,
-   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { useFournisseurHook } from '@/hooks/CRM/fournisseurs.hook';
-
-
-const formSchema = toTypedSchema(
-   z.object({
-      nom: z
-         .string()
-         .min(1, "Le champ 'nom du prospect ou raison sociale' est requis."),
-      type: z.string().default('prospect'),
-      email: z.string().email("L'adresse email n'est pas valide."),
-      telephone: z
-         .string()
-         .min(10, 'Le numéro de téléphone doit contenir au moins 10 chiffres.'),
-      adresse: z.string().optional(),
-   })
-);
-
-const { handleSubmit } = useForm({
-   validationSchema: formSchema,
-});
-
-const { CreateFournisseur, setFournisseur } = useFournisseurHook();
-
-const onSubmit = handleSubmit((values) => {
-   CreateFournisseur(values);
-});
-
-
-</script>
-<style lang="scss" scoped></style>
+ </template>
+ <script lang="ts" setup>
+ import ModalLayout from "@/layouts/modal.layout.vue";
+ import { useFournisseurHook } from "@/hooks/CRM/fournisseurs.hook";
+ import { useUpdateStore } from "@/stores/update.store";
+ import { FournisseurForms } from "@/forms/CRM/fournisseur.forms";
+ import InForm from "../forms/in.form.vue";
+ 
+ const { CreateFournisseur, FindFournisseurUpdate, setFournisseur } = useFournisseurHook();
+ 
+ const onSubmit = (e: any) => {
+   let values = new FormData(e.target);
+   if (useUpdateStore().isUpdate.is) {
+      FindFournisseurUpdate(useUpdateStore().isUpdate.id, values);
+   } else {
+     CreateFournisseur(values);
+   }
+ };
+ </script>
+ <style lang="scss" scoped></style>
+ 

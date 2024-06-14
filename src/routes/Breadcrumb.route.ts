@@ -13,7 +13,7 @@ export const BreadcrumbRoutes = [
   {
     route: "CRM_CLIENTS",
     title: [
-         {
+      {
         route: "HOME",
         title: "Tableau de bord",
       },
@@ -32,7 +32,7 @@ export const BreadcrumbRoutes = [
   {
     route: "CRM_PROSPECTS",
     title: [
-         {
+      {
         route: "HOME",
         title: "Tableau de bord",
       },
@@ -47,13 +47,11 @@ export const BreadcrumbRoutes = [
     ],
   },
 
-
-
   // CRM Fournisseurs
   {
     route: "CRM_FOURNISSEURS",
     title: [
-         {
+      {
         route: "HOME",
         title: "Tableau de bord",
       },
@@ -72,10 +70,10 @@ export const BreadcrumbRoutes = [
   {
     route: "PROFORMA_LIST",
     title: [
-        {
-            route: "HOME",
-            title: "Tableau de bord",
-          },
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
       {
         route: "PROFORMA_LIST",
         title: "proformas",
@@ -83,6 +81,23 @@ export const BreadcrumbRoutes = [
       {
         route: "PROFORMA_LIST",
         title: "liste des proformas",
+      },
+    ],
+  },
+  {
+    route: "PROFORMA_ADD",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "PROFORMA_LIST",
+        title: "proformas",
+      },
+      {
+        route: "ajout de proforma",
+        title: " PROFORMA_ADD ",
       },
     ],
   },

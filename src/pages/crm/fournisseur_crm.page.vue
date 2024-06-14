@@ -1,30 +1,43 @@
 <template>
-    <BaseLayout>
-       <template v-slot:content>
-          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-             <ContentLayout title="CRM | Fournisseurs">
-                <template v-slot:created>
-                   <FournisseurModal
-                      name="Ajoutez un fournisseur"
-                      title="Ajoutez un fournisseur"
-                      description="Les fournissseur de l'enreqiper"
-                   />
-                </template>
-             </ContentLayout>
- 
-             <Table
-                v-if="useDataStore().Fournisseurs.length != 0"
-                :dataTables="useDataStore().Fournisseurs"
-                :MenuActions="MenuClientActions"
-                :display="FournisseurTables"
-             />
+  <BaseLayout>
+    <template v-slot:content>
+      <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
+        <ContentLayout title="CRM | Fournisseurs">
+          <template v-slot:created>
+            <FournisseurModal
+              :name="'Ajouter Clients'"
+              :title="
+                useUpdateStore().isUpdate.is
+                  ? 'Modifier Clients'
+                  : 'Ajouter Clients'
+              "
+            />
 
-             <PageLoader :loading="setFournisseur.loading" :data="useDataStore().Fournisseurs" name="Aucun fournisseur" />
-          </section>
-       </template>
-    </BaseLayout>
- </template>
- <script lang="ts" setup>
+            <DeleteLayout
+              title="Ajouter un nouvel categorie"
+              :funDelete="FindFournisseurDelete"
+              :id="useUpdateStore().isDelete.id"
+            />
+          </template>
+        </ContentLayout>
+
+        <Table
+          v-if="useDataStore().Fournisseurs.length != 0"
+          :dataTables="useDataStore().Fournisseurs"
+          :MenuActions="MenuClientActions"
+          :display="FournisseurTables"
+        />
+
+        <PageLoader
+          :loading="setFournisseur.loading"
+          :data="useDataStore().Fournisseurs"
+          name="Aucun fournisseur"
+        />
+      </section>
+    </template>
+  </BaseLayout>
+</template>
+<script lang="ts" setup>
  import Table from './../../components/tables/table.vue';
  import BaseLayout from './../../layouts/base.layout.vue';
  import ContentLayout from '@/layouts/content.layout.vue';
@@ -35,12 +48,13 @@
  import PageLoader from '@/components/loaders/page.loader.vue';
 import { FournisseurTables } from '@/tables/fournisseur.table';
 import { useFournisseurHook } from '@/hooks/CRM/fournisseurs.hook';
+import DeleteLayout from '@/layouts/delete.layout.vue';
+import { useUpdateStore } from '@/stores/update.store';
 
-const { FindFournisseurAll, setFournisseur } = useFournisseurHook();
+const { FindFournisseurAll, FindFournisseurDelete, setFournisseur } = useFournisseurHook();
 
 onMounted(() => {
    FindFournisseurAll();
 });
- </script>
- <style lang="scss" scoped></style>
- 
+</script>
+<style lang="scss" scoped></style>
