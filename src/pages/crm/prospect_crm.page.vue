@@ -8,14 +8,19 @@
                      name="Nouveau Prospects"
                      title="Nouveau Prospects"
                      description="Ajouter un nouveau prospect"
-                     @open="true"
                   />
+                   <DeleteLayout
+              name="Ajouter un categorie"
+              title="Ajouter un nouvel categorie"
+              :funDelete="ProspectDelete"
+              :id="useUpdateStore().isDelete.id"
+            />
                </template>
             </ContentLayout>
 
             <Table  v-if="useDataStore().Prospects.length != 0"
                :dataTables="useDataStore().Prospects"
-               :MenuActions="MenuClientActions"
+               :MenuActions="MenuProspectActions"
                :display="ProspectTables"/>
 
                <PageLoader :loading="setProspect.loading" :data="useDataStore().Prospects" name="Aucun prospects" />
@@ -28,14 +33,16 @@ import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 import ProspectModal from '@/components/modals/prospect.modal.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuProspectActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { ProspectTables } from '@/tables/prospect.table';
 import { useProspectHook } from '@/hooks/CRM/prospects.hook';
+import { useUpdateStore } from '@/stores/update.store';
+import DeleteLayout from '@/layouts/delete.layout.vue';
 
-const { FindProspectAll, setProspect } = useProspectHook();
+const { FindProspectAll, setProspect, ProspectDelete } = useProspectHook();
 
 onMounted(() => {
    FindProspectAll();

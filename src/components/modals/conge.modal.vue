@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit">
+   <ModalLayout :Func="onSubmit" :loading="setConge.loadingCreate">
       <template v-slot:form>
          <form class="w-full space-y-2" @submit="onSubmit">
             <FormField v-slot="{ componentField }" name="user">
@@ -137,7 +137,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { useApiServices } from '@/services/api.services';
 import { API_URL } from '@/routes/api.route';
-import { useToast } from '@/components/ui/toast/use-toast';
 import { useDataStore } from '@/stores/data.store';
 import { onMounted, reactive, ref } from 'vue';
 import {
@@ -147,8 +146,7 @@ import {
    FormLabel,
    FormMessage,
 } from '@/components/ui/form';
-import { useModalStore } from '@/stores/modal.store';
-const { toast } = useToast();
+import { useCongeHook } from '@/hooks/RH/conge.hook';
 
 interface PERSONAL {
    id: string;
@@ -172,52 +170,10 @@ const { handleSubmit } = useForm({
    validationSchema: formSchema,
 });
 
-const { createData } = useApiServices();
+const { CreateConge, setConge } = useCongeHook();
 
 const onSubmit = handleSubmit((values) => {
-   createData(API_URL.CONGE_CREATE, values)
-      .then((data: any) => {
-         if (data) {
-            const DataKey = Object.keys(values);
-            DataKey.forEach((el) => {
-               const query: any = document.querySelector('#' + el);
-               if (query) query.value = '';
-            });
-
-            const Add: any = useDataStore().Conges;
-            const Personals = ref<{name: string}[]>([])
-            Personals.value = useDataStore().Personals
-
-            // 
-            const toAdd = [data.data].map((el: any) => ({
-               libelle: el.libelle,
-               employe: Personals.value.find((els:any) => els.id == el.user_id)?.name,
-               type: el.type,
-               motif: el.motif,
-               date_depart: el.date_depart,
-               date_retour: el.date_retour,
-            }));
-            Add.unshift(toAdd[0]);
-            useDataStore().Conges = Add;
-            useModalStore().open = false
-            toast({
-               title: 'Enrégistre',
-               description: 'Congé ajouter avec succès',
-            });
-         }
-      })
-      .catch((err) => {
-         if (err) {
-            console.log(err);
-            const isErr = Object.keys(err.response.data.errors);
-            console.log(err.response.data.errors, isErr);
-            toast({
-               title: isErr[0],
-               variant: 'destructive',
-               description: err.response.data.errors[isErr[0]][0],
-            });
-         }
-      });
+   CreateConge(values);
 });
 
 const Personals = ref(<PERSONAL[]>[]);

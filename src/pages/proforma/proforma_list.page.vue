@@ -20,7 +20,7 @@
             <Table
                v-if="useDataStore().Proforma.length != 0"
                :dataTables="useDataStore().Proforma"
-               :MenuActions="MenuClientActions"
+               :MenuActions="MenuProformaActions"
                :display="ProformaTables"
             />
 
@@ -37,7 +37,7 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuProformaActions } from '@/routes/actions.route';
 import { useApiServices } from '@/services/api.services';
 import { onMounted, reactive } from 'vue';
 import { API_URL } from '@/routes/api.route';

@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit">
+  <ModalLayout :Func="onSubmit" :loading="setClient.loadingCreate" >
     <template v-slot:form>
       <form class="w-full space-y-2" @submit="onSubmit">
         <!-- Nom du prospect ou raison sociale -->
@@ -106,7 +106,7 @@ const { handleSubmit } = useForm({
   validationSchema: formSchema,
 });
 
-const { CreateClient } = useClientHook();
+const { CreateClient, setClient } = useClientHook();
 
 const onSubmit = handleSubmit((values) => {
   CreateClient(values);

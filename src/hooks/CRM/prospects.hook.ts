@@ -9,7 +9,7 @@ import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 
 export const useProspectHook = () => {
-  const { readData, createData } = useApiServices();
+  const { readData, createData, updateData, deleteData } = useApiServices();
   const { EmptyFields } = useUtilHook();
   const setProspect = reactive({ loading: false, loadingCreate: false });
   const stateProspects = ref<any[]>([]);
@@ -17,8 +17,8 @@ export const useProspectHook = () => {
   const { toast } = useToast();
 
   const formatProspectData = (Prospects: any) => {
-    return Prospects.map((Prospect: any, index: number) => ({
-      id: index  + 1,
+    return Prospects.map((Prospect: any) => ({
+      id: Prospect.id,
       nom: Prospect.nom,
       email: Prospect.email,
       telephone: Prospect.telephone,
@@ -96,18 +96,107 @@ export const useProspectHook = () => {
     return { data: DataCreated };
   };
 
-  //
-  const FindProspectUpdate = () => {};
-
-  //
-  const FindProspectDelete = () => {};
+    // Update
+    const ProspectUpdate = (id:any, values:any) => {
+      setProspect.loadingCreate = true;
+      updateData(API_URL.PROSPECT_UPDATE + '/' + id, values)
+        .then((data: any) => {
+          if (data) {
+            EmptyFields(values); // Vider les champs
+            setProspect.loadingCreate = false;
+            let Prospects = useDataStore().Prospects;
+   
+            //
+            const toAdd = formatProspectData([data.data]);
+            const _Prospects: any = Prospects.map((el:any) => {
+              if(el.id == id){
+                el = toAdd[0]
+              }
+              return el
+            })
+            
+            useDataStore().Prospects = _Prospects;
+            console.log(useDataStore().Prospects)
+            useModalStore().open = false;
+   
+            toast({
+              title: "Modifier",
+              description: data.message,
+            });
+          }
+        })
+        .catch((err) => {
+          setProspect.loadingCreate = false;
+          if (err) {
+            const isErr = Object.keys(err.response.data.errors);
+            if (isErr) {
+              toast({
+                title: isErr[0],
+                variant: "destructive",
+                description: err.response.data.errors[isErr[0]][0],
+              });
+            } else {
+              toast({
+                title: "error",
+                variant: "destructive",
+                description: err.response.data.message,
+              });
+            }
+          }
+        });
+     };
+   
+     //
+     const ProspectDelete = (id: any) => {
+       setProspect.loadingCreate = true;
+       deleteData(API_URL.PROSPECT_REMOVE+ '/' + id)
+         .then((data: any) => {
+           if (data) {
+             setProspect.loadingCreate = false;
+             let Prospects = useDataStore().Prospects;
+   
+             //
+             const toAdd = Prospects.filter((el: any) => el.id != id);
+             Prospects.unshift(...toAdd);
+             useDataStore().Prospects = Prospects;
+             useModalStore().open = false;
+             useModalStore().delete = false;
+   
+             toast({
+               title: "Supprimer",
+               description: data.message,
+             });
+           }
+         })
+         .catch((err) => {
+           setProspect.loadingCreate = false;
+           useModalStore().delete = false;
+           if (err) {
+             const isErr = Object.keys(err.response.data.errors);
+             if (isErr) {
+               toast({
+                 title: isErr[0],
+                 variant: "destructive",
+                 description: err.response.data.errors[isErr[0]][0],
+               });
+             } else {
+               toast({
+                 title: "error",
+                 variant: "destructive",
+                 description: err.response.data.message,
+               });
+             }
+           }
+         });
+     };
+   
 
   return {
     FindProspectAll,
     FindProspectOne,
     CreateProspect,
-    FindProspectUpdate,
-    FindProspectDelete,
+    ProspectUpdate,
+    ProspectDelete,
     stateProspects,
     setProspect,
     storeProspects,

@@ -5,7 +5,6 @@ import { useUpdateStore } from "@/stores/update.store";
 
 const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
-  
 
   setTimeout(() => {
     // useDataStore().Categories
@@ -13,6 +12,7 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     const InputKey = Object.keys(Find);
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
+      console.log(UpdateInput)
       if (UpdateInput) {
         UpdateInput.value = Find[el];
       }
@@ -23,27 +23,40 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
       id: Id,
       data: Find ?? null,
     };
-  }, 50);
+  }, 500);
 };
 
-const ToDeleteActions = (Id:any) => {
+const ToDeleteActions = (Id: any) => {
   useModalStore().delete = true;
-  useUpdateStore().isDelete =  {
-   is: true,
-   id: Id
-  }
+  useUpdateStore().isDelete = {
+    is: true,
+    id: Id,
+  };
 };
-
-
-
-
 
 //
 export const Fun_Actions = (menu: any, id: any) => {
   const { MenuProfileSignOut } = useProfileServices();
-  console.log(menu)
   if (menu.route == "MENU_SIGNOUT") {
     MenuProfileSignOut();
+  }
+
+  // CRM / Clients
+  if (menu.route == "CRM_CLIENTS") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Clients);
+    }
+  }
+
+  // CRM / Prospects
+  if (menu.route == "CRM_PROSPECTS") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Prospects);
+    }
   }
 
   if (menu.route == "SYSTEM_CATEGORY") {

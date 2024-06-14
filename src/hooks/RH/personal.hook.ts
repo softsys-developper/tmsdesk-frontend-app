@@ -3,79 +3,82 @@ import { API_URL } from "@/routes/api.route";
 import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/Facture.type';
+// import { LIST_DEPENSE } from '@/types/Personal.type';
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
+import { useUpdateStore } from "@/stores/update.store";
 
-export const useFactureHook = () => {
+export const usePersonalHook = () => {
   const { readData, createData, deleteData, updateData } = useApiServices();
   const { EmptyFields } = useUtilHook();
-  const setFacture = reactive({
+  const setPersonal = reactive({
     loading: false,
     loadingCreate: false,
     loadingDelete: false,
     loadingUpdate: false,
   });
-  const stateFactures = ref<any[]>([]);
-  stateFactures.value = useDataStore().Factures;
+  const statePersonals = ref<any[]>([]);
+  statePersonals.value = useDataStore().Personals;
   const { toast } = useToast();
 
-  const StatusHtml = (name: string, bg: string) => {
-    return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`;
-  };
+  // Get Update
+  useUpdateStore().UpdateValue = useDataStore().Personals[0];
 
-  const formatFactureData = (Factures: any) => {
-    return Factures.map((Facture: any) => ({
-      id: Facture.id,
-      numero_facture: Facture.numero_facture,
-      // titre: Facture.titre,
-      // client: Facture.client?.nom,
-      montant_ttc: Facture.montant_ttc,
-      status:
-        Facture.etat == 1
-          ? StatusHtml("En attante", "bg-orange-500")
-          : Facture.etat == 2
-          ? StatusHtml("Valider", "bg-blue-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
-          date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
+  const formatPersonalData = (Personals: any) => {
+    return Personals.map((Personal: any) => ({
+      id: Personal.id,
+      nom: Personal.nom,
+      prenoms: Personal.prenoms,
+      email: Personal.email,
+      telephone: Personal.telephone,
+      date_naissance: Personal.date_naissance,
+      lieu_naissance: Personal.lieu_naissance,
+      fonction: Personal.fonction,
+      situation_matrimoniale: Personal.situation_matrimoniale,
+      nom_personne_a_contacter: Personal.nom_personne_a_contacter,
+      telephone_personne_a_contacter: Personal.telephone_personne_a_contacter,
+      role: Personal.role,
+      salaire: Personal.salaire,
+      date_debut: Personal.date_debut,
+      type_contrat: Personal.type_contrat,
+      date_creation: moment(Personal.created_at).format("DD/MM/YYYY"),
     }));
   };
-  const storeFactures = computed(() => {
-    return useDataStore().Factures;
+  const storePersonals = computed(() => {
+    return useDataStore().Personals;
   });
 
   //
-  const FindFactureAll = () => {
-    setFacture.loading = true;
-    readData(API_URL.FACTURE_LIST)
+  const FindPersonalAll = () => {
+    setPersonal.loading = true;
+    readData(API_URL.USER_LIST)
       .then((data: any) => {
-        useDataStore().Factures = formatFactureData(data.datas);
-        setFacture.loading = false;
+        useDataStore().Personals = formatPersonalData(data.datas);
+        setPersonal.loading = false;
       })
       .catch(() => {
-        setFacture.loading = false;
+        setPersonal.loading = false;
       });
   };
 
   //
-  const FindFactureOne = () => {};
+  const FindPersonalOne = () => {};
 
   //
-  const CreateFacture = async (values: any) => {
-    setFacture.loadingCreate = true;
-    const DataCreated = await createData(API_URL.FACTURE_CREATE, values)
+  const CreatePersonal = async (values: any) => {
+    setPersonal.loadingCreate = true;
+    const DataCreated = await createData(API_URL.USER_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setPersonal.loadingCreate = false;
+          let Personals = useDataStore().Personals;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatPersonalData([data.data]);
+          Personals.unshift(...toAdd);
+          useDataStore().Personals = Personals;
           useModalStore().open = false;
 
           toast({
@@ -85,7 +88,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setPersonal.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -108,19 +111,19 @@ export const useFactureHook = () => {
   };
 
   // Update
-  const FactureUpdate = (id: any, values: any) => {
-    setFacture.loadingCreate = true;
-    updateData(API_URL.FACTURE_UPDATE + "/" + id, values)
+  const PersonalUpdate = (id: any, values: any) => {
+    setPersonal.loadingCreate = true;
+    updateData(API_URL.USER_UPDATE + "/" + id, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setPersonal.loadingCreate = false;
+          let Personals = useDataStore().Personals;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatPersonalData([data.data]);
+          Personals.unshift(...toAdd);
+          useDataStore().Personals = Personals;
           useModalStore().open = false;
 
           toast({
@@ -130,7 +133,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setPersonal.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -151,18 +154,18 @@ export const useFactureHook = () => {
   };
 
   //
-  const FactureDelete = (id: any) => {
-    setFacture.loadingDelete = true;
-    deleteData(API_URL.FACTURE_REMOVE + "/" + id)
+  const PersonalDelete = (id: any) => {
+    setPersonal.loadingDelete = true;
+    deleteData(API_URL.USER_REMOVE + "/" + id)
       .then((data: any) => {
         if (data) {
-          setFacture.loadingDelete = false;
-          let Factures = useDataStore().Factures;
+          setPersonal.loadingDelete = false;
+          let Personals = useDataStore().Personals;
 
           //
-          const toAdd = Factures.filter((el: any) => el.id != id);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd = Personals.filter((el: any) => el.id != id);
+          Personals.unshift(...toAdd);
+          useDataStore().Personals = Personals;
           useModalStore().open = false;
           useModalStore().delete = false;
 
@@ -173,7 +176,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingDelete = false;
+        setPersonal.loadingDelete = false;
         useModalStore().delete = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
@@ -195,13 +198,13 @@ export const useFactureHook = () => {
   };
 
   return {
-    FindFactureAll,
-    FindFactureOne,
-    CreateFacture,
-    FactureUpdate,
-    FactureDelete,
-    stateFactures,
-    setFacture,
-    storeFactures,
+    FindPersonalAll,
+    FindPersonalOne,
+    CreatePersonal,
+    PersonalUpdate,
+    PersonalDelete,
+    statePersonals,
+    setPersonal,
+    storePersonals,
   };
 };

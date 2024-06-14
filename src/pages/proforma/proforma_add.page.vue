@@ -31,29 +31,11 @@
                   />
                 </div>
 
-                <!-- Les dates -->
-                <div class="flex gap-4 w-full">
-                  <div class="flex flex-col gap-1 w-full">
-                    <Label> Date d'emission </Label>
-                    <Input
-                      type="date"
-                      v-model="setInput.date_emission"
-                      disabled
-                    />
-                  </div>
-                  <div class="flex flex-col gap-1 w-full">
-                    <Label>Data d'echeance </Label>
-                    <Input
-                      type="date"
-                      v-model="setInput.date_validite"
-                      class="w-full"
-                    />
-                  </div>
-                </div>
+          
               </div>
             </div>
 
-            <Separator class="my-4" />
+      
             <!-- Informations sur le clients et l'entreprise -->
             <div class="">
               <div class="flex gap-4 w-full">
@@ -103,38 +85,10 @@
                   </Select>
                 </div>
 
-                <div class="flex flex-col gap-1 w-full">
-                  <Label> Entreprise </Label>
-                  <Input
-                    type="text"
-                    disabled
-                    v-model="setInput.entreprise"
-                    class="w-full"
-                  />
-                </div>
+              
               </div>
             </div>
 
-            <Separator class="my-4" />
-            <!-- Les Information sur les BC -->
-            <div class="flex gap-4 ">
-              <div class="flex flex-col gap-1 w-full">
-                <Label> Numéro de BC </Label>
-                <Input
-                  type="text"
-                  v-model="setInput.montant_bon_de_comande"
-                  placeholder="bc-05-jhs-501"
-                />
-              </div>
-              <div class="flex flex-col gap-1 w-full">
-                <Label>fichier(Pdf) BC </Label>
-                <Input
-                  type="file"
-                  @change="(event: any) => setInput.fichier = event.target.files"
-                  class="w-full"
-                />
-              </div>
-            </div>
 
             <Separator class="my-4" />
             <!-- Add produit -->
@@ -221,7 +175,7 @@
             </div>
             <Separator class="my-4" />
             <!-- Les dates -->
-            <div class="flex gap-4 w-full m-auto">
+            <!-- <div class="flex gap-4 w-full m-auto">
               <div class="flex flex-col gap-1 w-full">
                 <Label>fichier(Pdf) BC </Label>
                 <textarea
@@ -230,7 +184,7 @@
                   v-model="setInput.description"
                 ></textarea>
               </div>
-            </div>
+            </div> -->
 
             <!--  -->
             <Table class="bg-orange-50/50">

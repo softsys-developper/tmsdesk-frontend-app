@@ -3,79 +3,72 @@ import { API_URL } from "@/routes/api.route";
 import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/Facture.type';
+// import { LIST_DEPENSE } from '@/types/Product.type';
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
+import { useUpdateStore } from "@/stores/update.store";
 
-export const useFactureHook = () => {
+export const useProductHook = () => {
   const { readData, createData, deleteData, updateData } = useApiServices();
   const { EmptyFields } = useUtilHook();
-  const setFacture = reactive({
+  const setProduct = reactive({
     loading: false,
     loadingCreate: false,
     loadingDelete: false,
     loadingUpdate: false,
   });
-  const stateFactures = ref<any[]>([]);
-  stateFactures.value = useDataStore().Factures;
+  const stateProducts = ref<any[]>([]);
+  stateProducts.value = useDataStore().Products;
   const { toast } = useToast();
 
-  const StatusHtml = (name: string, bg: string) => {
-    return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`;
-  };
+  // Get Update
+  useUpdateStore().UpdateValue = useDataStore().Products[0];
 
-  const formatFactureData = (Factures: any) => {
-    return Factures.map((Facture: any) => ({
-      id: Facture.id,
-      numero_facture: Facture.numero_facture,
-      // titre: Facture.titre,
-      // client: Facture.client?.nom,
-      montant_ttc: Facture.montant_ttc,
-      status:
-        Facture.etat == 1
-          ? StatusHtml("En attante", "bg-orange-500")
-          : Facture.etat == 2
-          ? StatusHtml("Valider", "bg-blue-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
-          date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
+  const formatProductData = (Products: any) => {
+    return Products.map((Product: any) => ({
+      id: Product.id,
+      libelle: Product.id,
+      type: Product.type,
+      prix_unitaire: Product.prix_unitaire,
+      description: Product.description,
+      date_creation: moment(Product.created_at).format("DD/MM/YYYY"),
     }));
   };
-  const storeFactures = computed(() => {
-    return useDataStore().Factures;
+  const storeProducts = computed(() => {
+    return useDataStore().Products;
   });
 
   //
-  const FindFactureAll = () => {
-    setFacture.loading = true;
-    readData(API_URL.FACTURE_LIST)
+  const FindProductAll = () => {
+    setProduct.loading = true;
+    readData(API_URL.PRODUCT_LIST)
       .then((data: any) => {
-        useDataStore().Factures = formatFactureData(data.datas);
-        setFacture.loading = false;
+        useDataStore().Products = formatProductData(data.datas);
+        setProduct.loading = false;
       })
       .catch(() => {
-        setFacture.loading = false;
+        setProduct.loading = false;
       });
   };
 
   //
-  const FindFactureOne = () => {};
+  const FindProductOne = () => {};
 
   //
-  const CreateFacture = async (values: any) => {
-    setFacture.loadingCreate = true;
-    const DataCreated = await createData(API_URL.FACTURE_CREATE, values)
+  const CreateProduct = async (values: any) => {
+    setProduct.loadingCreate = true;
+    const DataCreated = await createData(API_URL.PRODUCT_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setProduct.loadingCreate = false;
+          let Products = useDataStore().Products;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatProductData([data.data]);
+          Products.unshift(...toAdd);
+          useDataStore().Products = Products;
           useModalStore().open = false;
 
           toast({
@@ -85,7 +78,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setProduct.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -108,19 +101,19 @@ export const useFactureHook = () => {
   };
 
   // Update
-  const FactureUpdate = (id: any, values: any) => {
-    setFacture.loadingCreate = true;
-    updateData(API_URL.FACTURE_UPDATE + "/" + id, values)
+  const ProductUpdate = (id: any, values: any) => {
+    setProduct.loadingCreate = true;
+    updateData(API_URL.USER_UPDATE + "/" + id, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setProduct.loadingCreate = false;
+          let Products = useDataStore().Products;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatProductData([data.data]);
+          Products.unshift(...toAdd);
+          useDataStore().Products = Products;
           useModalStore().open = false;
 
           toast({
@@ -130,7 +123,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setProduct.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -151,18 +144,18 @@ export const useFactureHook = () => {
   };
 
   //
-  const FactureDelete = (id: any) => {
-    setFacture.loadingDelete = true;
-    deleteData(API_URL.FACTURE_REMOVE + "/" + id)
+  const ProductDelete = (id: any) => {
+    setProduct.loadingDelete = true;
+    deleteData(API_URL.USER_REMOVE + "/" + id)
       .then((data: any) => {
         if (data) {
-          setFacture.loadingDelete = false;
-          let Factures = useDataStore().Factures;
+          setProduct.loadingDelete = false;
+          let Products = useDataStore().Products;
 
           //
-          const toAdd = Factures.filter((el: any) => el.id != id);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd = Products.filter((el: any) => el.id != id);
+          Products.unshift(...toAdd);
+          useDataStore().Products = Products;
           useModalStore().open = false;
           useModalStore().delete = false;
 
@@ -173,7 +166,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingDelete = false;
+        setProduct.loadingDelete = false;
         useModalStore().delete = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
@@ -195,13 +188,13 @@ export const useFactureHook = () => {
   };
 
   return {
-    FindFactureAll,
-    FindFactureOne,
-    CreateFacture,
-    FactureUpdate,
-    FactureDelete,
-    stateFactures,
-    setFacture,
-    storeFactures,
+    FindProductAll,
+    FindProductOne,
+    CreateProduct,
+    ProductUpdate,
+    ProductDelete,
+    stateProducts,
+    setProduct,
+    storeProducts,
   };
 };

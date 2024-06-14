@@ -1,5 +1,5 @@
 <template>
-   <div class="h-fill flex justify-center items-center h-[50vh] w-8/12 m-auto" v-if="data.length == 0 || loading" >
+   <div class="h-fill flex justify-center items-center h-[50vh] w-8/12 m-auto" v-if="data.length == 0 && loading" >
       <SpinnerLoading size="w-12 h-12" v-if="loading" />
 
 

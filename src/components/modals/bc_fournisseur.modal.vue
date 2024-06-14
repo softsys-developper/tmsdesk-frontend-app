@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit">
+  <ModalLayout :Func="onSubmit"  >
     <template v-slot:form>
       <form class="w-full space-y-2" @submit="onSubmit">
         <FormField v-slot="{ componentField }" name="fournisseur">

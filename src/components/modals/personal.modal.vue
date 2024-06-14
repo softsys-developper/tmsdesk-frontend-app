@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit">
+   <ModalLayout :Func="onSubmit" :loading="setPersonal.loadingCreate" >
       <template v-slot:form>
          <form class="w-full space-y-2" @submit="onSubmit">
             <!-- Name -->
@@ -333,10 +333,7 @@ import { Input } from '@/components/ui/input';
 import { useApiServices } from '@/services/api.services';
 import { API_URL } from '@/routes/api.route';
 import { onMounted, ref } from 'vue';
-import { useDataStore } from '@/stores/data.store';
-import { useToast } from '@/components/ui/toast/use-toast';
-import { useModalStore } from '@/stores/modal.store';
-const { toast } = useToast();
+import { usePersonalHook } from '@/hooks/RH/personal.hook';
 
 const formSchema = toTypedSchema(
    z.object({
@@ -377,38 +374,12 @@ const { handleSubmit } = useForm({
    validationSchema: formSchema,
 });
 
-const { createData, readData } = useApiServices();
+const {readData} = useApiServices()
+
+const { setPersonal, CreatePersonal } = usePersonalHook();
 
 const onSubmit = handleSubmit((values) => {
-   createData(API_URL.USER_CREATE, values)
-      .then((data: any) => {
-         if (data) {
-            const DataKey = Object.keys(values);
-            DataKey.forEach((el) => {
-               const query: any = document.querySelector('#' + el);
-               if (query) query.value = '';
-            });
-
-            const Add: any = useDataStore().Personals;
-            Add.unshift(data.data);
-            useDataStore().Personals = Add;
-            useModalStore().open = false
-            toast({
-               title: 'Enrégistre',
-               description: 'Employé ajouter avec succès',
-            });
-         }
-      })
-      .catch((err) => {
-         if (err) {
-            const isErr = Object.keys(err.response.data.errors);
-            console.log(err.response.data.errors, isErr);
-            toast({
-               title: isErr[0],
-               description: err.response.data.errors[isErr[0]][0],
-            });
-         }
-      });
+   CreatePersonal(values);
 });
 
 const Roles: any = ref([]);

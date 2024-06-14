@@ -33,7 +33,7 @@ export const useApiServices = () => {
 
    const updateData = async (url: string, data: string) => {
       try {
-         const response = await axios.put(url, data);
+         const response = await axios.post(url, data);
          return response.data;
       } catch (error) {
          console.error('Erreur lors de la mise à jour des données:', error);

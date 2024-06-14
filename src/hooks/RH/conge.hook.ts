@@ -3,79 +3,72 @@ import { API_URL } from "@/routes/api.route";
 import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/Facture.type';
+// import { LIST_DEPENSE } from '@/types/Conge.type';
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 
-export const useFactureHook = () => {
+export const useCongeHook = () => {
   const { readData, createData, deleteData, updateData } = useApiServices();
   const { EmptyFields } = useUtilHook();
-  const setFacture = reactive({
+  const setConge = reactive({
     loading: false,
     loadingCreate: false,
     loadingDelete: false,
     loadingUpdate: false,
   });
-  const stateFactures = ref<any[]>([]);
-  stateFactures.value = useDataStore().Factures;
+  const stateConges = ref<any[]>([]);
+  stateConges.value = useDataStore().Conges;
   const { toast } = useToast();
 
-  const StatusHtml = (name: string, bg: string) => {
-    return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`;
-  };
+  const Personals = (Conge:any):any => useDataStore().Personals.find((els:any) => els.id == Conge.user_id)
 
-  const formatFactureData = (Factures: any) => {
-    return Factures.map((Facture: any) => ({
-      id: Facture.id,
-      numero_facture: Facture.numero_facture,
-      // titre: Facture.titre,
-      // client: Facture.client?.nom,
-      montant_ttc: Facture.montant_ttc,
-      status:
-        Facture.etat == 1
-          ? StatusHtml("En attante", "bg-orange-500")
-          : Facture.etat == 2
-          ? StatusHtml("Valider", "bg-blue-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
-          date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
+  const formatCongeData = (Conges: any) => {
+    return Conges.map((Conge: any) => ({
+      id: Conge.id,
+      libelle: Conge.libelle,
+               employe: Personals(Conge)?.name,
+               type: Conge.type,
+               motif: Conge.motif,
+               date_depart: Conge.date_depart,
+               date_retour: Conge.date_retour,
+      date_creation: moment(Conge.created_at).format("DD/MM/YYYY"),
     }));
   };
-  const storeFactures = computed(() => {
-    return useDataStore().Factures;
+  const storeConges = computed(() => {
+    return useDataStore().Conges;
   });
 
   //
-  const FindFactureAll = () => {
-    setFacture.loading = true;
-    readData(API_URL.FACTURE_LIST)
+  const FindCongeAll = () => {
+    setConge.loading = true;
+    readData(API_URL.USER_LIST)
       .then((data: any) => {
-        useDataStore().Factures = formatFactureData(data.datas);
-        setFacture.loading = false;
+        useDataStore().Conges = formatCongeData(data.datas);
+        setConge.loading = false;
       })
       .catch(() => {
-        setFacture.loading = false;
+        setConge.loading = false;
       });
   };
 
   //
-  const FindFactureOne = () => {};
+  const FindCongeOne = () => {};
 
   //
-  const CreateFacture = async (values: any) => {
-    setFacture.loadingCreate = true;
-    const DataCreated = await createData(API_URL.FACTURE_CREATE, values)
+  const CreateConge = async (values: any) => {
+    setConge.loadingCreate = true;
+    const DataCreated = await createData(API_URL.USER_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setConge.loadingCreate = false;
+          let Conges = useDataStore().Conges;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatCongeData([data.data]);
+          Conges.unshift(...toAdd);
+          useDataStore().Conges = Conges;
           useModalStore().open = false;
 
           toast({
@@ -85,7 +78,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setConge.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -108,19 +101,19 @@ export const useFactureHook = () => {
   };
 
   // Update
-  const FactureUpdate = (id: any, values: any) => {
-    setFacture.loadingCreate = true;
-    updateData(API_URL.FACTURE_UPDATE + "/" + id, values)
+  const CongeUpdate = (id: any, values: any) => {
+    setConge.loadingCreate = true;
+    updateData(API_URL.USER_UPDATE + "/" + id, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setFacture.loadingCreate = false;
-          let Factures = useDataStore().Factures;
+          setConge.loadingCreate = false;
+          let Conges = useDataStore().Conges;
 
           //
-          const toAdd: [] = formatFactureData([data.data]);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd: [] = formatCongeData([data.data]);
+          Conges.unshift(...toAdd);
+          useDataStore().Conges = Conges;
           useModalStore().open = false;
 
           toast({
@@ -130,7 +123,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingCreate = false;
+        setConge.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -151,18 +144,18 @@ export const useFactureHook = () => {
   };
 
   //
-  const FactureDelete = (id: any) => {
-    setFacture.loadingDelete = true;
-    deleteData(API_URL.FACTURE_REMOVE + "/" + id)
+  const CongeDelete = (id: any) => {
+    setConge.loadingDelete = true;
+    deleteData(API_URL.USER_REMOVE + "/" + id)
       .then((data: any) => {
         if (data) {
-          setFacture.loadingDelete = false;
-          let Factures = useDataStore().Factures;
+          setConge.loadingDelete = false;
+          let Conges = useDataStore().Conges;
 
           //
-          const toAdd = Factures.filter((el: any) => el.id != id);
-          Factures.unshift(...toAdd);
-          useDataStore().Factures = Factures;
+          const toAdd = Conges.filter((el: any) => el.id != id);
+          Conges.unshift(...toAdd);
+          useDataStore().Conges = Conges;
           useModalStore().open = false;
           useModalStore().delete = false;
 
@@ -173,7 +166,7 @@ export const useFactureHook = () => {
         }
       })
       .catch((err) => {
-        setFacture.loadingDelete = false;
+        setConge.loadingDelete = false;
         useModalStore().delete = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
@@ -195,13 +188,13 @@ export const useFactureHook = () => {
   };
 
   return {
-    FindFactureAll,
-    FindFactureOne,
-    CreateFacture,
-    FactureUpdate,
-    FactureDelete,
-    stateFactures,
-    setFacture,
-    storeFactures,
+    FindCongeAll,
+    FindCongeOne,
+    CreateConge,
+    CongeUpdate,
+    CongeDelete,
+    stateConges,
+    setConge,
+    storeConges,
   };
 };

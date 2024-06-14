@@ -5,7 +5,7 @@ import { useModalStore } from "@/stores/modal.store";
 import { useUpdateStore } from "@/stores/update.store";
 import { computed } from "vue";
 
-const props = defineProps([
+defineProps([
   "name",
   "title",
   "description",
@@ -29,9 +29,7 @@ const setOpen = () => {
   }
 };
 
-const HanldeSubmit = () => {
-  props.Func();
-};
+
 </script>
 
 <template>
@@ -74,7 +72,7 @@ const HanldeSubmit = () => {
         </div>
         <footer class="p-4 flex justify-between">
           <span class=""></span>
-          <Button type="submit" @click="HanldeSubmit">
+          <Button type="submit" @submit="Func">
             <SpinnerLoading size="w-4 h-4" v-if="loading" />
             <span class="font-bold text-base" v-else>{{
               !isUpdated ? "Enregisté" : "Modifier"
