@@ -8,9 +8,10 @@ import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { useUpdateStore } from "@/stores/update.store";
+import { setService } from "@/services/set.services";
 
 export const usePersonalHook = () => {
-  const { readData, createData, deleteData, updateData } = useApiServices();
+  const { readData, createData} = useApiServices();
   const { EmptyFields } = useUtilHook();
   const setPersonal = reactive({
     loading: false,
@@ -110,91 +111,23 @@ export const usePersonalHook = () => {
     return { data: DataCreated };
   };
 
-  // Update
   const PersonalUpdate = (id: any, values: any) => {
-    setPersonal.loadingCreate = true;
-    updateData(API_URL.USER_UPDATE + "/" + id, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setPersonal.loadingCreate = false;
-          let Personals = useDataStore().Personals;
-
-          //
-          const toAdd: [] = formatPersonalData([data.data]);
-          Personals.unshift(...toAdd);
-          useDataStore().Personals = Personals;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setPersonal.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
+    setService(
+      setPersonal,
+      useDataStore(),
+      'Personals',
+      formatPersonalData
+    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
   };
 
   //
   const PersonalDelete = (id: any) => {
-    setPersonal.loadingDelete = true;
-    deleteData(API_URL.USER_REMOVE + "/" + id)
-      .then((data: any) => {
-        if (data) {
-          setPersonal.loadingDelete = false;
-          let Personals = useDataStore().Personals;
-
-          //
-          const toAdd = Personals.filter((el: any) => el.id != id);
-          Personals.unshift(...toAdd);
-          useDataStore().Personals = Personals;
-          useModalStore().open = false;
-          useModalStore().delete = false;
-
-          toast({
-            title: "Supprimer",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setPersonal.loadingDelete = false;
-        useModalStore().delete = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
+    setService(
+      setPersonal,
+      useDataStore(),
+      'Personals',
+      formatPersonalData
+    ).SetDelete(API_URL.CLIENT_REMOVE, id);
   };
 
   return {

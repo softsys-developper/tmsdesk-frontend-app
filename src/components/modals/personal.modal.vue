@@ -303,6 +303,31 @@
                   <FormMessage class="text-xs" />
                </FormItem>
             </FormField>
+
+
+            
+            <FormField v-slot="{ componentField }" name="sexe">
+               <FormItem>
+                  <FormLabel>Sexe</FormLabel>
+                  <FormControl>
+                     <Select id="type_contrat" v-bind="componentField">
+                        <SelectTrigger>
+                           <SelectValue
+                              placeholder="Sélectionnez le type de contrat"
+                           />
+                        </SelectTrigger>
+                        <SelectContent>
+                           <SelectGroup>
+                              <SelectLabel>Le sexe</SelectLabel>
+                              <SelectItem value="M">Homme</SelectItem>
+                              <SelectItem value="F">Femme</SelectItem>
+                           </SelectGroup>
+                        </SelectContent>
+                     </Select>
+                  </FormControl>
+                  <FormMessage class="text-xs" />
+               </FormItem>
+            </FormField>
          </form>
       </template>
    </ModalLayout>
@@ -336,7 +361,7 @@ import { onMounted, ref } from 'vue';
 import { usePersonalHook } from '@/hooks/RH/personal.hook';
 
 const formSchema = toTypedSchema(
-   z.object({
+   z.object({ 
       name: z.string().min(1, "Le champ 'idenfiant' est requis."),
       nom: z.string().min(1, "Le champ 'nom' est requis."),
       prenoms: z.string().min(1, "Le champ 'prénoms' est requis."),
@@ -367,6 +392,7 @@ const formSchema = toTypedSchema(
          .min(0, "Le champ 'salaire' doit être un nombre positif."),
       date_debut: z.string().min(1, "Le champ 'date de début' est requis."),
       type_contrat: z.enum(['CDD', 'CDI', 'Interim', 'Stage', 'Essai']),
+      sexe: z.enum(['M', 'F']),
    })
 );
 

@@ -2,6 +2,8 @@ import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
 import Marques_systemPage from "@/pages/systeme/marques_system.page.vue";
 import Categorie_systemPage from "@/pages/systeme/categorie_system.page.vue";
 import Devises_systemPage from "@/pages/systeme/devises_system.page.vue";
+import User_systemPage from "@/pages/systeme/user_system.page.vue"
+import Role_systemPage from "@/pages/systeme/role_system.page.vue";
 
 export const routeSystem = {
   path: "/system",
@@ -30,8 +32,18 @@ export const routeSystem = {
       component: Devises_systemPage,
       children: [],
     },
-    
-
+    {
+      path: "users",
+      name: "SETTING_USER",
+      component: User_systemPage,
+      children: [],
+    },
+    {
+      path: "roles",
+      name: "SETTING_ROLES",
+      component: Role_systemPage,
+      children: [],
+    },
 
   ],
 };

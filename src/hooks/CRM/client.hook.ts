@@ -96,14 +96,22 @@ export const useClientHook = () => {
   //
   const ClientUpdate = (id: any, values: any) => {
     setService(
-      setClient.loadingCreate,
+      setClient,
       useDataStore(),
+      'Clients',
       formatClientData
     ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
   };
 
   //
-  const ClientDelete = () => {};
+  const ClientDelete = (id: any) => {
+    setService(
+      setClient,
+      useDataStore(),
+      'Clients',
+      formatClientData
+    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+  };
 
   return {
     FindClientAll,

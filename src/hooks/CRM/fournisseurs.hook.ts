@@ -96,14 +96,22 @@ export const useFournisseurHook = () => {
   //
   const FindFournisseurUpdate = (id: any, values: any) => {
     setService(
-      setFournisseur.loadingCreate,
-      useDataStore().Clients,
-      setFournisseur
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+      setFournisseur,
+      useDataStore(),
+      'Fournisseurs',
+      formatFournisseurData
+    ).SetUpdate(API_URL.FOURNISSEURS_UPDATE, id, values);
   };
 
   //
-  const FindFournisseurDelete = () => {};
+  const FindFournisseurDelete = (id: any) => {
+    setService(
+      setFournisseur,
+      useDataStore(),
+      'Fournisseurs',
+      formatFournisseurData
+    ).SetDelete(API_URL.FOURNISSEURS_REMOVE, id);
+  };
 
   return {
     FindFournisseurAll,

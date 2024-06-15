@@ -8,7 +8,7 @@
                      <div class="flex gap-2 items-center ">
                         <div class="text-lg bg-orange-500 text-white px-4 py-1 rounded-md font-black">
                      <span class="font-bold uppercase">solde : </span>
-                     {{ useDataStore().Caisses.solde }}
+                     {{ CountSolde }}
                   </div>
 
                   <DepenseModal
@@ -34,6 +34,7 @@
          </section>
       </template>
    </BaseLayout>
+   {{CountSolde}}
 </template>
 <script lang="ts" setup>
 import Table from './../../components/tables/table.vue';
@@ -41,13 +42,25 @@ import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 import DepenseModal from '@/components/modals/depense.modal.vue';
 import { MenuClientActions } from '@/routes/actions.route';
-import { onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { DepenseTables } from '@/tables/depense.tables';
 import {useDepenseHook} from "@/hooks/comptabilites/depense.hook.ts"
-import { useDataStore } from '@/stores/data.store';
 
 const { FindDepenseAll, storeDepenses, setDepense } = useDepenseHook();
+const CoutSoldeRef = ref(0)
+
+const CountSolde = computed(() => {
+   CoutSoldeRef.value = 0
+   storeDepenses.value.forEach((el:any) => {
+      if(el?.type_transaction.includes('red')) {
+         CoutSoldeRef.value = CoutSoldeRef.value - Number(el.montant)
+      }else{
+         CoutSoldeRef.value = CoutSoldeRef.value + Number(el.montant)
+      }
+   })
+   return CoutSoldeRef.value
+})
 
 onMounted(() => {
     FindDepenseAll();

@@ -22,7 +22,7 @@
               class="h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
               alt=""
             />
-            <div class="text-base font-bold">{{ menu.name }}</div>
+            <div class="text-base font-bold">{{ menu.name }} </div>
           </div>
 
           <div class="" v-if="menu.children?.length != 0">

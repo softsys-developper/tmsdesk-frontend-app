@@ -30,16 +30,20 @@ import BtnMore from '../mores/btn.more.vue';
 //    SelectValue,
 // } from '@/components/ui/select';
 import { Search } from 'lucide-vue-next';
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { AppService } from '@/services/app.services';
 
 const props = defineProps(['MenuActions', 'dataTables', 'display']);
 
-const OnSearchValue = ref();
+const OnSearchValue = ref()
 const searchQ = ref('');
 const PerPage = ref('5');
 const isPage = ref(0);
-OnSearchValue.value = props.dataTables;
+
+const _OnSearchValue =  computed(() => {
+   OnSearchValue.value = props.dataTables
+})
+
 
 const PerOptions = [5, 10, 25, 50, 100, 150, 250];
 
@@ -67,6 +71,7 @@ const IsPageFun = () => {
 
 <template>
    <!--  -->
+     {{_OnSearchValue}}
    <div class="flex justify-between gap-2 px-8">
       <div
          class="relative w-full max-w-sm items-center border-[1px] rounded-lg"
@@ -152,6 +157,7 @@ const IsPageFun = () => {
 
             <TableCell class="text-right w-[300px]">
                <div class="w-full flex justify-end" v-if="MenuActions">
+               
                   <BtnMore
                      :id="invoice.id"
                      name="Actions"
@@ -165,7 +171,7 @@ const IsPageFun = () => {
       </TableBody>
    </Table>
 
-   <div class="flex justify-between p-4">
+   <div class="flex lg:justify-between flex-col lg:flex-row p-4 gap-2">
       <span class="text-xs font-extrabold uppercase"> {{  AppService().name  }} </span>
 
       <Pagination

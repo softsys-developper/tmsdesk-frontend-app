@@ -40,7 +40,7 @@ defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg', 'id']);
             </RouterLink>
 
            <div v-else>  
-            <div class="flex gap-1 items-center" @click="Fun_Actions(Menu, id)" >
+            <div class="flex gap-1 items-center" @click="Fun_Actions(Menu, id, $router)" >
                <i :class="Menu.icon" class="text-lg "></i>
                <span class="text-base font-sans"> {{ Menu.name }}</span>
             </div>

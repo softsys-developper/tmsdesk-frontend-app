@@ -215,16 +215,22 @@ export const MenuApp = [
       ],
    },
    {
-      name: 'Utilisateurs',
+      name: 'Parametres',
       icon: `https://${AppService().url}/images/icons/utilisateur.png`,
-      list: 'Messagerie, Parametres, Mails, Notes, Gestions des Documments',
+      list: '',
       route: '',
       children: [
          {
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
+            name: 'Parametre General',
+            route: 'SYSTEM_PARAMETRE'
+         },
+         {
+            icon: 'ri-mail-line',
+            id: 'SYSTEM_MAILS',
             name: 'Utilisateurs',
-            route: 'HOME'
+            route: 'SETTING_USER'
          },
          {
             icon: 'ri-mail-line',

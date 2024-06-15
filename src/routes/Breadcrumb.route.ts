@@ -96,8 +96,25 @@ export const BreadcrumbRoutes = [
         title: "proformas",
       },
       {
-        route: "ajout de proforma",
-        title: " PROFORMA_ADD ",
+        route: "PROFORMA_ADD",
+        title: "ajout de proforma ",
+      },
+    ],
+  },
+  {
+    route: "PROFORMA_DETAIL",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "PROFORMA_LIST",
+        title: "proformas",
+      },
+      {
+        route: "PROFORMA_DETAIL",
+        title: "Détail de la proforma",
       },
     ],
   },

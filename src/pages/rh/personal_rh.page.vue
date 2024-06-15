@@ -8,6 +8,12 @@
                      name="Ajouter un employer"
                      title="Ajouter un employer"
                   />
+
+                  <!-- <RouterLink :to="{ name: 'RH_PERSONAL_ADD' }"
+                     class="bg-gray-700 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                     <i class="ri-add-line text-sm"></i>
+                     <span class="hidden lg:flex">Nouvel employer</span>
+                  </RouterLink> -->
                </template>
             </ContentLayout>
 

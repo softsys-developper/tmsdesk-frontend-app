@@ -3,63 +3,65 @@ import { API_URL } from "@/routes/api.route";
 import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/prime.type';
+// import { LIST_DEPENSE } from '@/types/Role.type';
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 
-export const usePrimeHook = () => {
+export const useRoleHook = () => {
   const { readData, createData } = useApiServices();
   const { EmptyFields } = useUtilHook();
-  const setPrime = reactive({ loading: false, loadingCreate: false });
-  const statePrimes = ref<any[]>([]);
-  statePrimes.value = useDataStore().Primes;
+  const setRole = reactive({ loading: false, loadingCreate: false });
+  const stateRoles = ref<any[]>([]);
+  stateRoles.value = useDataStore().Roles;
   const { toast } = useToast();
 
-  const formatPrimeData = (primes: any) => {
-    return primes.map((prime: any, index:any) => ({
-      id: index +1,
-      libelle: prime.libelle,
-      nature: prime.nature,
-      date_creation: moment(prime.created_at).format("l") ,
+  const formatRoleData = (Roles: any) => {
+    return Roles.map((Role: any) => ({
+      id: Role.id,
+      nom: Role.nom,
+      email: Role.email,
+      telephone: Role.telephone,
+      adresse: Role.adresse,
+      date_creation: moment(Role.created_at).format("l"),
     }));
   };
 
-  const storePrimes = computed(() => {
-    return useDataStore().Primes;
+  const storeRoles = computed(() => {
+    return useDataStore().Roles;
   });
 
   //
-  const FindPrimeAll = () => {
-    setPrime.loading = true;
-    readData(API_URL.PRIME_LIST)
+  const FindRoleAll = () => {
+    setRole.loading = true;
+    readData(API_URL.CLIENT_LIST)
       .then((data: any) => {
-        useDataStore().Primes = formatPrimeData(data.datas);
-        setPrime.loading = false;
+        useDataStore().Roles = formatRoleData(data.datas);
+        setRole.loading = false;
       })
       .catch(() => {
-        setPrime.loading = false;
+        setRole.loading = false;
       });
   };
 
   //
-  const FindPrimeOne = () => {};
+  const FindRoleOne = () => {};
 
   //
-  const CreatePrime = async (values: any) => {
-    setPrime.loadingCreate = true;
-    const DataCreated = await createData(API_URL.PRIME_CREATE, values)
+  const CreateRole = async (values: any) => {
+    setRole.loadingCreate = true;
+    const DataCreated = await createData(API_URL.CLIENT_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          setPrime.loadingCreate = false;
-          let Primes = useDataStore().Primes;
+          setRole.loadingCreate = false;
+          let Roles = useDataStore().Roles;
 
           //
-          const toAdd: [] = formatPrimeData([data.data]);
-          Primes.unshift(...toAdd);
-          useDataStore().Primes = Primes;
+          const toAdd: [] = formatRoleData([data.data]);
+          Roles.unshift(...toAdd);
+          useDataStore().Roles = Roles;
           useModalStore().open = false;
 
           toast({
@@ -69,7 +71,7 @@ export const usePrimeHook = () => {
         }
       })
       .catch((err) => {
-        setPrime.loadingCreate = false;
+        setRole.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -91,33 +93,34 @@ export const usePrimeHook = () => {
     return { data: DataCreated };
   };
 
-  const PrimeUpdate = (id: any, values: any) => {
+  //
+  const RoleUpdate = (id: any, values: any) => {
     setService(
-      setPrime,
+      setRole,
       useDataStore(),
-      'Primes',
-      formatPrimeData
+      'Roles',
+      formatRoleData
     ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
   };
 
   //
-  const PrimeDelete = (id: any) => {
+  const RoleDelete = (id: any) => {
     setService(
-      setPrime,
+      setRole,
       useDataStore(),
-      'Primes',
-      formatPrimeData
+      'Roles',
+      formatRoleData
     ).SetDelete(API_URL.CLIENT_REMOVE, id);
   };
 
   return {
-    FindPrimeAll,
-    FindPrimeOne,
-    CreatePrime,
-    PrimeUpdate,
-    PrimeDelete,
-    statePrimes,
-    setPrime,
-    storePrimes,
+    FindRoleAll,
+    FindRoleOne,
+    CreateRole,
+    RoleUpdate,
+    RoleDelete,
+    stateRoles,
+    setRole,
+    storeRoles,
   };
 };

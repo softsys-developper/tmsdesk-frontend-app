@@ -42,19 +42,19 @@ export const MenuProformaActions = [
    {
       id: 'MUA_details',
       name: 'Voir les details',
-      icon: 'ri-delete-bin-3-line',
+      icon: 'ri-eye-line',
       route: 'PROFORMA_LIST',
    },
    {
       id: 'MUA_validate',
       name: 'Validé',
-      icon: 'ri-delete-bin-3-line',
+      icon: 'ri-check-line',
       route: 'PROFORMA_LIST',
    },
    {
       id: 'MUA_BC',
       name: 'Ajouter N. BC',
-      icon: 'ri-delete-bin-3-line',
+      icon: 'ri-file-line',
       route: 'PROFORMA_LIST',
    },
 ];
@@ -88,6 +88,7 @@ export const MenuPersonalActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'RH_PERSONAL',
    },
+   
 ];
 export const MenuCongeActions = [
    {
@@ -103,6 +104,24 @@ export const MenuCongeActions = [
       route: 'RH_SALAIRE_CONGE',
    },
 ];
+
+
+export  const MenuRoleActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'RH_SALAIRE_CONGE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'RH_SALAIRE_CONGE',
+   },
+];
+
+
 export const MenuSalaryActions = [
    {
       id: 'MUA_modify',

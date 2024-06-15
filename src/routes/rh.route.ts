@@ -5,6 +5,7 @@ import Salaire_rhPage from '@/pages/rh/salaire_rh.page.vue';
 import Heure_supp_rhPage from '@/pages/rh/heure_supp_rh.page.vue';
 import Prime_rhPage from "@/pages/rh/prime_rh.page.vue"
 import Service_rhPage from '@/pages/rh/service_rh.page.vue';
+import Personal_addPage from '@/pages/rh/__partials/personal_add.page.vue';
 
 export const routeRh = {
    path: '/rh',
@@ -15,6 +16,12 @@ export const routeRh = {
          component: Personal_rhPage,
          children: [],
       },
+      {
+        path: 'personal/add',
+        name: 'RH_PERSONAL_ADD',
+        component: Personal_addPage,
+        children: [],
+     },
       {
         path: 'salaires',
         name: 'RH_SALAIRE',

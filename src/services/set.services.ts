@@ -9,20 +9,23 @@ const { updateData, deleteData } = useApiServices();
 
 const { EmptyFields } = useUtilHook();
 
+
+
 export const setService = (
-  loading: boolean,
+  loading: any,
   Store: any,
+  LabelStore: string,
   formatProspectData: any
 ) => {
   // Update
   const SetUpdate = (URL: string, id: any, values: any) => {
-    loading = true;
+    loading.loadingCreate = true;
     updateData(URL + "/" + id, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
-          loading = false;
-          let Prospects = Store.Clients;
+          loading.loadingCreate = false;
+          let Prospects = Store[LabelStore];
 
           // //
           const toAdd = formatProspectData([data.data]);
@@ -37,8 +40,10 @@ export const setService = (
             }
           });
 
-          console.log(_Prospects)
-          Store.Clients = _Prospects;
+          
+
+
+          Store[LabelStore] = _Prospects;
           useModalStore().open = false;
 
           toast({
@@ -48,7 +53,7 @@ export const setService = (
         }
       })
       .catch((err) => {
-        loading = false;
+        loading.loadingCreate = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);
           if (isErr) {
@@ -74,7 +79,7 @@ export const setService = (
     deleteData(URL + "/" + id)
       .then((data: any) => {
         if (data) {
-          loading = false;
+          loading.loadingCreate = false;
           let Prospects = Store;
 
           //
@@ -91,7 +96,7 @@ export const setService = (
         }
       })
       .catch((err) => {
-        loading = false;
+        loading.loadingCreate = false;
         useModalStore().delete = false;
         if (err) {
           const isErr = Object.keys(err.response.data.errors);

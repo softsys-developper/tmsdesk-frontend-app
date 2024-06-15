@@ -6,6 +6,7 @@ import { useDataStore } from "./../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/heure.type';
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
+import { setService } from "@/services/set.services";
 
 export const useHeureHook = () => {
   const { readData, createData } = useApiServices();
@@ -87,18 +88,31 @@ export const useHeureHook = () => {
     return { data: DataCreated };
   };
 
-  //
-  const FindHeureUpdate = () => {};
+  const HeureUpdate = (id: any, values: any) => {
+    setService(
+      setHeure,
+      useDataStore(),
+      'Heures',
+      formatHeureData
+    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+  };
 
   //
-  const FindHeureDelete = () => {};
+  const HeureDelete = (id: any) => {
+    setService(
+      setHeure,
+      useDataStore(),
+      'Heures',
+      formatHeureData
+    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+  };
 
   return {
     FindHeureAll,
     FindHeureOne,
     CreateHeure,
-    FindHeureUpdate,
-    FindHeureDelete,
+    HeureUpdate,
+    HeureDelete,
     stateHeures,
     setHeure,
     storeHeures,

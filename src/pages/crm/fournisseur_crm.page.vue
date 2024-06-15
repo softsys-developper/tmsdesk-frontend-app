@@ -5,16 +5,15 @@
         <ContentLayout title="CRM | Fournisseurs">
           <template v-slot:created>
             <FournisseurModal
-              :name="'Ajouter Clients'"
+              :name="'Ajouter fournisseur'"
               :title="
                 useUpdateStore().isUpdate.is
-                  ? 'Modifier Clients'
-                  : 'Ajouter Clients'
+                  ? 'Modifier fournisseur'
+                  : 'Ajouter fournisseur'
               "
             />
 
             <DeleteLayout
-              title="Ajouter un nouvel categorie"
               :funDelete="FindFournisseurDelete"
               :id="useUpdateStore().isDelete.id"
             />
@@ -24,7 +23,7 @@
         <Table
           v-if="useDataStore().Fournisseurs.length != 0"
           :dataTables="useDataStore().Fournisseurs"
-          :MenuActions="MenuClientActions"
+          :MenuActions="MenuFournisseurActions"
           :display="FournisseurTables"
         />
 
@@ -42,7 +41,7 @@
  import BaseLayout from './../../layouts/base.layout.vue';
  import ContentLayout from '@/layouts/content.layout.vue';
  import FournisseurModal from '@/components/modals/fournisseur.modal.vue';
- import { MenuClientActions } from '@/routes/actions.route';
+ import { MenuFournisseurActions } from '@/routes/actions.route';
  import { onMounted } from 'vue';
  import { useDataStore } from '@/stores/data.store';
  import PageLoader from '@/components/loaders/page.loader.vue';

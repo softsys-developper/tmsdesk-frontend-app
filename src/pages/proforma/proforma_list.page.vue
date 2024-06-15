@@ -9,26 +9,18 @@
                       title="Nouveau Proforma"
                    /> -->
 
-                  <RouterLink
-                     :to="{ name: 'PROFORMA_ADD' }"
-                     class="bg-gray-700 font-bold py-2 px-4 rounded-md text-white"
-                     >Nouveau proforma</RouterLink
-                  >
+                  <RouterLink :to="{ name: 'PROFORMA_ADD' }"
+                     class="bg-gray-700 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                     <i class="ri-add-line text-sm"></i>
+                     <span class="hidden lg:flex">Nouveau proforma</span>
+                  </RouterLink>
                </template>
             </ContentLayout>
 
-            <Table
-               v-if="useDataStore().Proforma.length != 0"
-               :dataTables="useDataStore().Proforma"
-               :MenuActions="MenuProformaActions"
-               :display="ProformaTables"
-            />
+            <Table v-if="useDataStore().Proforma.length != 0" :dataTables="useDataStore().Proforma"
+               :MenuActions="MenuProformaActions" :display="ProformaTables" />
 
-            <PageLoader
-               :loading="state.loading"
-               :data="useDataStore().Proforma"
-               name="Aucun Proforma"
-            />
+            <PageLoader :loading="state.loading" :data="useDataStore().Proforma" name="Aucun Proforma" />
          </section>
       </template>
    </BaseLayout>
@@ -50,8 +42,8 @@ const state = reactive({
    loading: false,
 });
 
-const StatusHtml = (name:string, bg:string) => {
-   return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`
+const StatusHtml = (name: string, bg: string) => {
+   return `<span class="text-sm font-bold flex text-white min-w-max max-w-min px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`
 }
 
 const FindAllClient = () => {
@@ -59,6 +51,7 @@ const FindAllClient = () => {
    readData(API_URL.PROFORMA_LIST)
       .then((data: any) => {
          useDataStore().Proforma = data.datas.map((el: any) => ({
+            id: el.id,
             numero_proforma: el.numero_proforma,
             titre: el.titre,
             client: el.client?.nom,
@@ -67,8 +60,8 @@ const FindAllClient = () => {
                el.etat == 1
                   ? StatusHtml('En attante', 'bg-orange-500')
                   : el.etat == 2
-                  ? StatusHtml('Valider', 'bg-blue-500')
-                  : StatusHtml('Rejeter', 'bg-red-500') ,
+                     ? StatusHtml('Valider', 'bg-blue-500')
+                     : StatusHtml('Rejeter', 'bg-red-500'),
             date_creation: el.date_creation,
             date_validite: el.date_validite,
          }));

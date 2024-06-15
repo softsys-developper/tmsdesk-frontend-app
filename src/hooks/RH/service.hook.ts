@@ -7,6 +7,7 @@ import { useDataStore } from "./../../stores/data.store";
 import { useUtilHook } from "@/hooks/utils.hook";
 import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
+import { setService as SETService } from "@/services/set.services";
 
 export const useServiceHook = () => {
   const { readData, createData } = useApiServices();
@@ -17,10 +18,10 @@ export const useServiceHook = () => {
   const { toast } = useToast();
 
   const formatServiceData = (services: any) => {
-    return services.map((service: any, index:any) => ({
-      id: index +1,
+    return services.map((service: any, index: any) => ({
+      id: index + 1,
       libelle: service.libelle,
-      date_creation: moment(service.created_at).format("l") ,
+      date_creation: moment(service.created_at).format("l"),
     }));
   };
 
@@ -42,7 +43,7 @@ export const useServiceHook = () => {
   };
 
   //
-  const FindServiceOne = () => {};
+  const FindServiceOne = () => { };
 
   //
   const CreateService = async (values: any) => {
@@ -89,18 +90,31 @@ export const useServiceHook = () => {
     return { data: DataCreated };
   };
 
-  //
-  const FindServiceUpdate = () => {};
+  const ServiceUpdate = (id: any, values: any) => {
+    SETService(
+      setService,
+      useDataStore(),
+      'Services',
+      formatServiceData
+    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+  };
 
   //
-  const FindServiceDelete = () => {};
+  const ServiceDelete = (id: any) => {
+    SETService(
+      setService,
+      useDataStore(),
+      'Services',
+      formatServiceData
+    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+  };
 
   return {
     FindServiceAll,
     FindServiceOne,
     CreateService,
-    FindServiceUpdate,
-    FindServiceDelete,
+    ServiceUpdate,
+    ServiceDelete,
     stateServices,
     setService,
     storeServices,

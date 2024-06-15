@@ -87,8 +87,8 @@
             <Separator class="my-4" />
             <!-- Add produit -->
 
-            <div class="flex w-full gap-4">
-              <div class="bg-white rounded-md flex flex-col gap-2 w-5/12">
+            <div class="flex w-full flex-col lg:flex-row gap-4">
+              <div class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12">
                 <div class="bg-gray-200 rounded-t-md p-3">
                   <span class="text-base font-bold">
                     Ajouter des produits ou services
@@ -472,8 +472,8 @@ const Client = ref<any>();
 // Function oiur calculer la remise
 const _isRemise = (e: Event) => {
   const input = e.target as HTMLInputElement;
-  isRemise.value = (Number(input.value) / _AmountHT.value) * 100;
-  isRemise.value = Number(isRemise.value.toFixed(2));
+  // isRemise.value = (Number(input.value) / _AmountHT.value) * 100 ;
+  isRemise.value = Number(input.value);
 };
 
 // Funtion pour calculer la tva
@@ -500,9 +500,12 @@ const AmountHT = computed(() => {
 
     if (isRemise.value || _AmountTVA.value) {
       _AmountTTC.value =
-        _AmountHT.value -
-        (_AmountHT.value * isRemise.value) / 100 +
-        _AmountTVA.value;
+        _AmountHT.value * (1 - isRemise.value / 100) +
+          _AmountTVA.value;
+      // _AmountTTC.value =
+      //   _AmountHT.value -
+      //   (_AmountHT.value * isRemise.value) / 100 +
+      //   _AmountTVA.value;
 
       _AmountTTC.value = Number(_AmountTTC.value.toFixed(2));
     }
@@ -550,7 +553,7 @@ const proformaSchema = z.object({
       ID_ProduitService: z.number(),
     })
   ),
-  quantites: z.array(z.string().min(1, "Le champ quantité est requis.")),
+  quantites: z.any(),
   // date_validite: z.string().min(1, "La date de validité est requise."),
   devise_client: z.number().min(1, "La devise du client est requise."),
 });
@@ -571,33 +574,35 @@ const sendProformaToBackend = async () => {
       produitsServices: PS.map((ps) => ({
         ID_ProduitService: ParseJson(ps.service).id,
       })),
+      prix_unitaires: PS.map((ps) => ps.price ? ps.price : ParseJson(ps.service).prix_unitaire),
+      descriptions: PS.map((ps) => ps.description),
       quantites: PS.map((ps) => ps.quantite),
       tva: _AmountTVA.value == 0 ? 0 : 18,
       remise_pourcentage: isRemise.value,
       devise_client: ParseJson(isDevise.value)?.id,
     };
 
-    const dataProforma = new FormData();
+    // const dataProforma = new FormData();
 
-    Object.entries(proformaData).forEach(([key, value]) => {
-      if (Array.isArray(value) || typeof value === "object") {
-        dataProforma.append(key, JSON.stringify(value));
-      } else {
-        dataProforma.append(key, value);
-      }
-    });
-    if (setInput.fichier && Array.isArray(setInput.fichier)) {
-      for (let i = 0; i < setInput.fichier.length; i++) {
-        const el = setInput.fichier[i];
-        dataProforma.append("fichier", el);
-      }
-    }
+    // Object.entries(proformaData).forEach(([key, value]) => {
+    //   if (Array.isArray(value) || typeof value === "object") {
+    //     dataProforma.append(key, JSON.stringify(value));
+    //   } else {
+    //     dataProforma.append(key, value);
+    //   }
+    // });
+    // if (setInput.fichier && Array.isArray(setInput.fichier)) {
+    //   for (let i = 0; i < setInput.fichier.length; i++) {
+    //     const el = setInput.fichier[i];
+    //     dataProforma.append("fichier", el);
+    //   }
+    // }
 
     proformaSchema.parse(proformaData);
 
     const { data } = await axios.post(
       `${API_URL.PROFORMA_CREATE}`,
-      dataProforma
+      proformaData
     );
 
     if (data) {

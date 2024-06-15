@@ -7,14 +7,7 @@ export const FournisseurForms = [
       value: "",
       select: [],
     },
-{
-      label: "Type",
-      type: "text",
-      placeholder: "Type de fournisseur",
-      name: "type",
-      value: "",
-      select: [],
-    },
+
     {
       label: "Email",
       type: "email",

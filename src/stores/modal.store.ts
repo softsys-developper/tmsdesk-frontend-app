@@ -8,6 +8,7 @@ export const useModalStore = defineStore('Modal', {
       isOpenSetting: 'Generale' ,
       isOpenMenu: '',
       isOpenSubMenu: '',
-      isMenu: false
+      isMenu: false,
+      IsValidate: null
    }),
 });

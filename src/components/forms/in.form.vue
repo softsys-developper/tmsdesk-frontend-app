@@ -32,7 +32,7 @@
               :key="ins?.id"
               :value="ins?.id"
             >
-              {{ ins.title || ins.label }}
+              {{ ins.title || ins.label || ins.name || ins.libelle_salaire }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
