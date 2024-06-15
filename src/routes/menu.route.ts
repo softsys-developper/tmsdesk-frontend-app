@@ -216,7 +216,7 @@ export const MenuApp = [
    },
    {
       name: 'Parametres',
-      icon: `https://${AppService().url}/images/icons/utilisateur.png`,
+      icon: `https://${AppService().url}/images/icons/parametre.png`,
       list: '',
       route: '',
       children: [
