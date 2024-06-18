@@ -2,8 +2,8 @@
   <!-- Content -->
   <div class="flex w-full">
     <!--  -->
-    <div class="flex flex-col w-full gap-2">
-      <label for="" class="text-base font-bold"> {{ label }} </label>
+    <div class="flex flex-col w-full gap-1">
+      <label for="" class="text-sm font-bold"> {{ label }} </label>
 
       <Input
         v-if="select?.length == 0"
@@ -20,6 +20,7 @@
         :type="type"
         :name="name"
         :value="value"
+        selected
       >
         <SelectTrigger>
           <SelectValue :placeholder="label" />
@@ -32,7 +33,7 @@
               :key="ins?.id"
               :value="ins?.id"
             >
-              {{ ins.title || ins.label || ins.name || ins.libelle_salaire }}
+              {{ ins.title || ins.label || ins.name || ins.libelle_salaire || ins.nom }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>

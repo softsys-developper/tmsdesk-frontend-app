@@ -60,7 +60,7 @@ export const PersonalForms = reactive([
 
     {
         label: "Date de naissance",
-        type: "text",
+        type: "date",
         placeholder: "Date de naissance",
         name: "date_naissance",
         value: "",
@@ -86,7 +86,7 @@ export const PersonalForms = reactive([
         label: "Fiche de poste",
         type: "file",
         placeholder: "CNI",
-        name: "cni",
+        name: "fiche_poste",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
@@ -94,7 +94,7 @@ export const PersonalForms = reactive([
         label: "Fiche de contract",
         type: "file",
         placeholder: "CNI",
-        name: "cni",
+        name: "fiche_contract",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
@@ -144,7 +144,7 @@ export const PersonalForms = reactive([
         label: "Type d'utilisateur ",
         type: "text",
         placeholder: "Type d'utilisateur",
-        name: "utype",
+        name: "role",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
@@ -166,7 +166,7 @@ export const PersonalForms = reactive([
 
     {
         label: "Date de début",
-        type: "text",
+        type: "date",
         placeholder: "Date de début",
         name: "date_debut",
         value: "",
@@ -174,9 +174,17 @@ export const PersonalForms = reactive([
     },
     {
         label: "Date de fin",
-        type: "text",
+        type: "date",
         placeholder: "Date de fin",
         name: "date_fin",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Salaire",
+        type: "text",
+        placeholder: "Liste des salaires",
+        name: "salaire",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },

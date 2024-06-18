@@ -68,6 +68,9 @@ importers:
       vue:
         specifier: ^3.4.21
         version: 3.4.29(typescript@5.4.5)
+      vue-multiselect:
+        specifier: ^3.0.0
+        version: 3.0.0
       vue-router:
         specifier: '4'
         version: 4.3.3(vue@3.4.29(typescript@5.4.5))
@@ -1124,6 +1127,10 @@ packages:
       '@vue/composition-api':
         optional: true
 
+  vue-multiselect@3.0.0:
+    resolution: {integrity: sha512-uupKdINgz7j83lQToCL7KkgQQxvG43el++hsR39YT9pCe1DwzUGmKzPxjVP6rqskXed5P6DtUASYAlCliW740Q==}
+    engines: {node: '>= 14.18.1', npm: '>= 6.14.15'}
+
   vue-router@4.3.3:
     resolution: {integrity: sha512-8Q+u+WP4N2SXY38FDcF2H1dUEbYVHVPtPCPZj/GTZx8RCbiB8AtJP9+YIxn4Vs0svMTNQcLIzka4GH7Utkx9xQ==}
     peerDependencies:
@@ -2111,6 +2118,8 @@ snapshots:
   vue-demi@0.14.8(vue@3.4.29(typescript@5.4.5)):
     dependencies:
       vue: 3.4.29(typescript@5.4.5)
+
+  vue-multiselect@3.0.0: {}
 
   vue-router@4.3.3(vue@3.4.29(typescript@5.4.5)):
     dependencies:

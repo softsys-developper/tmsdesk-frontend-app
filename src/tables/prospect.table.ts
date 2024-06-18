@@ -34,13 +34,13 @@ export const ProspectTables = [
       color: null,
       bgColor: null,
     },
-    {
-      label: "Nom Interlocuteur",
-      field: "nom_interlocuteur",
-      status: null,
-      color: null,
-      bgColor: null,
-    },
+    // {
+    //   label: "Nom Interlocuteur",
+    //   field: "nom_interlocuteur",
+    //   status: null,
+    //   color: null,
+    //   bgColor: null,
+    // },
     {
       label: "Proposition",
       field: "proposition",
@@ -55,13 +55,13 @@ export const ProspectTables = [
       color: null,
       bgColor: null,
     },
-    {
-      label: "Observation",
-      field: "observation",
-      status: null,
-      color: null,
-      bgColor: null,
-    },
+    // {
+    //   label: "Observation",
+    //   field: "observation",
+    //   status: null,
+    //   color: null,
+    //   bgColor: null,
+    // },
     {
       label: "Date de création",
       field: "date_creation",

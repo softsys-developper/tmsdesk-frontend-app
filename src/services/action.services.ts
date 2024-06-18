@@ -13,11 +13,15 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     // useDataStore().Categories
     let Find: any = ToUpdate.find((el: any) => el.id == Id);
     const InputKey = Object.keys(Find);
-    console.log(InputKey)
+
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
       if (UpdateInput) {
         UpdateInput.value = Find[el];
+        if(UpdateInput.options){
+          UpdateInput.options[UpdateInput.selectedIndex];
+          UpdateInput.addEventListener('change', UpdateInput.options[UpdateInput.selectedIndex]);
+        }
       }
     });
 
@@ -98,6 +102,32 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToDeleteActions(id);
     } else {
       ToUpdateActions(id, useDataStore().Categories);
+    }
+  }
+  
+  // RH
+   if (menu.route == "HUMAINES_CONGES") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Conges);
+    }
+  }
+
+  if (menu.route == "HUMAINES_SALAIRE") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Salary);
+    }
+  }
+
+  // Roles
+  if (menu.route == "SETTING_ROLES") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Roles);
     }
   }
 };

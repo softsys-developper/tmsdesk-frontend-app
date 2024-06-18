@@ -9,9 +9,10 @@ import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { CATEGORIE_DATA } from "@/types/systemes/categorie.type";
 import { useUpdateStore } from "@/stores/update.store";
+import { setService } from "@/services/set.services";
 
 export const useCategorieHook = () => {
-  const { readData, createData, deleteData, updateData } = useApiServices();
+  const { readData, createData} = useApiServices();
   const { EmptyFields } = useUtilHook();
   const setCategorie = reactive({
     loading: false,
@@ -98,91 +99,23 @@ export const useCategorieHook = () => {
     return { data: DataCreated };
   };
 
-  // Update
-  const CategorieUpdate = (id:any, values:any) => {
-   setCategorie.loadingCreate = true;
-   updateData(API_URL.CATEGORIE_UPDATE + '/' + id, values)
-     .then((data: any) => {
-       if (data) {
-         EmptyFields(values); // Vider les champs
-         setCategorie.loadingCreate = false;
-         let Categories = useDataStore().Categories;
-
-         //
-         const toAdd: [] = formatCategorieData([data.data]);
-         Categories.unshift(...toAdd);
-         useDataStore().Categories = Categories;
-         useModalStore().open = false;
-
-         toast({
-           title: "Enregistré",
-           description: data.message,
-         });
-       }
-     })
-     .catch((err) => {
-       setCategorie.loadingCreate = false;
-       if (err) {
-         const isErr = Object.keys(err.response.data.errors);
-         if (isErr) {
-           toast({
-             title: isErr[0],
-             variant: "destructive",
-             description: err.response.data.errors[isErr[0]][0],
-           });
-         } else {
-           toast({
-             title: "error",
-             variant: "destructive",
-             description: err.response.data.message,
-           });
-         }
-       }
-     });
+  const CategorieUpdate = (id: any, values: any) => {
+    setService(
+      setCategorie,
+      useDataStore(),
+      'Categories',
+      formatCategorieData
+    ).SetUpdate(API_URL.CATEGORIE_UPDATE, id, values);
   };
 
   //
   const CategorieDelete = (id: any) => {
-    setCategorie.loadingDelete = true;
-    deleteData(API_URL.CATEGORIE_REMOVE+ '/' + id)
-      .then((data: any) => {
-        if (data) {
-          setCategorie.loadingDelete = false;
-          let Categories = useDataStore().Categories;
-
-          //
-          const toAdd = Categories.filter((el: any) => el.id != id);
-          Categories.unshift(...toAdd);
-          useDataStore().Categories = Categories;
-          useModalStore().open = false;
-          useModalStore().delete = false;
-
-          toast({
-            title: "Supprimer",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setCategorie.loadingDelete = false;
-        useModalStore().delete = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
+    setService(
+      setCategorie,
+      useDataStore(),
+      'Categories',
+      formatCategorieData
+    ).SetDelete(API_URL.CATEGORIE_REMOVE, id);
   };
 
   return {

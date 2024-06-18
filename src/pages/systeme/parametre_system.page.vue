@@ -218,7 +218,6 @@ const SendSetting = async (e: any) => {
   try {
 const data = new FormData(e.target);
 
-console.log(data)
 
     const response = await axios.post(API_URL.SETTING_UPDATE, data);
     if(response.data){

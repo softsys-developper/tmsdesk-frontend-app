@@ -1,5 +1,5 @@
 <template>
-  <section class="text-white flex flex-col sticky top-0 z-40 right-0 top-0">
+  <section class="text-white flex flex-col sticky top-0 z-30 right-0 top-0">
     <div class="h-16 bg-black">
       <!--  -->
       <div class="flex items-center w-11/12 m-auto h-full justify-between">

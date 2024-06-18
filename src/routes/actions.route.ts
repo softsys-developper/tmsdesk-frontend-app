@@ -95,15 +95,17 @@ export const MenuCongeActions = [
       id: 'MUA_modify',
       name: 'Modifier',
       icon: 'ri-refresh-line',
-      route: 'RH_SALAIRE_CONGE',
+      route: 'HUMAINES_CONGES',
    },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
       icon: 'ri-delete-bin-3-line',
-      route: 'RH_SALAIRE_CONGE',
+      route: 'HUMAINES_CONGES',
    },
 ];
+
+
 
 
 export  const MenuRoleActions = [
@@ -111,14 +113,14 @@ export  const MenuRoleActions = [
       id: 'MUA_modify',
       name: 'Modifier',
       icon: 'ri-refresh-line',
-      route: 'RH_SALAIRE_CONGE',
+      route: 'SETTING_ROLES',
    },
-   {
-      id: 'MUA_delete',
-      name: 'Supprimer',
-      icon: 'ri-delete-bin-3-line',
-      route: 'RH_SALAIRE_CONGE',
-   },
+   // {
+   //    id: 'MUA_delete',
+   //    name: 'Supprimer',
+   //    icon: 'ri-delete-bin-3-line',
+   //    route: 'RH_SALAIRE_CONGE',
+   // },
 ];
 
 
@@ -213,8 +215,50 @@ export const MenuFactureClientActions = [
 
 
 
-
+// Systeme
 export const MenuCategorieActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SYSTEM_CATEGORY',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SYSTEM_CATEGORY',
+   },
+];
+export const MenuDeviseActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SYSTEM_DEVISE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SYSTEM_DEVISE',
+   },
+];
+export const MenuMarqueActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SYSTEM_MARQUE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SYSTEM_MARQUE',
+   },
+];
+export const MenuDAActions = [
    {
       id: 'MUA_modify',
       name: 'Modifier',

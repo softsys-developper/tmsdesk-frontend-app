@@ -2,7 +2,7 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-                <ContentLayout title="CRM | Roles">
+                <ContentLayout title="Parametre | Roles">
                     <template v-slot:created>
                         <RoleModal :name="'Ajouter Roles'" :title="useUpdateStore().isUpdate.is
                             ? 'Modifier Roles'

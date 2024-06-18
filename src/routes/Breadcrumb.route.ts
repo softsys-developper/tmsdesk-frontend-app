@@ -118,4 +118,117 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
+
+
+
+  // Parametre
+  {
+    route: "SETTING_ROLES",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SETTING_ROLES",
+        title: "Roles",
+      },
+      {
+        route: "SETTING_ROLES",
+        title: "Liste des roles",
+      },
+    ],
+  },
+
+
+   // RH
+   {
+    route: "RH_PERSONAL",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "Liste des employès",
+      },
+    ],
+  },
+   {
+    route: "RH_PERSONAL_ADD",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "Liste des employés",
+      },
+      {
+        route: "RH_PERSONAL_ADD",
+        title: "Creation d'employé",
+      },
+    ],
+  },
+  {
+    route: "RH_SALAIRE_CONGE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_SALAIRE_CONGE",
+        title: "RH",
+      },
+      {
+        route: "RH_SALAIRE_CONGE",
+        title: "Liste des congés",
+      },
+    ],
+  },
+  {
+    route: "RH_SALAIRE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_SALAIRE",
+        title: "RH",
+      },
+      {
+        route: "RH_SALAIRE",
+        title: "Liste des salaire",
+      },
+    ],
+  },
+  {
+    route: "RH_SALAIRE_PAID",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_SALAIRE_PAID",
+        title: "RH",
+      },
+      {
+        route: "RH_SALAIRE",
+        title: "Liste des paiements salaire",
+      },
+    ],
+  },
 ];

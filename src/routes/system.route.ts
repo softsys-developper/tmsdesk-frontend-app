@@ -1,17 +1,26 @@
-import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
 import Marques_systemPage from "@/pages/systeme/marques_system.page.vue";
 import Categorie_systemPage from "@/pages/systeme/categorie_system.page.vue";
 import Devises_systemPage from "@/pages/systeme/devises_system.page.vue";
 import User_systemPage from "@/pages/systeme/user_system.page.vue"
 import Role_systemPage from "@/pages/systeme/role_system.page.vue";
+import Permisson_systemPage from "@/pages/systeme/permission_system.page.vue";
+import DA_systemPage from "@/pages/systeme/DA_system.page.vue";
+import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
 
 export const routeSystem = {
   path: "/system",
   children: [
+    
     {
-      path: "parametres",
+      path: "parametre",
       name: "SYSTEM_PARAMETRE",
       component: Parametre_systemPage,
+      children: [],
+    },
+    {
+      path: "domaine-activite",
+      name: "SYSTEM_DA",
+      component: DA_systemPage,
       children: [],
     },
     {
@@ -42,6 +51,12 @@ export const routeSystem = {
       path: "roles",
       name: "SETTING_ROLES",
       component: Role_systemPage,
+      children: [],
+    },
+    {
+      path: "permissions",
+      name: "SETTING_PERMISSION",
+      component: Permisson_systemPage,
       children: [],
     },
 

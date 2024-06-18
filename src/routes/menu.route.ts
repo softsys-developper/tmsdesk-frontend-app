@@ -76,12 +76,12 @@ export const MenuApp = [
             name: 'Paiement de salaire',
             route: 'RH_SALAIRE_PAID'
          },
-         {
-            icon: 'ri-calendar-schedule-line',
-            id: 'HUMAINES_PAID',
-            name: 'Heure supplémentaire ',
-            route: 'RH_HEURE_SUPPLEMANTAIRE'
-         },
+         // {
+         //    icon: 'ri-calendar-schedule-line',
+         //    id: 'HUMAINES_PAID',
+         //    name: 'Heure supplémentaire ',
+         //    route: 'RH_HEURE_SUPPLEMANTAIRE'
+         // },
          {
             icon: 'ri-building-line',
             id: 'HUMAINES_DEPARTEMENT',
@@ -102,38 +102,38 @@ export const MenuApp = [
          // },
       ],
    },
-   {
-      name: 'Proforma',
-      icon: `https://${AppService().url}/images/icons/receipt.png`,
-      list: 'Prospects, clients, fourniseurs',
-      route: '',
-      children: [
-         {
-            icon: 'ri-user-2-line',
-            id: 'PROFORMA_PROSPECTS',
-            name: 'Liste des proformas',
-            route: 'PROFORMA_LIST'
-         },
-         {
-            icon: 'ri-user-2-line',
-            id: 'PROFORMA_PROSPECTS_ADD',
-            name: 'Ajouter des proformas',
-            route: 'PROFORMA_ADD'
-         },
-         // {
-         //    icon: 'ri-user-2-line',
-         //    id: 'PROFORMA_CLIENTS',
-         //    name: 'Clients',
-         //    route: 'HOME'
-         // },
-         // {
-         //    icon: 'ri-store-line',
-         //    id: 'PROFORMA_FOURNISEURS',
-         //    name: 'Fourniseurs',
-         //    route: 'HOME'
-         // },
-      ],
-   },
+   // {
+   //    name: 'Proforma',
+   //    icon: `https://${AppService().url}/images/icons/receipt.png`,
+   //    list: 'Prospects, clients, fourniseurs',
+   //    route: '',
+   //    children: [
+   //       {
+   //          icon: 'ri-user-2-line',
+   //          id: 'PROFORMA_PROSPECTS',
+   //          name: 'Liste des proformas',
+   //          route: 'PROFORMA_LIST'
+   //       },
+   //       {
+   //          icon: 'ri-user-2-line',
+   //          id: 'PROFORMA_PROSPECTS_ADD',
+   //          name: 'Ajouter des proformas',
+   //          route: 'PROFORMA_ADD'
+   //       },
+   //       // {
+   //       //    icon: 'ri-user-2-line',
+   //       //    id: 'PROFORMA_CLIENTS',
+   //       //    name: 'Clients',
+   //       //    route: 'HOME'
+   //       // },
+   //       // {
+   //       //    icon: 'ri-store-line',
+   //       //    id: 'PROFORMA_FOURNISEURS',
+   //       //    name: 'Fourniseurs',
+   //       //    route: 'HOME'
+   //       // },
+   //    ],
+   // },
    {
       name: 'Comptabilités',
       icon: `https://${AppService().url}/images/icons/budget.png`,
@@ -234,15 +234,15 @@ export const MenuApp = [
          },
          {
             icon: 'ri-mail-line',
-            id: 'SYSTEM_MAILS',
+            id: 'SETTING_ROLES',
             name: 'Roles',
-            route: 'HOME'
+            route: 'SETTING_ROLES'
          },
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
+            id: 'SETTING_PERMISSION',
             name: 'Permissions',
-            route: 'HOME'
+            route: 'SETTING_PERMISSION'
          },
       ],
    },
@@ -254,32 +254,38 @@ export const MenuApp = [
       children: [
          {
             icon: 'ri-bill-line',
-            id: 'SYSTEM_MARQUE',
-            name: 'Parametre',
-            route: 'SYSTEM_MARQUE'
+            id: 'SYSTEM_DA',
+            name: 'Domaine d\'activité',
+            route: 'SYSTEM_DA'
          },
-         {
-            icon: 'ri-bill-line',
-            id: 'SYSTEM_NOTE',
-            name: 'Gestion des documents',
-            route: 'SYSTEM_MARQUE'
-         },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_NOTE',
+         //    name: 'Gestion des documents',
+         //    route: 'SYSTEM_MARQUE'
+         // },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_CATEGORY',
             name: 'Categories',
             route: 'SYSTEM_CATEGORY'
          },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_DEVISE',
+         //    name: 'Domaine d\'activités',
+         //    route: 'SYSTEM_DEVISE'
+         // },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_DEVISE',
-            name: 'Marques',
+            name: 'Devises',
             route: 'SYSTEM_DEVISE'
          },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_MARQUE',
-            name: 'Devises',
+            name: 'Marques',
             route: 'SYSTEM_MARQUE'
          },
       ],

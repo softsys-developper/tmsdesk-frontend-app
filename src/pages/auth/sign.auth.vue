@@ -65,9 +65,13 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
    <section class="flex justify-center items-center h-[100vh] flex-col gap-8">
-      <div class="h-[100vh] w-[100vw] bg-blue-500 fixed inset-0 -z-40"></div>
 
-      <Tabs default-value="account" class="w-[400px]">
+      <div class="fixed inset-0 "> <img class="w-full h-full object-cover" src="https://img.freepik.com/photos-gratuite/cadre-bureau-table_23-2148148326.jpg?t=st=1718712078~exp=1718715678~hmac=12260c1125fd2105c0afb02e35fc753a0ba9887b449688937f416cf6874c75e5&w=740" alt=""></div>
+      <div class="h-[100vh] w-[100vw] bg-blue-500/70 fixed inset-0 ">
+        
+      </div>
+
+      <Tabs default-value="account" class="lg:w-4/12 w-11/12 h-full z-40">
          <TabsContent value="account">
             <form class="w-full space-y-1" @submit="onSubmit">
                <Card>
@@ -75,21 +79,21 @@ const onSubmit = handleSubmit(async (values) => {
                      <CardTitle
                         class="flex flex-col justify-center items-center"
                      >
-                        <span class="text-4xl font-black">{{AppService().name}}</span>
-                        <span class="text-xl">Se connecter</span>
+                        <span class="text-2xl font-black text-center  uppercase">{{AppService().name}}</span>
+                        <span class="text-xl opacity-90">Se connecter</span>
                      </CardTitle>
                      <CardDescription>
-                        <!-- Connectez-vous a votre espace d'adminstration {{AppService()}} -->
+                        Connectez-vous a votre espace d'adminstration {{AppService().name}}
                      </CardDescription>
                   </CardHeader>
                   <CardContent class="space-y-2">
                      <FormField v-slot="{ componentField }" name="email">
                         <FormItem>
-                           <FormLabel>Email</FormLabel>
+                           <FormLabel>Adresse email</FormLabel>
                            <FormControl>
                               <Input
                                  type="text"
-                                 placeholder="shadcn"
+                                 placeholder="infos@usimeca.ci"
                                  v-bind="componentField"
                               />
                            </FormControl>
@@ -99,24 +103,26 @@ const onSubmit = handleSubmit(async (values) => {
 
                      <FormField v-slot="{ componentField }" name="password">
                         <FormItem>
-                           <FormLabel>Password</FormLabel>
+                           <FormLabel>Mot de passe</FormLabel>
                            <FormControl>
                               <Input
                                  type="password"
-                                 placeholder="shadcn"
+                                 placeholder="Votre mot de passe securisé"
                                  v-bind="componentField"
                               />
                            </FormControl>
 
-                           <!-- Forget Password -->
-                           <div class="flex justify-between">
+                           
+                           <FormMessage class="text-xs" />
+                        </FormItem>
+
+                        <!-- Forget Password -->
+                        <div class="flex justify-between">
                               <span class=""></span>
                               <span class="underline text-sm"
                                  >Mot de passe oublier ?</span
                               >
                            </div>
-                           <FormMessage class="text-xs" />
-                        </FormItem>
                      </FormField>
                   </CardContent>
                   <CardFooter>

@@ -1,7 +1,7 @@
 <template>
    <div class="flex flex-col gap-2">
       <!--  -->
-      <div class="flex justify-between px-8 py-4">
+      <div class="flex justify-between px-4 py-4">
          <div class="">
             <span class="text-xl font-black"> {{ title }} </span>
          </div>

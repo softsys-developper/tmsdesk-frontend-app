@@ -96,7 +96,7 @@ export const useServiceHook = () => {
       useDataStore(),
       'Services',
       formatServiceData
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    ).SetUpdate(API_URL.SERVICE_UPDATE, id, values);
   };
 
   //
@@ -106,7 +106,7 @@ export const useServiceHook = () => {
       useDataStore(),
       'Services',
       formatServiceData
-    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    ).SetDelete(API_URL.SERVICE_REMOVE, id);
   };
 
   return {

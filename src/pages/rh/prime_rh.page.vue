@@ -5,8 +5,18 @@
         <ContentLayout title="R. Humaines | Prime et indemnité ">
           <template v-slot:created>
             <PrimeModal
-              name="Nouvelle Prime et indemnité "
-              title="Nouvelle Prime et indemnité "
+              name="Ajouter prime & indemnité"
+              :title="
+                useUpdateStore().isUpdate.is
+                  ? 'Modifier prime & indemnité'
+                  : 'Ajouter prime & indemnité'
+              "
+            />
+
+            <DeleteLayout
+              title="Ajouter un nouvel categorie"
+              :funDelete="PrimeDelete"
+              :id="useUpdateStore().isDelete.id"
             />
           </template>
         </ContentLayout>
@@ -36,8 +46,9 @@ import PageLoader from "@/components/loaders/page.loader.vue";
 import { PrimeTables } from "@/tables/prime.tables";
 import { usePrimeHook } from "@/hooks/RH/prime.hook.ts";
 import PrimeModal from "@/components/modals/prime.modal.vue";
+import { useUpdateStore } from "@/stores/update.store";
 
-const { FindPrimeAll, storePrimes, setPrime } = usePrimeHook();
+const { FindPrimeAll, storePrimes, PrimeDelete, setPrime } = usePrimeHook();
 
 onMounted(() => {
   FindPrimeAll();

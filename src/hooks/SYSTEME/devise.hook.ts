@@ -7,6 +7,7 @@ import { useDataStore } from '../../stores/data.store';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
 import moment from 'moment';
+import { setService } from '@/services/set.services';
 
 export const useDeviseHook = () => {
    const { readData, createData } = useApiServices();
@@ -17,16 +18,14 @@ export const useDeviseHook = () => {
    const { toast } = useToast();
 
    const formatDeviseData = (Devises: any) => {
-      return Devises.map((Devise: any, index:number) => ({
-         id: index  + 1,
-         nom: Devise.nom,
-         email: Devise.email,
-         telephone: Devise.telephone,
-         adresse: Devise.adresse,
-         date_creation: moment(Devise.created_at).format("l") ,
+      return Devises.map((Devise: any) => ({
+         id: Devise.id,
+         nom_devise: Devise.nom_devise,
+         code_devise: Devise.code_devise,
+         taux_change: Devise.taux_change,
+         date_creation: moment(Devise.created_at).format("l"),
       }));
    };
-
 
    const storeDevises = computed(() => {
       return useDataStore().Devises
@@ -35,9 +34,9 @@ export const useDeviseHook = () => {
    //
    const FindDeviseAll = () => {
       setDevise.loading = true;
-      readData(API_URL.MARQUE_LIST)
+      readData(API_URL.DEVISE_LIST)
          .then((data: any) => {
-            useDataStore().Devises =  formatDeviseData(data.datas);
+            useDataStore().Devises = formatDeviseData(data.datas);
             setDevise.loading = false;
          })
          .catch(() => {
@@ -46,12 +45,12 @@ export const useDeviseHook = () => {
    };
 
    //
-   const FindDeviseOne = () => {};
+   const FindDeviseOne = () => { };
 
    //
-   const CreateDevise = async(values: any) => {
+   const CreateDevise = async (values: any) => {
       setDevise.loadingCreate = true;
-      const DataCreated = await createData(API_URL.MARQUE_CREATE, values)
+      const DataCreated = await createData(API_URL.DEVISE_CREATE, values)
          .then((data: any) => {
             if (data) {
                EmptyFields(values); // Vider les champs
@@ -90,23 +89,36 @@ export const useDeviseHook = () => {
             }
          });
 
-         return {data: DataCreated}
+      return { data: DataCreated }
+   };
+
+   const DeviseUpdate = (id: any, values: any) => {
+      setService(
+         setDevise,
+         useDataStore(),
+         'Devises',
+         formatDeviseData
+      ).SetUpdate(API_URL.DEVISE_UPDATE, id, values);
    };
 
    //
-   const FindDeviseUpdate = () => {};
-
-   //
-   const FindDeviseDelete = () => {};
+   const DeviseDelete = (id: any) => {
+      setService(
+         setDevise,
+         useDataStore(),
+         'Devises',
+         formatDeviseData
+      ).SetDelete(API_URL.DEVISE_REMOVE, id);
+   };
 
    return {
       FindDeviseAll,
       FindDeviseOne,
       CreateDevise,
-      FindDeviseUpdate,
-      FindDeviseDelete,
+      DeviseUpdate,
+      DeviseDelete,
       stateDevises,
       setDevise,
-      storeDevises
+      storeDevises,
    };
 };

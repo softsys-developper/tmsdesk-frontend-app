@@ -7,7 +7,7 @@ export const useUpdateStore = defineStore('Update', {
     isUpdate: {
       is: false,
       id: null,
-      data: null
+      data: <any>{}
     }  ,
     isDelete: {
       is: false,

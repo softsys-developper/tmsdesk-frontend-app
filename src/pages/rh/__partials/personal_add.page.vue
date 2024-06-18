@@ -6,7 +6,7 @@
                     <template v-slot:created> </template>
                 </ContentLayout>
 
-                <form @submit.prevent="onSubmit" class=" w-11/12 m-auto pb-32">
+                <form @submit.prevent="onSubmit" class=" w-11/12 m-auto ">
 
                     <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4 ">
                         <div class="" v-for="fr in PersonalForms">
@@ -21,7 +21,7 @@
                         <button type="submit" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                             :disabled="setPersonal.loadingCreate">
                             <SpinnerLoader size="w-6 h-6" v-if="setPersonal.loadingCreate" />
-                            <span class="" v-else>Crée la proforma</span>
+                            <span class="" v-else>Crée un employer</span>
                         </button>
                     </div>
                 </form>
@@ -40,7 +40,7 @@ import InForm from "@/components/forms/in.form.vue";
 import { useApiServices } from "@/services/api.services";
 import { usePersonalHook } from "@/hooks/RH/personal.hook";
 import SpinnerLoader from '@/components/loaders/spinner.loading.vue';
-import { ref, onMounted } from "vue";
+import {  onMounted } from "vue";
 import { API_URL } from "@/routes/api.route";
 
 const { readData } = useApiServices()
@@ -48,12 +48,10 @@ const { readData } = useApiServices()
 const { setPersonal, CreatePersonal } = usePersonalHook();
 
 const onSubmit = (e: any) => {
-    const values = new FormData(e.target.value)
+    const values = new FormData(e.target)
     CreatePersonal(values);
 };
 
-
-const Salaires: any = ref([]);
 
 function remplacerObjetDansTableau(tableau: any, proprieteRecherche: any, valeurRecherche: any, nouvelObjet: any) {
     const index = tableau.findIndex((obj: any) => obj[proprieteRecherche] === valeurRecherche);
@@ -63,8 +61,8 @@ function remplacerObjetDansTableau(tableau: any, proprieteRecherche: any, valeur
 }
 
 onMounted(() => {
-    readData(API_URL.ROLE_LIST).then((data) => remplacerObjetDansTableau(PersonalForms, 'name', 'utype', data.datas));
-    readData(API_URL.SALAIRE_LIST).then((data) => (Salaires.value = data.datas));
+    readData(API_URL.ROLE_LIST).then((data) => remplacerObjetDansTableau(PersonalForms, 'name', 'role',  data.datas.map((el:any) => ({name: el.name, id: el.name}))));
+    readData(API_URL.SALAIRE_LIST).then((data) => remplacerObjetDansTableau(PersonalForms, 'name', 'salaire', data.datas));
 });
 
 

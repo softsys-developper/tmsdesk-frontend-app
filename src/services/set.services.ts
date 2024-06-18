@@ -75,17 +75,17 @@ export const setService = (
 
   //
   const SetDelete = (URL: string, id: any) => {
-    loading = true;
+    loading.loadingCreate = true;
     deleteData(URL + "/" + id)
       .then((data: any) => {
         if (data) {
           loading.loadingCreate = false;
-          let Prospects = Store;
+          let Prospects = Store[LabelStore];
 
           //
           const toAdd = Prospects.filter((el: any) => el.id != id);
           Prospects.unshift(...toAdd);
-          Store = Prospects;
+          Store[LabelStore] = Prospects;
           useModalStore().open = false;
           useModalStore().delete = false;
 

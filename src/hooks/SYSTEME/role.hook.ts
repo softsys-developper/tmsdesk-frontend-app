@@ -20,10 +20,8 @@ export const useRoleHook = () => {
   const formatRoleData = (Roles: any) => {
     return Roles.map((Role: any) => ({
       id: Role.id,
-      nom: Role.nom,
-      email: Role.email,
-      telephone: Role.telephone,
-      adresse: Role.adresse,
+      name: Role.name,
+      appareil: Role.guard_name,
       date_creation: moment(Role.created_at).format("l"),
     }));
   };
@@ -35,7 +33,7 @@ export const useRoleHook = () => {
   //
   const FindRoleAll = () => {
     setRole.loading = true;
-    readData(API_URL.CLIENT_LIST)
+    readData(API_URL.ROLE_LIST)
       .then((data: any) => {
         useDataStore().Roles = formatRoleData(data.datas);
         setRole.loading = false;
@@ -51,7 +49,7 @@ export const useRoleHook = () => {
   //
   const CreateRole = async (values: any) => {
     setRole.loadingCreate = true;
-    const DataCreated = await createData(API_URL.CLIENT_CREATE, values)
+    const DataCreated = await createData(API_URL.ROLE_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
@@ -100,7 +98,7 @@ export const useRoleHook = () => {
       useDataStore(),
       'Roles',
       formatRoleData
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    ).SetUpdate(API_URL.ROLE_UPDATE, id, values);
   };
 
   //
@@ -110,7 +108,7 @@ export const useRoleHook = () => {
       useDataStore(),
       'Roles',
       formatRoleData
-    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    ).SetDelete(API_URL.ROLE_REMOVE, id);
   };
 
   return {

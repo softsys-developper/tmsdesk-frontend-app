@@ -33,16 +33,22 @@ export const usePersonalHook = () => {
       prenoms: Personal.prenoms,
       email: Personal.email,
       telephone: Personal.telephone,
-      date_naissance: Personal.date_naissance,
-      lieu_naissance: Personal.lieu_naissance,
-      fonction: Personal.fonction,
-      situation_matrimoniale: Personal.situation_matrimoniale,
-      nom_personne_a_contacter: Personal.nom_personne_a_contacter,
-      telephone_personne_a_contacter: Personal.telephone_personne_a_contacter,
-      role: Personal.role,
-      salaire: Personal.salaire,
-      date_debut: Personal.date_debut,
       type_contrat: Personal.type_contrat,
+      fonction: Personal.fonction,
+      // role: Personal.utype,
+      date_debut: Personal.date_debut,
+      date_creation: moment(Personal.created_at).format("DD/MM/YYYY"),
+    }));
+  };
+
+
+  const formatPersonalUserData = (Personals: any) => {
+    return Personals.map((Personal: any) => ({
+      id: Personal.id,
+      nom: Personal.nom,
+      email: Personal.email,
+      password: Personal.telephone,
+      role: Personal.role,
       date_creation: moment(Personal.created_at).format("DD/MM/YYYY"),
     }));
   };
@@ -56,6 +62,7 @@ export const usePersonalHook = () => {
     readData(API_URL.USER_LIST)
       .then((data: any) => {
         useDataStore().Personals = formatPersonalData(data.datas);
+        useDataStore().Users = formatPersonalUserData(data.datas)
         setPersonal.loading = false;
       })
       .catch(() => {

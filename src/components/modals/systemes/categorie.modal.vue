@@ -1,60 +1,38 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setCategorie.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setCategorie.loadingCreate">
     <template v-slot:form>
-      <form class="w-full space-y-2" @submit="onSubmit">
-        <FormField v-slot="{ componentField }" name="libelle">
-          <FormItem>
-            <FormLabel>Libelle de categorie</FormLabel>
-            <FormControl>
-              <Input
-                id="libelle"
-                placeholder="GTBank Côte d'ivoire"
-                type="text"
-                v-bind="componentField"
-              />
-            </FormControl>
-            <FormMessage class="text-xs" />
-          </FormItem>
-        </FormField>
-      </form>
+      <div class="w-full space-y-2">
+        <div class="" v-for="fr in CategorieForms">
+          <InForm
+            :title="fr.label"
+            :name="fr.name"
+            :label="fr.label"
+            :type="fr.type"
+            :placeholder="fr.placeholder"
+            :select="fr.select"
+          />
+        </div>
+      </div>
     </template>
   </ModalLayout>
 </template>
 <script lang="ts" setup>
 import ModalLayout from "@/layouts/modal.layout.vue";
-import { useForm } from "vee-validate";
-import { toTypedSchema } from "@vee-validate/zod";
-import * as z from "zod";
-import { Input } from "@/components/ui/input";
-// import { onMounted, ref } from "vue"
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { useCategorieHook } from "@/hooks/SYSTEME/categorie.hook";
 import { useUpdateStore } from "@/stores/update.store";
-
-const formSchema = toTypedSchema(
-  z.object({
-    libelle: z.string().min(1, "Le libelle de l'categorie est requis."),
-  })
-);
-
-const { handleSubmit } = useForm({
-  validationSchema: formSchema,
-});
+import { CategorieForms } from "@/forms/SYSTEME/categorie.forms";
+import InForm from "@/components/forms/in.form.vue";
 
 const { CreateCategorie, CategorieUpdate, setCategorie } = useCategorieHook();
-const onSubmit = handleSubmit((values) => {
-  if(useUpdateStore().isUpdate.is){
+
+const onSubmit = (e: any) => {
+  console.log(useUpdateStore().isUpdate)
+  let values = new FormData(e.target);
+  if (useUpdateStore().isUpdate.is) {
     CategorieUpdate(useUpdateStore().isUpdate.id, values);
-  }else{
+  } else {
     CreateCategorie(values);
   }
-  
-});
+};
 </script>
 <style lang="scss" scoped></style>

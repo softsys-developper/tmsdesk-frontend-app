@@ -7,6 +7,7 @@ import { useDataStore } from '../../stores/data.store';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
 import moment from 'moment';
+import { setService } from '@/services/set.services';
 
 export const useMarqueHook = () => {
    const { readData, createData } = useApiServices();
@@ -19,8 +20,8 @@ export const useMarqueHook = () => {
    const formatMarqueData = (Marques: any) => {
       return Marques.map((Marque: any, index:number) => ({
          id: index  + 1,
-         nom: Marque.nom,
-         email: Marque.email,
+         libelle: Marque.libelle,
+         categorie: Marque.categorie?.libelle,
          telephone: Marque.telephone,
          adresse: Marque.adresse,
          date_creation: moment(Marque.created_at).format("l") ,
@@ -93,20 +94,33 @@ export const useMarqueHook = () => {
          return {data: DataCreated}
    };
 
-   //
-   const FindMarqueUpdate = () => {};
-
-   //
-   const FindMarqueDelete = () => {};
-
-   return {
+   const MarqueUpdate = (id: any, values: any) => {
+      setService(
+        setMarque,
+        useDataStore(),
+        'Marques',
+        formatMarqueData
+      ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    };
+  
+    //
+    const MarqueDelete = (id: any) => {
+      setService(
+        setMarque,
+        useDataStore(),
+        'Marques',
+        formatMarqueData
+      ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    };
+  
+    return {
       FindMarqueAll,
       FindMarqueOne,
       CreateMarque,
-      FindMarqueUpdate,
-      FindMarqueDelete,
+      MarqueUpdate,
+      MarqueDelete,
       stateMarques,
       setMarque,
-      storeMarques
-   };
+      storeMarques,
+    };
 };

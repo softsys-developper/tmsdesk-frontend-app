@@ -35,12 +35,19 @@ export const PersonalTables = [
       bgColor: null,
    },
    {
-      label: "Type d'Utilisateur",
-      field: 'utype',
+      label: 'Fonctions',
+      field: 'fonction',
       status: null,
       color: null,
       bgColor: null,
    },
+   // {
+   //    label: "Type d'Utilisateur",
+   //    field: 'role',
+   //    status: null,
+   //    color: null,
+   //    bgColor: null,
+   // },
 ];
 
 export const PersonalUserTables = [

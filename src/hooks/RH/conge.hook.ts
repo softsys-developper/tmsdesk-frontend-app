@@ -22,17 +22,17 @@ export const useCongeHook = () => {
   stateConges.value = useDataStore().Conges;
   const { toast } = useToast();
 
-  const Personals = (Conge:any):any => useDataStore().Personals.find((els:any) => els.id == Conge.user_id)
+  const Personals = (Conge: any): any => useDataStore().Personals.find((els: any) => els.id == Conge.user_id)
 
   const formatCongeData = (Conges: any) => {
     return Conges.map((Conge: any) => ({
       id: Conge.id,
       libelle: Conge.libelle,
-               employe: Personals(Conge)?.name,
-               type: Conge.type,
-               motif: Conge.motif,
-               date_depart: Conge.date_depart,
-               date_retour: Conge.date_retour,
+      employe: Personals(Conge)?.name,
+      type: Conge.type,
+      motif: Conge.motif,
+      date_depart: Conge.date_depart,
+      date_retour: Conge.date_retour,
       date_creation: moment(Conge.created_at).format("DD/MM/YYYY"),
     }));
   };
@@ -43,7 +43,7 @@ export const useCongeHook = () => {
   //
   const FindCongeAll = () => {
     setConge.loading = true;
-    readData(API_URL.USER_LIST)
+    readData(API_URL.CONGE_LIST)
       .then((data: any) => {
         useDataStore().Conges = formatCongeData(data.datas);
         setConge.loading = false;
@@ -54,12 +54,12 @@ export const useCongeHook = () => {
   };
 
   //
-  const FindCongeOne = () => {};
+  const FindCongeOne = () => { };
 
   //
   const CreateConge = async (values: any) => {
     setConge.loadingCreate = true;
-    const DataCreated = await createData(API_URL.USER_CREATE, values)
+    const DataCreated = await createData(API_URL.CONGE_CREATE, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
@@ -107,7 +107,7 @@ export const useCongeHook = () => {
       useDataStore(),
       'Conges',
       formatCongeData
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    ).SetUpdate(API_URL.CONGE_UPDATE, id, values);
   };
 
   //
@@ -117,7 +117,7 @@ export const useCongeHook = () => {
       useDataStore(),
       'Conges',
       formatCongeData
-    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    ).SetDelete(API_URL.CONGE_REMOVE, id);
   };
 
   return {

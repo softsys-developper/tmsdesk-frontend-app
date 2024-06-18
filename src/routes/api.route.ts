@@ -68,10 +68,10 @@ export const API_URL = {
   SALAIRE_UPDATE: `${BASE_URL}/salaires/update`,
   SALAIRE_REMOVE: `${BASE_URL}/salaires/delete`,
 
-  SALAIRE_PAYMENT_LIST: `${BASE_URL}/paiement-salaire`,
-  SALAIRE_PAYMENT_CREATE: `${BASE_URL}/paiement-salaire/add`,
-  SALAIRE_PAYMENT_UPDATE: `${BASE_URL}/paiement-salaire/update`,
-  SALAIRE_PAYMENT_REMOVE: `${BASE_URL}/paiement-salaire/delete`,
+  SALAIRE_PAYMENT_LIST: `${BASE_URL}/paiement-salaires`,
+  SALAIRE_PAYMENT_CREATE: `${BASE_URL}/paiement-salaires/add`,
+  SALAIRE_PAYMENT_UPDATE: `${BASE_URL}/paiement-salaires/update`,
+  SALAIRE_PAYMENT_REMOVE: `${BASE_URL}/paiement-salaires/delete`,
 
   CONGE_LIST: `${BASE_URL}/conges`,
   CONGE_CREATE: `${BASE_URL}/conges/add`,
@@ -167,4 +167,22 @@ export const API_URL = {
   FOURNISSEURS_CREATE: `${BASE_URL}/fournisseurs/add`,
   FOURNISSEURS_UPDATE: `${BASE_URL}/fournisseurs/update`,
   FOURNISSEURS_REMOVE: `${BASE_URL}/fournisseurs/delete`,
+
+  // Domaine d'activite
+  DA_LIST: `${BASE_URL}/domaine-activites`,
+  DA_CREATE: `${BASE_URL}/domaine-activites/add`,
+  DA_UPDATE: `${BASE_URL}/domaine-activites/update`,
+  DA_REMOVE: `${BASE_URL}/domaine-activites/delete`,
+
+  // Rapports
+  RAPPORT_LIST: `${BASE_URL}/rapports`,
+  RAPPORT_CREATE: `${BASE_URL}/rapports/add`,
+  RAPPORT_UPDATE: `${BASE_URL}/rapports/update`,
+  RAPPORT_REMOVE: `${BASE_URL}/rapports/delete`,
+
+  // Gestion Permissions
+  PERMISSIONS_LIST: `${BASE_URL}/permissions`,
+  PERMISSIONS_CREATE: `${BASE_URL}/permissions/add`,
+  PERMISSIONS_UPDATE: `${BASE_URL}/permissions/update`,
+  PERMISSIONS_REMOVE: `${BASE_URL}/permissions/delete`,
 };

@@ -15,7 +15,7 @@ export const useDataStore = defineStore('counter',() => {
    const Products = ref([]);
    const Fournisseurs = ref([]);
    const Conges = ref([]);
-   const Paid = ref([]);
+   const Paids = ref([]);
    const Proforma = ref([]);
    const BC = ref([]);
    const Caisses = ref({});
@@ -27,13 +27,17 @@ export const useDataStore = defineStore('counter',() => {
    const Transactions = ref([]);
    const BCs = ref([]);
    const Heures = ref([]);
-   const Primes = ref([]);
+   const Primes = ref(<any>[]);
    const Services = ref([]);
    const Marques = ref([]);
    const Categories = ref([]);
    const Devises = ref([]);
    const Factures = ref([]);
    const Roles = ref([]);
+   const Permissions = ref(<any>[]);
+   const Users =  ref(<any>[]);
+   const DAs =  ref(<any>[]);
+   const Rapports = ref(<any>[]);
    
    // Vous pouvez maintenant retourner les valeurs comme suit
    return {
@@ -45,7 +49,7 @@ export const useDataStore = defineStore('counter',() => {
        Products,
        Fournisseurs,
        Conges,
-       Paid,
+       Paids,
        Proforma,
        BC,
        Caisses,
@@ -63,7 +67,12 @@ export const useDataStore = defineStore('counter',() => {
        Categories,
        Devises,
        Factures,
-       Roles
+       Roles,
+       Permissions,
+       Users,
+       DAs,
+       Rapports
+       
    };
   
 });

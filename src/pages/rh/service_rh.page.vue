@@ -4,24 +4,18 @@
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
         <ContentLayout title="R. Humaines | Services ">
           <template v-slot:created>
-            <ServiceModal
-              name="Nouveau Service "
-              title="Nouveau Service "
-            />
+            <ServiceModal name="Nouveau Service " :title="useUpdateStore().isUpdate.is
+              ? 'Modifier Service'
+              : 'Ajouter Service'
+              " />
+
+            <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="ServiceDelete"></DeleteLayout>
           </template>
         </ContentLayout>
-        <Table
-          v-if="storeServices.length != 0"
-          :dataTables="storeServices"
-          :MenuActions="MenuClientActions"
-          :display="ServiceTables"
-        />
+        <Table v-if="storeServices.length != 0" :dataTables="storeServices" :MenuActions="MenuClientActions"
+          :display="ServiceTables" />
 
-        <PageLoader
-          :loading="setService.loading"
-          :data="storeServices"
-          name="Aucun service"
-        />
+        <PageLoader :loading="setService.loading" :data="storeServices" name="Aucun service" />
       </section>
     </template>
   </BaseLayout>
@@ -36,8 +30,10 @@ import PageLoader from "@/components/loaders/page.loader.vue";
 import { ServiceTables } from "@/tables/service.tables";
 import { useServiceHook } from "@/hooks/RH/service.hook.ts";
 import ServiceModal from "@/components/modals/service.modal.vue";
+import DeleteLayout from "@/layouts/delete.layout.vue";
+import { useUpdateStore } from "@/stores/update.store";
 
-const { FindServiceAll, storeServices, setService } = useServiceHook();
+const { FindServiceAll, storeServices, ServiceDelete, setService } = useServiceHook();
 
 onMounted(() => {
   FindServiceAll();

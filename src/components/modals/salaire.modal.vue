@@ -1,102 +1,32 @@
 <template>
-   <ModalLayout :Func="onSubmit">
-      <template v-slot:form>
-         <form class="w-full space-y-2" @submit="onSubmit">
-            <!-- Categories -->
-            <FormField v-slot="{ componentField }" name="categorie">
-               <FormItem>
-                  <FormLabel>Categorie</FormLabel>
-                  <FormControl>
-                     <Input id="categorie" type="text" placeholder="shadcn" v-bind="componentField" />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-
-            <!-- Montant -->
-            <FormField v-slot="{ componentField }" name="categorie">
-               <FormItem>
-                  <FormLabel>Montant</FormLabel>
-                  <FormControl>
-                     <Input id="montant" type="text" placeholder="shadcn" v-bind="componentField" />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-         </form>
-      </template>
+   <ModalLayout :Func="onSubmit" :loading="setSalaire.loadingCreate">
+        <template v-slot:form>
+            <div class="w-full space-y-2">
+                <div class="" v-for="fr in SalaryForms">
+                    <InForm :title="fr.label" :name="fr.name" :label="fr.label" :type="fr.type"
+                        :placeholder="fr.placeholder" :select="fr.select" />
+                </div>
+            </div>
+        </template>
    </ModalLayout>
 </template>
 <script lang="ts" setup>
 import ModalLayout from '@/layouts/modal.layout.vue';
-import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
-import * as z from 'zod';
+import InForm from "../forms/in.form.vue";
+import { useSalaireHook } from '@/hooks/RH/salary.hook';
+import { useUpdateStore } from '@/stores/update.store';
+import { SalaryForms } from '@/forms/RH/salary.forms';
 
-import {
-   FormControl,
-   FormField,
-   FormItem,
-   FormLabel,
-   FormMessage,
-} from '@/components/ui/form';
+const { CreateSalaire, SalaireUpdate, setSalaire } = useSalaireHook();
 
-import { Input } from '@/components/ui/input';
-import { useApiServices } from '@/services/api.services';
-import { API_URL } from '@/routes/api.route';
-import { useToast } from '@/components/ui/toast/use-toast';
-import { useDataStore } from '@/stores/data.store';
-import { useModalStore } from '@/stores/modal.store';
-const { toast } = useToast();
-
-const formSchema = toTypedSchema(
-   z.object({
-      categorie: z.string().min(1, "Le champ 'categorie' est requis."),
-      montant: z.string().min(1, "Le champ 'montant' est requis."),
-   })
-);
-
-const { handleSubmit } = useForm({
-   validationSchema: formSchema,
-});
-
-const { createData } = useApiServices();
-const onSubmit = handleSubmit((values) => {
-   createData(API_URL.SALAIRE_CREATE, values).then((data: any) => {
-      if (data) {
-         const DataKey = Object.keys(values);
-         DataKey.forEach((el) => {
-            const query: any = document.querySelector('#' + el);
-            if (query) query.value = '';
-         });
-
-         useModalStore().open = false
-         useDataStore().Salary = data.datas.map((salaire: any) => ({
-            libelle_salaire: salaire.libelle_salaire,
-            montant: salaire.montant
-         }));
-
-
-         const Add: any = useDataStore().Salary
-         Add.unshift(data.data)
-         useDataStore().Clients = Add
-
-         toast({
-            title: 'Enrégistre',
-            description: 'Salaire ajouter avec succès',
-         });
-      }
-   })
-      .catch((err) => {
-         if (err) {
-            const isErr = Object.keys(err.response.data.errors);
-            console.log(err.response.data.errors, isErr);
-            toast({
-               title: isErr[0],
-               description: err.response.data.errors[isErr[0]][0],
-            });
-         }
-      });
-});
+const onSubmit = (e: any) => {
+    console.log(useUpdateStore().isUpdate)
+    let values = new FormData(e.target);
+    if (useUpdateStore().isUpdate.is) {
+      SalaireUpdate(useUpdateStore().isUpdate.id, values);
+    } else {
+        CreateSalaire(values);
+    }
+};
 </script>
 <style lang="scss" scoped></style>

@@ -72,9 +72,9 @@ const IsPageFun = () => {
 <template>
    <!--  -->
      {{_OnSearchValue}}
-   <div class="flex justify-between gap-2 px-8">
+   <div class="flex justify-between gap-2 lg:px-8 px-4">
       <div
-         class="relative w-full max-w-sm items-center border-[1px] rounded-lg"
+         class="relative w-full lg:w-4/12 max-w-base items-center border-[1px] rounded-lg"
       >
          <Input
             id="search"
@@ -86,13 +86,13 @@ const IsPageFun = () => {
          <span
             class="absolute start-0 top-[10px] flex items-center justify-center px-2"
          >
-            <Search class="size-5 rela top-1 text-muted-foreground" />
+            <Search class="size-5 rela  text-muted-foreground" />
          </span>
       </div>
 
       <div class="flex items-center justify-center gap-1">
-      <label for="">Entrées: </label>
-         <select class="py-1 px-3 border-[1px] rounded-md" name="" id="" v-model="PerPage" @change="IsPageFun">
+      <label class="hidden lg:flex" for="">Entrées: </label>
+         <select class="py-2 px-3 border-[1px] rounded-md" name="" id="" v-model="PerPage" @change="IsPageFun">
             <option v-for="Per in PerOptions" :value="`${Per}`">
                {{ Per }}
             </option>
@@ -119,14 +119,14 @@ const IsPageFun = () => {
    <Table class="bg-white">
       <!-- <TableCaption>A list of your recent dataTables.</TableCaption> -->
       <TableHeader class="bg-blue-200 px-8">
-         <TableRow class="font-bold">
+         <TableRow class="font-black">
             <TableHead
-               class="font-bold text-base first-letter:uppercase"
+               class="font-black text-sm first-letter:uppercase"
                v-for="head in display"
             >
                {{ head.label }}
             </TableHead>
-            <TableHead class="text-right font-bold"> Actions </TableHead>
+            <TableHead class="text-right text-sm font-black"> Actions </TableHead>
          </TableRow>
       </TableHeader>
       <TableBody class="w-full">
@@ -139,7 +139,7 @@ const IsPageFun = () => {
          > -->
 
          <TableRow
-            class="text-base"
+            class="text-base font-medium "
             v-for="invoice in OnSearchValue?.slice(
                isPage != 0
                   ? Number(isPage) * Number(PerPage) - Number(PerPage)
@@ -148,14 +148,15 @@ const IsPageFun = () => {
             )"
             :key="invoice.invoice"
          >
+        
             <TableCell
-               class="font-medium w-[300px]"
+               class="font-medium text-base"
                v-for="b in Object.keys(invoice).filter(el => display.some((d:any) => d.field === el))"
-               v-html="invoice[b]"
+               v-html="invoice[b] && invoice[b]?.length >= 15 && b != 'status' ? invoice[b].substring(0, 15) + '...' : invoice[b]"
             >
             </TableCell>
 
-            <TableCell class="text-right w-[300px]">
+            <TableCell class="text-right ">
                <div class="w-full flex justify-end" v-if="MenuActions">
                
                   <BtnMore
