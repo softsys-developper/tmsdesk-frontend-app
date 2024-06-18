@@ -137,7 +137,7 @@
                         </Select>
 
                         <div class="flex flex-col gap-1">
-                          <Label>Objet de la proforma </Label>
+                          <Label>Quantité </Label>
                           <Input
                             placeholder="Quantités"
                             v-model="ServiceToAdd.quantite"

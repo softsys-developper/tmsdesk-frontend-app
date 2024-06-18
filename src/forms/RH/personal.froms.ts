@@ -3,9 +3,9 @@ import { reactive } from "vue";
 export const PersonalForms = reactive([
   
     {
-        label: "Nom du employé",
+        label: "Nom de l'employé",
         type: "text",
-        placeholder: "Nom du employé",
+        placeholder: "John Binaté",
         name: "nom",
         value: "",
         select: [], // Tableau vide pour les options de sélection
@@ -98,14 +98,14 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
-    {
-        label: "Matricule",
-        type: "text",
-        placeholder: "Numéro Matricule",
-        name: "marticule",
-        value: "",
-        select: [], // Tableau vide pour les options de sélection
-    },
+    // {
+    //     label: "Matricule",
+    //     type: "text",
+    //     placeholder: "Numéro Matricule",
+    //     name: "marticule",
+    //     value: "",
+    //     select: [], // Tableau vide pour les options de sélection
+    // },
 
     {
         label: "Nom personne à contacter",
