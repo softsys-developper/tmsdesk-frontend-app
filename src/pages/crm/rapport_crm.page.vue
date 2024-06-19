@@ -16,22 +16,22 @@
               <DeleteLayout
                 name="Ajouter un categorie"
                 title="Ajouter un nouvel categorie"
-                :funDelete="RapportDelete"
+                :funDelete="RapportEchangeDelete"
                 :id="useUpdateStore().isDelete.id"
               />
             </template>
           </ContentLayout>
   
           <Table
-            v-if="useDataStore().Rapports.length != 0"
-            :dataTables="useDataStore().Rapports"
+            v-if="useDataStore().Echanges.length != 0"
+            :dataTables="useDataStore().Echanges"
             :MenuActions="MenuRapportActions"
             :display="RapportTables"
           />
   
           <PageLoader
             :loading="setRapport.loading"
-            :data="useDataStore().Rapports"
+            :data="useDataStore().Echanges"
             name="Aucun rapports"
           />
         </section>
@@ -56,19 +56,19 @@ import { API_URL } from "@/routes/api.route";
 import { useRoute } from "vue-router";
 import moment from "moment";
   
-  const { setRapport, RapportDelete } = useRapportHook();
+  const { setRapport, RapportEchangeDelete } = useRapportHook();
   const {  showData } = useApiServices()
   const route = useRoute()
   const IsRapport = ref('')
   
   onMounted(() => {
     // console.log(route?.query.id)
-    useDataStore().Rapports = []
+    useDataStore().Echanges =  []
     setRapport.loading = true
-    showData(API_URL.RAPPORT_DETAIL, route?.query.id).then((data) => {
+    showData(API_URL.RAPPORT_ECHANGE_LIST, route?.query.id).then((data) => {
       setRapport.loading = false
       IsRapport.value = data.message
-      useDataStore().Rapports = data.data.map((Rapport:any) => ({
+      useDataStore().Echanges = data.data.map((Rapport:any) => ({
         id: Rapport.id,
       message: Rapport.message,
       date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),

@@ -2,7 +2,6 @@
 import { Button } from '@/components/ui/button';
 import {
    CardContent,
-   CardDescription,
    CardFooter,
    CardHeader,
    CardTitle,
@@ -22,7 +21,6 @@ import { Input } from '@/components/ui/input';
 import { authService } from '@/services/auth.services';
 import { reactive } from 'vue';
 import SpinnerLoading from '@/components/loaders/spinner.loading.vue';
-import { AppService } from '@/services/app.services';
 
 const formSchema = toTypedSchema(
    z.object({
@@ -85,7 +83,7 @@ const onSubmit = handleSubmit(async (values) => {
             <TabsContent value="account">
                <form class="w-full space-y-1 flex flex-row " @submit="onSubmit">
 
-                  <div>
+                  <div class="flex flex-col w-full" >
                      <CardHeader>
                         <CardTitle class="flex flex-col justify-center items-center">
                            <div class="">
@@ -93,16 +91,13 @@ const onSubmit = handleSubmit(async (values) => {
                            </div>
                            <span class="text-xl opacity-90">Se connecter</span>
                         </CardTitle>
-                        <CardDescription class="text-center">
-                           Connectez-vous a votre espace d'adminstration {{ AppService().name }}
-                        </CardDescription>
                      </CardHeader>
                      <CardContent class="space-y-2">
                         <FormField v-slot="{ componentField }" name="email">
                            <FormItem>
-                              <FormLabel>Adresse email</FormLabel>
+                              <FormLabel>Login</FormLabel>
                               <FormControl>
-                                 <Input type="text" placeholder="infos@usimeca.ci" v-bind="componentField" />
+                                 <Input type="text" placeholder="infos@tmsdesk.com" v-bind="componentField" />
                               </FormControl>
                               <FormMessage class="text-xs" />
                            </FormItem>
@@ -121,10 +116,10 @@ const onSubmit = handleSubmit(async (values) => {
                            </FormItem>
 
                            <!-- Forget Password -->
-                           <div class="flex justify-between">
+                           <RouterLink :to="{name: 'SignEmail'}" class="flex justify-between">
                               <span class=""></span>
                               <span class="underline text-sm">Mot de passe oublier ?</span>
-                           </div>
+                           </RouterLink>
                         </FormField>
                      </CardContent>
                      <CardFooter>

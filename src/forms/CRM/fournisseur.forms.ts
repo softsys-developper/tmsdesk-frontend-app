@@ -33,6 +33,22 @@ export const FournisseurForms = [
       select: [],
     },
     {
+      label: "Pays",
+      type: "text",
+      placeholder: "Pays du fournisseur",
+      name: "pays",
+      value: "",
+      select: [],
+    },
+    {
+      label: "Site internet",
+      type: "text",
+      placeholder: "https://softsys.ci",
+      name: "site_internet",
+      value: "",
+      select: [],
+    },
+    {
       label: "Domaine d'activite",
       type: "text",
       placeholder: "Domaine d'activite",

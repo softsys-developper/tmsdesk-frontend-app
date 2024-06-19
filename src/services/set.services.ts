@@ -80,10 +80,12 @@ export const setService = (
       .then((data: any) => {
         if (data) {
           loading.loadingCreate = false;
-          let Prospects = Store[LabelStore];
+          let Prospects = [];
 
           //
-          const toAdd = Prospects.filter((el: any) => el.id != id);
+          console.log(LabelStore)
+          const toAdd = Store[LabelStore].filter((el: any) => el.id != id);
+          console.log(toAdd, id)
           Prospects.unshift(...toAdd);
           Store[LabelStore] = Prospects;
           useModalStore().open = false;

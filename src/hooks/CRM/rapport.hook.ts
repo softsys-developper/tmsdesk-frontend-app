@@ -38,7 +38,7 @@ export const useRapportHook = () => {
     setRapport.loading = true;
     readData(API_URL.RAPPORT_LIST)
       .then((data: any) => {
-        useDataStore().Rapports = formatRapportData(data.datas);
+        useDataStore().Rapports = formatRapportData(data.data);
         setRapport.loading = false;
       })
       .catch(() => {
@@ -113,12 +113,23 @@ export const useRapportHook = () => {
     ).SetDelete(API_URL.RAPPORT_REMOVE, id);
   };
 
+  //
+  const RapportEchangeDelete = (id: any) => {
+    setService(
+      setRapport,
+      useDataStore(),
+      'Echanges',
+      formatRapportData
+    ).SetDelete(API_URL.RAPPORT_REMOVE, id);
+  };
+
   return {
     FindRapportAll,
     FindRapportOne,
     CreateRapport,
     RapportUpdate,
     RapportDelete,
+    RapportEchangeDelete,
     stateRapports,
     setRapport,
     storeRapports,

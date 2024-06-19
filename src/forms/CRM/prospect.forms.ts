@@ -31,14 +31,14 @@ export const ProspectForms = [
     value: "",
     select: [],
   },
-  {
-    label: "Nom de l'interlocuteur",
-    type: "text",
-    placeholder: "Nom de l'interlocuteur",
-    name: "nom_interlocuteur",
-    value: "",
-    select: [],
-  },
+  // {
+  //   label: "Nom de l'interlocuteur",
+  //   type: "text",
+  //   placeholder: "Nom de l'interlocuteur",
+  //   name: "nom_interlocuteur",
+  //   value: "",
+  //   select: [],
+  // },
   {
     label: "Proposition",
     type: "text",

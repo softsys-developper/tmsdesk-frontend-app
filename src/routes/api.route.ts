@@ -13,7 +13,10 @@ export const BASE_URL = DEFINED_APP(
 export const API_URL = {
   // Auth
   AUTH_SIGNIN: `${BASE_URL}/login`,
+  AUTH_SIGNUP: `${BASE_URL}/register`,
   AUTH_SIGNOUT: `${BASE_URL}/logout`,
+  AUTH_SEND_MAIL: `${BASE_URL}/password/email`,
+  AUTH_GHANGE_PASSWORD: `${BASE_URL}/password/reset`,
 
   // Gestion utilisateur (entreprise)
   PROFILE_SHOW: `${BASE_URL}/login`,
@@ -177,10 +180,10 @@ export const API_URL = {
   // Rapports
   // RAPPORT_LIST: `${BASE_URL}/prospects/rapports/commercial`,
   RAPPORT_LIST: `${BASE_URL}/prospects/rapports/`,
-  RAPPORT_DETAIL: `${BASE_URL}/prospects/rapports/`,
+  RAPPORT_ECHANGE_LIST: `${BASE_URL}/prospects/rapports/`,
   RAPPORT_CREATE: `${BASE_URL}/prospects/rapports-select/add`,
   RAPPORT_UPDATE: `${BASE_URL}/prospects/rapports/update`,
-  RAPPORT_REMOVE: `${BASE_URL}/prospects/rapports/delete`,
+  RAPPORT_REMOVE: `${BASE_URL}/rapport/delete`,
 
   // Gestion Permissions
   PERMISSIONS_LIST: `${BASE_URL}/permissions`,

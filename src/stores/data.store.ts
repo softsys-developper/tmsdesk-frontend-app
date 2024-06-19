@@ -38,6 +38,7 @@ export const useDataStore = defineStore('counter',() => {
    const Users =  ref(<any>[]);
    const DAs =  ref(<any>[]);
    const Rapports = ref(<any>[]);
+   const Echanges = ref(<any>[]);
    
    // Vous pouvez maintenant retourner les valeurs comme suit
    return {
@@ -71,7 +72,8 @@ export const useDataStore = defineStore('counter',() => {
        Permissions,
        Users,
        DAs,
-       Rapports
+       Rapports,
+       Echanges
        
    };
   
