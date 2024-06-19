@@ -19,26 +19,39 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authService } from "@/services/auth.services";
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
+import { useModalStore } from "@/stores/modal.store";
+import { useRouter } from "vue-router";
+import { useToast } from "@/components/ui/toast/use-toast";
+const { toast } = useToast();
+
+const router = useRouter()
+
+const passwordSchema = z.string().min(8, "Le mot de passe doit contenir au moins 8 caractères.");
+const confirmPasswordSchema = z.string();
 
 const formSchema = toTypedSchema(
   z.object({
-    email: z
-      .string()
-      .email()
-      .min(2, { message: "Entrez un email valide" })
-      .max(50),
-    password: z
-      .string()
-      .min(2, { message: "le mot de passe est requis" })
-      .max(50),
+    password: passwordSchema,
+    confirmPassword: confirmPasswordSchema
+  }).refine(data => data.password === data.confirmPassword, {
+    message: "Les mots de passe ne correspondent pas.",
+    path: ["confirmPassword"], // Erreur spécifiée pour le champ confirmPassword
   })
 );
 
 const { handleSubmit } = useForm({
   validationSchema: formSchema,
 });
+
+
+onMounted(() => {
+  if(!useModalStore().Password?.token){
+    router.push({name: 'SignIn'})
+  }
+})
+
 
 const { changePassword } = authService();
 
@@ -48,15 +61,37 @@ const state = reactive({
 });
 const onSubmit = handleSubmit(async (values) => {
   state.loading = true;
-  changePassword(values.email, values.password)
+  changePassword(values.password, useModalStore().Password.email, useModalStore().Password.token)
     .then((data) => {
       if (data) {
         state.loading = false;
+        toast({
+              title: 'Mot de pass changé.',
+              variant: "default",
+              description: data.message ,
+            });
+        router.push({name: 'SignIn'})
       }
     })
-    .catch(() => {
+    .catch((err:any) => {
       state.loading = false;
-    });
+      if (err) {
+          const isErr = Object.keys(err.response.data.errors);
+          if (isErr) {
+            toast({
+              title: isErr[0],
+              variant: "destructive",
+              description: err.response.data.errors[isErr[0]][0],
+            });
+          } else {
+            toast({
+              title: "error",
+              variant: "destructive",
+              description: err.response.data.message,
+            });
+          }
+        }
+      });
 });
 </script>
 
@@ -98,13 +133,13 @@ const onSubmit = handleSubmit(async (values) => {
                 </CardTitle>
               </CardHeader>
               <CardContent class="space-y-2">
-                <FormField v-slot="{ componentField }" name="email">
+                <FormField v-slot="{ componentField }" name="password">
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Nouveau mot de pass</FormLabel>
                     <FormControl>
                       <Input
-                        type="text"
-                        placeholder="infos@usimeca.ci"
+                        type="password"
+                        placeholder="Password"
                         v-bind="componentField"
                       />
                     </FormControl>
@@ -112,9 +147,9 @@ const onSubmit = handleSubmit(async (values) => {
                   </FormItem>
                 </FormField>
 
-                <FormField v-slot="{ componentField }" name="password">
+                <FormField v-slot="{ componentField }" name="confirmPassword">
                   <FormItem>
-                    <FormLabel>Mot de passe</FormLabel>
+                    <FormLabel>Comfirmation Mot de passe</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -127,7 +162,7 @@ const onSubmit = handleSubmit(async (values) => {
                   </FormItem>
                 </FormField>
               </CardContent>
-              <CardFooter>
+              <CardFooter class="flex flex-col w-full gap-2" >
                 <Button class="w-full font-bold">
                   <SpinnerLoading size="w-5 h-5" v-if="state.loading" />
                   <span class="text-base" v-if="!state.loading"

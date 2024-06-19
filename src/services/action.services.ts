@@ -78,6 +78,7 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else {
+      console.log(useDataStore().Fournisseurs)
       ToUpdateActions(id, useDataStore().Fournisseurs);
     }
   }

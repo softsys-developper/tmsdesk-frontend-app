@@ -24,7 +24,6 @@ export const useProspectHook = () => {
       email: Prospect.email,
       telephone: Prospect.telephone,
       adresse: Prospect.adresse,
-      nom_interlocuteur: Prospect.nom_interlocuteur,
       proposition: Prospect.proposition,
       etape: Prospect.etape,
       observation: Prospect.observation,

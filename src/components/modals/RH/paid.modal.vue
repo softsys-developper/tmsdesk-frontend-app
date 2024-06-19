@@ -47,17 +47,13 @@ const selectedItems = ref<string[]>([]);
 const toggleSelectAll = (event: Event) => {
   const checkbox = event.target as HTMLInputElement;
   if (checkbox.checked) {
-    console.log(typeof Number(checkbox.value.toString))
     selectedItems.value.push(checkbox.value.toString());
   } else {
     selectedItems.value = selectedItems.value.filter((el:any) => el != checkbox.value);
   }
-
-  console.log(selectedItems.value)
 };
 
 const onSubmit = (e: any) => {
-  console.log(e.target, selectedItems.value)
   let values = new FormData(e.target);
   values.append('indemnites', JSON.stringify(selectedItems.value))
   if (useUpdateStore().isUpdate.is) {

@@ -61,11 +61,12 @@ export const authService = () => {
     }
   };
 
-  const changePassword = async (email: string, password: string) => {
+  const changePassword = async (password: string, email: any, token: any ) => {
     try {
       const response = await axios.post(`${API_URL.AUTH_GHANGE_PASSWORD}`, {
         email,
         password,
+        token
       });
       return response.data;
     } catch (error) {

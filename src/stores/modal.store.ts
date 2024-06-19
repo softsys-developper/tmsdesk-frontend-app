@@ -9,6 +9,10 @@ export const useModalStore = defineStore('Modal', {
       isOpenMenu: '',
       isOpenSubMenu: '',
       isMenu: false,
-      IsValidate: null
+      IsValidate: null,
+      Password: {
+         email: null,
+         token: null
+      } 
    }),
 });

@@ -22,6 +22,9 @@ import { authService } from "@/services/auth.services";
 import { reactive } from "vue";
 import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
 import { useRouter } from "vue-router";
+import { useToast } from "@/components/ui/toast/use-toast";
+import { useModalStore } from "@/stores/modal.store";
+const { toast } = useToast();
 
 const formSchema = toTypedSchema(
   z.object({
@@ -51,11 +54,37 @@ const onSubmit = handleSubmit(async (values) => {
       if (data) {
         router.push({name: 'SignChangePassword'})
         state.loading = false;
+        useModalStore().Password.token = data.token
+        useModalStore().Password.email = data.email
+        toast({
+              title: 'Mot de pass oublier.',
+              variant: "default",
+              description: data.message ,
+            });
+        router.push({name: 'SignChangePassword'})
       }
     })
-    .catch(() => {
+    .catch((err:any) => {
       state.loading = false;
-    });
+      if (err) {
+          const isErr = Object.keys(err.response.data.errors);
+          if (isErr) {
+            toast({
+              title: isErr[0],
+              variant: "destructive",
+              description: err.response.data.errors[isErr[0]][0],
+            });
+          } else {
+            toast({
+              title: "error",
+              variant: "destructive",
+              description: err.response.data.message,
+            });
+          }
+        }
+      });
+      
+   
 });
 </script>
 

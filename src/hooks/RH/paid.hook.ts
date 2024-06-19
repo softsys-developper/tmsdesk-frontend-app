@@ -24,8 +24,8 @@ export const usePaidHook = () => {
       montant_paye: Paid.montant_paye,
       date_paiement: Paid.date_paiement,
       
-      periode_1: Paid.periode_1,
-      periode_2: Paid.periode_2,
+      // periode_1: Paid.periode_1,
+      // periode_2: Paid.periode_2,
       mode_paiement: Paid.mode_paiement,
       date_creation: moment(Paid.created_at).format("l"),
     }));

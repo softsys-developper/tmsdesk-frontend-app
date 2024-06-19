@@ -29,20 +29,20 @@ export const PaidTables = [
    },
    
 
-   {
-      label: 'Periode Départ',
-      field: 'periode_1',
-      status: null,
-      color: null,
-      bgColor: null,
-   },
-   {
-      label: 'Periode Fin',
-      field: 'periode_2',
-      status: null,
-      color: null,
-      bgColor: null,
-   },
+   // {
+   //    label: 'Periode Départ',
+   //    field: 'periode_1',
+   //    status: null,
+   //    color: null,
+   //    bgColor: null,
+   // },
+   // {
+   //    label: 'Periode Fin',
+   //    field: 'periode_2',
+   //    status: null,
+   //    color: null,
+   //    bgColor: null,
+   // },
    {
       label: 'Mode de paiment',
       field: 'mode_paiement',

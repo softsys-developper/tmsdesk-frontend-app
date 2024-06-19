@@ -24,6 +24,8 @@ export const useFournisseurHook = () => {
       email: Fournisseur.email,
       telephone: Fournisseur.telephone,
       adresse: Fournisseur.adresse,
+      pays: Fournisseur.pays,
+      site_internet: Fournisseur.site_internet,
       date_creation: moment(Fournisseur.created_at).format("l"),
     }));
   };
