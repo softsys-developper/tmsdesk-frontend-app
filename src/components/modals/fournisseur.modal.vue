@@ -127,6 +127,7 @@ const AddInterlocuteur = () => {
  
  const onSubmit = (e: any) => {
    let values = new FormData(e.target);
+   values.append("interlocuteurs", JSON.stringify(Interlocuteur.value));
    if (useUpdateStore().isUpdate.is) {
       FindFournisseurUpdate(useUpdateStore().isUpdate.id, values);
    } else {

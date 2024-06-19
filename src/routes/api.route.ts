@@ -56,7 +56,7 @@ export const API_URL = {
   PROFORMA_CREATE: `${BASE_URL}/proformas/add`,
   PROFORMA_UPDATE: `${BASE_URL}/proformas/update`,
   PROFORMA_REMOVE: `${BASE_URL}/proformas/delete`,
-  PROFORMA_DETAILS: `${BASE_URL}/proformas/details`,
+  PROFORMA_DETAILS: `${BASE_URL}/proformas`,
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
 
   // Gestion roles

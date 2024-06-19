@@ -3,9 +3,11 @@
     <div class="h-16 bg-black">
       <!--  -->
       <div class="flex items-center w-11/12 m-auto h-full justify-between">
+        <div class=""></div>
         
         
-        <div class="flex items-center cursor-pointer gap-2 ">
+        <div class="flex items-center  cursor-pointer gap-2 ">
+          <span></span>
           <span
           class="lg:hidden"
           @click="
@@ -24,7 +26,7 @@
         </RouterLink>
         </div>
 
-        <div class="flex items-center w-full justify-end gap-4">
+        <div class="flex items-center  justify-end gap-4">
           <!-- Notifications -->
           <div class="flex gap-3 relative items-center  ">
             <div

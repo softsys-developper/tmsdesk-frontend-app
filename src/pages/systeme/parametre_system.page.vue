@@ -178,7 +178,43 @@
                   :value="PARAMETRE.fdfp_fpc"
                   name="fdfp_fpc"
                 />
+                
               </div>
+
+              <div class="flex flex-col py-8 gap-4">
+
+                <div class="">
+                  <span class="text-base font-bold">Information sur la facture</span>
+                </div>
+
+
+               <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+
+                <div class="">
+                  <label for=""> Signature : {{ PARAMETRE.signature ? 'Updated' : 'Non Ajouter' }} </label>
+                  <Input type="file" name="signature" class="" />
+                </div>
+
+                <div class="">
+                  <label for=""> Logo :  {{ PARAMETRE.logo ? 'Updated' : 'Non Ajouter' }} </label>
+                  <Input type="file" name="logo" class="" />
+                </div>
+
+                <div class="">
+                  <label for=""> Entête : {{ PARAMETRE.entete ? 'Updated' : 'Non Ajouter' }} </label>
+                  <Input type="file" name="entete" class="" />
+                </div>
+
+                <div class="">
+                  <label for=""> {{ PARAMETRE.pied_de_page ? 'Updated' : 'Non Ajouter' }} </label>
+                  <Input type="file" name="pied_de_page" class="" />
+                </div>
+
+               </div>
+
+
+              </div>
+
             </template>
           </SettingCard>
         </div>
@@ -196,6 +232,7 @@ import { API_URL } from "@/routes/api.route";
 import { onMounted, ref } from "vue";
 import { type SETTING } from "@/types/setting.type";
 import { useToast } from "@/components/ui/toast/use-toast";
+import Input from "@/components/ui/input/Input.vue";
 const { toast } = useToast();
 
 const PARAMETRE = ref(<SETTING>{});

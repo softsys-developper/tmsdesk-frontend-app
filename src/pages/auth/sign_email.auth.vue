@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input";
 import { authService } from "@/services/auth.services";
 import { reactive } from "vue";
 import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
+import { useRouter } from "vue-router";
 
 const formSchema = toTypedSchema(
   z.object({
@@ -37,6 +38,7 @@ const { handleSubmit } = useForm({
 });
 
 const { SendMail } = authService();
+const router = useRouter()
 
 // Sign Auth
 const state = reactive({
@@ -47,6 +49,7 @@ const onSubmit = handleSubmit(async (values) => {
   SendMail(values.email)
     .then((data) => {
       if (data) {
+        router.push({name: 'SignChangePassword'})
         state.loading = false;
       }
     })
