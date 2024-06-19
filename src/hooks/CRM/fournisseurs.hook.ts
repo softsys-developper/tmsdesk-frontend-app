@@ -18,8 +18,8 @@ export const useFournisseurHook = () => {
   const { toast } = useToast();
 
   const formatFournisseurData = (Fournisseurs: any) => {
-    return Fournisseurs.map((Fournisseur: any, index: number) => ({
-      id: index + 1,
+    return Fournisseurs.map((Fournisseur: any) => ({
+      id: Fournisseur.id,
       nom: Fournisseur.nom,
       email: Fournisseur.email,
       telephone: Fournisseur.telephone,
