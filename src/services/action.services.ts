@@ -46,8 +46,6 @@ const ToDeleteActions = (Id: any) => {
 //
 export const Fun_Actions = (menu: any, id: any, router?:any) => {
 
-  console.log(menu.route)
-
   const { MenuProfileSignOut } = useProfileServices();
   if (menu.route == "MENU_SIGNOUT") {
     MenuProfileSignOut();
@@ -67,6 +65,9 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "CRM_PROSPECTS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
+    }
+    else if (menu.id == "MUA_rapport") {
+      router.push({name: "CRM_RAPPORTS", query: {id }})
     } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Prospects);
     }
@@ -78,6 +79,15 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToDeleteActions(id);
     } else {
       ToUpdateActions(id, useDataStore().Fournisseurs);
+    }
+  }
+
+   // CRM / Rapport
+   if (menu.route == "CRM_RAPPORTS") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Rapports);
     }
   }
 

@@ -21,9 +21,9 @@ export const useApiServices = () => {
       }
    };
 
-   const showData = async (url: string, id: string) => {
+   const showData = async (url: string, id: any) => {
       try {
-         const response = await axios.get(`${url}/${id}`);
+         const response = await axios.get(`${url}${id}`);
          return response.data;
       } catch (error) {
          console.error('Erreur lors de la lecture des données:', error);

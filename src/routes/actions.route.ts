@@ -25,6 +25,13 @@ export const MenuProspectActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'CRM_PROSPECTS',
    },
+   
+    {
+      id: 'MUA_rapport',
+      name: 'Voir les échanges',
+      icon: 'ri-message-line',
+      route: 'CRM_PROSPECTS',
+   },
 ];
 export const MenuProformaActions = [
    {
@@ -72,6 +79,27 @@ export const MenuFournisseurActions = [
       route: 'CRM_FOURNISSEURS',
    },
 ];
+export const MenuRapportActions = [
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'CRM_RAPPORTS',
+   // },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'CRM_RAPPORTS',
+   },
+   {
+      id: 'MUA_detail',
+      name: 'Voir les échanges',
+      icon: 'ri-message-line',
+      route: 'CRM_RAPPORTS',
+   },
+];
+
 
 
 // R. HAIMAINE

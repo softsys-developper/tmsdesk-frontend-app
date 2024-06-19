@@ -22,8 +22,14 @@
   import { useUpdateStore } from "@/stores/update.store";
   import { RapportForms } from "@/forms/CRM/rapport.forms";
   import InForm from "../../forms/in.form.vue";
+import { onMounted } from "vue";
+import { useApiServices } from "@/services/api.services";
+import { API_URL } from "@/routes/api.route";
+import { useUtilHook } from "@/hooks/utils.hook";
   
   const { CreateRapport, RapportUpdate, setRapport } = useRapportHook();
+  const { readData } = useApiServices()
+  const { remplacerObjetDansTableau } = useUtilHook()
   
   const onSubmit = (e: any) => {
     console.log(useUpdateStore().isUpdate)
@@ -34,6 +40,11 @@
       CreateRapport(values);
     }
   };
+
+onMounted(() => {
+  readData(API_URL.PROSPECT_LIST).then((data) => remplacerObjetDansTableau(RapportForms, 'name', 'prospect', data.datas)  )
+})
+
   </script>
   <style lang="scss" scoped></style>
   

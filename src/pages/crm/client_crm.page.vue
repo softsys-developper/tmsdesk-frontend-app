@@ -14,7 +14,6 @@
             />
 
             <DeleteLayout
-              title="Ajouter un nouvel categorie"
               :funDelete="ClientDelete"
               :id="useUpdateStore().isDelete.id"
             />
@@ -49,6 +48,7 @@ import PageLoader from "@/components/loaders/page.loader.vue";
 import { ClientTables } from "@/tables/client.tables";
 import { useClientHook } from "@/hooks/CRM/client.hook";
 import { useUpdateStore } from "@/stores/update.store";
+import DeleteLayout from "@/layouts/delete.layout.vue";
 
 const { FindClientAll,   ClientDelete, setClient } = useClientHook();
 const storeClients = computed(() => {

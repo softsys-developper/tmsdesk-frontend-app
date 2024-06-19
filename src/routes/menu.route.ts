@@ -11,7 +11,7 @@ export const MenuApp = [
    {
       name: 'CRM',
       icon: `https://${AppService().url}/images/icons/crm.png`,
-      list: 'prospects, proforma, clients, fournisseur',
+      list: 'Prospects, Proforma, Clients, fournisseur',
       route: 'CRM_CLIENTS',
       children: [
          {
@@ -40,9 +40,9 @@ export const MenuApp = [
          },
          // {
          //    icon: 'ri-user-heart-line',
-         //    id: 'CRM_PARTNERS',
-         //    name: 'Partenaires',
-         //    route: 'CRM_PARTNERS'
+         //    id: 'CRM_RAPPORTS',
+         //    name: 'Rapports',
+         //    route: 'CRM_RAPPORTS'
          // },
       ],
    },
@@ -217,7 +217,7 @@ export const MenuApp = [
    {
       name: 'Parametres',
       icon: `https://${AppService().url}/images/icons/parametre.png`,
-      list: '',
+      list: 'Parametre géneral, utilisateurs, roles, permissions',
       route: '',
       children: [
          {
@@ -249,7 +249,7 @@ export const MenuApp = [
    {
       name: 'Systèmes',
       icon: `https://${AppService().url}/images/icons/content-management-system.png`,
-      list: 'Général, Préférence',
+      list: "Domaine d'activités, categories, devises, marques",
       route: '',
       children: [
          {
@@ -293,7 +293,7 @@ export const MenuApp = [
    {
       name: 'Mesageries',
       icon: `https://${AppService().url}/images/icons/messagerie.png`,
-      list: 'Messagerie',
+      list: 'Discutez avec les membres de votre équiqe.',
       route: 'SYSTEM_CHATS',
       children: [
         

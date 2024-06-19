@@ -2,6 +2,7 @@ import ClientCrm from '@/pages/crm/client_crm.page.vue';
 import Fournisseur_crmPage from '@/pages/crm/fournisseur_crm.page.vue';
 import Partner_crmPage from '@/pages/crm/partner_crm.page.vue';
 import Prospect_crmPage from '@/pages/crm/prospect_crm.page.vue';
+import Rapport_crmPage from '@/pages/crm/rapport_crm.page.vue';
 
 export const routeCrm = {
    path: '/crm',
@@ -28,6 +29,12 @@ export const routeCrm = {
          path: 'partenaires',
          name: 'CRM_PARTNERS',
          component: Partner_crmPage,
+         children: [],
+      },
+      {
+         path: 'rapports',
+         name: 'CRM_RAPPORTS',
+         component: Rapport_crmPage,
          children: [],
       },
    ],

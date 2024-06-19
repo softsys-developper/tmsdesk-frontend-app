@@ -175,10 +175,12 @@ export const API_URL = {
   DA_REMOVE: `${BASE_URL}/domaine-activites/delete`,
 
   // Rapports
-  RAPPORT_LIST: `${BASE_URL}/rapports`,
-  RAPPORT_CREATE: `${BASE_URL}/rapports/add`,
-  RAPPORT_UPDATE: `${BASE_URL}/rapports/update`,
-  RAPPORT_REMOVE: `${BASE_URL}/rapports/delete`,
+  // RAPPORT_LIST: `${BASE_URL}/prospects/rapports/commercial`,
+  RAPPORT_LIST: `${BASE_URL}/prospects/rapports/`,
+  RAPPORT_DETAIL: `${BASE_URL}/prospects/rapports/`,
+  RAPPORT_CREATE: `${BASE_URL}/prospects/rapports-select/add`,
+  RAPPORT_UPDATE: `${BASE_URL}/prospects/rapports/update`,
+  RAPPORT_REMOVE: `${BASE_URL}/prospects/rapports/delete`,
 
   // Gestion Permissions
   PERMISSIONS_LIST: `${BASE_URL}/permissions`,

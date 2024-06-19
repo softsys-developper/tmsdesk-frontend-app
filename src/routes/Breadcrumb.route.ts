@@ -85,6 +85,27 @@ export const BreadcrumbRoutes = [
     ],
   },
   {
+    route: "CRM_RAPPORTS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "CRM_PROSPECTS",
+        title: "Prospects",
+      },
+      {
+        route: "CRM_RAPPORTS",
+        title: "CRM",
+      },
+      {
+        route: "CRM_RAPPORTS",
+        title: "Liste des rapports",
+      },
+    ],
+  },
+  {
     route: "PROFORMA_ADD",
     title: [
       {

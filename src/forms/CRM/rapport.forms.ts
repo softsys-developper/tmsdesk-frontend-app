@@ -1,17 +1,17 @@
 export const RapportForms = [
     {
-      label: "Nom",
+      label: "Selectionnez un prospects",
       type: "text",
-      placeholder: "Nom du client",
-      name: "nom",
+      placeholder: "Nom du prospects",
+      name: "prospect",
       value: "",
       select: [],
     },
     {
-      label: "Email",
+      label: "Message",
       type: "text",
-      placeholder: "Email du client",
-      name: "email",
+      placeholder: "",
+      name: "message",
       value: "",
       select: [],
     },

@@ -2,7 +2,7 @@
   <BaseLayout>
     <template v-slot:content>
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-        <ContentLayout title="CRM | Pospects">
+        <ContentLayout title="CRM | Prospects">
           <template v-slot:created>
             <ProspectModal
               :name="'Ajouter Prospect'"

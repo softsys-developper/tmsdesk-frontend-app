@@ -22,17 +22,10 @@ export const useRapportHook = () => {
   stateRapports.value = useDataStore().Rapports;
   const { toast } = useToast();
 
-  const Personals = (Rapport: any): any => useDataStore().Personals.find((els: any) => els.id == Rapport.user_id)
-
   const formatRapportData = (Rapports: any) => {
     return Rapports.map((Rapport: any) => ({
       id: Rapport.id,
-      libelle: Rapport.libelle,
-      employe: Personals(Rapport)?.name,
-      type: Rapport.type,
-      motif: Rapport.motif,
-      date_depart: Rapport.date_depart,
-      date_retour: Rapport.date_retour,
+      message: Rapport.message,
       date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
     }));
   };
