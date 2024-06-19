@@ -18,7 +18,7 @@ defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg', 'id']);
    <DropdownMenu>
       <DropdownMenuTrigger
          class="text-xs font-bold max-w-8/12 px-2 py-2 rounded-md flex justify-between items-center gap-1"
-         :class="isNotBg ? '' : 'bg-gray-800  text-white'"
+         :class="isNotBg ? '' : 'bg-orange-400  text-white'"
       >
          <span class="text-base">
             {{ name }}

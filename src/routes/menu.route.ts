@@ -313,19 +313,13 @@ export const MenuPersonal = [
    {
       id: 'MENU_MAIL',
       name: 'Envoyer Mail',
-      icon: 'ri-mail-star-line',
-      route: 'HOME'
-   },
-   {
-      id: 'MENU_MAIL',
-      name: 'Note',
-      icon: 'ri-booklet-line',
+      icon: 'ri-mail-star-fill',
       route: 'HOME'
    },
    {
       id: 'MENU_MAIL',
       name: 'Rapport',
-      icon: 'ri-folder-chart-line',
+      icon: 'ri-folder-chart-fill',
       route: 'HOME'
    },
 ];

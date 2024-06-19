@@ -32,5 +32,15 @@ export const FournisseurForms = [
       value: "",
       select: [],
     },
+    {
+      label: "Domaine d'activite",
+      type: "text",
+      placeholder: "Domaine d'activite",
+      name: "domaine_activite_id",
+      value: "",
+      select: [
+          
+      ],
+    },
 
 ]

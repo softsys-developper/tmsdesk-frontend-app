@@ -15,7 +15,7 @@ import { MenuPersonal } from "@/routes/menu.route";
       <BreadcrumbList class="hidden">
         <BreadcrumbItem>
           <div
-            class="bg-black size-7 flex justify-center items-center rounded-full cursor-pointer"
+            class="bg-blue-500 size-7 flex justify-center items-center rounded-full cursor-pointer"
             @click="$router.go(-1)"
           >
             <i class="ri-arrow-left-line text-white text-lg"></i>
@@ -42,7 +42,7 @@ import { MenuPersonal } from "@/routes/menu.route";
       >
         <BreadcrumbList>
           <div
-            class="bg-black size-7 flex justify-center items-center rounded-full cursor-pointer"
+            class="bg-blue-500 size-7 flex justify-center items-center rounded-full cursor-pointer"
             @click="$router.go(-1)"
           >
             <i class="ri-arrow-left-line text-white text-lg"></i>
@@ -64,8 +64,8 @@ import { MenuPersonal } from "@/routes/menu.route";
       <div class="flex gap-4">
         <div v-for="item in MenuPersonal">
           <div class="flex gap-2 items-center min-w-max">
-            <i class="text-2xl text-gray-800" :class="item.icon"></i>
-            <span class="text-gray-800 text-base font-bold">
+            <i class="text-2xl text-blue-500" :class="item.icon"></i>
+            <span class="text-blue-500 text-base font-bold">
               {{ item.name }}
             </span>
           </div>

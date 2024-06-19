@@ -13,7 +13,7 @@ const Tmsdesk = {
 }
 
 
-export const isApp:any = 'usimeca'
+export const isApp:any = 'usimecaKey'
 export const AppService = () => {
     return isApp == 'usimeca' ? Usimeca : Tmsdesk
 }

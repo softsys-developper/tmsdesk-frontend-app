@@ -6,7 +6,16 @@
       <label for="" class="text-sm font-bold"> {{ label }} </label>
 
       <Input
-        v-if="select?.length == 0"
+        v-if="select?.length == 0 && isControl == true"
+        :id="name"
+        :type="type"
+        @input="emitInput"
+        class="w-full h-full outline-none bg-transparent py-3"
+        :placeholder="placeholder"
+      />
+
+      <Input
+        v-if="select?.length == 0 && isControl != true"
         :id="name"
         :type="type"
         :name="name"
@@ -33,7 +42,7 @@
               :key="ins?.id"
               :value="ins?.id"
             >
-              {{ ins.title || ins.label || ins.name || ins.libelle_salaire || ins.nom | ins.categorie }}
+              {{ ins.title || ins.label || ins.name || ins.libelle_salaire || ins.nom || ins.categorie || ins.libelle }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
@@ -62,6 +71,18 @@ defineProps([
   "value",
   "placeholder",
   "error",
-  'select'
+  'select',
+  'isControl'
 ]);
+
+import { defineEmits } from 'vue';
+
+// Définir les événements que le composant enfant peut émettre
+const emit = defineEmits(['update']);
+
+// Fonction pour émettre l'événement
+const emitInput = (event: Event) => {
+  const input = event.target as HTMLInputElement;
+  emit('update', input.value);
+};
 </script>

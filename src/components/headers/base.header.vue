@@ -37,7 +37,7 @@
           </div>
 
           <Avatar
-              class="bg-white rounded-full size-8 flex justify-center items-center"
+              class="bg-white rounded-full hidden size-8  justify-center items-center"
             >
               <AvatarImage
                 src="https://github.com/radix-vue.png"
