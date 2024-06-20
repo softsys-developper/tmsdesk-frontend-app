@@ -49,7 +49,7 @@
                   title="Telephone"
                   placeholder="00 00 00 00 00"
                   :value="PARAMETRE.telephone_1"
-                  name="telephone"
+                  name="telephone_1"
                 />
                 <InputForm
                   title="Adresse email"
