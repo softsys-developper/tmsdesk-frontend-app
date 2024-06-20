@@ -83,6 +83,12 @@
                   name="code_postal"
                 />
                 <InputForm
+                  title="Dévise"
+                  placeholder="00000"
+                  :value="PARAMETRE.code_activite"
+                  name="devise"
+                />
+                <InputForm
                   title="Lot"
                   placeholder="ILot - 14"
                   :value="PARAMETRE.lot"
@@ -196,7 +202,7 @@
               <div class="flex flex-col py-8 gap-4">
 
                 <div class="">
-                  <span class="text-base font-bold">Information sur la facture</span>
+                  <span class="text-base font-bold">Fichers</span>
                 </div>
 
 
