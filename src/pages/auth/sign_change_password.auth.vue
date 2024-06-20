@@ -21,8 +21,7 @@ import { Input } from "@/components/ui/input";
 import { authService } from "@/services/auth.services";
 import { onMounted, reactive } from "vue";
 import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
-import { useModalStore } from "@/stores/modal.store";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { useToast } from "@/components/ui/toast/use-toast";
 const { toast } = useToast();
 
@@ -45,10 +44,12 @@ const { handleSubmit } = useForm({
   validationSchema: formSchema,
 });
 
+const route = useRoute()
+
 
 onMounted(() => {
-  if(!useModalStore().Password?.token){
-    router.push({name: 'SignIn'})
+  if (!route.query.token && !route.query.email) {
+    router.push({ name: 'SignIn' })
   }
 })
 
@@ -61,64 +62,55 @@ const state = reactive({
 });
 const onSubmit = handleSubmit(async (values) => {
   state.loading = true;
-  changePassword(values.password, useModalStore().Password.email, useModalStore().Password.token)
+  changePassword(values.password, route.query.email, route.query.token)
     .then((data) => {
       if (data) {
         state.loading = false;
         toast({
-              title: 'Mot de pass changé.',
-              variant: "default",
-              description: data.message ,
-            });
-        router.push({name: 'SignIn'})
+          title: 'Mot de passe changé.',
+          variant: "default",
+          description: data.message,
+        });
+        router.push({ name: 'SignIn' })
       }
     })
-    .catch((err:any) => {
+    .catch((err: any) => {
       state.loading = false;
       if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
+        const isErr = Object.keys(err.response.data.errors);
+        if (isErr) {
+          toast({
+            title: isErr[0],
+            variant: "destructive",
+            description: err.response.data.errors[isErr[0]][0],
+          });
+        } else {
+          toast({
+            title: "error",
+            variant: "destructive",
+            description: err.response.data.message,
+          });
         }
-      });
+      }
+    });
 });
 </script>
 
 <template>
   <section class="flex justify-center items-center h-[100vh] flex-col gap-8">
     <div class="fixed inset-0">
-      <img
-        class="w-full h-full object-cover"
+      <img class="w-full h-full object-cover"
         src="https://img.freepik.com/photos-gratuite/cadre-bureau-table_23-2148148326.jpg?t=st=1718712078~exp=1718715678~hmac=12260c1125fd2105c0afb02e35fc753a0ba9887b449688937f416cf6874c75e5&w=740"
-        alt=""
-      />
+        alt="" />
     </div>
     <div class="h-[100vh] w-[100vw] bg-blue-500/70 fixed inset-0"></div>
 
     <div class="flex h-full w-full">
       <div class="w-8/12 z-40 hidden lg:flex">
-        <img
-          class="w-full h-full object-contain"
-          src="/images/PUB3.jpg"
-          alt=""
-        />
+        <img class="w-full h-full object-contain" src="/images/PUB3.jpg" alt="" />
       </div>
 
-      <Tabs
-        default-value="account"
-        class="lg:w-4/12 w-11/12 h-full z-40 m-auto bg-white"
-      >
+      <Tabs default-value="account" class="lg:w-4/12 w-11/12 h-full z-40 m-auto bg-white">
         <TabsContent value="account">
           <form class="w-full space-y-1 flex flex-row" @submit="onSubmit">
             <div class="flex flex-col w-full">
@@ -127,9 +119,7 @@ const onSubmit = handleSubmit(async (values) => {
                   <div class="">
                     <img class="h-24" src="/images/logo/tms.jpeg" alt="" />
                   </div>
-                  <span class="text-xl opacity-90"
-                    >Changer votre mot de passe</span
-                  >
+                  <span class="text-xl opacity-90">Changer votre mot de passe</span>
                 </CardTitle>
               </CardHeader>
               <CardContent class="space-y-2">
@@ -137,11 +127,7 @@ const onSubmit = handleSubmit(async (values) => {
                   <FormItem>
                     <FormLabel>Nouveau mot de pass</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Password"
-                        v-bind="componentField"
-                      />
+                      <Input type="password" placeholder="Password" v-bind="componentField" />
                     </FormControl>
                     <FormMessage class="text-xs" />
                   </FormItem>
@@ -151,31 +137,23 @@ const onSubmit = handleSubmit(async (values) => {
                   <FormItem>
                     <FormLabel>Comfirmation Mot de passe</FormLabel>
                     <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Votre mot de passe securisé"
-                        v-bind="componentField"
-                      />
+                      <Input type="password" placeholder="Votre mot de passe securisé" v-bind="componentField" />
                     </FormControl>
 
                     <FormMessage class="text-xs" />
                   </FormItem>
                 </FormField>
               </CardContent>
-              <CardFooter class="flex flex-col w-full gap-2" >
+              <CardFooter class="flex flex-col w-full gap-2">
                 <Button class="w-full font-bold">
                   <SpinnerLoading size="w-5 h-5" v-if="state.loading" />
-                  <span class="text-base" v-if="!state.loading"
-                    >Enregistre</span
-                  >
+                  <span class="text-base" v-if="!state.loading">Enregistre</span>
                 </Button>
-                
-                <RouterLink :to="{name: 'SignIn'}" class="w-full" >
+
+                <RouterLink :to="{ name: 'SignIn' }" class="w-full">
                   <Button class="w-full font-bold bg-gray-200 text-gray-800 hover:bg-gray-300">
-                  <span class="text-sm font-semibold" 
-                    >Retourner à la connexion</span
-                  >
-                </Button>
+                    <span class="text-sm font-semibold">Retourner à la connexion</span>
+                  </Button>
                 </RouterLink>
 
               </CardFooter>

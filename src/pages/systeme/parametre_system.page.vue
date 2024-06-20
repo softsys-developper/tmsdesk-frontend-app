@@ -52,6 +52,12 @@
                   name="telephone"
                 />
                 <InputForm
+                  title="Adresse email"
+                  placeholder="john@exemple.com"
+                  :value="PARAMETRE.email_1"
+                  name="telephone"
+                />
+                <InputForm
                   title="Commune"
                   placeholder="Abidjan"
                   :value="PARAMETRE.commune"
@@ -178,6 +184,12 @@
                   :value="PARAMETRE.fdfp_fpc"
                   name="fdfp_fpc"
                 />
+                <InputForm
+                  title="Jour validité"
+                  placeholder="0.6%"
+                  :value="PARAMETRE.jour_validite_document"
+                  name="jour_validite_document"
+                />
                 
               </div>
 
@@ -206,7 +218,7 @@
                 </div>
 
                 <div class="">
-                  <label for=""> {{ PARAMETRE.pied_de_page ? 'Updated' : 'Non Ajouter' }} </label>
+                  <label for=""> Pied de page : {{ PARAMETRE.pied_de_page ? 'Updated' : 'Non Ajouter' }} </label>
                   <Input type="file" name="pied_de_page" class="" />
                 </div>
 

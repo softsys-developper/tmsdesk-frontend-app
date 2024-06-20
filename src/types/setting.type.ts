@@ -40,5 +40,6 @@ export type SETTING = {
   telephone_3: null;
   updated_at: string;
   pied_de_page: string,
-  entete: string
+  entete: string,
+  jour_validite_document: string
 };
