@@ -55,7 +55,7 @@
                   title="Adresse email"
                   placeholder="john@exemple.com"
                   :value="PARAMETRE.email_1"
-                  name="telephone"
+                  name="email_1"
                 />
                 <InputForm
                   title="Commune"
