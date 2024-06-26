@@ -50,7 +50,7 @@ export const useProspectHook = () => {
     setService(
       setProspect,
       useDataStore(),
-      'DAs',
+      'Prospects',
       formatProspectData
     ).SetCreate(API_URL.PROSPECT_CREATE, values);
   };
