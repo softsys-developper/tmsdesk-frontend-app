@@ -2,21 +2,16 @@
 
 import { useApiServices } from '@/services/api.services';
 import { API_URL } from '@/routes/api.route';
-import { useToast } from '@/components/ui/toast/use-toast';
 import { computed, reactive, ref } from 'vue';
 import { useDataStore } from './../../stores/data.store';
-import { useUtilHook } from '@/hooks/utils.hook';
-import { useModalStore } from '@/stores/modal.store';
 import { setService } from '@/services/set.services';
 import moment from 'moment';
 
 export const useCompteHook = () => {
-   const { readData, createData } = useApiServices();
-   const { EmptyFields } = useUtilHook();
+   const { readData } = useApiServices();
    const setCompte = reactive({ loading: false, loadingCreate: false });
    const stateComptes = ref<any[]>([]);
    stateComptes.value = useDataStore().Comptes;
-   const { toast } = useToast();
 
 
    const storeComptes = computed(() => {
@@ -46,47 +41,12 @@ export const useCompteHook = () => {
    };
 
    const CreateCompte = async(values: any) => {
-      setCompte.loadingCreate = true;
-      const DataCreated = await createData(API_URL.BANQUE_CREATE, values)
-         .then((data: any) => {
-            if (data) {
-                
-               EmptyFields(values); // Vider les champs
-               setCompte.loadingCreate = false;
-               let Comptes = useDataStore().Comptes;
-
-               const toAdd: [] = formatCompteData([data.data]);
-               Comptes.unshift(...toAdd);
-               useDataStore().Comptes = Comptes;
-               useModalStore().open = false
-               toast({
-                  title: 'Enregistré',
-                  description: data.message,
-               });
-            }
-         })
-         .catch((err) => {
-            setCompte.loadingCreate = false;
-            console.log(err)
-            if (err) {
-               const isErr = Object.keys(err.response.data.errors);
-               if (isErr) {
-                  toast({
-                     title: isErr[0],
-                     variant: "destructive",
-                     description: err.response.data.errors[isErr[0]][0],
-                  });
-               } else {
-                  toast({
-                     title: 'Erreur',
-                     variant: "destructive",
-                     description: err.response.data.message,
-                  });
-               }
-            }
-         });
-
-         return {data: DataCreated}
+      setService(
+         setCompte,
+         useDataStore(),
+         'Comptes',
+         formatCompteData
+       ).SetCreate(API_URL.BANQUE_CREATE, values);
    };
 
     //

@@ -1,21 +1,16 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/Fournisseur.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 
 export const useFournisseurHook = () => {
-  const { readData, createData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData } = useApiServices();
   const setFournisseur = reactive({ loading: false, loadingCreate: false });
   const stateFournisseurs = ref<any[]>([]);
   stateFournisseurs.value = useDataStore().Fournisseurs;
-  const { toast } = useToast();
 
   const formatFournisseurData = (Fournisseurs: any) => {
     return Fournisseurs.map((Fournisseur: any) => ({
@@ -52,47 +47,12 @@ export const useFournisseurHook = () => {
 
   //
   const CreateFournisseur = async (values: any) => {
-    setFournisseur.loadingCreate = true;
-    const DataCreated = await createData(API_URL.FOURNISSEURS_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setFournisseur.loadingCreate = false;
-          let Fournisseurs = useDataStore().Fournisseurs;
-
-          //
-          const toAdd: [] = formatFournisseurData([data.data]);
-          Fournisseurs.unshift(...toAdd);
-          useDataStore().Fournisseurs = Fournisseurs;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setFournisseur.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+    setService(
+      setFournisseur,
+      useDataStore(),
+      'Fournisseurs',
+      formatFournisseurData
+    ).SetCreate(API_URL.FOURNISSEURS_CREATE, values);
   };
 
   //

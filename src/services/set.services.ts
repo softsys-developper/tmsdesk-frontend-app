@@ -4,19 +4,63 @@ import { useModalStore } from "@/stores/modal.store";
 import { useToast } from "@/components/ui/toast/use-toast";
 const { toast } = useToast();
 
-const { updateData, deleteData } = useApiServices();
+const { updateData, deleteData, createData } = useApiServices();
 // API_URL.PROSPECT_UPDATE + '/' + id, values
 
 const { EmptyFields } = useUtilHook();
-
-
 
 export const setService = (
   loading: any,
   Store: any,
   LabelStore: string,
-  formatProspectData: any
+  formatData: any,
+  callback?:any
 ) => {
+  const SetCreate = async (URL: string, values: any) => {
+    loading.loadingCreate = true;
+    const DataCreated = await createData(URL, values)
+      .then((data: any) => {
+        if (data) {
+          EmptyFields(values); // Vider les champs
+          loading.loadingCreate = false;
+          let Conges = Store[LabelStore];
+
+          //
+          const toAdd: [] = formatData([data.data]);
+          Conges.unshift(...toAdd);
+          Store[LabelStore].Conges = Conges;
+          useModalStore().open = false;
+          callback()
+
+          toast({
+            title: "Enregistré",
+            description: data.message,
+          });
+        }
+      })
+      .catch((err) => {
+        loading.loadingCreate = false;
+        if (err) {
+          const isErr = Object.keys(err.response.data.errors);
+          if (isErr) {
+            toast({
+              title: isErr[0],
+              variant: "destructive",
+              description: err.response.data.errors[isErr[0]][0],
+            });
+          } else {
+            toast({
+              title: "error",
+              variant: "destructive",
+              description: err.response.data.message,
+            });
+          }
+        }
+      });
+
+    return { data: DataCreated };
+  };
+
   // Update
   const SetUpdate = (URL: string, id: any, values: any) => {
     loading.loadingCreate = true;
@@ -28,20 +72,17 @@ export const setService = (
           let Prospects = Store[LabelStore];
 
           // //
-          const toAdd = formatProspectData([data.data]);
-         
+          const toAdd = formatData([data.data]);
+
           const _Prospects: any = Prospects.map((el: any) => {
-            console.log(el.id == id)
+            console.log(el.id == id);
             if (el.id == id) {
               el = toAdd[0];
             }
             return {
-              ...el
-            }
+              ...el,
+            };
           });
-
-          
-
 
           Store[LabelStore] = _Prospects;
           useModalStore().open = false;
@@ -83,9 +124,9 @@ export const setService = (
           let Prospects = [];
 
           //
-          console.log(LabelStore)
+          console.log(LabelStore);
           const toAdd = Store[LabelStore].filter((el: any) => el.id != id);
-          console.log(toAdd, id)
+          console.log(toAdd, id);
           Prospects.unshift(...toAdd);
           Store[LabelStore] = Prospects;
           useModalStore().open = false;
@@ -122,5 +163,6 @@ export const setService = (
   return {
     SetUpdate,
     SetDelete,
+    SetCreate,
   };
 };

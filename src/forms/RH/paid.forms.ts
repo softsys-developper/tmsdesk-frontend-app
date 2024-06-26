@@ -19,7 +19,7 @@ export const PaidForms = [
         label: "Employé",
         type: "text",
         placeholder: "Employé à payer",
-        name: "user",
+        name: "employe",
         value: "",
         select: [],
     },

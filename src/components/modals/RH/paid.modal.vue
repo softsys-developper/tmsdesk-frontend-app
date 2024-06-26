@@ -91,7 +91,7 @@ onMounted(() => {
   })
   readData(API_URL.USER_LIST).then((data) => {
     useDataStore().Comptes = data.datas
-    remplacerObjetDansTableau(PaidForms, 'name', 'user', data.datas)
+    remplacerObjetDansTableau(PaidForms, 'name', 'employe', data.datas)
   })
 })
 </script>
