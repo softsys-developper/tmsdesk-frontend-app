@@ -3,7 +3,7 @@ export const CongeForms = [
     label: "Liste des employés",
     type: "text",
     placeholder: "Liste des employés",
-    name: "user",
+    name: "employe",
     value: "",
     select: [],
   },

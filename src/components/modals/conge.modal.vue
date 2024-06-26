@@ -46,11 +46,8 @@ onMounted(() => {
     remplacerObjetDansTableau(
       CongeForms,
       "name",
-      "user",
-      data.datas.map((el: any) => ({
-        id: el.id,
-        name: el.name,
-      }))
+      "employe",
+      data.datas
     )
   );
 });

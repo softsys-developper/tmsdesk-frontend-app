@@ -20,7 +20,6 @@ import { SalaryForms } from '@/forms/RH/salary.forms';
 const { CreateSalaire, SalaireUpdate, setSalaire } = useSalaireHook();
 
 const onSubmit = (e: any) => {
-    console.log(useUpdateStore().isUpdate)
     let values = new FormData(e.target);
     if (useUpdateStore().isUpdate.is) {
       SalaireUpdate(useUpdateStore().isUpdate.id, values);
