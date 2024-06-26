@@ -37,20 +37,11 @@ export const usePersonalHook = () => {
       fonction: Personal.fonction,
       // role: Personal.utype,
       date_debut: Personal.date_debut,
-      date_creation: moment(Personal.created_at).format("DD/MM/YYYY"),
+      date_creation: moment(Personal.created_at).format("l"),
     }));
   };
 
-  const formatPersonalUserData = (Personals: any) => {
-    return Personals.map((Personal: any) => ({
-      id: Personal.id,
-      nom: Personal.nom,
-      email: Personal.email,
-      password: Personal.telephone,
-      role: Personal.role,
-      date_creation: moment(Personal.created_at).format("DD/MM/YYYY"),
-    }));
-  };
+
   const storePersonals = computed(() => {
     return useDataStore().Personals;
   });
@@ -61,7 +52,6 @@ export const usePersonalHook = () => {
     readData(API_URL.USER_LIST)
       .then((data: any) => {
         useDataStore().Personals = formatPersonalData(data.datas);
-        useDataStore().Users = formatPersonalUserData(data.datas);
         setPersonal.loading = false;
       })
       .catch(() => {

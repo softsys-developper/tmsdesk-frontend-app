@@ -71,7 +71,7 @@ import moment from "moment";
       useDataStore().Echanges = data.data.map((Rapport:any) => ({
         id: Rapport.id,
       message: Rapport.message,
-      date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
+      date_creation: moment(Rapport.created_at).format("l"),
       }))
     })
     // FindRapportAll();

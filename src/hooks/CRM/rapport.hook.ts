@@ -26,7 +26,7 @@ export const useRapportHook = () => {
     return Rapports.map((Rapport: any) => ({
       id: Rapport.id,
       message: Rapport.message,
-      date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
+      date_creation: moment(Rapport.created_at).format("l"),
     }));
   };
   const storeRapports = computed(() => {
@@ -57,12 +57,12 @@ export const useRapportHook = () => {
         if (data) {
           EmptyFields(values); // Vider les champs
           setRapport.loadingCreate = false;
-          let Rapports = useDataStore().Rapports;
+          let Echanges = useDataStore().Echanges;
 
           //
           const toAdd: [] = formatRapportData([data.data]);
-          Rapports.unshift(...toAdd);
-          useDataStore().Rapports = Rapports;
+          Echanges.unshift(...toAdd);
+          useDataStore().Echanges = Echanges;
           useModalStore().open = false;
 
           toast({

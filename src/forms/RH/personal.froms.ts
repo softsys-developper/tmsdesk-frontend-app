@@ -18,20 +18,19 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
-
-    {
-        label: "Email",
-        type: "text",
-        placeholder: "Email",
-        name: "email",
-        value: "",
-        select: [], // Tableau vide pour les options de sélection
-    },
     {
         label: "Prénoms",
         type: "text",
         placeholder: "Prénoms",
         name: "prenoms",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Email",
+        type: "text",
+        placeholder: "Email",
+        name: "email",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
@@ -193,6 +192,14 @@ export const PersonalForms = reactive([
         type: "text",
         placeholder: "Liste des salaires",
         name: "salaire",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Service",
+        type: "text",
+        placeholder: "Liste de services",
+        name: "service",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },

@@ -13,12 +13,12 @@ export const MenuClientActions = [
    },
 ];
 export const MenuProspectActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'CRM_PROSPECTS',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'CRM_PROSPECTS',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
@@ -384,17 +384,17 @@ export const MenuLivraisonActions = [
 
 
 export const MenuBCFournisseurActions = [
-//    {
-//      id: 'MUA_modify',
-//      name: 'Modifier',
-//      icon: 'ri-refresh-line',
-//      route: 'LOGISC_LIVRAISONS',
-//   },
+   {
+     id: 'MUA_modify',
+     name: 'Modifier',
+     icon: 'ri-refresh-line',
+     route: 'LOGISC_BC_PARTENAIRES',
+  },
   {
      id: 'MUA_delete',
      name: 'Supprimer',
      icon: 'ri-delete-bin-3-line',
-     route: 'LOGISC_LIVRAISONS',
+     route: 'LOGISC_BC_PARTENAIRES',
   },
 //   {
 //    id: 'MUA_details',

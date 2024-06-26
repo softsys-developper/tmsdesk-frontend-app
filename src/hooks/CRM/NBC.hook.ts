@@ -20,8 +20,8 @@ export const useNBCHook = () => {
   const formatNBCData = (NBCs: any) => {
     return NBCs.map((NBC: any) => ({
       id: NBC.id,
-      nom: NBC.nom,
-      email: NBC.email,
+      numero_bon_de_commande: NBC.numero_bon_de_commande,
+      montant: NBC.montant,
       telephone: NBC.telephone,
       adresse: NBC.adresse,
       date_creation: moment(NBC.created_at).format("l"),

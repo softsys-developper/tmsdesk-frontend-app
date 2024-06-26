@@ -136,5 +136,6 @@ export const useBCFournisseurHook = () => {
     stateBCFournisseurs,
     setBCFournisseur,
     storeBCFournisseurs,
+    formatBCFournisseurData
   };
 };

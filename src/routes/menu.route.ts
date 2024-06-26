@@ -38,12 +38,12 @@ export const MenuApp = [
             name: 'Fournisseurs',
             route: 'CRM_FOURNISSEURS'
          },
-         {
-            icon: 'ri-user-search-line',
-            id: 'CRM_FOURNISSEURS',
-            name: 'Fournisseurs',
-            route: 'CRM_FOURNISSEURS'
-         },
+         // {
+         //    icon: 'ri-user-search-line',
+         //    id: 'CRM_FOURNISSEURS',
+         //    name: 'Fournisseurs',
+         //    route: 'CRM_FOURNISSEURS'
+         // },
          // {
          //    icon: 'ri-user-heart-line',
          //    id: 'CRM_RAPPORTS',

@@ -135,12 +135,23 @@ const AddInterlocuteur = () => {
    }
  };
 
+
+
+
  onMounted(() => {
-  readData(API_URL.DA_LIST).then((data) =>
+  readData(API_URL.MARQUE_LIST).then((data) =>
     remplacerObjetDansTableau(
       FournisseurForms,
       "name",
-      "domaine_activite_id",
+      "marque",
+      data.datas
+    )
+  );
+  readData(API_URL.CATEGORIE_LIST).then((data) =>
+    remplacerObjetDansTableau(
+      FournisseurForms,
+      "name",
+      "categorie",
       data.datas
     )
   );

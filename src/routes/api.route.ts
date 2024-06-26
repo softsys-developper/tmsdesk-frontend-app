@@ -115,7 +115,7 @@ export const API_URL = {
   BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,
   BC_FOURNISSEUR_UPDATE: `${BASE_URL}/fournisseurs/bdc/update`,
   BC_FOURNISSEUR_REMOVE: `${BASE_URL}/fournisseurs/bdc-delete`,
-  BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc/details`,
+  BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc-edit`,
   
 
   CAISSE_TRANSACTION_LIST: `${BASE_URL}/caisse/transactions`,

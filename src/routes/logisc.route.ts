@@ -1,5 +1,6 @@
 import Bc_client_logiscPage from '@/pages/logistiques/bc_client_logisc.page.vue';
 import Bc_fourniseur_logiscPage from '@/pages/logistiques/bc_fourniseur_logisc.page.vue';
+import Bc_fournisseur_add_logicPage from '@/pages/logistiques/bc_fournisseur_add_logic.page.vue';
 import Product_logiscPage from '@/pages/logistiques/product_logisc.page.vue';
 
 export const routeLogisc = {
@@ -20,9 +21,9 @@ export const routeLogisc = {
                component: Bc_fourniseur_logiscPage,
             },
             {
-               path: 'fourniseur',
+               path: 'fourniseur/add',
                name: 'LOGISC_BC_PARTENAIRES_ADD',
-               component: Bc_fourniseur_logiscPage,
+               component: Bc_fournisseur_add_logicPage,
             },
             {
                path: 'clients',

@@ -5,7 +5,7 @@
             <ContentLayout title="Logistique | Bon de commandes">
                <template v-slot:created>
                   <DeleteLayout :funDelete="FindBCFournisseurDelete" :id="useUpdateStore().isDelete.id" />
-                  <RouterLink :to="{ name: 'PROFORMA_ADD' }"
+                  <RouterLink :to="{ name: 'LOGISC_BC_PARTENAIRES_ADD' }"
                      class="bg-orange-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
                      <i class="ri-add-line text-sm"></i>
                      <span class="hidden lg:flex">Nouveau BDC</span>

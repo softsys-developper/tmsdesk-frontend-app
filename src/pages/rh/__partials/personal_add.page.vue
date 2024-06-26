@@ -102,6 +102,9 @@ onMounted(() => {
     readData(API_URL.SALAIRE_LIST).then((data) =>
         remplacerObjetDansTableau(PersonalForms, "name", "salaire", data.datas)
     );
+    readData(API_URL.SERVICE_LIST).then((data) =>
+        remplacerObjetDansTableau(PersonalForms, "name", "service", data.datas)
+    );
 });
 </script>
 <style lang="scss" scoped></style>

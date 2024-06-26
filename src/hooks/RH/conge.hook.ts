@@ -33,7 +33,7 @@ export const useCongeHook = () => {
       motif: Conge.motif,
       date_depart: Conge.date_depart,
       date_retour: Conge.date_retour,
-      date_creation: moment(Conge.created_at).format("DD/MM/YYYY"),
+      date_creation: moment(Conge.created_at).format("l"),
     }));
   };
   const storeConges = computed(() => {

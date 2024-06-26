@@ -39,7 +39,7 @@ export const useFactureHook = () => {
           ? StatusHtml("Partiellement", "bg-blue-500")
           : StatusHtml("Payer", "bg-green-500"),
           date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
+          date_creation: moment(Facture.created_at).format("l"),
     }));
   };
   const storeFactures = computed(() => {

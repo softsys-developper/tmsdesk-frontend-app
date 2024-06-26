@@ -9,14 +9,14 @@ export const NBCTables = [
     },
     {
         label: 'Numéro BC',
-        field: 'libelle',
+        field: 'numero_bon_de_commande',
         status: null,
         color: null,
         bgColor: null,
     },
     {
         label: 'Montant',
-        field: 'categorie',
+        field: 'montant', 
         status: null,
         color: null,
         bgColor: null,

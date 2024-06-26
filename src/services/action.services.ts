@@ -187,8 +187,19 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       router.push({name: "LOGISC_LIVRAISONS_BL", query: {id }})
     }
   }
+  if (menu.route == "LOGISC_BC_PARTENAIRES") {
+   
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else if (menu.id == "MUA_modify") {
+      // ToUpdateActions(id, useDataStore().Prospects);
+      router.push({name: "LOGISC_BC_PARTENAIRES_ADD", query: {id }})
+    } else if (menu.id == "MUA_details") {
+      // router.push("/proforma/detail/?id=" + id)
+    } 
+  }
   
-
+  
 
 
   // Comptabilité
