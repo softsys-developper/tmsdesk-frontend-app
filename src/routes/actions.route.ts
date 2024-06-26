@@ -13,12 +13,12 @@ export const MenuClientActions = [
    },
 ];
 export const MenuProspectActions = [
-   // {
-   //    id: 'MUA_modify',
-   //    name: 'Modifier',
-   //    icon: 'ri-refresh-line',
-   //    route: 'CRM_PROSPECTS',
-   // },
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'CRM_PROSPECTS',
+   },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
