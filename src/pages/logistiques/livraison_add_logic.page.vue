@@ -2,11 +2,11 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-                <ContentLayout :title="`Livraion | ${$route.query.id ? 'Modifier' : 'Création'}`">
+                <ContentLayout :title="`Logistique | ${$route.query.id ? 'Modification Livraion' : 'Création Livraion'}`">
                     <template v-slot:created> </template>
                 </ContentLayout>
 
-                <div class="w-11/12 m-auto flex gap-4 items-start pb-24 flex-col">
+                <div class="w-11/12 m-auto flex gap-4 items-start pb-8 flex-col">
                     <div class="w-full grid grid-cols-2 gap-2">
                         <div class="" v-for="fr in LivraisonForms">
                             <InForm :title="fr.label" :name="fr.name" :label="fr.label" :type="fr.type"
@@ -31,7 +31,7 @@
                                             <select name="" id="" @input="IsServiceLivraison"
                                                 class="p-2 border-[1px] rounded-md">
                                                 <option v-for="Livraison in ListOfLivraison" :value="Livraison.id">{{
-                                                    Livraison.numero_livraison }}</option>
+                                                    Livraison.numero_proforma }}</option>
                                             </select>
 
 
@@ -44,14 +44,17 @@
                                                         <SelectLabel></SelectLabel>
                                                         <SelectItem v-for="Product in ListOfLivraisonServices"
                                                             :value="Product.reference">
-                                                            {{ Product.reference }}
+                                                            {{ Product.reference }} 
                                                         </SelectItem>
                                                     </SelectGroup>
                                                 </SelectContent>
                                             </Select>
 
-                                            <input type="text" v-model="service.quantite"
+                                            <div class="flex flex-col">
+                                                <label for="" class="text-sm flex gap-1" >Quantité</label>
+                                                <input type="text" v-model="service.quantite" placeholder="Ex : 500"
                                                 class="border-[1px] w-full rounded-md py-2 px-4" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
