@@ -98,10 +98,10 @@ export const PersonalForms = reactive([
         select: [], // Tableau vide pour les options de sélection
     },
     {
-        label: "Fiche de contract",
+        label: "Contract",
         type: "file",
         placeholder: "CNI",
-        name: "fiche_contract",
+        name: "contract",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },

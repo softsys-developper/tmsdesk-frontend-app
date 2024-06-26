@@ -3,7 +3,7 @@ export const SalaryForms = [
         label: "Libelle Salaire",
         type: "text",
         placeholder: "Ex: Categorie 1B",
-        name: "libelle_salaire",
+        name: "categorie",
         value: "",
         select: [],
     },
