@@ -2,6 +2,7 @@ import { useUtilHook } from "@/hooks/utils.hook";
 import { useApiServices } from "./api.services";
 import { useModalStore } from "@/stores/modal.store";
 import { useToast } from "@/components/ui/toast/use-toast";
+import { useUpdateStore } from "@/stores/update.store";
 const { toast } = useToast();
 
 const { updateData, deleteData, createData } = useApiServices();
@@ -24,6 +25,7 @@ export const setService = (
           EmptyFields(values); // Vider les champs
           loading.loadingCreate = false;
           let Conges = Store[LabelStore];
+          useUpdateStore().isUpdate.id = null
 
           //
           const toAdd: [] = formatData([data.data]);
