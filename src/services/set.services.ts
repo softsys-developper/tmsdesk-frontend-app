@@ -26,6 +26,7 @@ export const setService = (
           loading.loadingCreate = false;
           let Conges = Store[LabelStore];
           useUpdateStore().isUpdate.id = null
+          useUpdateStore().isUpdate.is = false
 
           //
           const toAdd: [] = formatData([data.data]);
