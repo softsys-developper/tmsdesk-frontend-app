@@ -8,32 +8,32 @@ const { toast } = useToast();
 const { updateData, deleteData, createData } = useApiServices();
 // API_URL.PROSPECT_UPDATE + '/' + id, values
 
-const { EmptyFields } = useUtilHook();
+const { EmptyFields, ServerError } = useUtilHook();
 
 export const setService = (
   loading: any,
   Store: any,
   LabelStore: string,
   formatData: any,
-  callback?:any
+  callback?: any
 ) => {
   const SetCreate = async (URL: string, values: any) => {
     loading.loadingCreate = true;
-    const DataCreated = await createData(URL, values)
+     createData(URL, values)
       .then((data: any) => {
         if (data) {
           EmptyFields(values); // Vider les champs
           loading.loadingCreate = false;
           let Conges = Store[LabelStore];
-          useUpdateStore().isUpdate.id = null
-          useUpdateStore().isUpdate.is = false
+          useUpdateStore().isUpdate.id = null;
+          useUpdateStore().isUpdate.is = false;
 
           //
           const toAdd: [] = formatData([data.data]);
           Conges.unshift(...toAdd);
           Store[LabelStore].Conges = Conges;
           useModalStore().open = false;
-          callback()
+          callback();
 
           toast({
             title: "Enregistré",
@@ -43,25 +43,8 @@ export const setService = (
       })
       .catch((err) => {
         loading.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
+        ServerError(err, toast);
       });
-
-    return { data: DataCreated };
   };
 
   // Update
@@ -98,22 +81,7 @@ export const setService = (
       })
       .catch((err) => {
         loading.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
+        ServerError(err, toast);
       });
   };
 
@@ -144,22 +112,7 @@ export const setService = (
       .catch((err) => {
         loading.loadingCreate = false;
         useModalStore().delete = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
+        ServerError(err, toast);
       });
   };
 
