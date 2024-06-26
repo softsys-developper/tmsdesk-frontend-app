@@ -24,7 +24,7 @@ export const API_URL = {
 
   // Gestion utilisateur (employé)
   USER_LIST: `${BASE_URL}/employes`,
-  USER_SHOW: `${BASE_URL}/employes/show`,
+  USER_SHOW: `${BASE_URL}/employes`,
   USER_CREATE: `${BASE_URL}/employes/add`,
   USER_UPDATE: `${BASE_URL}/employes/update`,
   USER_REMOVE: `${BASE_URL}/employes/delete`,
