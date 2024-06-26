@@ -44,7 +44,7 @@ const router = useRouter()
 
 const onSubmit = (e: any) => {
     const values = new FormData(e.target);
-    values.append('id', JSON.stringify(Number(route.query.id)))
+    values.append('proforma_id', JSON.stringify(Number(route.query.id)))
     CreateNBC(values, () => {
         router.push({name: 'PROFORMA_LIST'})
     })

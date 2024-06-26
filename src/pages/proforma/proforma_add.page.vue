@@ -6,13 +6,13 @@
           <template v-slot:created> </template>
         </ContentLayout>
 
-        <div class="w-11/12 m-auto flex gap-4 items-start pb-24">
+        <div class="w-11/12 m-auto flex gap-4 items-start pb-4">
           <div class="w-full bg-white rounded-md space-y-4">
             <div class="">
               <!-- Information sur la proforma -->
               <div class="flex justify-between items-center pb-8">
                 <div class="">
-                  <span class="text-lg font-bold">Proforma</span>
+                  <span class="text-lg  uppercase font-bold ">Proforma</span>
                 </div>
 
                 <!-- <div class="">
@@ -23,8 +23,8 @@
               <!-- Les informations base sur la proforma -->
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
-                  <Label>Objet de la proforma </Label>
-                  <Input placeholder="N. Proforma" v-model="setInput.titre" name="" />
+                  <Label> Réference client </Label>
+                  <Input placeholder="Reference client" v-model="setInput.titre" name="" />
                 </div>
               </div>
             </div>
@@ -354,7 +354,7 @@
                       TotalTTC:
                     </dt>
                     <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ _AmountHT }}
+                      {{ AmountHT }} {{ _AmountTTC }} 
                     </dd>
                   </dl>
                 </div>
@@ -363,7 +363,7 @@
             </div>
             <!-- End Flex -->
 
-            <div class="p-8 flex justify-between w-full">
+            <div class="pt-8 flex justify-between w-full">
               <span class=""></span>
               <button @click="sendProformaToBackend" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                 :disabled="loadingProforma">
@@ -536,7 +536,7 @@ const ServiceToAdd = ref({
   description: "",
   type: "",
   unite: "",
-  quantite: 1,
+  quantite: 0,
   prix_unitaire: 0,
   remarques: "",
 });
@@ -568,6 +568,7 @@ const _isTVA = () => {
 };
 
 const AmountHT = computed(() => {
+
   _AmountHT.value = 0;
   if (ProductAndServices.value) {
     ProductAndServices.value.forEach((HT) => {
@@ -579,7 +580,10 @@ const AmountHT = computed(() => {
       }
     });
 
+
+
     if (isRemise.value || _AmountTVA.value) {
+      console.log(_AmountTVA.value)
       _AmountTTC.value =
         _AmountHT.value * (1 - isRemise.value / 100) + _AmountTVA.value;
       _AmountTTC.value = Number(_AmountTTC.value.toFixed(2));
@@ -622,18 +626,16 @@ const AddServices = (service: any) => {
     reference: service.reference,
     description: service.description,
     unite: service.unite,
-    type: service.type,
     quantite: service.quantite,
     prix_unitaire: service.prix_unitaire,
     remarques: service.remarques,
   });
 
-  service.quantite = "";
+  service.quantite = 0;
   service.service = "";
   service.prix_unitaire = "";
   service.description = "";
   service.remarques = "";
-  service.type = "";
   service.unite = "";
 };
 

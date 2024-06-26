@@ -82,7 +82,7 @@ export const PersonalForms = reactive([
         select: [], // Tableau vide pour les options de sélection
     },
     {
-        label: "Numéro CNI",
+        label: "Numéro CNI / PASPORT",
         type: "text",
         placeholder: "Numéro CNI",
         name: "cni",

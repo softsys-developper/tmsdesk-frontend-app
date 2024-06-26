@@ -92,12 +92,12 @@ export const MenuRapportActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'CRM_RAPPORTS',
    },
-   {
-      id: 'MUA_detail',
-      name: 'Voir les échanges',
-      icon: 'ri-message-line',
-      route: 'CRM_RAPPORTS',
-   },
+   // {
+   //    id: 'MUA_detail',
+   //    name: 'Voir les échanges',
+   //    icon: 'ri-message-line',
+   //    route: 'CRM_RAPPORTS',
+   // },
 ];
 export const MenuNBCActions = [
    {
