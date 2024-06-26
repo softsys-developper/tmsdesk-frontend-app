@@ -2,7 +2,7 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-                <ContentLayout :title="`Employer | ${$route.query.id ? 'Modifier' : 'Création' }`">
+                <ContentLayout :title="`R. Humaines | ${$route.query.id ? 'Modification employé' : 'Création employé' }`">
                     <template v-slot:created> </template>
                 </ContentLayout>
 
