@@ -101,7 +101,7 @@ export const PersonalForms = reactive([
         label: "Contrat",
         type: "file",
         placeholder: "contrat",
-        name: "contract",
+        name: "contrat",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
