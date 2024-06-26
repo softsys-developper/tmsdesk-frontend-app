@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Toaster from "@/components/ui/toast/Toaster.vue";
-import { onMounted, onUnmounted, ref } from "vue";
+import { onActivated, onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute()
@@ -43,7 +43,9 @@ onUnmounted(() => {
 
 
 
-
+onActivated(() => {
+  window.scrollTo(0, 0);
+})
 onMounted(() => {
   // Définir le défilement à 0
   window.scrollTo(0, 0);

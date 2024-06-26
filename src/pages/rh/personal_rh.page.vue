@@ -25,9 +25,9 @@
             </ContentLayout>
 
             <Table v-if="useDataStore().Personals.length != 0" :dataTables="useDataStore().Personals"
-               :MenuActions="MenuClientActions" :display="PersonalTables" />
+               :MenuActions="MenuPersonalActions" :display="PersonalTables" />
 
-            <PageLoader :loading="state.loading" :data="useDataStore().Personals" name="Aucun Paid" />
+            <PageLoader :loading="setPersonal.loading" :data="useDataStore().Personals" name="Aucun Paid" />
          </section>
       </template>
    </BaseLayout>
@@ -36,8 +36,8 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuClientActions } from '@/routes/actions.route';
-import { onMounted, reactive } from 'vue';
+import { MenuPersonalActions } from '@/routes/actions.route';
+import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { PersonalTables } from '@/tables/personal.table';
@@ -46,12 +46,7 @@ import { useUpdateStore } from '@/stores/update.store';
 import DeleteLayout from '@/layouts/delete.layout.vue';
 // import PersonalModal from '@/components/modals/personal.modal.vue';
 
-
-const state = reactive({
-   loading: false,
-});
-
-const { PersonalDelete, FindPersonalAll } = usePersonalHook()
+const { PersonalDelete, FindPersonalAll, setPersonal } = usePersonalHook()
 
 onMounted(() => {
    FindPersonalAll();

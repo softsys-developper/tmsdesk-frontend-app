@@ -52,12 +52,12 @@ export const MenuProformaActions = [
       icon: 'ri-eye-line',
       route: 'PROFORMA_LIST',
    },
-   {
-      id: 'MUA_validate',
-      name: 'Validé',
-      icon: 'ri-check-line',
-      route: 'PROFORMA_LIST',
-   },
+   // {
+   //    id: 'MUA_validate',
+   //    name: 'Validé',
+   //    icon: 'ri-check-line',
+   //    route: 'PROFORMA_LIST',
+   // },
    {
       id: 'MUA_BC',
       name: 'Ajouter N. BC',
@@ -97,6 +97,26 @@ export const MenuRapportActions = [
       name: 'Voir les échanges',
       icon: 'ri-message-line',
       route: 'CRM_RAPPORTS',
+   },
+];
+export const MenuNBCActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'PROFORMA_NBC_LIST',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'PROFORMA_NBC_LIST',
+   },
+   {
+      id: 'MUA_detail',
+      name: 'Voir la proforma',
+      icon: 'ri-message-line',
+      route: 'PROFORMA_NBC_LIST',
    },
 ];
 
@@ -168,17 +188,17 @@ export const MenuSalaryActions = [
    // {
    //    id: 'MUA_details',
    //    name: 'Voir les details',
-   //    icon: 'ri-delete-bin-3-line',
+   //    icon: 'ri-eye-line',
    //    route: 'HUMAINES_SALAIRE',
    // },
 ];
 export const MenuPaidActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'RH_SALAIRE_PAID',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'RH_SALAIRE_PAID',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
@@ -188,7 +208,7 @@ export const MenuPaidActions = [
    // {
    //    id: 'MUA_details',
    //    name: 'Voir les details',
-   //    icon: 'ri-delete-bin-3-line',
+   //    icon: 'ri-eye-line',
    //    route: 'HUMAINES_SALAIRE',
    // },
 ];
@@ -230,15 +250,165 @@ export const MenuFactureClientActions = [
       id: 'MUA_modify',
       name: 'Modifier',
       icon: 'ri-refresh-line',
-      route: 'CRM_CLIENTS',
+      route: 'COMPTA_FACTURE',
    },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
       icon: 'ri-delete-bin-3-line',
-      route: 'CRM_CLIENTS',
+      route: 'COMPTA_FACTURE',
+   },
+   {
+      id: 'MUA_details',
+      name: 'Voir les details',
+      icon: 'ri-eye-line',
+      route: 'COMPTA_FACTURE',
+   },
+   {
+      id: 'MUA_transactions',
+      name: 'voir les versements',
+      icon: 'ri-funds-box-line',
+      route: 'COMPTA_FACTURE',
    },
 ];
+
+export const MenuFacturePaidClientActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'COMPTA_FACTURE_PAID',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'COMPTA_FACTURE_PAID',
+   },
+   // {
+   //    id: 'MUA_details',
+   //    name: 'Voir les details',
+   //    icon: 'ri-eye-line',
+   //    route: 'COMPTA_FACTURE',
+   // },
+];
+
+
+
+export const MenuDepenseActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'COMPTA_DEPENSE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'COMPTA_DEPENSE',
+   },
+];
+
+export const MenuCompteActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'COMPTA_COMPTE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'COMPTA_COMPTE',
+   },
+];
+export const MenuCompteTransactionActions = [
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_COMPTE',
+   // },
+   // {
+   //    id: 'MUA_delete',
+   //    name: 'Supprimer',
+   //    icon: 'ri-delete-bin-3-line',
+   //    route: 'COMPTA_COMPTE',
+   // },
+];
+
+
+// Logistique
+export const MenuProductActions = [
+    {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'COMPTA_COMPTE',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'COMPTA_COMPTE',
+   },
+]
+export const MenuLivraisonActions = [
+   {
+     id: 'MUA_modify',
+     name: 'Modifier',
+     icon: 'ri-refresh-line',
+     route: 'LOGISC_LIVRAISONS',
+  },
+  {
+     id: 'MUA_delete',
+     name: 'Supprimer',
+     icon: 'ri-delete-bin-3-line',
+     route: 'LOGISC_LIVRAISONS',
+  },
+  {
+   id: 'MUA_details',
+   name: 'Voir les details',
+   icon: 'ri-eye-line',
+   route: 'LOGISC_LIVRAISONS',
+},
+{
+   id: 'MUA_livraison',
+   name: 'Voir le bon de livraison',
+   icon: 'ri-article-line',
+   route: 'LOGISC_LIVRAISONS',
+},
+]
+
+
+export const MenuBCFournisseurActions = [
+//    {
+//      id: 'MUA_modify',
+//      name: 'Modifier',
+//      icon: 'ri-refresh-line',
+//      route: 'LOGISC_LIVRAISONS',
+//   },
+  {
+     id: 'MUA_delete',
+     name: 'Supprimer',
+     icon: 'ri-delete-bin-3-line',
+     route: 'LOGISC_LIVRAISONS',
+  },
+//   {
+//    id: 'MUA_details',
+//    name: 'Voir les details',
+//    icon: 'ri-eye-line',
+//    route: 'LOGISC_LIVRAISONS',
+// },
+// {
+//    id: 'MUA_livraison',
+//    name: 'Voir le bon de livraison',
+//    icon: 'ri-article-line',
+//    route: 'LOGISC_LIVRAISONS',
+// },
+]
 
 
 
@@ -291,14 +461,27 @@ export const MenuDAActions = [
       id: 'MUA_modify',
       name: 'Modifier',
       icon: 'ri-refresh-line',
-      route: 'SYSTEM_CATEGORY',
+      route: 'SYSTEM_DA',
    },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
       icon: 'ri-delete-bin-3-line',
-      route: 'SYSTEM_CATEGORY',
+      route: 'SYSTEM_DA',
    },
 ];
-
+export const MenuUserActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SETTING_USER',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SETTING_USER',
+   },
+];
 

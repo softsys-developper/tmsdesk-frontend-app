@@ -69,25 +69,25 @@ export const useDeviseHook = () => {
                });
             }
          })
-         .catch((err) => {
-            setDevise.loadingCreate = false;
-            if (err) {
-               const isErr = Object.keys(err.response.data.errors);
-               if (isErr) {
-                  toast({
-                     title: isErr[0],
-                     variant: "destructive",
-                     description: err.response.data.errors[isErr[0]][0],
-                  });
-               } else {
-                  toast({
-                     title: 'error',
-                     variant: "destructive",
-                     description: err.response.data.message,
-                  });
-               }
-            }
-         });
+         // .catch((err) => {
+         //    setDevise.loadingCreate = false;
+         //    if (err) {
+         //       const isErr = Object.keys(err.response.data.errors);
+         //       if (isErr) {
+         //          toast({
+         //             title: isErr[0],
+         //             variant: "destructive",
+         //             description: err.response.data.errors[isErr[0]][0],
+         //          });
+         //       } else {
+         //          toast({
+         //             title: 'error',
+         //             variant: "destructive",
+         //             description: err.response.data.message,
+         //          });
+         //       }
+         //    }
+         // });
 
       return { data: DataCreated }
    };

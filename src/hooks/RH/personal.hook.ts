@@ -11,7 +11,7 @@ import { useUpdateStore } from "@/stores/update.store";
 import { setService } from "@/services/set.services";
 
 export const usePersonalHook = () => {
-  const { readData, createData} = useApiServices();
+  const { readData, createData } = useApiServices();
   const { EmptyFields } = useUtilHook();
   const setPersonal = reactive({
     loading: false,
@@ -41,7 +41,6 @@ export const usePersonalHook = () => {
     }));
   };
 
-
   const formatPersonalUserData = (Personals: any) => {
     return Personals.map((Personal: any) => ({
       id: Personal.id,
@@ -62,7 +61,7 @@ export const usePersonalHook = () => {
     readData(API_URL.USER_LIST)
       .then((data: any) => {
         useDataStore().Personals = formatPersonalData(data.datas);
-        useDataStore().Users = formatPersonalUserData(data.datas)
+        useDataStore().Users = formatPersonalUserData(data.datas);
         setPersonal.loading = false;
       })
       .catch(() => {
@@ -74,7 +73,7 @@ export const usePersonalHook = () => {
   const FindPersonalOne = () => {};
 
   //
-  const CreatePersonal = async (values: any) => {
+  const CreatePersonal = async (values: any, queryId?: any, route?: any, router?:any) => {
     setPersonal.loadingCreate = true;
     const DataCreated = await createData(API_URL.USER_CREATE, values)
       .then((data: any) => {
@@ -83,11 +82,26 @@ export const usePersonalHook = () => {
           setPersonal.loadingCreate = false;
           let Personals = useDataStore().Personals;
 
-          //
-          const toAdd: [] = formatPersonalData([data.data]);
-          Personals.unshift(...toAdd);
-          useDataStore().Personals = Personals;
-          useModalStore().open = false;
+          if (!queryId) {
+            //
+            const toAdd: [] = formatPersonalData([data.data]);
+            Personals.unshift(...toAdd);
+            useDataStore().Personals = Personals;
+            useModalStore().open = false;
+          } else {
+            const isPersonal: any = useDataStore().Proformas.map((el: any) => {
+              console.log(el.id == route.query.id);
+              if (el.id == route.query.id) {
+                el = formatPersonalData(data.data);
+              }
+              return {
+                ...el,
+              };
+            });
+
+            useDataStore().Personals = isPersonal;
+          }
+          router.push({ name: "RH_PERSONAL" });
 
           toast({
             title: "Enregistré",
@@ -122,9 +136,9 @@ export const usePersonalHook = () => {
     setService(
       setPersonal,
       useDataStore(),
-      'Personals',
+      "Personals",
       formatPersonalData
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    ).SetUpdate(API_URL.USER_UPDATE, id, values);
   };
 
   //
@@ -132,9 +146,9 @@ export const usePersonalHook = () => {
     setService(
       setPersonal,
       useDataStore(),
-      'Personals',
+      "Personals",
       formatPersonalData
-    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    ).SetDelete(API_URL.USER_REMOVE, id);
   };
 
   return {

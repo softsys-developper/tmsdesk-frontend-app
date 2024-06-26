@@ -31,7 +31,7 @@ import PageLoader from '@/components/loaders/page.loader.vue';
 import { MarqueTables } from '@/tables/marque.tables';
 import { useMarqueHook } from '@/hooks/SYSTEME/marque.hook.ts';
 import { useUpdateStore } from '@/stores/update.store';
-import MarqueModal from '@/components/modals/systemes/marque.modal.vue';
+import MarqueModal from '@/components/modals/SYSTEME/marque.modal.vue';
 import DeleteLayout from '@/layouts/delete.layout.vue';
 
 const { FindMarqueAll, storeMarques, MarqueDelete, setMarque } = useMarqueHook();

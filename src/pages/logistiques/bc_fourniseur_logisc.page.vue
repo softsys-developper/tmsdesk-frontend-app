@@ -2,23 +2,20 @@
    <BaseLayout>
       <template v-slot:content>
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-            <ContentLayout title="COMPTABILITES | Bon de commandes">
-               <template v-slot:created> 
-                  <Bc_fournisseurModal name="Nouveau BC" title="Ajouter un nouveau BC" />
+            <ContentLayout title="Logistique | Bon de commandes">
+               <template v-slot:created>
+                  <DeleteLayout :funDelete="FindBCFournisseurDelete" :id="useUpdateStore().isDelete.id" />
+                  <RouterLink :to="{ name: 'PROFORMA_ADD' }"
+                     class="bg-orange-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                     <i class="ri-add-line text-sm"></i>
+                     <span class="hidden lg:flex">Nouveau BDC</span>
+                  </RouterLink>
                </template>
             </ContentLayout>
-            <Table
-               v-if="storeBCs.length != 0"
-               :dataTables="storeBCs"
-               :MenuActions="MenuClientActions"
-               :display="BCTables"
-            />
+            <Table v-if="storeBCFournisseurs.length != 0" :dataTables="storeBCFournisseurs"
+               :MenuActions="MenuBCFournisseurActions" :display="BCFournisseurTables" />
 
-            <PageLoader
-               :loading="setBC.loading"
-               :data="storeBCs"
-               name="Aucune BCs"
-            />
+            <PageLoader :loading="setBCFournisseur.loading" :data="storeBCFournisseurs" name="Aucune BCFournisseurs" />
          </section>
       </template>
    </BaseLayout>
@@ -27,17 +24,18 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuBCFournisseurActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
-import { BCTables } from '@/tables/bc.tables';
-import { useBCHook } from '@/hooks/comptabilites/bc.hook.ts';
-import Bc_fournisseurModal from '@/components/modals/bc_fournisseur.modal.vue';
+import { BCFournisseurTables } from '@/tables/LOGISTIQUE/bc_fournisseur.tables';
+import { useBCFournisseurHook } from '@/hooks/LOGISTIQUE/bc_fournisseur.hook.ts';
+import DeleteLayout from '@/layouts/delete.layout.vue';
+import { useUpdateStore } from '@/stores/update.store';
 
-const { FindBCAll, storeBCs, setBC } = useBCHook();
+const { FindBCFournisseurAll, storeBCFournisseurs, FindBCFournisseurDelete, setBCFournisseur } = useBCFournisseurHook();
 
 onMounted(() => {
-   FindBCAll();
+   FindBCFournisseurAll();
 });
 </script>
 <style lang="scss" scoped></style>

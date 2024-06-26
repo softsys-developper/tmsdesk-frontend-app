@@ -22,13 +22,13 @@ export const useCongeHook = () => {
   stateConges.value = useDataStore().Conges;
   const { toast } = useToast();
 
-  const Personals = (Conge: any): any => useDataStore().Personals.find((els: any) => els.id == Conge.user_id)
+
 
   const formatCongeData = (Conges: any) => {
     return Conges.map((Conge: any) => ({
       id: Conge.id,
       libelle: Conge.libelle,
-      employe: Personals(Conge)?.name,
+      employe: Conge.user?.nom,
       type: Conge.type,
       motif: Conge.motif,
       date_depart: Conge.date_depart,

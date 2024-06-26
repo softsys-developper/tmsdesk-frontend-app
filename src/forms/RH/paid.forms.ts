@@ -7,14 +7,14 @@ export const PaidForms = [
         value: "",
         select: [],
     },
-    {
-        label: "Désignation",
-        type: "text",
-        placeholder: "",
-        name: "designation",
-        value: "",
-        select: [],
-    },
+    // {
+    //     label: "Désignation",
+    //     type: "text",
+    //     placeholder: "",
+    //     name: "designation",
+    //     value: "",
+    //     select: [],
+    // },
     {
         label: "Employé",
         type: "text",
@@ -26,7 +26,7 @@ export const PaidForms = [
     {
         label: "Mode de paiement",
         type: "text",
-        placeholder: "Nom du role",
+        placeholder: "Mode de paiement",
         name: "mode_paiement",
         value: "",
         select: [{

@@ -1,9 +1,9 @@
 export const CategorieForms = [
     {
-      label: "Nom du role",
+      label: "Libelle categorie",
       type: "text",
-      placeholder: "Nom du role",
-      name: "name",
+      placeholder: "Voitures",
+      name: "libelle",
       value: "",
       select: [],
     },

@@ -7,7 +7,7 @@ export const FactureTables = [
       bgColor: null,
    },
     {
-       label: 'Numéro de proforma',
+       label: 'Numéro de facture',
        field: 'numero_facture',
        status: null,
        color: null,

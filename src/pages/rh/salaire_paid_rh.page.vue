@@ -14,7 +14,7 @@
             </ContentLayout>
 
             <Table v-if="useDataStore().Paids.length != 0" :dataTables="useDataStore().Paids"
-               :MenuActions="MenuClientActions" :display="PaidTables" />
+               :MenuActions="MenuPaidActions" :display="PaidTables" />
 
             <PageLoader :loading="setPaid.loading" :data="useDataStore().Paids" name="Aucun Paid" />
          </section>
@@ -25,7 +25,7 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuPaidActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import { useDataStore } from '@/stores/data.store';
 import PageLoader from '@/components/loaders/page.loader.vue';

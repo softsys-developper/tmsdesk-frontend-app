@@ -6,6 +6,7 @@ import { useDataStore } from './../../stores/data.store';
 // import { LIST_DEPENSE } from '@/types/depense.type';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
+import { setService } from '@/services/set.services';
 
 export const useDepenseHook = () => {
    const { readData, createData } = useApiServices();
@@ -17,6 +18,7 @@ export const useDepenseHook = () => {
 
    const formatDepenseData = (depenses: any) => {
       return depenses.map((depense: any) => ({
+         id: depense.id,
          numero_bon_de_caisse: depense.numero_bon_de_caisse,
          designation: depense.designation,
          recepteur: depense.recepteur,
@@ -94,20 +96,34 @@ export const useDepenseHook = () => {
          return {data: DataCreated}
    };
 
-   //
-   const FindDepenseUpdate = () => {};
+     //
+  const DepenseUpdate = (id: any, values: any) => {
+   setService(
+     setDepense,
+     useDataStore(),
+     'Depenses',
+     formatDepenseData
+   ).SetUpdate(API_URL.CAISSE_TRANSACTION_UPDATE, id, values);
+ };
 
-   //
-   const FindDepenseDelete = () => {};
+ //
+ const DepenseDelete = (id: any) => {
+   setService(
+     setDepense,
+     useDataStore(),
+     'Depenses',
+     formatDepenseData
+   ).SetDelete(API_URL.CAISSE_TRANSACTION_REMOVE, id);
+ };
 
-   return {
-      FindDepenseAll,
-      FindDepenseOne,
-      CreateDepense,
-      FindDepenseUpdate,
-      FindDepenseDelete,
-      stateDepenses,
-      setDepense,
-      storeDepenses
-   };
+ return {
+   FindDepenseAll,
+   FindDepenseOne,
+   CreateDepense,
+   DepenseUpdate,
+   DepenseDelete,
+   stateDepenses,
+   setDepense,
+   storeDepenses,
+ };
 };

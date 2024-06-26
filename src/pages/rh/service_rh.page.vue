@@ -12,7 +12,7 @@
             <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="ServiceDelete"></DeleteLayout>
           </template>
         </ContentLayout>
-        <Table v-if="storeServices.length != 0" :dataTables="storeServices" :MenuActions="MenuClientActions"
+        <Table v-if="storeServices.length != 0" :dataTables="storeServices" :MenuActions="MenuDepartementActions"
           :display="ServiceTables" />
 
         <PageLoader :loading="setService.loading" :data="storeServices" name="Aucun service" />
@@ -24,7 +24,7 @@
 import Table from "./../../components/tables/table.vue";
 import BaseLayout from "./../../layouts/base.layout.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
-import { MenuClientActions } from "@/routes/actions.route";
+import { MenuDepartementActions } from "@/routes/actions.route";
 import { onMounted } from "vue";
 import PageLoader from "@/components/loaders/page.loader.vue";
 import { ServiceTables } from "@/tables/service.tables";

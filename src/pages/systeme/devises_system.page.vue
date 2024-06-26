@@ -31,7 +31,7 @@ import PageLoader from '@/components/loaders/page.loader.vue';
 import { DeviseTables } from '@/tables/devise.tables';
 import { useDeviseHook } from '@/hooks/SYSTEME/devise.hook.ts';
 import { useUpdateStore } from '@/stores/update.store';
-import DeviseModal from '@/components/modals/systemes/devise.modal.vue';
+import DeviseModal from '@/components/modals/SYSTEME/devise.modal.vue';
 import DeleteLayout from '@/layouts/delete.layout.vue';
 
 

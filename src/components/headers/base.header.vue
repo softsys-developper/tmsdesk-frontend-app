@@ -3,7 +3,7 @@
     <div class="h-16 bg-black">
       <!--  -->
       <div class="flex items-center w-11/12 m-auto h-full justify-between">
-        <div class=""></div>
+        <div class="lg:flex hidden"></div>
 
 
         <div class="flex items-center  cursor-pointer gap-2 ">

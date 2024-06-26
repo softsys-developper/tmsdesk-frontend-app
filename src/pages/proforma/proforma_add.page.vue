@@ -2,7 +2,7 @@
   <BaseLayout>
     <template v-slot:content>
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-        <ContentLayout title="Proforma | Creation ">
+        <ContentLayout :title="`Proforma | ${$route.query.id ? 'Modifier' : 'Création'}`">
           <template v-slot:created> </template>
         </ContentLayout>
 
@@ -24,11 +24,7 @@
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
                   <Label>Objet de la proforma </Label>
-                  <Input
-                    placeholder="N. Proforma"
-                    v-model="setInput.titre"
-                    name=""
-                  />
+                  <Input placeholder="N. Proforma" v-model="setInput.titre" name="" />
                 </div>
               </div>
             </div>
@@ -37,6 +33,7 @@
             <div class="">
               <div class="flex gap-4 w-full">
                 <div class="flex flex-col w-full gap-1">
+                  <!-- <SelectedForm :label="'Clients'" :select="ListOfPartners" n  /> -->
                   <Label> Clients </Label>
                   <Select v-model="Client" class="flex flex-col">
                     <SelectTrigger>
@@ -44,14 +41,9 @@
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel
-                          >Listes des clients & prospects</SelectLabel
-                        >
+                        <SelectLabel>Listes des clients & prospects</SelectLabel>
 
-                        <SelectItem
-                          v-for="pat in ListOfPartners"
-                          :value="pat.id"
-                        >
+                        <SelectItem v-for="pat in ListOfPartners" :value="pat.id">
                           {{ pat.nom }}
                         </SelectItem>
                       </SelectGroup>
@@ -59,7 +51,7 @@
                   </Select>
                 </div>
 
-                <div class="flex flex-col w-full gap-1">
+                <div class="flex-col w-full gap-1 hidden">
                   <Label> Devises </Label>
                   <Select class="flex flex-col" v-model="isDevise">
                     <SelectTrigger>
@@ -67,14 +59,9 @@
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel
-                          >Listes des clients & prospects</SelectLabel
-                        >
+                        <SelectLabel>Listes des clients & prospects</SelectLabel>
 
-                        <SelectItem
-                          v-for="devise in ListOfDevises"
-                          :value="JSON.stringify(devise)"
-                        >
+                        <SelectItem v-for="devise in ListOfDevises" :value="JSON.stringify(devise)">
                           {{ devise.nom_devise }}
                         </SelectItem>
                       </SelectGroup>
@@ -100,11 +87,9 @@
                 <div class="gap-2 pb-2">
                   <div>
                     <div
-                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4"
-                    >
+                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4">
                       <div class="flex justify-between">
-                        <span class="text-sm font-black"
-                          >Ajouter produit et services
+                        <span class="text-sm font-black">Ajouter produit et services
                         </span>
 
                         <!-- <i
@@ -114,54 +99,40 @@
                       </div>
 
                       <div class="flex flex-col gap-2">
-                        <Label>Objet de la proforma </Label>
-                        <Select v-model="ServiceToAdd.service">
-                          <SelectTrigger>
-                            <SelectValue
-                              placeholder="Listes des produits & services "
-                            />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectLabel
-                                >Listes des produits & services</SelectLabel
-                              >
-                              <SelectItem
-                                v-for="Prod in ListOfProduct"
-                                :value="JSON.stringify(Prod)"
-                              >
-                                {{ Prod.libelle }}
-                              </SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
+                        <div class="">
+                          <Label>Réference</Label>
+                          <Input placeholder="RFE025632" v-model="ServiceToAdd.reference" name="" />
+                        </div>
+
+                        <div class="">
+                          <Label>Description</Label>
+                          <Input placeholder="Creation de site web" v-model="ServiceToAdd.description" name="" />
+                        </div>
+
+                        <div class="">
+                          <Label>Unités</Label>
+                          <Input placeholder="Kg" v-model="ServiceToAdd.unite" name="" />
+                        </div>
+
+                        <div class="">
+                          <Label>Type</Label>
+                          <Input placeholder="Type" v-model="ServiceToAdd.type" name="" />
+                        </div>
 
                         <div class="flex flex-col gap-1">
                           <Label>Quantité </Label>
-                          <Input
-                            placeholder="Quantités"
-                            v-model="ServiceToAdd.quantite"
-                            name=""
-                          />
+                          <Input placeholder="Quantités" v-model="ServiceToAdd.quantite" name="" />
                         </div>
 
                         <div class="flex flex-col gap-1">
-                          <Label class=""> Prix du service </Label>
-                          <Input
-                            placeholder="Ex: 500.000 Fcfa"
-                            v-model="ServiceToAdd.price"
-                            name=""
-                          />
+                          <Label class=""> Prix Unitaire </Label>
+                          <Input placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire" name="" />
                         </div>
 
                         <div class="flex flex-col gap-1">
-                          <Label class=""> Prix du service </Label>
-                          <Textarea
-                            class="rounded-md text-sm p-2"
-                            placeholder="- Ajout de module"
-                            v-model="ServiceToAdd.description"
-                            name="description"
-                          />
+                          <Label class=""> Remarques </Label>
+                          <textarea cclass="rounded-md text-sm p-2" placeholder="- Ajout de module"
+                            v-model="ServiceToAdd.remarques" name="description" />
                         </div>
                       </div>
                     </div>
@@ -170,23 +141,25 @@
 
                 <div class="flex w-full m-auto">
                   <span class=""></span>
-                  <button
-                    :disabled="
-                      ServiceToAdd.service == '' && ServiceToAdd.quantite == 0
-                    "
-                    @click="AddServices(ServiceToAdd)"
-                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md"
-                  >
+                  <Button :disabled="ServiceToAdd.prix_unitaire == 0 ||
+                    ('' && ServiceToAdd.quantite == 0) ||
+                    ''
+                    ? true
+                    : false
+                    " @click="AddServices(ServiceToAdd)"
+                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md">
                     Ajouter
-                  </button>
+                  </Button>
                 </div>
               </div>
 
               <!--  -->
+
               <Table class="bg-orange-50/50 w-full">
                 <TableHeader class="bg-gray-800">
                   <TableRow>
-                    <TableHead>Désignations</TableHead>
+                    <TableHead>Reference</TableHead>
+                    <TableHead>Description</TableHead>
                     <TableHead class="w-[100px]"> Quantités </TableHead>
                     <TableHead class="">Prix Unitaire</TableHead>
                     <TableHead class="">Prix Total</TableHead>
@@ -194,18 +167,20 @@
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow
-                    v-for="(invoice, index) in ProductAndServices.filter(
-                      (el) => ParseJson(el.service)?.libelle
-                    )"
-                    :key="index"
-                  >
+                  <TableRow v-for="(invoice, index) in ProductAndServices" :key="index">
                     <TableCell>
                       <div class="">
                         <span class="flex flex-col gap-2">{{
-                          ParseJson(invoice.service).libelle
+                          invoice.reference
                         }}</span>
-                        <span v-html="invoice.description" class="whitespace-pre-line" ></span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <div class="">
+                        <span class="flex flex-col gap-2">{{
+                          invoice.description
+                        }}</span>
+                        <span v-html="invoice.remarques" class="whitespace-pre-line"></span>
                       </div>
                     </TableCell>
                     <TableCell class="font-medium">
@@ -213,33 +188,25 @@
                     </TableCell>
 
                     <TableCell class="font-medium">
-                      {{
-                        invoice.price
-                          ? invoice.price
-                          : ParseJson(invoice.service)?.prix_unitaire
-                      }}
+                      {{ invoice.prix_unitaire }}
                     </TableCell>
 
                     <TableCell class="font-medium">
                       {{
-                        (invoice.price
-                          ? invoice.price
-                          : ParseJson(invoice.service)?.prix_unitaire) * invoice?.quantite
+                        Number(invoice?.prix_unitaire) *
+                        Number(invoice?.quantite)
                       }}
                     </TableCell>
 
                     <TableCell class="text-right">
-                      <i
-                        class="ri-close-fill cursor-pointer"
-                        @click="DeleteServices(invoice.id)"
-                      ></i>
+                      <i class="ri-close-fill cursor-pointer" @click="DeleteServices(invoice.id)"></i>
                     </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
             </div>
 
-            <Table class="border-y-[1px]">
+            <Table class="border-y-[1px] hidden">
               <TableHeader class="">
                 <TableRow>
                   <TableHead class="w-[100px]"> </TableHead>
@@ -262,15 +229,11 @@
                     <!-- {{ isRemise != 0 ? isRemise : 0 }}% -->
                   </TableCell>
                   <TableCell class="text-right flex justify-end gap-1">
-                    
-                    <select
-                    @input="_isRemise"
-                      name=""
-                      id=""
-                      :disabled="_AmountHT == 0 ? true : false"
-                      class="w-6/12 text-2 text-xs rounded-md"
-                    >
-                      <option v-for="J in REMISE_LIST " :value="J"> {{J}}% </option>
+                    <select @input="_isRemise" name="" id="" :disabled="_AmountHT == 0 ? true : false"
+                      class="w-6/12 text-2 text-xs rounded-md">
+                      <option v-for="J in REMISE_LIST" :value="J">
+                        {{ J }}%
+                      </option>
                     </select>
                   </TableCell>
                 </TableRow>
@@ -282,20 +245,15 @@
                     <div class="flex items-center gap-1">
                       <span class=""> TVA{{ isTVA ? "(18%)" : null }}</span>
                       <span class="">
-                        <Button
-                          :disabled="_AmountHT == 0 ? true : false"
+                        <Button :disabled="_AmountHT == 0 ? true : false"
                           class="px-2 py-[2px] text-white font-bold text-xs rounded-md"
-                          :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'"
-                          @click="_isTVA"
-                        >
+                          :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'" @click="_isTVA">
                           {{ isTVA ? "Retirer" : "Appliquer" }}
                         </Button>
                       </span>
                     </div>
                   </TableCell>
 
-               
-                 
                   <TableCell class="text-right w-[100px]">
                     {{ _AmountTVA }}
                     {{
@@ -306,16 +264,16 @@
                   </TableCell>
                 </TableRow>
 
-                 <!-- New -->
-                 <TableRow>
+                <!-- New -->
+                <TableRow>
                   <TableCell class="font-medium"> </TableCell>
                   <TableCell class="text-right">
                     <label for="proforma_marge_commerciale">Marge commercial</label>
-                    
                   </TableCell>
                   <TableCell class="text-right flex justify-end gap-1">
-                    
-                  <input  type="checkbox" id="proforma_marge_commerciale" @change="MargeCommercial($event)" name="marge_commerciale"  class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary" >
+                    <input type="checkbox" id="proforma_marge_commerciale" @change="MargeCommercial($event)"
+                      name="marge_commerciale"
+                      class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary" />
                   </TableCell>
                 </TableRow>
 
@@ -337,15 +295,86 @@
               </TableBody>
             </Table>
 
+            <!-- Flex -->
+            <div class="mt-8 flex sm:justify-end">
+              <div class="w-full text-base max-w-2xl sm:text-end space-y-2">
+                <!-- Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
+                  <dl class="grid sm:grid-cols-5 gap-x-3">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      TOTAL HT:
+                    </dt>
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                      {{ AmountHT }} {{ _AmountHT }}
+                    </dd>
+                  </dl>
+
+                  <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      <span class=""> TVA{{ isTVA ? "(18%)" : null }}:</span>
+                    </dt>
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                      <Button :disabled="_AmountHT == 0 ? true : false"
+                        class="px-2 text-white font-bold text-xs rounded-md"
+                        :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'" @click="_isTVA">
+                        {{ isTVA ? "Retirer" : "Appliquer" }}
+                      </Button>
+                    </dd>
+                  </dl>
+
+                  <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      REMISE:
+                    </dt>
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                      <select @input="_isRemise" name="" id="" :disabled="_AmountHT == 0 ? true : false"
+                        class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2">
+                        <option v-for="J in REMISE_LIST" :value="J">
+                          {{ J }}%
+                        </option>
+                      </select>
+                    </dd>
+                  </dl>
+
+                  <dl class="grid sm:grid-cols-5 gap-x-3  justify-between">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      Marge Commerciale:
+                    </dt>
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                      <div class="flex justify-end">
+                        <input type="checkbox" id="proforma_marge_commerciale" @change="MargeCommercial($event)"
+                          name="marge_commerciale"
+                          class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary" />
+                      </div>
+                    </dd>
+                  </dl>
+
+                  <dl class="grid sm:grid-cols-5 gap-x-3">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      TotalTTC:
+                    </dt>
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
+                      {{ AmountHT }} {{ _AmountHT }}
+                    </dd>
+                  </dl>
+                </div>
+                <!-- End Grid -->
+              </div>
+            </div>
+            <!-- End Flex -->
+
             <div class="p-8 flex justify-between w-full">
               <span class=""></span>
-              <button
-                @click="sendProformaToBackend"
-                class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
-                :disabled="loadingProforma"
-              >
+              <button @click="sendProformaToBackend" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
+                :disabled="loadingProforma">
                 <SpinnerLoader size="w-6 h-6" v-if="loadingProforma" />
-                <span class="" v-else>Crée la proforma</span>
+                <span class="" v-else>
+                  {{
+                    !route.query.id
+                      ? "Créer la proforma"
+                      : "Modification Proforma"
+                  }}
+                </span>
               </button>
             </div>
           </div>
@@ -388,7 +417,7 @@ import axios from "axios";
 import { useToast } from "@/components/ui/toast/use-toast";
 const { toast } = useToast();
 
-const { readData } = useApiServices();
+const { readData, showData } = useApiServices();
 const state = reactive({
   loading: false,
 });
@@ -410,8 +439,37 @@ interface PRODUCTS {
 const ListOfPartners = ref<PARTNERS[]>([]);
 const ListOfProduct = ref<PRODUCTS[]>([]);
 
+const route = useRoute();
 
-const REMISE_LIST = [1, 2, 3, 4, 5, ,5, 6, 7, 8, 9,8, 9, 10, 10, 11, 12, 13, 14, 15, 15, 16, 17, 18, 19, 20]
+const REMISE_LIST = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  ,
+  5,
+  6,
+  7,
+  8,
+  9,
+  8,
+  9,
+  10,
+  15,
+  20,
+  25,
+  30,
+  35,
+  40,
+  45,
+  50,
+  55,
+  60,
+  65,
+  70,
+];
 
 const FindAllClient = () => {
   state.loading = true;
@@ -426,11 +484,10 @@ const FindAllClient = () => {
     });
 };
 
-
 const MargeCommercial = (e: Event) => {
   const checkbox = e.target as HTMLInputElement;
-  setInput.marge_commerciale = checkbox.checked ? true : false
-}
+  setInput.marge_commerciale = checkbox.checked ? true : false;
+};
 
 const FindAllService = () => {
   state.loading = true;
@@ -475,10 +532,13 @@ const FindAllDevises = () => {
 
 const ServiceToAdd = ref({
   id: 0,
-  quantite: 1,
-  service: "",
-  price: 0,
+  reference: "",
   description: "",
+  type: "",
+  unite: "",
+  quantite: 1,
+  prix_unitaire: 0,
+  remarques: "",
 });
 
 const ProductAndServices = ref<any[]>([]);
@@ -494,7 +554,6 @@ const Client = ref<any>();
 // Function oiur calculer la remise
 const _isRemise = (e: Event) => {
   const input = e.target as HTMLInputElement;
-  // isRemise.value = (Number(input.value) / _AmountHT.value) * 100 ;
   isRemise.value = Number(input.value);
 };
 
@@ -512,7 +571,7 @@ const AmountHT = computed(() => {
   _AmountHT.value = 0;
   if (ProductAndServices.value) {
     ProductAndServices.value.forEach((HT) => {
-      const Price = HT.price ? HT.price : ParseJson(HT.service).prix_unitaire;
+      const Price = HT.prix_unitaire;
 
       if (Price != undefined) {
         _AmountHT.value = _AmountHT.value + Number(Price) * Number(HT.quantite);
@@ -522,13 +581,7 @@ const AmountHT = computed(() => {
 
     if (isRemise.value || _AmountTVA.value) {
       _AmountTTC.value =
-        _AmountHT.value * (1 - isRemise.value / 100) +
-          _AmountTVA.value;
-      // _AmountTTC.value =
-      //   _AmountHT.value -
-      //   (_AmountHT.value * isRemise.value) / 100 +
-      //   _AmountTVA.value;
-
+        _AmountHT.value * (1 - isRemise.value / 100) + _AmountTVA.value;
       _AmountTTC.value = Number(_AmountTTC.value.toFixed(2));
     }
   }
@@ -536,28 +589,52 @@ const AmountHT = computed(() => {
 
 const setInput = reactive(<any>{
   titre: "",
-  date_validite: Date.now(),
-  date_emission: new Date().toISOString().substring(0, 10),
-  entreprise: "Mon Entreprise",
-  fichier: [],
-  montant_bon_de_comande: "",
-  description: "",
-  marge_commerciale: false
+  marge_commerciale: false,
 });
+
+const FindAllProforma = () => {
+  if (route.query.id) {
+    showData(API_URL.PROFORMA_DETAILS, "/" + route.query.id).then((data) => {
+      const ShowProforma: PROFORMA = data.data;
+      setInput.titre = ShowProforma.titre;
+      setInput.date_validite = ShowProforma.date_validite;
+      Client.value = ShowProforma.user_id;
+      ProductAndServices.value.push(
+        ...ShowProforma.produit_services.map((service) => ({
+          id: ProductAndServices.value.length + 1,
+          quantite: service.pivot.quantite,
+          prix_unitaire: service.pivot.prix_unitaire,
+          montant: service.pivot.prix_unitaire,
+          description: service.description,
+          remarques: service.remarques,
+          unite: service.unite,
+          type: service.type,
+          reference: service.reference
+        }))
+      );
+    });
+  }
+};
 
 const AddServices = (service: any) => {
   ProductAndServices.value.push({
     id: ProductAndServices.value.length + 1,
-    quantite: service.quantite,
-    service: service.service,
-    price: service.price,
+    reference: service.reference,
     description: service.description,
+    unite: service.unite,
+    type: service.type,
+    quantite: service.quantite,
+    prix_unitaire: service.prix_unitaire,
+    remarques: service.remarques,
   });
 
   service.quantite = "";
   service.service = "";
-  service.price = "";
+  service.prix_unitaire = "";
   service.description = "";
+  service.remarques = "";
+  service.type = "";
+  service.unite = "";
 };
 
 const DeleteServices = (id: number) => {
@@ -567,65 +644,40 @@ const DeleteServices = (id: number) => {
 };
 
 import { z } from "zod";
+import { useRoute, useRouter } from "vue-router";
+import { PROFORMA } from "@/types/CRM/proforma.type";
+import Button from "@/components/ui/button/Button.vue";
+import { useProformaHook } from "@/hooks/CRM/proforma.hook";
 
 const proformaSchema = z.object({
   client: z.number().min(1, "Le champ client est requis."),
   titre: z.string().min(1, "Le champ titre est requis."),
-  produitsServices: z.array(
-    z.object({
-      ID_ProduitService: z.number(),
-    })
-  ),
-  quantites: z.any(),
-  // date_validite: z.string().min(1, "La date de validité est requise."),
-  devise_client: z.number().min(1, "La devise du client est requise."),
+  produitsServices: z.string().min(10, { message: 'Ajoutez un ou plusieurs services' }),
 });
 
 // Create new Proforma
 const loadingProforma = ref(false);
+const router = useRouter();
+
+const { formatProformaData } = useProformaHook()
+
 const sendProformaToBackend = async () => {
   try {
     loadingProforma.value = true;
-    const PS = ProductAndServices.value.filter(
-      (el) => ParseJson(el.service)?.libelle
-    );
 
     const proformaData = {
       client: Client.value,
       titre: setInput.titre,
-      date_validite: setInput.date_validite,
-      produitsServices: PS.map((ps) => ({
-        ID_ProduitService: ParseJson(ps.service).id,
-      })),
-      prix_unitaires: PS.map((ps) => ps.price ? ps.price : ParseJson(ps.service).prix_unitaire),
-      descriptions: PS.map((ps) => ps.description),
-      quantites: PS.map((ps) => ps.quantite),
+      produitsServices: JSON.stringify(ProductAndServices.value),
       tva: _AmountTVA.value == 0 ? 0 : 18,
       remise_pourcentage: isRemise.value,
       devise_client: ParseJson(isDevise.value)?.id,
-      marge_commerciale: setInput.marge_commerciale
+      marge_commerciale: setInput.marge_commerciale,
     };
 
-    // const dataProforma = new FormData();
-
-    // Object.entries(proformaData).forEach(([key, value]) => {
-    //   if (Array.isArray(value) || typeof value === "object") {
-    //     dataProforma.append(key, JSON.stringify(value));
-    //   } else {
-    //     dataProforma.append(key, value);
-    //   }
-    // });
-    // if (setInput.fichier && Array.isArray(setInput.fichier)) {
-    //   for (let i = 0; i < setInput.fichier.length; i++) {
-    //     const el = setInput.fichier[i];
-    //     dataProforma.append("fichier", el);
-    //   }
-    // }
-
     proformaSchema.parse(proformaData);
-
-    const { data } = await axios.post(
-      `${API_URL.PROFORMA_CREATE}`,
+    const { data } = await axios.post( !route.query.id ?
+      `${API_URL.PROFORMA_CREATE}` : `${API_URL.PROFORMA_UPDATE}/${route.query.id}`,
       proformaData
     );
 
@@ -636,23 +688,50 @@ const sendProformaToBackend = async () => {
         title: "Proforma",
         description: responseData.message,
       });
-      const Keys = Object.keys(setInput)
-      Keys.forEach((el:any) => {
-        setInput[el] = ''
-      })
+
+      const Keys = Object.keys(setInput);
+      Keys.forEach((el: any) => {
+        setInput[el] = "";
+      });
+
+
+      if (!route.query.id) {
+        useDataStore().Proformas.unshift(...formatProformaData([data.data]))
+        router.push({ name: "PROFORMA_LIST" });
+
+      } else {
+        const isProforma: any = useDataStore().Proformas.map((el: any) => {
+          console.log(el.id == route.query.id)
+          if (el.id == route.query.id) {
+            el = formatProformaData([data.data]);
+          }
+          return {
+            ...el
+          }
+        });
+
+        useDataStore().Proformas = isProforma
+        router.push({ name: "PROFORMA_LIST" });
+      }
+      
+
     }
   } catch (error: any) {
     loadingProforma.value = false;
     if (!error?.errors) {
       const isErr = Object.keys(error.response.data.errors);
-      console.log(error.response.data.errors, isErr);
+
       toast({
         title: isErr[0],
+        variant: 'destructive',
         description: error.response.data.errors[isErr[0]][0],
       });
+
+
     } else {
       toast({
         title: error.errors[0].path[0],
+        variant: 'destructive',
         description: error.errors[0].message,
       });
     }
@@ -663,6 +742,7 @@ onMounted(() => {
   FindAllClient();
   FindAllService();
   FindAllDevises();
+  FindAllProforma();
 });
 </script>
 <style lang="scss" scoped></style>

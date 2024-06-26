@@ -15,8 +15,13 @@ export const routeLogisc = {
          path: 'bon_de_commande',
          children: [
             {
-               path: 'partenaires',
+               path: 'fourniseur',
                name: 'LOGISC_BC_PARTENAIRES',
+               component: Bc_fourniseur_logiscPage,
+            },
+            {
+               path: 'fourniseur',
+               name: 'LOGISC_BC_PARTENAIRES_ADD',
                component: Bc_fourniseur_logiscPage,
             },
             {
@@ -30,6 +35,19 @@ export const routeLogisc = {
       path: 'livraisons',
       name: 'LOGISC_LIVRAISONS',
       component: () => import('@/pages/logistiques/livraison_logic.page.vue'),
+      children: [],
+   },
+   {
+      path: 'livraisons/add',
+      name: 'LOGISC_LIVRAISONS_ADD',
+      component: () => import('@/pages/logistiques/livraison_add_logic.page.vue'),
+      children: [],
+   },
+
+   {
+      path: 'livraisons/bon-de-livraison',
+      name: 'LOGISC_LIVRAISONS_BL',
+      component: () => import('@/pages/logistiques/livraison_bl_logic.page.vue'),
       children: [],
    },
    ],

@@ -23,6 +23,7 @@ export const usePaidHook = () => {
       fullname: Paid?.user?.nom,
       montant_paye: Paid.montant_paye,
       date_paiement: Paid.date_paiement,
+      designation: Paid.designation,
       
       // periode_1: Paid.periode_1,
       // periode_2: Paid.periode_2,

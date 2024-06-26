@@ -26,7 +26,6 @@
   const { CreateDevise, DeviseUpdate, setDevise } = useDeviseHook();
   
   const onSubmit = (e: any) => {
-    console.log(useUpdateStore().isUpdate)
     let values = new FormData(e.target);
     if (useUpdateStore().isUpdate.is) {
       DeviseUpdate(useUpdateStore().isUpdate.id, values);

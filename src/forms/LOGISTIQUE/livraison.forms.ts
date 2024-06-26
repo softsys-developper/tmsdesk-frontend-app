@@ -1,0 +1,51 @@
+export const LivraisonForms = [
+    {
+      label: "Site Livraison",
+      type: "text",
+      placeholder: "Libelle",
+      name: "site_livraison",
+      value: "",
+      select: [],
+    },
+    {
+      label: "Date depart",
+      type: "date",
+      placeholder: "Date depart",
+      name: "date_depart",
+      value: "",
+      select: [],
+    },
+    {
+        label: "Date retour",
+        type: "date",
+        placeholder: "Ex: Unil",
+        name: "date_retour",
+        value: "",
+        select: [],
+      },
+      {
+        label: "Moyen Livraison",
+        type: "text",
+        placeholder: "Moyen Livraison",
+        name: "moyen_livraison",
+        value: "",
+        select: [],
+      },
+      {
+        label: "Agent Livraison",
+        type: "text",
+        placeholder: "Agent Livraison",
+        name: "agent_livraison",
+        value: "",
+        select: [],
+      },
+      {
+        label: "Chaffeur",
+        type: "text",
+        placeholder: "Ex: Unil",
+        name: "chaffeur",
+        value: "",
+        select: [],
+      },
+  ];
+  

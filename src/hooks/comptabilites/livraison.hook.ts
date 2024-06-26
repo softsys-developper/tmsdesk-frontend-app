@@ -6,6 +6,7 @@ import { useDataStore } from './../../stores/data.store';
 // import { LIST_DEPENSE } from '@/types/depense.type';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
+import { setService } from '@/services/set.services';
 
 export const useLivraisonHook = () => {
    const { readData, createData } = useApiServices();
@@ -21,7 +22,7 @@ export const useLivraisonHook = () => {
          designation: depense.designation,
          recepteur: depense.recepteur,
          montant: depense.montant,
-         type_transaction: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${
+         type_transaction: `<p class="' py-1  capitalize flex min-w-max rounded-md  justify-center font-bold text-xs text-white ' ${
             depense.type_transaction !== 'entree' ? 'bg-red-500' : 'bg-green-500'
          }">${depense.type_transaction}</p>`,
          date_transaction: depense.date_transaction,
@@ -36,7 +37,7 @@ export const useLivraisonHook = () => {
    //
    const FindLivraisonAll = () => {
       setLivraison.loading = true;
-      readData(API_URL.CAISSE_TRANSACTION_LIST)
+      readData(API_URL.LIVRAISON_LIST)
          .then((data: any) => {
             useDataStore().Livraisons =  formatLivraisonData(data.datas);
             setLivraison.loading = false;
@@ -52,7 +53,7 @@ export const useLivraisonHook = () => {
    //
    const CreateLivraison = async(values: any) => {
       setLivraison.loadingCreate = true;
-      const DataCreated = await createData(API_URL.CAISSE_TRANSACTION_CREATE, values)
+      const DataCreated = await createData(API_URL.LIVRAISON_CREATE, values)
          .then((data: any) => {
             if (data) {
                EmptyFields(values); // Vider les champs
@@ -94,20 +95,34 @@ export const useLivraisonHook = () => {
          return {data: DataCreated}
    };
 
-   //
-   const FindLivraisonUpdate = () => {};
-
-   //
-   const FindLivraisonDelete = () => {};
-
-   return {
+     //
+     const LivraisonUpdate = (id: any, values: any) => {
+      setService(
+        setLivraison,
+        useDataStore(),
+        'Livraisons',
+        formatLivraisonData
+      ).SetUpdate(API_URL.LIVRAISON_UPDATE, id, values);
+    };
+   
+    //
+    const LivraisonDelete = (id: any) => {
+      setService(
+        setLivraison,
+        useDataStore(),
+        'Livraisons',
+        formatLivraisonData
+      ).SetDelete(API_URL.LIVRAISON_REMOVE, id);
+    };
+   
+    return {
       FindLivraisonAll,
       FindLivraisonOne,
       CreateLivraison,
-      FindLivraisonUpdate,
-      FindLivraisonDelete,
+      LivraisonUpdate,
+      LivraisonDelete,
       stateLivraisons,
       setLivraison,
-      storeLivraisons
-   };
+      storeLivraisons,
+    };
 };

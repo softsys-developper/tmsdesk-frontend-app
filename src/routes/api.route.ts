@@ -30,6 +30,13 @@ export const API_URL = {
   USER_REMOVE: `${BASE_URL}/employes/delete`,
 
   // Gestion utilisateur (employé)
+  USER_SYSTEM_LIST: `${BASE_URL}/users`,
+  USER_SYSTEM_SHOW: `${BASE_URL}/users/show`,
+  USER_SYSTEM_CREATE: `${BASE_URL}/users/add`,
+  USER_SYSTEM_UPDATE: `${BASE_URL}/users/update`,
+  USER_SYSTEM_REMOVE: `${BASE_URL}/users/delete`,
+
+  // Gestion utilisateur (employé)
   CLIENT_LIST: `${BASE_URL}/clients/all`,
   CLIENT_CREATE: `${BASE_URL}/clients/add`,
   CLIENT_UPDATE: `${BASE_URL}/clients/update`,
@@ -58,6 +65,8 @@ export const API_URL = {
   PROFORMA_REMOVE: `${BASE_URL}/proformas/delete`,
   PROFORMA_DETAILS: `${BASE_URL}/proformas`,
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
+  PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
+
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
@@ -87,17 +96,33 @@ export const API_URL = {
   PRODUCT_UPDATE: `${BASE_URL}/produits/update`,
   PRODUCT_REMOVE: `${BASE_URL}/produits/delete`,
 
-  BC_LIST: `${BASE_URL}/bon-de-commande`,
-  BC_CREATE: `${BASE_URL}/bon-de-commande/add`,
-  BC_UPDATE: `${BASE_URL}/bon-de-commande/update`,
-  BC_REMOVE: `${BASE_URL}/bon-de-commande/delete`,
-  BC_DETAILS: `${BASE_URL}/bon-de-commande/details`,
+  PRODUCT_PROFORMA_LIST: `${BASE_URL}/proformas/produit-services/`,
+
+  BC_LIST: `${BASE_URL}/bon-de-commandes`,
+  BC_CREATE: `${BASE_URL}/bon-de-commandes/add`,
+  BC_UPDATE: `${BASE_URL}/bon-de-commandes/update`,
+  BC_REMOVE: `${BASE_URL}/bon-de-commandes/delete`,
+  BC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
+
+  NBC_LIST: `${BASE_URL}/bon-de-commandes`,
+  NBC_CREATE: `${BASE_URL}/bon-de-commandes/add`,
+  NBC_UPDATE: `${BASE_URL}/bon-de-commandes/update`,
+  NBC_REMOVE: `${BASE_URL}/bon-de-commandes/delete`,
+  NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
+
+
+  BC_FOURNISSEUR_LIST: `${BASE_URL}/fournisseurs/bdc`,
+  BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,
+  BC_FOURNISSEUR_UPDATE: `${BASE_URL}/fournisseurs/bdc/update`,
+  BC_FOURNISSEUR_REMOVE: `${BASE_URL}/fournisseurs/bdc-delete`,
+  BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc/details`,
+  
 
   CAISSE_TRANSACTION_LIST: `${BASE_URL}/caisse/transactions`,
   CAISSE_TRANSACTION_CREATE: `${BASE_URL}/caisse/transaction/add`,
-  CAISSE_TRANSACTION_UPDATE: `${BASE_URL}/caisse/transactions/update`,
-  CAISSE_TRANSACTION_REMOVE: `${BASE_URL}/caisse/transactions/delete`,
-  CAISSE_TRANSACTION_DETAILS: `${BASE_URL}/caisse/transactions/details`,
+  CAISSE_TRANSACTION_UPDATE: `${BASE_URL}/caisse/transaction/update`,
+  CAISSE_TRANSACTION_REMOVE: `${BASE_URL}/caisse/transaction/delete`,
+  CAISSE_TRANSACTION_DETAILS: `${BASE_URL}/caisse/transaction/details`,
 
   CAISSE_LIST: `${BASE_URL}/caisse`,
   CAISSE_CREATE: `${BASE_URL}/caisse/add`,
@@ -110,6 +135,12 @@ export const API_URL = {
   BANQUE_UPDATE: `${BASE_URL}/banque/update`,
   BANQUE_REMOVE: `${BASE_URL}/banque/delete`,
   BANQUE_DETAILS: `${BASE_URL}/banque/details`,
+
+  BANQUE_TRANSACTION_LIST: `${BASE_URL}/transactions-bancaires`,
+  BANQUE_TRANSACTION_CREATE: `${BASE_URL}/banque/transactions/add`,
+  BANQUE_TRANSACTION_UPDATE: `${BASE_URL}/banque/transactions/update`,
+  BANQUE_TRANSACTION_REMOVE: `${BASE_URL}/banque/transactions/delete`,
+  BANQUE_TRANSACTION_DETAILS: `${BASE_URL}/banque/transactions/details`,
 
   LIVRE_LIST: `${BASE_URL}/grand-livre/banque`,
   LIVRE_CREATE: `${BASE_URL}/grand-livre/banque/add`,
@@ -155,15 +186,32 @@ export const API_URL = {
   DEVISE_UPDATE: `${BASE_URL}/devises/update`,
   DEVISE_REMOVE: `${BASE_URL}/devises/delete`,
 
+
+  LIVRAISON_LIST: `${BASE_URL}/livraisons`,
+  LIVRAISON_CREATE: `${BASE_URL}/livraisons/add`,
+  LIVRAISON_UPDATE: `${BASE_URL}/livraisons/update`,
+  LIVRAISON_DETAIL: `${BASE_URL}/livraisons/`,
+  LIVRAISON_REMOVE: `${BASE_URL}/livraisons/delete`,
+
   CATEGORIE_LIST: `${BASE_URL}/categories`,
   CATEGORIE_CREATE: `${BASE_URL}/categories/add`,
   CATEGORIE_UPDATE: `${BASE_URL}/categories/update`,
   CATEGORIE_REMOVE: `${BASE_URL}/categories/delete`,
 
-  FACTURE_LIST: `${BASE_URL}/facture-client`,
-  FACTURE_CREATE: `${BASE_URL}/factures/add`,
-  FACTURE_UPDATE: `${BASE_URL}/factures/update`,
-  FACTURE_REMOVE: `${BASE_URL}/factures/delete`,
+  FACTURE_LIST: `${BASE_URL}/facture/client`,
+  FACTURE_DETAIL: `${BASE_URL}/facture/client/detail`,
+  FACTURE_CREATE: `${BASE_URL}/facture/client/add`,
+  FACTURE_UPDATE: `${BASE_URL}/facture/client/update`,
+  FACTURE_REMOVE: `${BASE_URL}/facture/client/delete`,
+
+
+  FACTURE_PAID_LIST: `${BASE_URL}/paiement/facture/client`,
+  FACTURE_PAID_DETAIL: `${BASE_URL}/paiement/facture/client/`,
+  FACTURE_PAID_CREATE: `${BASE_URL}/paiement/facture/client/add`,
+  FACTURE_PAID_UPDATE: `${BASE_URL}/paiement/facture/client/update`,
+  FACTURE_PAID_REMOVE: `${BASE_URL}/paiement/facture/client/delete`,
+
+  
 
   // Gestion fournisseurs
   FOURNISSEURS_LIST: `${BASE_URL}/fournisseurs`,
@@ -190,4 +238,7 @@ export const API_URL = {
   PERMISSIONS_CREATE: `${BASE_URL}/permissions/add`,
   PERMISSIONS_UPDATE: `${BASE_URL}/permissions/update`,
   PERMISSIONS_REMOVE: `${BASE_URL}/permissions/delete`,
+  PERMISSIONS_ROLE: `${BASE_URL}/permissions/role/`,
+  PERMISSIONS_ROLE_CREATE: `${BASE_URL}/roles/permissions/add`,
+  
 };

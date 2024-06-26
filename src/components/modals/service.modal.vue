@@ -1,56 +1,37 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setService.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setService.loadingCreate">
     <template v-slot:form>
-      <form class="w-full space-y-2" @submit="onSubmit">
-        <FormField v-slot="{ componentField }" name="libelle">
-          <FormItem>
-            <FormLabel>Libelle de service</FormLabel>
-            <FormControl>
-              <Input
-                id="nom"
-                placeholder="GTBank Côte d'ivoire"
-                type="text"
-                v-bind="componentField"
-              />
-            </FormControl>
-            <FormMessage class="text-xs" />
-          </FormItem>
-        </FormField>
-
-      
-      </form>
+      <div class="w-full space-y-2">
+        <div class="" v-for="fr in ServiceForms">
+          <InForm
+            :title="fr.label"
+            :name="fr.name"
+            :label="fr.label"
+            :type="fr.type"
+            :placeholder="fr.placeholder"
+            :select="fr.select"
+          />
+        </div>
+      </div>
     </template>
   </ModalLayout>
 </template>
 <script lang="ts" setup>
 import ModalLayout from "@/layouts/modal.layout.vue";
-import { useForm } from "vee-validate";
-import { toTypedSchema } from "@vee-validate/zod";
-import * as z from "zod";
-import { Input } from "@/components/ui/input";
-//   import { onMounted, ref } from "vue";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
 import { useServiceHook } from "@/hooks/RH/service.hook";
+import { useUpdateStore } from "@/stores/update.store";
+import { ServiceForms } from "@/forms/RH/service.forms";
+import InForm from "../forms/in.form.vue";
 
-const formSchema = toTypedSchema(
-  z.object({
-    libelle: z.string().min(1, "Le libelle de service est requis."),
-  })
-);
+const { CreateService, ServiceUpdate, setService } = useServiceHook();
 
-const { handleSubmit } = useForm({
-  validationSchema: formSchema,
-});
-
-const { CreateService, setService } = useServiceHook();
-const onSubmit = handleSubmit((values) => {
-  CreateService(values);
-});
+const onSubmit = (e: any) => {
+  let values = new FormData(e.target);
+  if (useUpdateStore().isUpdate.is) {
+    ServiceUpdate(useUpdateStore().isUpdate.id, values);
+  } else {
+    CreateService(values);
+  }
+};
 </script>
 <style lang="scss" scoped></style>

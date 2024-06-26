@@ -259,13 +259,12 @@ const ListParametre = async () => {
   try {
     const response = await axios.get(API_URL.SETTING_LIST);
     PARAMETRE.value = response.data?.datas;
-    console.log(PARAMETRE.value);
     return PARAMETRE.value;
   } catch (error) {
-    console.error(error);
     throw error;
   }
 };
+
 
 const SendSetting = async (e: any) => {
   e.preventDefault();

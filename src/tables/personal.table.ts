@@ -50,17 +50,18 @@ export const PersonalTables = [
    // },
 ];
 
-export const PersonalUserTables = [
+export const UserTables = [
    {
-      label: 'Nom',
-      field: 'nom',
+      label: 'ID',
+      field: 'id',
       status: null,
       color: null,
       bgColor: null,
    },
+  
    {
-      label: 'Prénoms',
-      field: 'prenoms',
+      label: "Nom d'utilisateur",
+      field: 'nom_utilisateur',
       status: null,
       color: null,
       bgColor: null,
@@ -72,24 +73,17 @@ export const PersonalUserTables = [
       color: null,
       bgColor: null,
    },
-   {
-      label: 'Mot de pass',
-      field: 'telephone',
-      status: null,
-      color: null,
-      bgColor: null,
-   },
-   {
-      label: 'Type de Contrat',
-      field: 'type_contrat',
-      status: null,
-      color: null,
-      bgColor: null,
-   },
 
    {
       label: "Type d'Utilisateur",
       field: 'utype',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
+      label: "Date de creation",
+      field: 'date_creation',
       status: null,
       color: null,
       bgColor: null,

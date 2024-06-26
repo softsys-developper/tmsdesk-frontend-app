@@ -1,6 +1,14 @@
 import { reactive } from "vue";
 
 export const PersonalForms = reactive([
+    {
+        label: "Photos",
+        type: "file",
+        placeholder: "Ajoutez une photo",
+        name: "photo",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
   
     {
         label: "Nom de l'employé",
@@ -190,3 +198,73 @@ export const PersonalForms = reactive([
     },
 ]
 )
+
+
+
+export const UserForms = [
+    {
+        label: "Photos",
+        type: "file",
+        placeholder: "Ajoutez une photo",
+        name: "photo",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Nom d'utilisateur",
+        type: "text",
+        placeholder: "John_Binaté",
+        name: "nom_utilisateur",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Nom de l'employé",
+        type: "text",
+        placeholder: "John Binaté",
+        name: "nom",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+
+    {
+        label: "Email",
+        type: "text",
+        placeholder: "Email",
+        name: "email",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Prénoms",
+        type: "text",
+        placeholder: "Prénoms",
+        name: "prenoms",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Téléphone",
+        type: "text",
+        placeholder: "Téléphone",
+        name: "numero",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Role",
+        type: "text",
+        placeholder: "Role de l'utilisateur",
+        name: "role",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Password",
+        type: "text",
+        placeholder: "Passe de passe",
+        name: "password",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
+]

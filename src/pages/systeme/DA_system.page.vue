@@ -31,7 +31,7 @@
  import { DATables } from '@/tables/DA.tables';
  import { useDAHook } from '@/hooks/SYSTEME/DA.hook.ts';
  import { useUpdateStore } from '@/stores/update.store';
- import DAModal from '@/components/modals/systemes/DA.modal.vue';
+ import DAModal from '@/components/modals/SYSTEME/DA.modal.vue';
  import DeleteLayout from '@/layouts/delete.layout.vue';
  
  const { FindDAAll, storeDAs, DADelete, setDA } = useDAHook();

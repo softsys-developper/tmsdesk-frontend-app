@@ -3,7 +3,7 @@ export const ProformaBCForms = [
       label: "Numéro BC",
       type: "text",
       placeholder: "Numéro BC",
-      name: "numero_bon_commande",
+      name: "numero_bon_de_commande",
       value: "",
       select: [],
     },

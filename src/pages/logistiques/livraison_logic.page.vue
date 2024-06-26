@@ -2,18 +2,21 @@
    <BaseLayout>
       <template v-slot:content>
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-            <ContentLayout title="COMPTABILITES | Livraisons">
+            <ContentLayout title="Logistique | Livraisons">
                <template v-slot:created>
-                  <!-- <LivraisonModal
-                     name="Ajouter un livraison"
-                     title="Ajouter un nouvel livraison"
-                  /> -->
+                  <RouterLink :to="{ name: 'LOGISC_LIVRAISONS_ADD' }"
+                class="bg-orange-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                <i class="ri-add-line text-sm"></i>
+                <span class="hidden lg:flex">Nouvelle livraison</span>
+              </RouterLink>
+
+              <DeleteLayout :funDelete="LivraisonDelete" :id="useUpdateStore().isDelete.id" />
                </template>
             </ContentLayout>
             <Table
                v-if="storeLivraisons.length != 0"
                :dataTables="storeLivraisons"
-               :MenuActions="MenuClientActions"
+               :MenuActions="MenuLivraisonActions"
                :display="LivraisonTables"
             />
 
@@ -31,13 +34,15 @@ import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 // import LivraisonModal from '@/components/modals/livraison.modal.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuLivraisonActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { LivraisonTables } from '@/tables/livraison.tables';
-import { useLivraisonHook } from '@/hooks/comptabilites/livraison.hook.ts';
+import { useLivraisonHook } from '@/hooks/LOGISTIQUE/livraison.hook.ts';
+import { useUpdateStore } from '@/stores/update.store';
+import DeleteLayout from '@/layouts/delete.layout.vue';
 
-const { FindLivraisonAll, storeLivraisons, setLivraison } = useLivraisonHook();
+const { FindLivraisonAll, storeLivraisons, LivraisonDelete, setLivraison } = useLivraisonHook();
 
 onMounted(() => {
    FindLivraisonAll();

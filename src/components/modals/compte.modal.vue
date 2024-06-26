@@ -1,68 +1,32 @@
 <template>
    <ModalLayout :Func="onSubmit" :loading="setCompte.loadingCreate">
-      <template v-slot:form>
-         <form class="w-full space-y-2" @submit="onSubmit">
-            <FormField v-slot="{ componentField }" name="nom">
-               <FormItem>
-                  <FormLabel>Libelle du compte</FormLabel>
-                  <FormControl>
-                     <Input
-                        id="nom"
-                        placeholder="GTBank Côte d'ivoire"
-                        type="text"
-                        v-bind="componentField"
-                     />
-                  </FormControl>
-                  <FormMessage class="text-xs" />
-               </FormItem>
-            </FormField>
-         </form>
-      </template>
+       <template v-slot:form>
+           <div class="w-full space-y-2">
+               <div class="" v-for="fr in CompteForms">
+                   <InForm :title="fr.label" :name="fr.name" :label="fr.label" :type="fr.type"
+                       :placeholder="fr.placeholder" :select="fr.select" />
+               </div>
+           </div>
+       </template>
    </ModalLayout>
 </template>
 <script lang="ts" setup>
-import ModalLayout from '@/layouts/modal.layout.vue';
-import { useForm } from 'vee-validate';
-import { toTypedSchema } from '@vee-validate/zod';
-import * as z from 'zod';
-import { Input } from '@/components/ui/input';
-import { onMounted, ref } from 'vue';
-import {
-   FormControl,
-   FormField,
-   FormItem,
-   FormLabel,
-   FormMessage,
-} from '@/components/ui/form';
-import axios from 'axios';
-import { API_URL } from '@/routes/api.route';
-import { useCompteHook } from '@/hooks/comptabilites/compte.hook';
+import ModalLayout from "@/layouts/modal.layout.vue";
+import { useCompteHook } from "@/hooks/comptabilites/compte.hook";
+import { useUpdateStore } from "@/stores/update.store";
+import { CompteForms } from "@/forms/COMPTABILITE/compte.forms";
+import InForm from "../forms/in.form.vue";
 
-const formSchema = toTypedSchema(
-   z.object({
-      nom: z.string().min(1, 'Le nom du compte banque est requise.'),
-   })
-);
+const { CreateCompte, CompteUpdate, setCompte } = useCompteHook();
 
-const { handleSubmit } = useForm({
-   validationSchema: formSchema,
-});
-
-const { CreateCompte, setCompte } = useCompteHook();
-const onSubmit = handleSubmit((values) => {
-   CreateCompte(values);
-});
-
-interface CAISSE {
-   libelle: string;
-   id: any;
-}
-
-const Caisses = ref<CAISSE>({ libelle: '', id: '' });
-onMounted(() => {
-   axios
-      .get(API_URL.CAISSE_LIST)
-      .then(({ data }) => (Caisses.value = data.data));
-});
+const onSubmit = (e: any) => {
+   console.log(useUpdateStore().isUpdate)
+   let values = new FormData(e.target);
+   if (useUpdateStore().isUpdate.is) {
+       CompteUpdate(useUpdateStore().isUpdate.id, values);
+   } else {
+       CreateCompte(values);
+   }
+};
 </script>
 <style lang="scss" scoped></style>

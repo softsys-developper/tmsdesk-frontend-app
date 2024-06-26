@@ -43,6 +43,7 @@ import { SalaryTables } from '@/tables/salary.table';
 import SalaireModal from '@/components/modals/salaire.modal.vue';
 import { useSalaireHook } from '@/hooks/RH/salary.hook';
 import { useUpdateStore } from '@/stores/update.store';
+import DeleteLayout from '@/layouts/delete.layout.vue';
 
 
 const { FindSalaireAll, SalaireDelete, setSalaire } = useSalaireHook()

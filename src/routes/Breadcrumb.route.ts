@@ -139,8 +139,25 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
+  {
+    route: "PROFORMA_NBC",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "PROFORMA_LIST",
+        title: "proformas",
+      },
+      {
+        route: "PROFORMA_NBC",
+        title: "Ajout de numéro BC",
+      },
+    ],
+  },
 
-
+  
 
   // Parametre
   {
@@ -151,8 +168,8 @@ export const BreadcrumbRoutes = [
         title: "Tableau de bord",
       },
       {
-        route: "SETTING_ROLES",
-        title: "Roles",
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
       },
       {
         route: "SETTING_ROLES",
@@ -226,7 +243,7 @@ export const BreadcrumbRoutes = [
         title: "Tableau de bord",
       },
       {
-        route: "RH_SALAIRE",
+        route: "RH_PERSONAL",
         title: "RH",
       },
       {
@@ -243,7 +260,7 @@ export const BreadcrumbRoutes = [
         title: "Tableau de bord",
       },
       {
-        route: "RH_SALAIRE_PAID",
+        route: "RH_PERSONAL",
         title: "RH",
       },
       {
@@ -252,4 +269,365 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
+  {
+    route: "RH_DEPARTEMENT",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_DEPARTEMENT",
+        title: "Liste des services",
+      },
+    ],
+  },
+  {
+    route: "RH_INDEMNITE_PRIME",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_INDEMNITE_PRIME",
+        title: "Liste des primes",
+      },
+    ],
+  },
+
+
+  // Comptabilité
+  {
+    route: "COMPTA_DEPENSE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_DEPENSE",
+        title: "Liste des transactions",
+      },
+    ],
+  },
+
+  {
+    route: "COMPTA_COMPTE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_COMPTE",
+        title: "Liste des comptes",
+      },
+    ],
+  },
+  {
+    route: "COMPTA_COMPTE_TRANSACTION",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Liste des comptes",
+      },
+      {
+        route: "COMPTA_COMPTE_TRANSACTION",
+        title: "Liste des transactions",
+      },
+    ],
+  },
+  {
+    route: "COMPTA_TRANSACTION",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Liste des comptes",
+      },
+      {
+        route: "COMPTA_TRANSACTION",
+        title: "Liste des transactions",
+      },
+    ],
+  },
+  
+
+  {
+    route: "COMPTA_FACTURE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Liste des factures",
+      },
+    ],
+  },
+
+  {
+    route: "COMPTA_FACTURE_PAID",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Comptabilité",
+      },
+      {
+        route: "COMPTA_FACTURE",
+        title: "Liste des factures",
+      },
+      {
+        route: "COMPTA_FACTURE_PAID",
+        title: "Liste des versements",
+      },
+    ],
+  },
+
+
+
+  // Logistique
+  {
+    route: "LOGISC_PRODUCTS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Liste des transactions",
+      },
+    ],
+  },
+  {
+    route: "LOGISC_BC_PARTENAIRES",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_BC_PARTENAIRES",
+        title: "Liste des BDC",
+      },
+    ],
+  },
+  {
+    route: "LOGISC_LIVRAISONS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+    ],
+  },
+
+  {
+    route: "LOGISC_LIVRAISONS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+      {
+        route: "LOGISC_LIVRAISONS_ADD",
+        title: "Creation de livraison ",
+      },
+    ],
+  },
+  
+
+  // PARAMETRE
+  {
+    route: "SETTING_USER",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SETTING_USER",
+        title: "Liste des utilisateurs",
+      },
+    ],
+  },
+
+  {
+    route: "SYSTEM_PARAMETRE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Liste des parametres",
+      },
+    ],
+  },
+
+  {
+    route: "SETTING_PERMISSION",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SETTING_PERMISSION",
+        title: "Liste des permissions",
+      },
+    ],
+  },
+
+  {
+    route: "SYSTEM_DEVISE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_DEVISE",
+        title: "Liste des devises",
+      },
+    ],
+  },
+
+  {
+    route: "SYSTEM_MARQUE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_MARQUE",
+        title: "Liste des marques",
+      },
+    ],
+  },
+
+  {
+    route: "SYSTEM_CATEGORY",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_CATEGORY",
+        title: "Liste des categories",
+      },
+    ],
+  },
+
+  {
+    route: "SYSTEM_DA",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_DA",
+        title: "Liste des domaines d'activité",
+      },
+    ],
+  }
+  
 ];

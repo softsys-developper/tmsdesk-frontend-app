@@ -4,23 +4,28 @@
           <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
              <ContentLayout title="Parametre | utilisateurs">
                 <template v-slot:created>
-                   <PersonalModal
-                      name="Ajouter un employer"
-                      title="Ajouter un employer"
-                   />
+                   <UserModal
+                      name="Nouvel utilisateur"
+                      :title="useUpdateStore().isUpdate.is
+                            ? 'Modifier utilisateurs'
+                            : 'Ajouter utilisateurs'
+                            " />
+
+                        <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="UserDelete"
+                            :id="useUpdateStore().isDelete.id" />
                 </template>
              </ContentLayout>
  
              <Table
-                v-if="useDataStore().Personals.length != 0"
-                :dataTables="useDataStore().Personals"
-                :MenuActions="MenuPersonalActions"
-                :display="PersonalUserTables"
+                v-if="useDataStore().Users.length != 0"
+                :dataTables="useDataStore().Users"
+                :MenuActions="MenuUserActions"
+                :display="UserTables"
              />
  
              <PageLoader
-                :loading="state.loading"
-                :data="useDataStore().Personals"
+                :loading="setUser.loading"
+                :data="useDataStore().Users"
                 name="Aucun Paid"
              />
           </section>
@@ -31,36 +36,25 @@
  import Table from './../../components/tables/table.vue';
  import BaseLayout from './../../layouts/base.layout.vue';
  import ContentLayout from '@/layouts/content.layout.vue';
- import { MenuPersonalActions } from '@/routes/actions.route';
+ import { MenuUserActions } from '@/routes/actions.route';
  import { useApiServices } from '@/services/api.services';
- import { onMounted, reactive } from 'vue';
- import { API_URL } from '@/routes/api.route';
+ import { onMounted } from 'vue';
+//  import { API_URL } from '@/routes/api.route';
  import { useDataStore } from '@/stores/data.store';
  import PageLoader from '@/components/loaders/page.loader.vue';
- import {  PersonalUserTables } from '@/tables/personal.table';
- import PersonalModal from '@/components/modals/personal.modal.vue';
+ import {  UserTables } from '@/tables/personal.table';
+ import UserModal from '@/components/modals/SYSTEME/user.modal.vue';
+import { useUpdateStore } from '@/stores/update.store';
+import { useUserHook } from '@/hooks/PARAMETRE/user.hook';
+import DeleteLayout from '@/layouts/delete.layout.vue';
  
- const { readData } = useApiServices();
- const state = reactive({
-    loading: false,
- });
- 
- const FindAllClient = () => {
-    state.loading = true;
-    readData(API_URL.USER_LIST)
-       .then((data: any) => {
-          console.log(data)
-          useDataStore().Personals = data.datas;
-          state.loading = false;
-       })
-       .catch(() => {
-          state.loading = false;
-       });
- };
- 
- onMounted(() => {
-    FindAllClient();
- });
+ const {  } = useApiServices();
+ const { FindUserAll, UserDelete, setUser } = useUserHook();
+
+
+onMounted(() => {
+    FindUserAll();
+});
  </script>
  <style lang="scss" scoped></style>
  

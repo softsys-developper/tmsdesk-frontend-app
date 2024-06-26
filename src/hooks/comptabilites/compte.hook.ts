@@ -7,6 +7,8 @@ import { computed, reactive, ref } from 'vue';
 import { useDataStore } from './../../stores/data.store';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
+import { setService } from '@/services/set.services';
+import moment from 'moment';
 
 export const useCompteHook = () => {
    const { readData, createData } = useApiServices();
@@ -25,7 +27,8 @@ export const useCompteHook = () => {
       return comptes.map((compte: any) => ({
          id: compte.id,
          nom: compte.nom,
-         solde: compte.solde
+         solde: compte.solde,
+         date_creation: moment(compte.created_at).format("l"),
       }));
    };
 
@@ -86,11 +89,33 @@ export const useCompteHook = () => {
          return {data: DataCreated}
    };
 
-   return {
+    //
+    const CompteUpdate = (id: any, values: any) => {
+      setService(
+        setCompte,
+        useDataStore(),
+        'Comptes',
+        formatCompteData
+      ).SetUpdate(API_URL.BANQUE_UPDATE, id, values);
+    };
+   
+    //
+    const CompteDelete = (id: any) => {
+      setService(
+        setCompte,
+        useDataStore(),
+        'Comptes',
+        formatCompteData
+      ).SetDelete(API_URL.BANQUE_REMOVE, id);
+    };
+   
+    return {
       FindCompteAll,
       CreateCompte,
+      CompteUpdate,
+      CompteDelete,
       stateComptes,
       setCompte,
-      storeComptes
-   };
+      storeComptes,
+    };
 };

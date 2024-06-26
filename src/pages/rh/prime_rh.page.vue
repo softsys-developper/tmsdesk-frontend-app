@@ -23,7 +23,7 @@
         <Table
           v-if="storePrimes.length != 0"
           :dataTables="storePrimes"
-          :MenuActions="MenuClientActions"
+          :MenuActions="MenuPrimeActions"
           :display="PrimeTables"
         />
 
@@ -40,13 +40,14 @@
 import Table from "./../../components/tables/table.vue";
 import BaseLayout from "./../../layouts/base.layout.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
-import { MenuClientActions } from "@/routes/actions.route";
+import { MenuPrimeActions } from "@/routes/actions.route";
 import { onMounted } from "vue";
 import PageLoader from "@/components/loaders/page.loader.vue";
 import { PrimeTables } from "@/tables/prime.tables";
 import { usePrimeHook } from "@/hooks/RH/prime.hook.ts";
 import PrimeModal from "@/components/modals/prime.modal.vue";
 import { useUpdateStore } from "@/stores/update.store";
+import DeleteLayout from "@/layouts/delete.layout.vue";
 
 const { FindPrimeAll, storePrimes, PrimeDelete, setPrime } = usePrimeHook();
 

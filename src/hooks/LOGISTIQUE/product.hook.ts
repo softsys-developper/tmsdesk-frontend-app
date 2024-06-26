@@ -28,11 +28,11 @@ export const useProductHook = () => {
   const formatProductData = (Products: any) => {
     return Products.map((Product: any) => ({
       id: Product.id,
-      libelle: Product.id,
-      type: Product.type,
-      prix_unitaire: Product.prix_unitaire,
+      reference: Product.reference,
       description: Product.description,
-      date_creation: moment(Product.created_at).format("DD/MM/YYYY"),
+      quantite: Product.quantite,
+      prix_unitaire: Product.prix_unitaire,
+      date_creation: moment(Product.created_at).format("l"),
     }));
   };
   const storeProducts = computed(() => {

@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useUpdateStore = defineStore('Update', {
    state: () => ({
     updateValue: null,
+    
     isUpdate: {
       is: false,
       id: null,

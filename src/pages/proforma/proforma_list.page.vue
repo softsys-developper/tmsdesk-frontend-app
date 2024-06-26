@@ -1,79 +1,57 @@
 <template>
-   <BaseLayout>
-      <template v-slot:content>
-         <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-            <ContentLayout title="Proforma | Listes">
-               <template v-slot:created>
-                  <!-- <ClientdModal
+  <BaseLayout>
+    <template v-slot:content>
+      <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
+        <ContentLayout title="Proforma | Listes">
+          <template v-slot:created>
+            <div class="flex gap-2">
+              <!-- <ClientdModal
                       name="Nouveau Proforma"
                       title="Nouveau Proforma"
                    /> -->
 
-                  <RouterLink :to="{ name: 'PROFORMA_ADD' }"
-                     class="bg-gray-700 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
-                     <i class="ri-add-line text-sm"></i>
-                     <span class="hidden lg:flex">Nouveau proforma</span>
-                  </RouterLink>
-               </template>
-            </ContentLayout>
+              <RouterLink :to="{ name: 'PROFORMA_NBC_LIST' }"
+                class="bg-blue-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                <i class="ri-sort-number-desc text-sm"></i>
+                <span class="hidden lg:flex">Liste des NBC</span>
+              </RouterLink>
 
-            <Table v-if="useDataStore().Proforma.length != 0" :dataTables="useDataStore().Proforma"
-               :MenuActions="MenuProformaActions" :display="ProformaTables" />
+              <DeleteLayout :funDelete="ProformaDelete" :id="useUpdateStore().isDelete.id" />
 
-            <PageLoader :loading="state.loading" :data="useDataStore().Proforma" name="Aucun Proforma" />
-         </section>
-      </template>
-   </BaseLayout>
+              <RouterLink :to="{ name: 'PROFORMA_ADD' }"
+                class="bg-orange-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
+                <i class="ri-add-line text-sm"></i>
+                <span class="hidden lg:flex">Nouveau proforma</span>
+              </RouterLink>
+            </div>
+          </template>
+        </ContentLayout>
+
+        <Table v-if="storeProformas.length != 0" :dataTables="storeProformas" :MenuActions="MenuProformaActions"
+          :display="ProformaTables" />
+
+        <PageLoader :loading="setProforma.loading" :data="storeProformas" name="Aucun Proforma" />
+      </section>
+    </template>
+  </BaseLayout>
 </template>
 <script lang="ts" setup>
-import Table from './../../components/tables/table.vue';
-import BaseLayout from './../../layouts/base.layout.vue';
-import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuProformaActions } from '@/routes/actions.route';
-import { useApiServices } from '@/services/api.services';
-import { onMounted, reactive } from 'vue';
-import { API_URL } from '@/routes/api.route';
-import { useDataStore } from '@/stores/data.store';
-import PageLoader from '@/components/loaders/page.loader.vue';
-import { ProformaTables } from '@/tables/proforma.tables';
+import Table from "./../../components/tables/table.vue";
+import BaseLayout from "./../../layouts/base.layout.vue";
+import ContentLayout from "@/layouts/content.layout.vue";
+import { MenuProformaActions } from "@/routes/actions.route";
+import { onMounted } from "vue";
+import PageLoader from "@/components/loaders/page.loader.vue";
+import { ProformaTables } from "@/tables/proforma.tables";
+import { useProformaHook } from "@/hooks/CRM/proforma.hook";
+import DeleteLayout from "@/layouts/delete.layout.vue";
+import { useUpdateStore } from "@/stores/update.store";
 
-const { readData } = useApiServices();
-const state = reactive({
-   loading: false,
-});
-
-const StatusHtml = (name: string, bg: string) => {
-   return `<span class="text-sm font-bold flex text-white min-w-max max-w-min px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`
-}
-
-const FindAllClient = () => {
-   state.loading = true;
-   readData(API_URL.PROFORMA_LIST)
-      .then((data: any) => {
-         useDataStore().Proforma = data.datas.map((el: any) => ({
-            id: el.id,
-            numero_proforma: el.numero_proforma,
-            titre: el.titre,
-            client: el.client?.nom,
-            montant_ttc: el.montant_ttc,
-            status:
-               el.etat == 1
-                  ? StatusHtml('En attante', 'bg-orange-500')
-                  : el.etat == 2
-                     ? StatusHtml('Valider', 'bg-blue-500')
-                     : StatusHtml('Rejeter', 'bg-red-500'),
-            date_creation: el.date_creation,
-            date_validite: el.date_validite,
-         }));
-         state.loading = false;
-      })
-      .catch(() => {
-         state.loading = false;
-      });
-};
+const { FindProformaAll, setProforma, storeProformas, ProformaDelete } =
+  useProformaHook();
 
 onMounted(() => {
-   FindAllClient();
+  FindProformaAll();
 });
 </script>
 <style lang="scss" scoped></style>

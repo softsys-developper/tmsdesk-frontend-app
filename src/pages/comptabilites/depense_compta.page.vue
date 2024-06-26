@@ -5,57 +5,52 @@
             <ContentLayout title="COMPTABILITES | Transactions Caisse">
                <template v-slot:created>
 
-                     <div class="flex gap-2 items-center ">
-                        <div class="text-lg bg-orange-500 text-white px-4 py-1 rounded-md font-black">
-                     <span class="font-bold uppercase">solde : </span>
-                     {{ CountSolde }}
-                  </div>
-
-                  <DepenseModal
-                     name="Nouvelle transaction"
-                     title="Ajouter une nouvelle transaction"
-                  />
+                  <div class="flex gap-2 items-center ">
+                     <div class="lg:text-lg text-base bg-orange-500 text-white px-4 py-1 rounded-md font-black">
+                        <span class="font-bold uppercase">solde : </span>
+                        {{ CountSolde }}
                      </div>
+                     <DepenseModal  name="Nouvelle transaction" :title="useUpdateStore().isUpdate.is
+                           ? 'Modifier la transaction'
+                           : 'Ajouter une transaction'
+                        " />
+
+                     <DeleteLayout :funDelete="DepenseDelete" :id="useUpdateStore().isDelete.id" />
+                  </div>
 
                </template>
             </ContentLayout>
-            <Table
-               v-if="storeDepenses.length != 0"
-               :dataTables="storeDepenses"
-               :MenuActions="MenuClientActions"
-               :display="DepenseTables"
-            />
+            <Table v-if="storeDepenses.length != 0" :dataTables="storeDepenses" :MenuActions="MenuDepenseActions"
+               :display="DepenseTables" />
 
-            <PageLoader
-               :loading="setDepense.loading"
-               :data="storeDepenses"
-               name="Aucune depenses"
-            />
+            <PageLoader :loading="setDepense.loading" :data="storeDepenses" name="Aucune depenses" />
          </section>
       </template>
    </BaseLayout>
-   {{CountSolde}}
+   {{ CountSolde }}
 </template>
 <script lang="ts" setup>
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
 import DepenseModal from '@/components/modals/depense.modal.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuDepenseActions } from '@/routes/actions.route';
 import { computed, onMounted, ref } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { DepenseTables } from '@/tables/depense.tables';
-import {useDepenseHook} from "@/hooks/comptabilites/depense.hook.ts"
+import { useDepenseHook } from "@/hooks/comptabilites/depense.hook.ts"
+import DeleteLayout from '@/layouts/delete.layout.vue';
+import { useUpdateStore } from '@/stores/update.store';
 
-const { FindDepenseAll, storeDepenses, setDepense } = useDepenseHook();
+const { FindDepenseAll, storeDepenses, DepenseDelete, setDepense } = useDepenseHook();
 const CoutSoldeRef = ref(0)
 
 const CountSolde = computed(() => {
    CoutSoldeRef.value = 0
-   storeDepenses.value.forEach((el:any) => {
-      if(el?.type_transaction.includes('red')) {
+   storeDepenses.value.forEach((el: any) => {
+      if (el?.type_transaction.includes('red')) {
          CoutSoldeRef.value = CoutSoldeRef.value - Number(el.montant)
-      }else{
+      } else {
          CoutSoldeRef.value = CoutSoldeRef.value + Number(el.montant)
       }
    })
@@ -63,7 +58,7 @@ const CountSolde = computed(() => {
 })
 
 onMounted(() => {
-    FindDepenseAll();
+   FindDepenseAll();
 });
 </script>
 <style lang="scss" scoped></style>

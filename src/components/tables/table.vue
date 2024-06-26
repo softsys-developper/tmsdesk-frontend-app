@@ -37,7 +37,7 @@ const props = defineProps(['MenuActions', 'dataTables', 'display']);
 
 const OnSearchValue = ref()
 const searchQ = ref('');
-const PerPage = ref('5');
+const PerPage = ref('25');
 const isPage = ref(0);
 
 const _OnSearchValue = computed(() => {
@@ -141,7 +141,7 @@ const IsPageFun = () => {
             <TableCell class="text-right ">
                <div class="w-full flex justify-end" v-if="MenuActions">
 
-                  <BtnMore :id="invoice.id" name="Actions" :actions="true" title="Action"
+                  <BtnMore :id="invoice.id" name="Actions" :actions="true" title="Action"  
                      :data-drop-menu="MenuActions" />
                </div>
             </TableCell>

@@ -1,23 +1,50 @@
-interface ProduitServicePivot {
+// interface ProduitServicePivot {
+//     proforma_id: number;
+//     produit_service_id: number;
+//     quantite: number;
+//     prix_unitaire: string;
+//     montant: string;
+// }
+
+// interface ProduitService {
+//     id: number;
+//     libelle: string;
+//     type: string;
+//     quantite: number;
+//     prix_unitaire: string;
+//     description: string | null;
+//     image: string | null;
+//     created_at: string;
+//     updated_at: string;
+//     pivot: ProduitServicePivot;
+// }
+
+interface Pivot {
     proforma_id: number;
     produit_service_id: number;
     quantite: number;
     prix_unitaire: string;
     montant: string;
-}
-
-interface ProduitService {
+  }
+  
+  interface Item {
     id: number;
-    libelle: string;
+    reference: string;
     type: string;
+    unite: string;
     quantite: number;
     prix_unitaire: string;
-    description: string | null;
+    montant: string;
+    description: string;
+    remarques: string;
     image: string | null;
+    proforma_id: number;
+    produit_service_id: number;
     created_at: string;
     updated_at: string;
-    pivot: ProduitServicePivot;
-}
+    pivot: Pivot;
+  }
+  
 
 interface User {
     id: number;
@@ -87,7 +114,7 @@ export interface PROFORMA {
     user_id: number;
     created_at: string;
     updated_at: string;
-    produit_services: ProduitService[];
+    produit_services: Item[];
     user: User;
     client: Client;
 }

@@ -22,7 +22,7 @@ export const useFactureHook = () => {
   const { toast } = useToast();
 
   const StatusHtml = (name: string, bg: string) => {
-    return `<span class="text-sm font-bold min-w-max px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`;
+    return `<span class="flex  text-center text-sm font-bold max-w-max px-2 py-1 rounded-md justify-center text-white ${bg}" >${name}</span>`;
   };
 
   const formatFactureData = (Factures: any) => {
@@ -33,11 +33,11 @@ export const useFactureHook = () => {
       // client: Facture.client?.nom,
       montant_ttc: Facture.montant_ttc,
       status:
-        Facture.etat == 1
+        Facture.statut == 1
           ? StatusHtml("En attante", "bg-orange-500")
-          : Facture.etat == 2
-          ? StatusHtml("Valider", "bg-blue-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
+          : Facture.statut == 2
+          ? StatusHtml("Partiellement", "bg-blue-500")
+          : StatusHtml("Payer", "bg-green-500"),
           date_emission: Facture.date_emission,
           date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
     }));
