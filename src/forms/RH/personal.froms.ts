@@ -136,9 +136,6 @@ export const PersonalForms = reactive([
             { id: 'Divorcé(e)', name: 'Divorcé(e)' }
         ]
     },
-
-    
-
     {
         label: "Téléphone personne à contacter",
         type: "text",
@@ -147,14 +144,14 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
-    {
-        label: "Type d'utilisateur ",
-        type: "text",
-        placeholder: "Type d'utilisateur",
-        name: "role",
-        value: "",
-        select: [], // Tableau vide pour les options de sélection
-    },
+    // {
+    //     label: "Type d'utilisateur ",
+    //     type: "text",
+    //     placeholder: "Type d'utilisateur",
+    //     name: "role",
+    //     value: "",
+    //     select: [], // Tableau vide pour les options de sélection
+    // },
     {
         label: "Type de contrat",
         type: "text",
