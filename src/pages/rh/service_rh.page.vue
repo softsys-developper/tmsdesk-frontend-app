@@ -9,7 +9,7 @@
               : 'Ajouter Service'
               " />
 
-            <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="ServiceDelete"></DeleteLayout>
+            <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="ServiceDelete" :id="useUpdateStore().isDelete.id"></DeleteLayout>
           </template>
         </ContentLayout>
         <Table v-if="storeServices.length != 0" :dataTables="storeServices" :MenuActions="MenuDepartementActions"

@@ -97,7 +97,7 @@ export const usePrimeHook = () => {
       useDataStore(),
       'Primes',
       formatPrimeData
-    ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+    ).SetUpdate(API_URL.PRIME_UPDATE, id, values);
   };
 
   //
@@ -107,7 +107,7 @@ export const usePrimeHook = () => {
       useDataStore(),
       'Primes',
       formatPrimeData
-    ).SetDelete(API_URL.CLIENT_REMOVE, id);
+    ).SetDelete(API_URL.PRIME_REMOVE, id);
   };
 
   return {

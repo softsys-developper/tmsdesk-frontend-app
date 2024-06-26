@@ -42,14 +42,14 @@ export const PaidForms = [
             name: 'Cheque'
         }],
     },
-    // {
-    //     label: "Periode de depart",
-    //     type: "date",
-    //     placeholder: "Nom du role",
-    //     name: "periode_1",
-    //     value: "",
-    //     select: [],
-    // },
+    {
+        label: "Periode de depart",
+        type: "date",
+        placeholder: "Nom du role",
+        name: "periode_1",
+        value: "",
+        select: [],
+    },
     // {
     //     label: "Periode de fin",
     //     type: "date",

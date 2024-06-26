@@ -18,8 +18,8 @@ export const useServiceHook = () => {
   const { toast } = useToast();
 
   const formatServiceData = (services: any) => {
-    return services.map((service: any, index: any) => ({
-      id: index + 1,
+    return services.map((service: any) => ({
+      id: service.id,
       libelle: service.libelle,
       date_creation: moment(service.created_at).format("l"),
     }));
@@ -100,7 +100,9 @@ export const useServiceHook = () => {
   };
 
   //
+  
   const ServiceDelete = (id: any) => {
+    console.log(id)
     SETService(
       setService,
       useDataStore(),
