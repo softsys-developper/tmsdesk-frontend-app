@@ -27,6 +27,7 @@ const setOpen = () => {
   } else {
     useModalStore().open = true;
   }
+  useUpdateStore().isUpdate.is = false;
 };
 
 // const is = computed(() => {
