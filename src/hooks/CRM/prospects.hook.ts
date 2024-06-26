@@ -1,21 +1,15 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/Prospect.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 
 export const useProspectHook = () => {
-  const { readData, createData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData } = useApiServices();
   const setProspect = reactive({ loading: false, loadingCreate: false });
   const stateProspects = ref<any[]>([]);
   stateProspects.value = useDataStore().Prospects;
-  const { toast } = useToast();
 
   const formatProspectData = (Prospects: any) => {
     return Prospects.map((Prospect: any) => ({
@@ -53,49 +47,12 @@ export const useProspectHook = () => {
 
   //
   const CreateProspect = async (values: any) => {
-    setProspect.loadingCreate = true;
-    const DataCreated = await createData(API_URL.PROSPECT_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setProspect.loadingCreate = false;
-          let Prospects = useDataStore().Prospects;
-
-          //
-          const toAdd: [] = formatProspectData([data.data]);
-          Prospects.unshift(...toAdd);
-          useDataStore().Prospects = Prospects;
-          useModalStore().open = false;
-
-          
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setProspect.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+    setService(
+      setProspect,
+      useDataStore(),
+      'DAs',
+      formatProspectData
+    ).SetCreate(API_URL.PROSPECT_CREATE, values);
   };
 
      //
