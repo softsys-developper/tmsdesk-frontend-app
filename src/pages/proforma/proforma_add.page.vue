@@ -595,21 +595,28 @@ const sendProformaToBackend = async () => {
   try {
     loadingProforma.value = true;
 
-    const proformaData = {
+    const proformaData:any = {
       client: setInput.client,
       interlocuteur: setInput.interlocuteur,
       ref_client: setInput.ref_client,
-      produitsServices: `${ProductAndServices.value}`,
+      produitsServices: JSON.stringify(ProductAndServices.value),
       tva: _AmountTVA.value == 0 ? 0 : 18,
       remise_pourcentage: isRemise.value,
       marge_commerciale: setInput.marge_commerciale,
     };
 
+    const KEYS = Object.keys(proformaData)
+    const proformaDatas = new FormData()
+    for (let i = 0; i < KEYS.length; i++) {
+      const el = KEYS[i];
+      proformaDatas.append(`${[el]}`, `${proformaData[el]}`)
+    }
+
     const { data } = await axios.post(
       !route.query.id
         ? `${API_URL.PROFORMA_CREATE}`
         : `${API_URL.PROFORMA_UPDATE}/${route.query.id}`,
-      proformaData
+        proformaDatas
     );
 
     if (data) {

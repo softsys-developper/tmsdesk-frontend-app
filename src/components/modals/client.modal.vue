@@ -29,53 +29,18 @@
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-2 p-2">
-              <InForm
-                title="Nom"
-                :label="'Nom'"
-                type="text"
-                :placeholder="'Jean Luc'"
-                :isControl="true"
-                @update="(value: string) => Inter.nom = value"
-                :select="[]"
-              />
-              <InForm
-                title="Prenoms"
-                :label="'Prenoms'"
-                type="text"
-                :placeholder="'Jean Luc'"
-                :isControl="true"
-                @update="(value: string) => Inter.prenoms = value"
-                :select="[]"
-              />
-              <InForm
-                title="Email"
-                :label="'Email'"
-                type="email"
-                :placeholder="'jean@gmail.com'"
-                :isControl="true"
-                @update="(value: string) => Inter.email = value"
-                :select="[]"
-              />
-              <InForm
-                title="Poste"
-                :label="'Poste'"
-                type="text"
-                :placeholder="'Informatique'"
-                :isControl="true"
-                @update="(value: string) => Inter.poste = value"
-                :select="[]"
-              />
-              <InForm
-                title="telephone"
-                :label="'Téléphone'"
-                type="text"
-                :placeholder="'+225023125263'"
-                :isControl="true"
-                @update="(value: string) => Inter.telephone = value"
-                :select="[]"
-              />
-            </div>
+            <div class="grid grid-cols-2 gap-2 p-2" >
+                <InForm title="Nom" :label="'Nom'" name="int_nom" type="text" :placeholder="'Jean Luc'"
+                  :isControl="true"  :modelValue="Inter.nom" @update:modelValue="((value:any) => Inter.nom = value )"  />
+                <InForm title="Prenoms" :label="'Prenoms'" type="text" :placeholder="'Jean Luc'" :isControl="true"
+                :modelValue="Inter.prenoms" @update:modelValue="((value:any) => Inter.prenoms = value )" />
+                <InForm title="Email" :label="'Email'" type="email" :placeholder="'jean@gmail.com'" :isControl="true"
+                :modelValue="Inter.email" @update:modelValue="((value:any) => Inter.email = value )" />
+                <InForm title="Poste" :label="'Poste'" type="text" :placeholder="'Informatique'" :isControl="true"
+                :modelValue="Inter.poste" @update:modelValue="((value:any) => Inter.poste = value )" />
+                <InForm title="telephone" :label="'Téléphone'" type="text" :placeholder="'+225023125263'"
+                  :isControl="true":modelValue="Inter.telephone" @update:modelValue="((value:any) => Inter.telephone = value )" />
+              </div>
           </div>
         </div>
       </div>
