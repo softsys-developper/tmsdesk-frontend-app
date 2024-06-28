@@ -58,6 +58,14 @@ export const ProspectForms = [
         }
     ],
   },
+  {
+    label: "Choix de l'etape",
+    type: "select",
+    placeholder: "Etape",
+    name: "etape",
+    value: "",
+    select: [],
+  },
 
   {
     label: "Domaine d'activite",
@@ -85,7 +93,7 @@ export const ProspectStepForms = reactive([
   {
     label: "Choix de l'etape",
     type: "select",
-    placeholder: "Nom du prospect",
+    placeholder: "Etape",
     name: "etape",
     value: "",
     select: [],

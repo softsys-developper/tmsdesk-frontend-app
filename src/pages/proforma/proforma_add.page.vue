@@ -599,7 +599,7 @@ const sendProformaToBackend = async () => {
       client: setInput.client,
       interlocuteur: setInput.interlocuteur,
       ref_client: setInput.ref_client,
-      produitsServices: JSON.stringify(ProductAndServices.value),
+      produitsServices: `${ProductAndServices.value}`,
       tva: _AmountTVA.value == 0 ? 0 : 18,
       remise_pourcentage: isRemise.value,
       marge_commerciale: setInput.marge_commerciale,

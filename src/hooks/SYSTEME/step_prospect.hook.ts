@@ -5,6 +5,7 @@ import { useDataStore } from '../../stores/data.store';
 // import { LIST_DEPENSE } from '@/types/StepProspect.type';
 import moment from 'moment';
 import { setService } from '@/services/set.services';
+import { useUtilHook } from '../utils.hook';
 
 export const useStepProspectHook = () => {
    const { readData } = useApiServices();
@@ -15,10 +16,8 @@ export const useStepProspectHook = () => {
    const formatStepProspectData = (StepProspects: any) => {
       return StepProspects.map((StepProspect: any, index:number) => ({
          id: index  + 1,
-         libelle: StepProspect.libelle,
-         categorie: StepProspect.categorie?.libelle,
-         telephone: StepProspect.telephone,
-         adresse: StepProspect.adresse,
+         nom: StepProspect.nom,
+         couleur: useUtilHook().StatusHtml(StepProspect.couleur, 'bg', StepProspect.couleur),
          date_creation: moment(StepProspect.created_at).format("l") ,
       }));
    };

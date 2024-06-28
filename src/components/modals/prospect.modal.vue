@@ -119,10 +119,16 @@ onMounted(() => {
       "domaine_activite_id",
       data.datas
     )
-  }
+  });
 
-
-  );
+  readData(API_URL.STEP_LIST).then((data) => {
+    remplacerObjetDansTableau(
+      ProspectForms,
+      "name",
+      "etape",
+      data.datas
+    )
+  })
 });
 </script>
 

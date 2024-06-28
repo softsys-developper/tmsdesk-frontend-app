@@ -529,13 +529,13 @@ export const MenuHolidayActions = [
       id: 'MUA_modify',
       name: 'Modifier',
       icon: 'ri-refresh-line',
-      route: 'SETTING_USER',
+      route: 'SYSTEM_HOLIDAY',
    },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
       icon: 'ri-delete-bin-3-line',
-      route: 'SETTING_USER',
+      route: 'SYSTEM_HOLIDAY',
    },
 ];
 

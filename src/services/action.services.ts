@@ -287,4 +287,29 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToUpdateActions(id, useDataStore().Marques);
     }
   }
+
+  if (menu.route == "SYSTEM_STEP_PROSPECT") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().StepProspects);
+    }
+  }
+
+  if (menu.route == "SYSTEM_STEP_PROSPECT") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().StepProspects);
+    }
+  }
+
+  if (menu.route == "SYSTEM_HOLIDAY") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Holiday);
+    }
+  }
+  
 };
