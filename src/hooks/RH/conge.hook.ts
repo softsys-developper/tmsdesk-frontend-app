@@ -32,7 +32,7 @@ export const useCongeHook = () => {
       motif: Conge.motif,
       date_depart: Conge.date_depart,
       date_retour: Conge.date_retour,
-      // nbr_jours: Conge.date_retour,
+      nombre_jour: Conge.nombre_jour,
       remarque: Conge.remarque,
       date_creation: moment(Conge.created_at).format("l"),
     }));

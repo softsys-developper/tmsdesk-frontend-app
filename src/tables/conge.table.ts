@@ -41,13 +41,13 @@ export const CongeTables = [
         color: null,
         bgColor: null,
     },
-    // {
-    //     label: 'NOMBRE DE JOURS',
-    //     field: 'nbr_jours',
-    //     status: null,
-    //     color: null,
-    //     bgColor: null,
-    // },
+    {
+        label: 'NOMBRE DE JOURS',
+        field: 'nombre_jour',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
     // {
     //     label: 'SOLDE CONGE ANNUEL',
     //     field: 'solde_conge_annuel',
