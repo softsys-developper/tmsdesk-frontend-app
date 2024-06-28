@@ -7,7 +7,7 @@
 
 
       <Input
-        v-if=" (type == 'text' || type == 'email' || type == 'password' || type == 'number' || type == 'tel' || type == 'color')"
+        v-if=" (type == 'text' || type == 'email' || type == 'password' || type == 'number' || type == 'tel' || type == 'color' || type == 'date')"
         :id="name"
         :type="type"
         :name="name"

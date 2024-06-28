@@ -7,6 +7,7 @@
             :select="fr.select" />
         </div>
 
+        <!-- {{Interlocuteur}} -->
         <div class="mt-4" v-if="Interlocuteur.length != 0">
           <div v-for="(Inter, index) in Interlocuteur">
             <div class="mt-4">
@@ -21,7 +22,7 @@
            
 
               <div class="grid grid-cols-2 gap-2 p-2" >
-                <InForm title="Nom" :label="'Nom'" name="int_nom" type="text" :placeholder="'Jean Luc'"
+                <InForm title="Nom" :value="Inter.nom" :label="'Nom'" name="int_nom" type="text" :placeholder="'Jean Luc'"
                   :isControl="true"  :modelValue="Inter.nom" @update:modelValue="((value:any) => Inter.nom = value )"  />
                 <InForm title="Prenoms" :label="'Prenoms'" type="text" :placeholder="'Jean Luc'" :isControl="true"
                 :modelValue="Inter.prenoms" @update:modelValue="((value:any) => Inter.prenoms = value )" />
@@ -52,7 +53,7 @@ import { useProspectHook } from "@/hooks/CRM/prospects.hook";
 import { useUpdateStore } from "@/stores/update.store";
 import InForm from "../forms/in.form.vue";
 import { ProspectForms } from "@/forms/CRM/prospect.forms";
-import { onMounted, ref } from "vue";
+import { onMounted, ref} from "vue";
 import Button from "../ui/button/Button.vue";
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
@@ -93,8 +94,7 @@ const onSubmit = (e: any) => {
 
 
 // const ChargeInterlocuteur = computed(() => {
-//   if (useUpdateStore().isUpdate.is && useUpdateStore().isUpdate.data) {
-//     setTimeout(() => {
+//   if (useUpdateStore().isUpdate.is) {
 //       Interlocuteur.value = useUpdateStore().isUpdate.data?.interlocuteurs.map((ints: any) => ({
 //       id: ints.id,
 //       nom: ints.nom,
@@ -103,12 +103,7 @@ const onSubmit = (e: any) => {
 //       poste: ints.poste,
 //       telephone: ints.telephone,
 //     }))
-
-//     console.log(Interlocuteur.value)
-//     }, 500);
-//   }
-
-  
+//   }  
 // })
 
 onMounted(() => {

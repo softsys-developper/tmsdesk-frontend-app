@@ -47,6 +47,50 @@ export const useDataStore = defineStore('counter',() => {
    const StepProspects = ref(<any>[]);
    const Stocks = ref(<any>[]);
    const Holiday = ref(<any>[]);
+
+
+   const Update = ref({
+   Clients : [],
+   Prospects : [],
+   Partners : [],
+   Personals : [],
+   Salary : [],
+   Products : [],
+   Fournisseurs : [],
+   Conges : [],
+   Paids : [],
+   Proforma : [],
+   BC : [],
+   Caisses : [],
+   Depenses : [],
+   Comptes : [],
+   Bilans : [],
+   Livres : [],
+   Livraisons : [],
+   Transactions : [],
+   BCs : [],
+   Heures : [],
+   Primes : [],
+   Services : [],
+   Marques : [],
+   Categories : [],
+   Devises : [],
+   Factures : [],
+   Roles : [],
+   Permissions : [],
+   Users : [],
+   DAs  : [],
+   Rapports : [],
+   Echanges: [],
+   Proformas : [],
+   NBCs : [],
+   Compte_transactions : [],
+   BCFournisseurs : [],
+   FacturePaids : [],
+   StepProspects : [],
+   Stocks : [],
+   Holiday : [],
+   });
    
    // Vous pouvez maintenant retourner les valeurs comme suit
    return {
@@ -89,7 +133,8 @@ export const useDataStore = defineStore('counter',() => {
        FacturePaids,
        StepProspects,
        Stocks,
-       Holiday
+       Holiday,
+       Update
    };
   
 });

@@ -6,6 +6,7 @@ import { useUpdateStore } from "@/stores/update.store";
 
 const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
+  console.log(ToUpdate)
 
   setTimeout(() => {
     // useDataStore().Categories
@@ -63,7 +64,7 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     else if (menu.id == "MUA_rapport") {
       router.push({name: "CRM_RAPPORTS", query: {id }})
     } else if (menu.id == "MUA_modify") {
-      ToUpdateActions(id, useDataStore().Prospects);
+      ToUpdateActions(id, useDataStore().Update.Prospects);
     }else if (menu.id == "MUA_step") {
       useModalStore().open = true
       useModalStore().ProspectStep = true

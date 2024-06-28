@@ -38,7 +38,8 @@ export const useProspectHook = () => {
     readData(API_URL.PROSPECT_LIST)
       .then((data: any) => {
         useDataStore().Prospects = formatProspectData(data.datas);
-        setProspect.loading = false;
+        useDataStore().Update.Prospects = data.datas;
+        setProspect.loading = false; 
       })
       .catch(() => {
         setProspect.loading = false;

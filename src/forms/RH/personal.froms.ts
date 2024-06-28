@@ -36,7 +36,7 @@ export const PersonalForms = reactive([
     },
     {
         label: "Sexe",
-        type: "text",
+        type: "select",
         placeholder: "Homme & Femme",
         name: "sexe",
         value: "",
@@ -154,7 +154,7 @@ export const PersonalForms = reactive([
     // },
     {
         label: "Type de contrat",
-        type: "text",
+        type: "select",
         placeholder: "Type de contrat",
         name: "type_contrat",
         value: "",
@@ -186,7 +186,7 @@ export const PersonalForms = reactive([
     },
     {
         label: "Salaire",
-        type: "text",
+        type: "select",
         placeholder: "Liste des salaires",
         name: "salaire",
         value: "",
@@ -194,7 +194,7 @@ export const PersonalForms = reactive([
     },
     {
         label: "Service",
-        type: "text",
+        type: "select",
         placeholder: "Liste de services",
         name: "service",
         value: "",
