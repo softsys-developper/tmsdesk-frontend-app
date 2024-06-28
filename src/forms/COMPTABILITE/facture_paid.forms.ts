@@ -16,8 +16,8 @@ export const FacturePaidForms =  [
         select: [],
       },
       {
-        label: "Type de versement",
-        type: "text",
+        label: "Mode de paiement",
+        type: "select",
         placeholder: "Choisir le numéro de la facture",
         name: "mode_paiement",
         value: "",
