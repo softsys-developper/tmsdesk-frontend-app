@@ -61,7 +61,7 @@ export const ProspectForms = [
 
   {
     label: "Domaine d'activite",
-    type: "text",
+    type: "select",
     placeholder: "Domaine d'activite",
     name: "domaine_activite_id",
     value: "",
