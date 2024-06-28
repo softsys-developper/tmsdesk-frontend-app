@@ -61,7 +61,7 @@ const setOpen = () => {
 
     <form v-if="open" @submit.prevent="Func"
       class="w-full grid-rows-[auto_minmax(0,1fr)_auto] p-0 fixed z-50 inset-0 flex flex-col items-center justify-center">
-      <div @click="useModalStore().open = false" class="bg-gray-800/30 w-full fixed inset-0 h-full overflow-auto -z-40">
+      <div  class="bg-gray-800/30 w-full fixed inset-0 h-full overflow-auto -z-40">
       </div>
       <section class="bg-white lg:w-4/12 md:w-8/12 w-11/12 rounded-lg">
         <header class="flex justify-between p-4 pb-2 border-b-[1px]">

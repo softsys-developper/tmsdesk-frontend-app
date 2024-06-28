@@ -6,6 +6,7 @@ import Role_systemPage from "@/pages/systeme/role_system.page.vue";
 import Permisson_systemPage from "@/pages/systeme/permission_system.page.vue";
 import DA_systemPage from "@/pages/systeme/DA_system.page.vue";
 import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
+import Step_systemPage from "@/pages/systeme/step_system.page.vue";
 
 export const routeSystem = {
   path: "/system",
@@ -57,6 +58,13 @@ export const routeSystem = {
       path: "permissions",
       name: "SETTING_PERMISSION",
       component: Permisson_systemPage,
+      children: [],
+    },
+
+    {
+      path: "step-prospect",
+      name: "SYSTEM_STEP_PROSPECT",
+      component: Step_systemPage,
       children: [],
     },
 

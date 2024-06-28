@@ -14,9 +14,17 @@ export const NBCTables = [
         color: null,
         bgColor: null,
     },
+    
     {
         label: 'Montant',
         field: 'montant', 
+        status: null,
+        color: null,
+        bgColor: null,
+    },
+    {
+        label: 'Numéro Proforma',
+        field: 'numero_proforma',
         status: null,
         color: null,
         bgColor: null,

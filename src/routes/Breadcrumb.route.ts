@@ -157,6 +157,24 @@ export const BreadcrumbRoutes = [
     ],
   },
 
+  {
+    route: "PROFORMA_NBC_LIST",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "PROFORMA_LIST",
+        title: "proformas",
+      },
+      {
+        route: "PROFORMA_NBC_LIST",
+        title: "Liste des NBC",
+      },
+    ],
+  },
+
   
 
   // Parametre

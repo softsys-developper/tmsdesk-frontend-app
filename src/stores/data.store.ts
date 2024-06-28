@@ -44,6 +44,8 @@ export const useDataStore = defineStore('counter',() => {
    const Compte_transactions = ref(<any>[]);
    const BCFournisseurs  = ref(<any>[]);
    const FacturePaids = ref(<any>[]);
+   const StepProspects = ref(<any>[]);
+   const Stocks = ref(<any>[]);
    
    // Vous pouvez maintenant retourner les valeurs comme suit
    return {
@@ -83,7 +85,9 @@ export const useDataStore = defineStore('counter',() => {
        NBCs,
        Compte_transactions,
        BCFournisseurs,
-       FacturePaids
+       FacturePaids,
+       StepProspects,
+       Stocks
    };
   
 });

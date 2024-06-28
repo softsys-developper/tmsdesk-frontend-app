@@ -51,5 +51,14 @@ export const routeLogisc = {
       component: () => import('@/pages/logistiques/livraison_bl_logic.page.vue'),
       children: [],
    },
+
+
+
+   {
+      path: 'stock',
+      name: 'LOGISC_STOCK',
+      component: () => import('@/pages/logistiques/stock_logic.page.vue'),
+      children: [],
+   },
    ],
 };

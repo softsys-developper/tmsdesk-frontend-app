@@ -24,15 +24,17 @@ export const useProformaHook = () => {
     return Proformas.map((Proforma: any) => ({
       id: Proforma.id,
       numero_proforma: Proforma.numero_proforma,
-      titre: Proforma.titre,
+      ref_client: Proforma.ref_client,
       client: Proforma.client?.nom,
       montant_ttc: Proforma.montant_ttc,
       status:
         Proforma.etat == 1
-          ? StatusHtml("En attante", "bg-orange-500")
+          ? StatusHtml("En cours", "bg-yellow-400")
           : Proforma.etat == 2
-          ? StatusHtml("Valider", "bg-blue-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
+          ? StatusHtml("Gagné", "bg-blue-500")
+          : Proforma.etat == 3 ?
+           StatusHtml("Perdu", "bg-red-500")
+           : StatusHtml("Abandonné", "bg-gray-500"),
       date_creation: Proforma.date_creation,
       date_validite: Proforma.date_validite,
     }));

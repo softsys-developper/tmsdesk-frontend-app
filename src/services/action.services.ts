@@ -64,6 +64,10 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       router.push({name: "CRM_RAPPORTS", query: {id }})
     } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Prospects);
+    }else if (menu.id == "MUA_step") {
+      useModalStore().open = true
+      useModalStore().ProspectStep = true
+      useModalStore().ProspectStepID = id
     }
   }
 

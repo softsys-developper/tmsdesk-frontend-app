@@ -18,14 +18,14 @@ defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg', 'id']);
    <DropdownMenu  >
       <DropdownMenuTrigger
          class="text-xs font-bold max-w-8/12 px-2 py-2 rounded-md flex justify-between items-center gap-1"
-         :class="isNotBg ? '' : 'bg-orange-400  text-white'"
+         :class="isNotBg ? '' : dataDropMenu.length != 0 ? 'bg-orange-400  text-white'  : 'bg-orange-200  text-white'"
          :disabled="dataDropMenu.length == 0 ? true : false"
       >
       
-         <span class="text-base">
+         <span class="text-base" v-if="name != 'Actions'">
             {{ name }}
          </span>
-         <i class="ri-arrow-down-s-line"></i>
+         <i :class="name != 'Actions' ? 'ri-arrow-down-s-line' : 'ri-more-line'"></i>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
          <DropdownMenuLabel> {{ title }} </DropdownMenuLabel>

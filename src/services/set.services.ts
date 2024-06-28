@@ -33,7 +33,7 @@ export const setService = (
           Conges.unshift(...toAdd);
           Store[LabelStore].Conges = Conges;
           useModalStore().open = false;
-          callback();
+          callback;
 
           toast({
             title: "Enregistré",
@@ -56,8 +56,6 @@ export const setService = (
           EmptyFields(values); // Vider les champs
           loading.loadingCreate = false;
           let Prospects = Store[LabelStore];
-
-          // //
           const toAdd = formatData([data.data]);
 
           const _Prospects: any = Prospects.map((el: any) => {
@@ -69,6 +67,7 @@ export const setService = (
               ...el,
             };
           });
+          callback
 
           Store[LabelStore] = _Prospects;
           useModalStore().open = false;

@@ -7,25 +7,17 @@ export const RapportTables = [
         bgColor: null,
     },
 
-    // {
-    //     label: 'Nom',
-    //     field: 'nom',
-    //     status: null,
-    //     color: null,
-    //     bgColor: null,
-    // },
-
-    // {
-    //     label: 'Type',
-    //     field: 'type',
-    //     status: null,
-    //     color: null,
-    //     bgColor: null,
-    // },
-
     {
         label: 'Messages',
         field: 'message',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
+
+    {
+        label: 'Commercial',
+        field: 'commercial',
         status: null,
         color: null,
         bgColor: null,

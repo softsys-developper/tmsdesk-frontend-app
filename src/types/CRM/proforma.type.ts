@@ -36,6 +36,7 @@ interface Pivot {
     prix_unitaire: string;
     montant: string;
     description: string;
+    disponibilite: string;
     remarques: string;
     image: string | null;
     proforma_id: number;
@@ -43,6 +44,7 @@ interface Pivot {
     created_at: string;
     updated_at: string;
     pivot: Pivot;
+    marge_commerciale: string | null;
   }
   
 

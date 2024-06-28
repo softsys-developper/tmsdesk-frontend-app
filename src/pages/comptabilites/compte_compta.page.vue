@@ -14,8 +14,8 @@
                      </RouterLink>
 
                      <CompteModal name="Ajouter un compte" :title="useUpdateStore().isUpdate.is
-                           ? 'Modifier Clients'
-                           : 'Ajouter Clients'
+                           ? 'Modifier Compte'
+                           : 'Ajouter Compte'
                         " />
 
                      <DeleteLayout :funDelete="CompteDelete" :id="useUpdateStore().isDelete.id" />

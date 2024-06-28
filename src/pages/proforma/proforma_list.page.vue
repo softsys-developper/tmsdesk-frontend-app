@@ -21,7 +21,7 @@
               <RouterLink :to="{ name: 'PROFORMA_ADD' }"
                 class="bg-orange-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
                 <i class="ri-add-line text-sm"></i>
-                <span class="hidden lg:flex">Nouveau proforma</span>
+                <span class="hidden lg:flex">Nouvelle proforma</span>
               </RouterLink>
             </div>
           </template>

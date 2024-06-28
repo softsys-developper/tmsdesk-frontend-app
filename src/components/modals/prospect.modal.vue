@@ -1,92 +1,46 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setProspect.loadingCreate">
+  <ModalLayout :Func="onSubmit" :loading="setProspect.loadingCreate" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in ProspectForms">
-          <InForm
-            :title="fr.label"
-            :name="fr.name"
-            :label="fr.label"
-            :type="fr.type"
-            :placeholder="fr.placeholder"
-            :select="fr.select"
-          />
+          <InForm :title="fr.label" :name="fr.name" :label="fr.label" :type="fr.type" :placeholder="fr.placeholder"
+            :select="fr.select" />
         </div>
 
         <div class="mt-4" v-if="Interlocuteur.length != 0">
           <div v-for="(Inter, index) in Interlocuteur">
             <div class="mt-4">
-              <div
-                class="w-full bg-gray-400 py-1 px-4 rounded-md flex justify-between"
-              >
-                <span class="text-sm font-bold"
-                  >Interlocuteur #{{ index + 1 }}
+              <div class="w-full bg-gray-400 py-1 px-4 rounded-md flex justify-between">
+                <span class="text-sm font-bold">Interlocuteur #{{ index + 1 }}
                 </span>
-                <div
-                  class="cursor-pointer"
-                  @click="CloseInterlocuteur(Inter.id)"
-                >
+                <div class="cursor-pointer" @click="CloseInterlocuteur(Inter.id)">
                   <i class="ri-close-large-line"></i>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-2 p-2">
-                <InForm
-                  title="Nom"
-                  :label="'Nom'"
-                  type="text"
-                  :placeholder="'Jean Luc'"
-                  :isControl="true"
-                  @update="(value: string) => Inter.nom = value"
-                  :select="[]"
-                />
-                <InForm
-                  title="Prenoms"
-                  :label="'Prenoms'"
-                  type="text"
-                  :placeholder="'Jean Luc'"
-                  :isControl="true"
-                  @update="(value: string) => Inter.prenoms = value"
-                  :select="[]"
-                />
-                <InForm
-                  title="Email"
-                  :label="'Email'"
-                  type="email"
-                  :placeholder="'jean@gmail.com'"
-                  :isControl="true"
-                  @update="(value: string) => Inter.email = value"
-                  :select="[]"
-                />
-                <InForm
-                  title="Poste"
-                  :label="'Poste'"
-                  type="text"
-                  :placeholder="'Informatique'"
-                  :isControl="true"
-                  @update="(value: string) => Inter.poste = value"
-                  :select="[]"
-                />
-                <InForm
-                  title="telephone"
-                  :label="'Téléphone'"
-                  type="text"
-                  :placeholder="'+225023125263'"
-                  :isControl="true"
-                  @update="(value: string) => Inter.telephone = value"
-                  :select="[]"
-                />
+           
+
+              <div class="grid grid-cols-2 gap-2 p-2" >
+                <InForm title="Nom" :label="'Nom'" name="int_nom" type="text" :placeholder="'Jean Luc'"
+                  :isControl="true"  :modelValue="Inter.nom"  />
+                <InForm title="Prenoms" :label="'Prenoms'" type="text" :placeholder="'Jean Luc'" :isControl="true"
+                :modelValue="Inter.prenoms" />
+                <InForm title="Email" :label="'Email'" type="email" :placeholder="'jean@gmail.com'" :isControl="true"
+                :modelValue="Inter.email" />
+                <InForm title="Poste" :label="'Poste'" type="text" :placeholder="'Informatique'" :isControl="true"
+                :modelValue="Inter.poste" />
+                <InForm title="telephone" :label="'Téléphone'" type="text" :placeholder="'+225023125263'"
+                  :isControl="true":modelValue="Inter.telephone" />
               </div>
             </div>
           </div>
         </div>
 
         <div class="py-4">
-          <Button type="button" @click="AddInterlocuteur"
-            >Ajouter un interlocuteur</Button
-          >
+          <Button type="button" @click="AddInterlocuteur">Ajouter un interlocuteur</Button>
         </div>
       </div>
+      <!-- {{ ChargeInterlocuteur }} -->
     </template>
   </ModalLayout>
 </template>
@@ -129,20 +83,45 @@ const onSubmit = (e: any) => {
   let values = new FormData(e.target);
   values.append("interlocuteurs", JSON.stringify(Interlocuteur.value));
   if (useUpdateStore().isUpdate.is) {
-    ProspectUpdate(useUpdateStore().isUpdate.id, values);
+      ProspectUpdate(useUpdateStore().isUpdate.id, values);
+   
   } else {
     CreateProspect(values);
   }
 };
 
+
+
+// const ChargeInterlocuteur = computed(() => {
+//   if (useUpdateStore().isUpdate.is && useUpdateStore().isUpdate.data) {
+//     setTimeout(() => {
+//       Interlocuteur.value = useUpdateStore().isUpdate.data?.interlocuteurs.map((ints: any) => ({
+//       id: ints.id,
+//       nom: ints.nom,
+//       prenoms: ints.prenoms,
+//       email: ints.email,
+//       poste: ints.poste,
+//       telephone: ints.telephone,
+//     }))
+
+//     console.log(Interlocuteur.value)
+//     }, 500);
+//   }
+
+  
+// })
+
 onMounted(() => {
-  readData(API_URL.DA_LIST).then((data) =>
+  readData(API_URL.DA_LIST).then((data) => {
     remplacerObjetDansTableau(
       ProspectForms,
       "name",
       "domaine_activite_id",
       data.datas
     )
+  }
+
+
   );
 });
 </script>

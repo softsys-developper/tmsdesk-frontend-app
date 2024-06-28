@@ -13,6 +13,10 @@ export const useModalStore = defineStore('Modal', {
       Password: {
          email: null,
          token: null
-      } 
+      },
+
+
+      ProspectStep: false,
+      ProspectStepID: null
    }),
 });

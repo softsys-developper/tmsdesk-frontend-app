@@ -29,6 +29,13 @@ export const ProductAndServiceTables = [
     bgColor: null,
   },
   {
+    label: "Stock",
+    field: "status",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
     label: "Prix unitaire",
     field: "prix_unitaire",
     status: null,

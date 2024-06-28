@@ -1,4 +1,11 @@
 export const ProformaTables = [
+   {
+      label: 'ID',
+      field: 'id',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
     {
        label: 'Numéro de proforma',
        field: 'numero_proforma',
@@ -7,8 +14,8 @@ export const ProformaTables = [
        bgColor: null,
     },
     {
-       label: 'Titre',
-       field: 'titre',
+       label: 'Réference',
+       field: 'ref_client',
        status: null,
        color: null,
        bgColor: null,

@@ -50,7 +50,7 @@ export const ProspectTables = [
     },
     {
       label: "Étape",
-      field: "etape",
+      field: "status",
       status: null,
       color: null,
       bgColor: null,

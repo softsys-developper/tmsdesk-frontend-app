@@ -32,7 +32,32 @@ export const MenuProspectActions = [
       icon: 'ri-message-line',
       route: 'CRM_PROSPECTS',
    },
+   {
+      id: 'MUA_step',
+      name: 'Changer l\'etat',
+      icon: 'ri-flag-2-line',
+      route: 'CRM_PROSPECTS',
+   },
 ];
+
+
+
+export const MenuStepProspectActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SYSTEM_STEP_PROSPECT',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SYSTEM_STEP_PROSPECT',
+   },
+];
+
+
 export const MenuProformaActions = [
    {
       id: 'MUA_modify',
@@ -100,24 +125,24 @@ export const MenuRapportActions = [
    // },
 ];
 export const MenuNBCActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'PROFORMA_NBC_LIST',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'PROFORMA_NBC_LIST',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
       icon: 'ri-delete-bin-3-line',
       route: 'PROFORMA_NBC_LIST',
    },
-   {
-      id: 'MUA_detail',
-      name: 'Voir la proforma',
-      icon: 'ri-message-line',
-      route: 'PROFORMA_NBC_LIST',
-   },
+   // {
+   //    id: 'MUA_detail',
+   //    name: 'Voir la proforma',
+   //    icon: 'ri-eye-line',
+   //    route: 'PROFORMA_NBC_LIST',
+   // },
 ];
 
 
@@ -342,18 +367,18 @@ export const MenuCompteTransactionActions = [
 
 // Logistique
 export const MenuProductActions = [
-    {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'COMPTA_COMPTE',
-   },
-   {
-      id: 'MUA_delete',
-      name: 'Supprimer',
-      icon: 'ri-delete-bin-3-line',
-      route: 'COMPTA_COMPTE',
-   },
+   //  {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_COMPTE',
+   // },
+   // {
+   //    id: 'MUA_delete',
+   //    name: 'Supprimer',
+   //    icon: 'ri-delete-bin-3-line',
+   //    route: 'COMPTA_COMPTE',
+   // },
 ]
 export const MenuLivraisonActions = [
    {
@@ -381,6 +406,18 @@ export const MenuLivraisonActions = [
    route: 'LOGISC_LIVRAISONS',
 },
 ]
+
+export const MenuStockActions = [
+ 
+  {
+     id: 'MUA_delete',
+     name: 'Supprimer',
+     icon: 'ri-delete-bin-3-line',
+     route: 'LOGISC_LIVRAISONS',
+  }
+]
+
+
 
 
 export const MenuBCFournisseurActions = [

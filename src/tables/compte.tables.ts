@@ -9,7 +9,13 @@
             color: null,
             bgColor: null,
         },
-   
+        {
+            label: 'Numéro du compte',
+            field: 'numero_compte',
+            status: null,
+            color: null,
+            bgColor: null,
+        },
         {
             label: 'Libellés',
             field: 'nom',

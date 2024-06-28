@@ -11,7 +11,7 @@ import { useUpdateStore } from "@/stores/update.store";
 
 export const useProductHook = () => {
   const { readData, createData, deleteData, updateData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { EmptyFields, StatusHtml } = useUtilHook();
   const setProduct = reactive({
     loading: false,
     loadingCreate: false,
@@ -31,6 +31,7 @@ export const useProductHook = () => {
       reference: Product.reference,
       description: Product.description,
       quantite: Product.quantite,
+      status: Product.quantite = 0 ? StatusHtml('Indisponible', 'bg-red-500') : StatusHtml('En stock', 'bg-green-500'),
       prix_unitaire: Product.prix_unitaire,
       date_creation: moment(Product.created_at).format("l"),
     }));

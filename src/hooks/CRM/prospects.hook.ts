@@ -4,12 +4,14 @@ import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
+import { useUtilHook } from "../utils.hook";
 
 export const useProspectHook = () => {
   const { readData } = useApiServices();
   const setProspect = reactive({ loading: false, loadingCreate: false });
   const stateProspects = ref<any[]>([]);
   stateProspects.value = useDataStore().Prospects;
+  const { StatusHtml } = useUtilHook()
 
   const formatProspectData = (Prospects: any) => {
     return Prospects.map((Prospect: any) => ({
@@ -18,10 +20,11 @@ export const useProspectHook = () => {
       email: Prospect.email,
       telephone: Prospect.telephone,
       adresse: Prospect.adresse,
-      proposition: Prospect.proposition,
-      etape: Prospect.etape,
+      proposition: Prospect.proposition, 
+      status: StatusHtml(Prospect.etape?.nom, `bg`, Prospect.etape?.couleur),
       observation: Prospect.observation,
       date_creation: moment(Prospect.created_at).format("l"),
+      interlocuteurs: Prospect.interlocuteurs
     }));
   };
 
@@ -55,6 +58,17 @@ export const useProspectHook = () => {
     ).SetCreate(API_URL.PROSPECT_CREATE, values);
   };
 
+  //
+  const CreateProspectStep = async (id: any, values: any, callback:any) => {
+    setService(
+      setProspect,
+      useDataStore(),
+      'Prospects',
+      formatProspectData,
+      callback()
+    ).SetUpdate(API_URL.PROSPECT_STEP_CHANGE, id,  values);
+  };
+
      //
   const ProspectUpdate = (id: any, values: any) => {
     setService(
@@ -80,6 +94,7 @@ export const useProspectHook = () => {
     FindProspectAll,
     FindProspectOne,
     CreateProspect,
+    CreateProspectStep,
     ProspectUpdate,
     ProspectDelete,
     stateProspects,

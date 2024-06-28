@@ -48,25 +48,25 @@ export const FournisseurForms = [
       value: "",
       select: [],
     },
-    {
-      label: "Marque",
-      type: "select",
-      placeholder: "Marque",
-      name: "marque",
-      value: "",
-      select: [
+    // {
+    //   label: "Marque",
+    //   type: "select",
+    //   placeholder: "Marque",
+    //   name: "marque",
+    //   value: "",
+    //   select: [
           
-      ],
-    },
-    {
-      label: "Categorie",
-      type: "select",
-      placeholder: "Catégorie",
-      name: "categorie",
-      value: "",
-      select: [
+    //   ],
+    // },
+    // {
+    //   label: "Categorie",
+    //   type: "select",
+    //   placeholder: "Catégorie",
+    //   name: "categorie",
+    //   value: "",
+    //   select: [
           
-      ],
-    },
+    //   ],
+    // },
 
 ]

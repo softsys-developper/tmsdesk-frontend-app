@@ -15,7 +15,7 @@
             "><i class="ri-menu-2-fill"></i></span>
           <RouterLink :to="{ name: 'HOME' }" class="text-xl font-black truncate lg:w-full w-36 ">
 
-            {{ AppService().name }}
+            {{ 'CENTRALE D’ACHAT' ?? AppService().name }}
           </RouterLink>
         </div>
 

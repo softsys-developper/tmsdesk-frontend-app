@@ -26,6 +26,7 @@ export const useRapportHook = () => {
     return Rapports.map((Rapport: any) => ({
       id: Rapport.id,
       message: Rapport.message,
+      commercial: Rapport.name,
       date_creation: moment(Rapport.created_at).format("l"),
     }));
   };
@@ -45,6 +46,21 @@ export const useRapportHook = () => {
         setRapport.loading = false;
       });
   };
+
+
+    //
+    const RapportEchangeAll = () => {
+      setRapport.loading = true;
+      readData(API_URL.RAPPORT_ECHANGE_LIST)
+        .then((data: any) => {
+          useDataStore().Rapports = formatRapportData(data.data);
+          setRapport.loading = false;
+        })
+        .catch(() => {
+          setRapport.loading = false;
+        });
+    };
+  
 
   //
   const FindRapportOne = () => { };
@@ -133,5 +149,6 @@ export const useRapportHook = () => {
     stateRapports,
     setRapport,
     storeRapports,
+    RapportEchangeAll
   };
 };

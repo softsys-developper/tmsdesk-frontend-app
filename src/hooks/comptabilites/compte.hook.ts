@@ -21,6 +21,7 @@ export const useCompteHook = () => {
    const formatCompteData = (comptes: any) => {
       return comptes.map((compte: any) => ({
          id: compte.id,
+         numero_compte: compte.numero_compte,
          nom: compte.nom,
          solde: compte.solde,
          date_creation: moment(compte.created_at).format("l"),

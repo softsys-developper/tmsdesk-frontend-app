@@ -217,6 +217,12 @@ export const MenuApp = [
             name: 'Livraisons',
             route: 'LOGISC_LIVRAISONS'
          },
+         {
+            icon: 'ri-store-3-line',
+            id: 'LOGISC_STOCK',
+            name: 'Stocks',
+            route: 'LOGISC_STOCK'
+         },
         
       ],
    },
@@ -294,17 +300,23 @@ export const MenuApp = [
             name: 'Marques',
             route: 'SYSTEM_MARQUE'
          },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_STEP_PROSPECT',
+            name: 'Etapes Prospect',
+            route: 'SYSTEM_STEP_PROSPECT'
+         },
       ],
    },
-   {
-      name: 'Mesageries',
-      icon: `https://${AppService().url}/images/icons/messagerie.png`,
-      list: 'Discutez avec les membres de votre équiqe.',
-      route: 'SYSTEM_CHATS',
-      children: [
+   // {
+   //    name: 'Mesageries',
+   //    icon: `https://${AppService().url}/images/icons/messagerie.png`,
+   //    list: 'Discutez avec les membres de votre équiqe.',
+   //    route: 'SYSTEM_CHATS',
+   //    children: [
         
-      ],
-   },
+   //    ],
+   // },
    {
       name: 'Supports',
       icon: `https://${AppService().url}/images/icons/support.png`,
@@ -316,12 +328,12 @@ export const MenuApp = [
 ];
 
 export const MenuPersonal = [
-   {
-      id: 'MENU_MAIL',
-      name: 'Envoyer Mail',
-      icon: 'ri-mail-star-fill',
-      route: 'HOME'
-   },
+   // {
+   //    id: 'MENU_MAIL',
+   //    name: 'Envoyer Mail',
+   //    icon: 'ri-mail-star-fill',
+   //    route: 'HOME'
+   // },
    {
       id: 'MENU_MAIL',
       name: 'Rapport',

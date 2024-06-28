@@ -1,7 +1,7 @@
 export const RapportForms = [
     {
       label: "Selectionnez un prospects",
-      type: "text",
+      type: "select",
       placeholder: "Nom du prospects",
       name: "prospect",
       value: "",
@@ -9,7 +9,7 @@ export const RapportForms = [
     },
     {
       label: "Message",
-      type: "text",
+      type: "textarea",
       placeholder: "",
       name: "message",
       value: "",

@@ -111,7 +111,7 @@ const IsPageFun = () => {
       <!-- <TableCaption>A list of your recent dataTables.</TableCaption> -->
       <TableHeader class="bg-blue-200 px-8">
          <TableRow class="font-black">
-            <TableHead class="font-black text-sm first-letter:uppercase" v-for="head in display">
+            <TableHead class="font-black text-xs uppercase" v-for="head in display">
                {{ head.label }}
             </TableHead>
             <TableHead class="text-right text-sm font-black"> Actions </TableHead>
@@ -126,19 +126,19 @@ const IsPageFun = () => {
             :key="invoice.invoice"
          > -->
 
-         <TableRow class="text-base font-medium " v-for="invoice in OnSearchValue?.slice(
+         <TableRow class="text-sm font-medium  " v-for="invoice in OnSearchValue?.slice(
             isPage != 0
                ? Number(isPage) * Number(PerPage) - Number(PerPage)
                : isPage,
             isPage != 0 ? Number(PerPage) * isPage : PerPage
          )" :key="invoice.invoice">
 
-            <TableCell class="font-medium text-base"
+            <TableCell class="font-medium text-sm whitespace-pre-wrap  border-[1px]"
                v-for="b in Object.keys(invoice).filter(el => display.some((d: any) => d.field === el))"
-               v-html="invoice[b] && invoice[b]?.length >= 15 && b != 'status' && display.length > 6 ? invoice[b].substring(0, 15) + '...' : invoice[b]">
+               v-html="invoice[b] && invoice[b]?.length >= 30 && b != 'status' && display.length > 6 ? invoice[b].substring(0, 30) + '...' : invoice[b]">
             </TableCell>
 
-            <TableCell class="text-right ">
+            <TableCell class="text-right  border-[1px] ">
                <div class="w-full flex justify-end" v-if="MenuActions">
 
                   <BtnMore :id="invoice.id" name="Actions" :actions="true" title="Action"  

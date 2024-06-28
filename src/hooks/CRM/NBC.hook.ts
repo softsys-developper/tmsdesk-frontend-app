@@ -17,6 +17,7 @@ export const useNBCHook = () => {
       id: NBC.id,
       numero_bon_de_commande: NBC.numero_bon_de_commande,
       montant: NBC.montant,
+      numero_proforma: NBC.proforma.numero_proforma,
       telephone: NBC.telephone,
       adresse: NBC.adresse,
       date_creation: moment(NBC.created_at).format("l"),

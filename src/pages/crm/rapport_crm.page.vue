@@ -2,7 +2,7 @@
     <BaseLayout>
       <template v-slot:content>
         <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-          <ContentLayout :title="'CRM | ' + IsRapport">
+          <ContentLayout :title="'CRM | ' + `${IsRapport ? IsRapport :  'Rapports'}` ">
             <template v-slot:created>
               <RapportModal
                 :name="'Ajouter Rapport'"
@@ -71,6 +71,7 @@ import moment from "moment";
       useDataStore().Echanges = data.data.map((Rapport:any) => ({
         id: Rapport.id,
       message: Rapport.message,
+      commercial: Rapport.name,
       date_creation: moment(Rapport.created_at).format("l"),
       }))
     })

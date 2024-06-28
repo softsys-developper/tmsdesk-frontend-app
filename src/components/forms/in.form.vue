@@ -5,23 +5,50 @@
     <div class="flex flex-col w-full gap-1">
       <label :for="name" class="text-sm font-bold"> {{ label }} </label>
 
-      <Input v-if="select?.length == 0 && isControl == true && type != 'file'" :id="name" :type="type" @input="emitInput"
-        class="w-full h-full outline-none bg-transparent py-3" :placeholder="placeholder" />
 
-      <Input v-if="select?.length == 0 && isControl != true && type != 'file'" :id="name" :type="type" :name="name"
-        class="w-full h-full outline-none bg-transparent py-3" :placeholder="placeholder" />
+      <Input
+        v-if=" (type == 'text' || type == 'email' || type == 'password' || type == 'number' || type == 'tel' || type == 'color')"
+        :id="name"
+        :type="type"
+        :name="name"
+        @input="emitInput($event.target.value)"
+        class="w-full h-full outline-none bg-transparent py-3"
+        :placeholder="placeholder + '...'  "
+      />
 
-        <Input v-if="select?.length == 0 && isControl != true && type == 'file'" :id="name" :type="type" :name="name"
-        class="w-full h-full outline-none bg-transparent py-3" :placeholder="placeholder" />
+      <Input
+        v-if=" type == 'file'"
+        :id="name"
+        :type="type"
+        :name="name"
+        class="w-full h-full outline-none bg-transparent py-3"
+        :placeholder="placeholder"
+      />
 
-      <SelectedForm :value="value" :select="select" :name="name" :label="label" />
-
-
+      <Textarea
+        v-if="type == 'textarea'"
+        :id="name"
+        :type="type"
+        :name="name"
+        class="w-full h-full outline-none bg-transparent py-3"
+        :placeholder="placeholder"
+      />
+      
+      <SelectedForm
+        :value="value"
+        :select="select"
+        :name="name"
+        :label="label"
+       :type="type"
+      />
     </div>
   </div>
+
 </template>
 <script setup lang="ts">
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+// import { computed, ref, watch } from 'vue';
 
 defineProps([
   "label",
@@ -31,23 +58,18 @@ defineProps([
   "value",
   "placeholder",
   "error",
-  'select',
-  'isControl'
+  "select",
+  "isControl",
+  "modelValue"
 ]);
 
 // import Label from "../ui/label/Label.vue";
-import SelectedForm from '@/components/forms/selected.form.vue'
+import SelectedForm from "@/components/forms/selected.form.vue";
 
-// Définir les événements que le composant enfant peut émettre
-const emit = defineEmits(['update']);
+const emit = defineEmits(['update:modelValue']);
 
 // Fonction pour émettre l'événement
-const emitInput = (event: Event) => {
-  const input = event.target as HTMLInputElement;
-  emit('update', input.value);
+const emitInput = (value: any) => {
+  emit('update:modelValue', value);
 };
-
-
-
-
 </script>

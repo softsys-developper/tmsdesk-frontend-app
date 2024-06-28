@@ -111,6 +111,9 @@ export const API_URL = {
   NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
 
 
+  INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
+
+
   BC_FOURNISSEUR_LIST: `${BASE_URL}/fournisseurs/bdc`,
   BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,
   BC_FOURNISSEUR_UPDATE: `${BASE_URL}/fournisseurs/bdc/update`,
@@ -240,5 +243,14 @@ export const API_URL = {
   PERMISSIONS_REMOVE: `${BASE_URL}/permissions/delete`,
   PERMISSIONS_ROLE: `${BASE_URL}/permissions/role/`,
   PERMISSIONS_ROLE_CREATE: `${BASE_URL}/roles/permissions/add`,
+
+  //Etape
+  STEP_LIST: `${BASE_URL}/etapes`,
+  STEP_CREATE: `${BASE_URL}/etapes/add`,
+  STEP_UPDATE: `${BASE_URL}/etapes/update`,
+  STEP_REMOVE: `${BASE_URL}/etapes/delete`,
+
+  //Etape
+  PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
   
 };

@@ -4,13 +4,17 @@
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
         <ContentLayout title="CRM | Prospects">
           <template v-slot:created>
-            <ProspectModal
+            <ProspectModal  v-if="useModalStore().ProspectStep == false && useModalStore().open == true"
               :name="'Ajouter Prospect'"
               :title="
                 useUpdateStore().isUpdate.is
                   ? 'Modifier Prospect'
                   : 'Ajouter Prospect'
               "
+            />
+            <ProspectStepModal v-if="useModalStore().ProspectStep == true "
+              :name="'Changer étape du prospect'"
+              :title="'Changer étape du prospect'"
             />
 
             <DeleteLayout
@@ -43,6 +47,8 @@ import Table from "./../../components/tables/table.vue";
 import BaseLayout from "./../../layouts/base.layout.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
 import ProspectModal from "@/components/modals/prospect.modal.vue";
+import ProspectStepModal from "@/components/modals/CRM/prospect_step.modal.vue";
+
 import { MenuProspectActions } from "@/routes/actions.route";
 import { onMounted } from "vue";
 import { useDataStore } from "@/stores/data.store";
@@ -51,6 +57,7 @@ import { ProspectTables } from "@/tables/prospect.table";
 import { useProspectHook } from "@/hooks/CRM/prospects.hook";
 import { useUpdateStore } from "@/stores/update.store";
 import DeleteLayout from "@/layouts/delete.layout.vue";
+import { useModalStore } from "@/stores/modal.store";
 
 const { FindProspectAll, setProspect, ProspectDelete } = useProspectHook();
 
