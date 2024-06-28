@@ -646,6 +646,25 @@ export const BreadcrumbRoutes = [
         title: "Liste des domaines d'activité",
       },
     ],
+  },
+
+
+  {
+    route: "SYSTEM_STEP_PROSPECT",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SYSTEM_PARAMETRE",
+        title: "Parametres",
+      },
+      {
+        route: "SYSTEM_STEP_PROSPECT",
+        title: "Liste des étapes",
+      },
+    ],
   }
   
 ];

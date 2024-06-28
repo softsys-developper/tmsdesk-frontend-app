@@ -4,7 +4,7 @@
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
         <ContentLayout title="CRM | Prospects">
           <template v-slot:created>
-            <ProspectModal  v-if="useModalStore().ProspectStep == false && useModalStore().open == true"
+            <ProspectModal  v-if="useModalStore().ProspectStep == false"
               :name="'Ajouter Prospect'"
               :title="
                 useUpdateStore().isUpdate.is

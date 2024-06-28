@@ -67,7 +67,6 @@ export const API_URL = {
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
   PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
 
-
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
   ROLE_CREATE: `${BASE_URL}/roles/add`,
@@ -110,16 +109,13 @@ export const API_URL = {
   NBC_REMOVE: `${BASE_URL}/bon-de-commandes/delete`,
   NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
 
-
   INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
-
 
   BC_FOURNISSEUR_LIST: `${BASE_URL}/fournisseurs/bdc`,
   BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,
   BC_FOURNISSEUR_UPDATE: `${BASE_URL}/fournisseurs/bdc/update`,
   BC_FOURNISSEUR_REMOVE: `${BASE_URL}/fournisseurs/bdc-delete`,
   BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc-edit`,
-  
 
   CAISSE_TRANSACTION_LIST: `${BASE_URL}/caisse/transactions`,
   CAISSE_TRANSACTION_CREATE: `${BASE_URL}/caisse/transaction/add`,
@@ -189,7 +185,6 @@ export const API_URL = {
   DEVISE_UPDATE: `${BASE_URL}/devises/update`,
   DEVISE_REMOVE: `${BASE_URL}/devises/delete`,
 
-
   LIVRAISON_LIST: `${BASE_URL}/livraisons`,
   LIVRAISON_CREATE: `${BASE_URL}/livraisons/add`,
   LIVRAISON_UPDATE: `${BASE_URL}/livraisons/update`,
@@ -207,14 +202,11 @@ export const API_URL = {
   FACTURE_UPDATE: `${BASE_URL}/facture/client/update`,
   FACTURE_REMOVE: `${BASE_URL}/facture/client/delete`,
 
-
   FACTURE_PAID_LIST: `${BASE_URL}/paiement/facture/client`,
   FACTURE_PAID_DETAIL: `${BASE_URL}/paiement/facture/client/`,
   FACTURE_PAID_CREATE: `${BASE_URL}/paiement/facture/client/add`,
   FACTURE_PAID_UPDATE: `${BASE_URL}/paiement/facture/client/update`,
   FACTURE_PAID_REMOVE: `${BASE_URL}/paiement/facture/client/delete`,
-
-  
 
   // Gestion fournisseurs
   FOURNISSEURS_LIST: `${BASE_URL}/fournisseurs`,
@@ -250,7 +242,18 @@ export const API_URL = {
   STEP_UPDATE: `${BASE_URL}/etapes/update`,
   STEP_REMOVE: `${BASE_URL}/etapes/delete`,
 
+  //Jours Ferier
+  HOLIDAY_LIST: `${BASE_URL}/jours-feriers`,
+  HOLIDAY_CREATE: `${BASE_URL}/jours-feriers/add`,
+  HOLIDAY_UPDATE: `${BASE_URL}/jours-feriers/update`,
+  HOLIDAY_REMOVE: `${BASE_URL}/jours-feriers/delete`,
+
+  //Stocks
+  STOCK_LIST: `${BASE_URL}/produits/in-stocks`,
+  STOCK_CREATE: `${BASE_URL}/produits/in-stocks/add`,
+  STOCK_UPDATE: `${BASE_URL}/produits/in-stocks/update`,
+  STOCK_REMOVE: `${BASE_URL}/produits/in-stocks/delete`,
+
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
-  
 };

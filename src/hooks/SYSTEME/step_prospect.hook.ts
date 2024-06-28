@@ -1,21 +1,16 @@
 import { useApiServices } from '@/services/api.services';
 import { API_URL } from '@/routes/api.route';
-import { useToast } from '@/components/ui/toast/use-toast';
 import { computed, reactive, ref } from 'vue';
 import { useDataStore } from '../../stores/data.store';
 // import { LIST_DEPENSE } from '@/types/StepProspect.type';
-import { useUtilHook } from '@/hooks/utils.hook';
-import { useModalStore } from '@/stores/modal.store';
 import moment from 'moment';
 import { setService } from '@/services/set.services';
 
 export const useStepProspectHook = () => {
-   const { readData, createData } = useApiServices();
-   const { EmptyFields } = useUtilHook();
+   const { readData } = useApiServices();
    const setStepProspect = reactive({ loading: false, loadingCreate: false });
    const stateStepProspects = ref<any[]>([]);
    stateStepProspects.value = useDataStore().StepProspects;
-   const { toast } = useToast();
 
    const formatStepProspectData = (StepProspects: any) => {
       return StepProspects.map((StepProspect: any, index:number) => ({
@@ -36,7 +31,7 @@ export const useStepProspectHook = () => {
    //
    const FindStepProspectAll = () => {
       setStepProspect.loading = true;
-      readData(API_URL.MARQUE_LIST)
+      readData(API_URL.STEP_LIST)
          .then((data: any) => {
             useDataStore().StepProspects =  formatStepProspectData(data.datas);
             setStepProspect.loading = false;
@@ -51,47 +46,12 @@ export const useStepProspectHook = () => {
 
    //
    const CreateStepProspect = async(values: any) => {
-      setStepProspect.loadingCreate = true;
-      const DataCreated = await createData(API_URL.MARQUE_CREATE, values)
-         .then((data: any) => {
-            if (data) {
-               EmptyFields(values); // Vider les champs
-               setStepProspect.loadingCreate = false;
-               let StepProspects = useDataStore().StepProspects
-
-               //
-               const toAdd: [] = formatStepProspectData([data.data]);
-               StepProspects.unshift(...toAdd);
-               useDataStore().StepProspects = StepProspects;
-               useModalStore().open = false
-
-               toast({
-                  title: 'Enregistré',
-                  description: data.message,
-               });
-            }
-         })
-         .catch((err) => {
-            setStepProspect.loadingCreate = false;
-            if (err) {
-               const isErr = Object.keys(err.response.data.errors);
-               if (isErr) {
-                  toast({
-                     title: isErr[0],
-                     variant: "destructive",
-                     description: err.response.data.errors[isErr[0]][0],
-                  });
-               } else {
-                  toast({
-                     title: 'error',
-                     variant: "destructive",
-                     description: err.response.data.message,
-                  });
-               }
-            }
-         });
-
-         return {data: DataCreated}
+      setService(
+         setStepProspect,
+         useDataStore(),
+         'StepProspects',
+         formatStepProspectData
+       ).SetCreate(API_URL.STEP_CREATE, values);
    };
 
    const StepProspectUpdate = (id: any, values: any) => {
@@ -100,7 +60,7 @@ export const useStepProspectHook = () => {
         useDataStore(),
         'StepProspects',
         formatStepProspectData
-      ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+      ).SetUpdate(API_URL.STEP_UPDATE, id, values);
     };
   
     //
@@ -110,7 +70,7 @@ export const useStepProspectHook = () => {
         useDataStore(),
         'StepProspects',
         formatStepProspectData
-      ).SetDelete(API_URL.CLIENT_REMOVE, id);
+      ).SetDelete(API_URL.STEP_REMOVE, id);
     };
   
     return {

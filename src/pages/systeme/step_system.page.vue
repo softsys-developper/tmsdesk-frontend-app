@@ -2,9 +2,9 @@
     <BaseLayout>
        <template v-slot:content>
           <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-             <ContentLayout title="COMPTABILITES | StepProspect">
+             <ContentLayout title="Système | Les Etapes du prospect">
                 <template v-slot:created>
-                   <StepProspectModal name="Ajouter l\'étape du prospect" :title="useUpdateStore().isUpdate.is
+                   <StepProspectModal name="Ajouter l'étape du prospect" :title="useUpdateStore().isUpdate.is
                       ? 'Modifier l\'étape du prospect'
                       : 'Ajouter l\'étape du prospect'
                       " />

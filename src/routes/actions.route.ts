@@ -507,7 +507,24 @@ export const MenuDAActions = [
       route: 'SYSTEM_DA',
    },
 ];
+
+
 export const MenuUserActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SETTING_USER',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SETTING_USER',
+   },
+];
+
+export const MenuHolidayActions = [
    {
       id: 'MUA_modify',
       name: 'Modifier',

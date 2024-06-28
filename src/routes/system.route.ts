@@ -67,6 +67,12 @@ export const routeSystem = {
       component: Step_systemPage,
       children: [],
     },
+    {
+      path: "jour-ferier",
+      name: "SYSTEM_HOLIDAY",
+      component: Step_systemPage,
+      children: [],
+    },
 
   ],
 };

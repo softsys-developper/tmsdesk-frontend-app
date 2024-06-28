@@ -306,6 +306,12 @@ export const MenuApp = [
             name: 'Etapes Prospect',
             route: 'SYSTEM_STEP_PROSPECT'
          },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_HOLIDAY',
+            name: 'Jour férier',
+            route: 'SYSTEM_HOLIDAY'
+         },
       ],
    },
    // {
