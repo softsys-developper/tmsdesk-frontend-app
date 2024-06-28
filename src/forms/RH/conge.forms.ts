@@ -11,7 +11,7 @@ export const CongeForms = [
     label: "Libelle",
     type: "text",
     placeholder: "Libelle",
-    name: "libelle",
+    name: "remarques",
     value: "",
     select: [],
   },
