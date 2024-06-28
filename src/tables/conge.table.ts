@@ -8,7 +8,7 @@ export const CongeTables = [
     },
     {
         label: 'EMPLOYE',
-        field: 'employe',
+        field: 't_employe',
         status: null,
         color: null,
         bgColor: null,

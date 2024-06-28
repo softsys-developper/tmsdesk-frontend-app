@@ -52,6 +52,11 @@ export const useUtilHook = () => {
     return `<span style='background-color: ${color}' class="text-xs font-bold flex text-white  min-w-max max-w-min px-2 py-1 rounded-md text-center ${bg}" >${name}</span>`;
   };
 
+
+  const ImageHtml = (url: string) => {
+    return `<img src="${url}" class="text-xs font-bold flex text-white  min-w-max max-w-min px-2 py-1 rounded-md text-center" />`;
+  };
+
   // Send Value to DataBase
   const ExtractValue = (Forms: Array<any>, FD?: Boolean) => {
     const GetValueForm = Forms.map((el: any) => ({
@@ -80,5 +85,6 @@ export const useUtilHook = () => {
     ServerError,
     StatusHtml,
     ExtractValue,
+    ImageHtml
   };
 };

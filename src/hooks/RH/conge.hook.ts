@@ -27,14 +27,18 @@ export const useCongeHook = () => {
   const formatCongeData = (Conges: any) => {
     return Conges.map((Conge: any) => ({
       id: Conge.id,
-      employe: Conge.employe?.nom,
+      t_employe: Conge.employe?.nom,
       type: Conge.type,
       motif: Conge.motif,
       date_depart: Conge.date_depart,
       date_retour: Conge.date_retour,
       nombre_jour: Conge.nombre_jour,
-      remarque: Conge.remarque,
+      solde_conge_annuel:  Conge.employe?.solde_conge_annuel,
+      remarque: Conge.remarques,
       date_creation: moment(Conge.created_at).format("l"),
+
+      // Les champs select
+      employe: Conge.employe.id
     }));
   };
   const storeConges = computed(() => {

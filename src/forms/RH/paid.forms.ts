@@ -7,14 +7,14 @@ export const PaidForms = [
         value: "",
         select: [],
     },
-    // {
-    //     label: "Désignation",
-    //     type: "text",
-    //     placeholder: "",
-    //     name: "designation",
-    //     value: "",
-    //     select: [],
-    // },
+    {
+        label: "Désignation",
+        type: "text",
+        placeholder: "",
+        name: "designation",
+        value: "",
+        select: [],
+    },
     {
         label: "Employé",
         type: "select",
