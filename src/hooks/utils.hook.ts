@@ -30,8 +30,8 @@ export const useUtilHook = () => {
   }
 
   const ServerError = (err: any, toast: any) => {
-    if (err) {
-      const isErr = Object.keys(err.response.data.errors);
+    if (err.response) {
+      const isErr = Object.keys(err.response?.data.errors);
       if (isErr) {
         toast({
           title: isErr[0],

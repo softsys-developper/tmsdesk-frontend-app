@@ -5,8 +5,8 @@
             <ContentLayout title="R. Humaines | Paiements salaires">
                <template v-slot:created>
                   <PaidModal name="Paiement" :title="useUpdateStore().isUpdate.is
-                        ? 'Modifier paiement'
-                        : 'Ajouter paiement'
+                        ? 'Modifier paiement de salaire'
+                        : 'Payer un salaire'
                      " />
 
                   <DeleteLayout :funDelete="PaidDelete" :id="useUpdateStore().isDelete.id" />

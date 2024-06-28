@@ -15,9 +15,9 @@ export const useDataStore = defineStore('counter',() => {
    const Products = ref([]);
    const Fournisseurs = ref([]);
    const Conges = ref([]);
-   const Paids = ref([]);
-   const Proforma = ref([]);
-   const BC = ref([]);
+   const Paids = ref(<any>[]);
+   const Proforma = ref(<any>[]);
+   const BC = ref(<any>[]);
    const Caisses = ref({});
    const Depenses = ref([]);
    const Comptes = ref([]);

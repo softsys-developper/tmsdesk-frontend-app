@@ -18,33 +18,37 @@ export const setService = (
   callback?: any
 ) => {
   const SetCreate = async (URL: string, values: any) => {
+    // try {
     loading.loadingCreate = true;
-     createData(URL, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          loading.loadingCreate = false;
-          let Conges = Store[LabelStore];
-          useUpdateStore().isUpdate.id = null;
-          useUpdateStore().isUpdate.is = false;
+    const data = await createData(URL, values);
 
-          //
-          const toAdd: [] = formatData([data.data]);
-          Conges.unshift(...toAdd);
-          Store[LabelStore].Conges = Conges;
-          useModalStore().open = false;
-          callback;
+    if (data) {
+      EmptyFields(values); // Vider les champs
 
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        loading.loadingCreate = false;
-        ServerError(err, toast);
+      loading.loadingCreate = false;
+      let ISDATA: any = Store[LabelStore];
+
+
+      //
+      const toAdd = formatData([data?.data]);
+       ISDATA.unshift(...toAdd);
+      Store[LabelStore] = ISDATA;
+      callback;
+
+      toast({
+        title: "Enregistré",
+        description: data.message,
       });
+
+      useModalStore().open = false;
+      useUpdateStore().isUpdate.id = null;
+      useUpdateStore().isUpdate.is = false;
+    }
+
+    // } catch (err) {
+    //   loading.loadingCreate = false;
+    //   ServerError(err, toast);
+    // }
   };
 
   // Update
@@ -67,7 +71,7 @@ export const setService = (
               ...el,
             };
           });
-          callback
+          callback;
 
           Store[LabelStore] = _Prospects;
           useModalStore().open = false;

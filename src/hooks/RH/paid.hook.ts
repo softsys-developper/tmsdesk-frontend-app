@@ -1,21 +1,16 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
-// import { LIST_DEPENSE } from '@/types/Paid.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 
 export const usePaidHook = () => {
-  const { readData, createData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData } = useApiServices();
   const setPaid = reactive({ loading: false, loadingCreate: false });
   const statePaids = ref<any[]>([]);
   statePaids.value = useDataStore().Paids;
-  const { toast } = useToast();
+
 
   const formatPaidData = (Paids: any) => {
     return Paids.map((Paid: any) => ({
@@ -57,47 +52,12 @@ export const usePaidHook = () => {
 
   //
   const CreatePaid = async (values: any) => {
-    setPaid.loadingCreate = true;
-    const DataCreated = await createData(API_URL.SALAIRE_PAYMENT_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setPaid.loadingCreate = false;
-          let Paids = useDataStore().Paids;
-
-          //
-          const toAdd: [] = formatPaidData([data.data]);
-          Paids.unshift(...toAdd);
-          useDataStore().Paids = Paids;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setPaid.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+    setService(
+      setPaid,
+      useDataStore(),
+      'Paids',
+      formatPaidData
+    ).SetCreate(API_URL.SALAIRE_PAYMENT_CREATE, values);
   };
 
   //
