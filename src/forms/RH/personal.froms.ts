@@ -125,7 +125,7 @@ export const PersonalForms = reactive([
 
     {
         label: "Situation matrimoniale",
-        type: "text",
+        type: "select",
         placeholder: "Situation matrimoniale",
         name: "situation_matrimoniale",
         value: "",
