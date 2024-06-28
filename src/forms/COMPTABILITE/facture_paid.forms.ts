@@ -36,7 +36,7 @@ export const FacturePaidForms =  [
       },
       {
         label: "Banque",
-        type: "text",
+        type: "select",
         placeholder: "Choisir la banque",
         name: "banque",
         value: "",

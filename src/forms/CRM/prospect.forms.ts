@@ -43,7 +43,7 @@ export const ProspectForms = [
   // },
   {
     label: "Proposition",
-    type: "text",
+    type: "select",
     placeholder: "Proposition pour le prospect",
     name: "proposition",
     value: "",
