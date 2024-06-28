@@ -1,7 +1,7 @@
 export const CongeForms = [
   {
     label: "Liste des employés",
-    type: "text",
+    type: "select",
     placeholder: "Liste des employés",
     name: "employe",
     value: "",
@@ -17,7 +17,7 @@ export const CongeForms = [
   },
   {
     label: "Type",
-    type: "text",
+    type: "slect",
     placeholder: "Type",
     name: "type",
     value: "",

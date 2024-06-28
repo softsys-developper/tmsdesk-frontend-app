@@ -200,6 +200,14 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
+    {
+        label: "Solde Conge Annuel",
+        type: "text",
+        placeholder: "Liste de services",
+        name: "slode_conge_annuel",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
+    },
 ]
 )
 

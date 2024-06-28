@@ -1,7 +1,7 @@
 export const PaidForms = [
     {
         label: "Banques",
-        type: "text",
+        type: "select",
         placeholder: "Banck Ci",
         name: "banque",
         value: "",
@@ -17,7 +17,7 @@ export const PaidForms = [
     // },
     {
         label: "Employé",
-        type: "text",
+        type: "select",
         placeholder: "Employé à payer",
         name: "employe",
         value: "",
@@ -25,7 +25,7 @@ export const PaidForms = [
     },
     {
         label: "Mode de paiement",
-        type: "text",
+        type: "select",
         placeholder: "Mode de paiement",
         name: "mode_paiement",
         value: "",
