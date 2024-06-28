@@ -20,7 +20,7 @@ export const usePaidHook = () => {
   const formatPaidData = (Paids: any) => {
     return Paids.map((Paid: any) => ({
       id: Paid.id,
-      fullname: Paid?.user?.nom,
+      fullname: Paid?.employe?.nom,
       montant_paye: Paid.montant_paye,
       date_paiement: Paid.date_paiement,
       designation: Paid.designation,
@@ -29,6 +29,9 @@ export const usePaidHook = () => {
       // periode_2: Paid.periode_2,
       mode_paiement: Paid.mode_paiement,
       date_creation: moment(Paid.created_at).format("l"),
+
+      // Les select
+      employe: Paid?.employe.id
     }));
   };
 

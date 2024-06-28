@@ -13,7 +13,7 @@
         :name="name"
         @input="emitInput($event.target.value)"
         class="w-full h-full outline-none bg-transparent py-3"
-        :placeholder="placeholder + '...'  "
+        :placeholder="placeholder ? placeholder : 'Entrez l\'information correspondante'  "
       />
 
       <Input

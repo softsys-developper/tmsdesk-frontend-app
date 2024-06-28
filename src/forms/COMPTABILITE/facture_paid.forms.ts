@@ -1,7 +1,7 @@
 export const FacturePaidForms =  [
     {
         label: "Numéro Facture",
-        type: "text",
+        type: "select",
         placeholder: "Choisir le numéro de la facture",
         name: "factureId",
         value: "",
