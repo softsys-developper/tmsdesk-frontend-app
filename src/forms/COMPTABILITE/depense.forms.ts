@@ -25,7 +25,7 @@ export const DepenseForms = [
   },
   {
     label: "Type de Transaction",
-    type: "text",
+    type: "select",
     placeholder: "Entrée/Sortie",
     name: "type_transaction",
     value: "",

@@ -21,7 +21,7 @@ export const useBCFournisseurHook = () => {
     return `<span class="flex  text-center text-sm font-bold max-w-max px-2 py-1 rounded-md justify-center text-white ${bg}" >${name}</span>`;
   };
 
-  const formatBCFournisseurData = (BCFournisseurs: any) => {
+  const formatBCFournisseurData :any = (BCFournisseurs: any) => {
     return BCFournisseurs.map((BCFournisseur: any) => ({
       id: BCFournisseur.id,
       numero_bon_de_commande: BCFournisseur.numero_bon_de_commande,
