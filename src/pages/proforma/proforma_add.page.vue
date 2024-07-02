@@ -229,7 +229,7 @@
                       REMISE:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <select @input="_isRemise" name="" id="" :disabled="_AmountHT == 0 ? true : false"
+                      <select v-model="isRemise" name="remise" id="" :disabled="_AmountHT == 0 ? true : false"
                         class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2">
                         <option v-for="J in REMISE_LIST" :value="J">
                           {{ J }}%
@@ -466,10 +466,10 @@ const DeleteServices = (id: number) => {
 
 /*------------------------------------------ */
 // Function oiur calculer la remise
-const _isRemise = (e: Event) => {
-  const input = e.target as HTMLInputElement;
-  isRemise.value = Number(input.value);
-};
+// const _isRemise = (e: Event) => {
+//   const input = e.target as HTMLInputElement;
+//   isRemise.value = Number(input.value);
+// };
 
 // Funtion pour calculer la tva
 const _isTVA = () => {
@@ -485,7 +485,7 @@ const AmountHT = computed(() => {
   _AmountHT.value = 0;
   if (ProductAndServices.value) {
     ProductAndServices.value.forEach((HT) => {
-      const Price = HT.prix_unitaire_gnf;
+      const Price = !route.query.id ? HT.prix_unitaire_gnf :  HT.prix_unitaire;
      
       if (Price != undefined) {
         _AmountHT.value = _AmountHT.value + Number(Price) * Number(HT.quantite);
@@ -593,6 +593,7 @@ const FindAllProforma = () => {
       setInput.interlocuteur = ShowProforma.interlocuteur_id;
       setInput.client = ShowProforma.client_id;
       setInput.date_validite = ShowProforma.date_validite;
+      isRemise.value = Math.floor(ShowProforma.remise_pourcentage)
       ProductAndServices.value.push(
         ...ShowProforma.produit_services.map((service) => ({
           id: ProductAndServices.value.length + 1,
@@ -602,7 +603,7 @@ const FindAllProforma = () => {
           description: service.description,
           disponibilite: service.disponibilite,
           code: ListOfDevises.value.find((el) => el.id == service.devise_id)?.code_devise,
-          prix_unitaire_gnf: (Number(service.pivot.prix_unitaire) * Number(ListOfDevises.value.find((el) => el.id == service.devise_id)?.taux_change)),
+          prix_unitaire_gnf: Number(service.pivot.prix_unitaire),
           unite: service.unite,
           type: service.type,
           reference: service.reference,

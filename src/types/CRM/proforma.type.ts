@@ -118,7 +118,6 @@ export interface PROFORMA {
     date_creation: string;
     TVA: string;
     remise_forfaitaire: string;
-    remise_pourcentage: string;
     date_validite: string;
     description: string | null;
     client_id: number;
@@ -132,7 +131,8 @@ export interface PROFORMA {
     marge_commerciale: string | null;
     ligne_proformas: Ligne[];
     interlocuteur: interlocuteur;
-    interlocuteur_id: number | string,
+    interlocuteur_id: number | string;
+    remise_pourcentage: number;
     
 }
 
