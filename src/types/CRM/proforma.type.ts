@@ -45,6 +45,7 @@ interface Pivot {
     updated_at: string;
     pivot: Pivot;
     marge_commerciale: string | null;
+    devise_id: number | string;
   }
   
 
@@ -127,7 +128,11 @@ export interface PROFORMA {
     produit_services: Item[];
     user: User;
     client: Client;
+    ref_client: string;
+    marge_commerciale: string | null;
     ligne_proformas: Ligne[];
-    interlocuteur: interlocuteur
+    interlocuteur: interlocuteur;
+    interlocuteur_id: number | string,
+    
 }
 

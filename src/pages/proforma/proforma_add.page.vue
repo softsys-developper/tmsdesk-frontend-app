@@ -50,7 +50,7 @@
             <Separator class="my-4" />
             <!-- Add produit -->
 
-            <div class="flex w-full flex-col lg:flex-row gap-4">
+            <div class="flex w-full flex-col lg:flex-row gap-4 items-start">
               <div class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12">
                 <div class="bg-gray-200 rounded-t-md p-3">
                   <span class="text-base font-bold">
@@ -142,14 +142,15 @@
 
               <!--  -->
 
-              <Table class="bg-orange-50/50 w-full">
+              <Table class="bg-orange-50/50 w-full ">
                 <TableHeader class="bg-gray-800">
                   <TableRow>
                     <TableHead>Reference</TableHead>
                     <TableHead>Description</TableHead>
-                    <TableHead class="w-[100px]"> Quantités </TableHead>
-                    <TableHead class="">Prix Unitaire</TableHead>
-                    <TableHead class="">Prix Total</TableHead>
+                    <TableHead>Devise</TableHead>
+                    <TableHead class="w-[100px]"> QTE </TableHead>
+                    <TableHead class="">PT</TableHead>
+                    <TableHead class="">PT</TableHead>
                     <TableHead class=""> Actions </TableHead>
                   </TableRow>
                 </TableHeader>
@@ -171,16 +172,19 @@
                       </div>
                     </TableCell>
                     <TableCell class="font-medium">
+                      {{ invoice.code }}
+                    </TableCell>
+                    <TableCell class="font-medium">
                       {{ invoice.quantite }}
                     </TableCell>
 
                     <TableCell class="font-medium">
-                      {{ invoice.prix_unitaire }}
+                      {{ invoice.prix_unitaire_gnf.toFixed(2) }}
                     </TableCell>
 
                     <TableCell class="font-medium">
                       {{
-                        Number(Number(invoice?.prix_unitaire) *
+                        Number(Number(invoice?.prix_unitaire_gnf) *
                         Number(invoice?.quantite)).toFixed(2)
                       }}
                     </TableCell>
@@ -418,7 +422,6 @@ const AllProduct = (e: any) => {
   console.log(e.target.value)
   ListOfAllProduct.value.forEach((el: any) => {
     if (el.reference == e.target.value) {
-      console.log(el)
       ServiceToAdd.value.prix_unitaire = el.prix_unitaire
       ServiceToAdd.value.devise = el.devise_id
       ServiceToAdd.value.quantite = el.quantite
@@ -439,6 +442,8 @@ const AddServices = (service: any) => {
     unite: service.unite,
     quantite: service.quantite,
     prix_unitaire: service.prix_unitaire,
+    prix_unitaire_gnf: service.prix_unitaire * Number(ListOfDevises.value.find((el) => el.id == service.devise)?.taux_change),
+    code: ListOfDevises.value.find((el) => el.id == service.devise)?.code_devise,
     disponibilite: service.disponibilite,
   });
 
@@ -480,8 +485,8 @@ const AmountHT = computed(() => {
   _AmountHT.value = 0;
   if (ProductAndServices.value) {
     ProductAndServices.value.forEach((HT) => {
-      const Price = HT.prix_unitaire;
-
+      const Price = HT.prix_unitaire_gnf;
+     
       if (Price != undefined) {
         _AmountHT.value = _AmountHT.value + Number(Price) * Number(HT.quantite);
         _AmountTTC.value = Number(_AmountHT.value.toFixed(2));
@@ -583,7 +588,10 @@ const FindAllProforma = () => {
   if (route.query.id) {
     showData(API_URL.PROFORMA_DETAILS, "/" + route.query.id).then((data) => {
       const ShowProforma: PROFORMA = data.data;
-      setInput.titre = ShowProforma.titre;
+      setInput.ref_client = ShowProforma.ref_client;
+      setInput.marge_commerciale = ShowProforma.marge_commerciale;
+      setInput.interlocuteur = ShowProforma.interlocuteur_id;
+      setInput.client = ShowProforma.client_id;
       setInput.date_validite = ShowProforma.date_validite;
       ProductAndServices.value.push(
         ...ShowProforma.produit_services.map((service) => ({
@@ -593,6 +601,8 @@ const FindAllProforma = () => {
           montant: service.pivot.prix_unitaire,
           description: service.description,
           disponibilite: service.disponibilite,
+          code: ListOfDevises.value.find((el) => el.id == service.devise_id)?.code_devise,
+          prix_unitaire_gnf: (Number(service.pivot.prix_unitaire) * Number(ListOfDevises.value.find((el) => el.id == service.devise_id)?.taux_change)),
           unite: service.unite,
           type: service.type,
           reference: service.reference,
