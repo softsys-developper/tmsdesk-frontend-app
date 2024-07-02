@@ -249,10 +249,10 @@ export const API_URL = {
   HOLIDAY_REMOVE: `${BASE_URL}/jours-feriers/delete`,
 
   //Stocks
-  STOCK_LIST: `${BASE_URL}/produits/in-stocks`,
-  STOCK_CREATE: `${BASE_URL}/produits/in-stocks/add`,
-  STOCK_UPDATE: `${BASE_URL}/produits/in-stocks/update`,
-  STOCK_REMOVE: `${BASE_URL}/produits/in-stocks/delete`,
+  STOCK_LIST: `${BASE_URL}/produits/in-stock`,
+  STOCK_CREATE: `${BASE_URL}/produits/in-stock/add`,
+  STOCK_UPDATE: `${BASE_URL}/produits/in-stock/update`,
+  STOCK_REMOVE: `${BASE_URL}/produits/in-stock/delete`,
 
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,

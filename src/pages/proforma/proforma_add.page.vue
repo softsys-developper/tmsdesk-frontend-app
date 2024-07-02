@@ -2,9 +2,7 @@
   <BaseLayout>
     <template v-slot:content>
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-        <ContentLayout
-          :title="`Proforma | ${$route.query.id ? 'Modifier' : 'Création'}`"
-        >
+        <ContentLayout :title="`Proforma | ${$route.query.id ? 'Modifier' : 'Création'}`">
           <template v-slot:created> </template>
         </ContentLayout>
 
@@ -22,11 +20,7 @@
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
                   <Label> Réference client </Label>
-                  <Input
-                    placeholder="Reference client"
-                    v-model="setInput.ref_client"
-                    name="ref_client"
-                  />
+                  <Input placeholder="Reference client" v-model="setInput.ref_client" name="ref_client" />
                 </div>
               </div>
 
@@ -34,13 +28,9 @@
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
                   <Label> Choix de l'interlocuteur </Label>
-                  <SelectedForm
-                    :modelValue="setInput.interlocuteur"
-                    @update:modelValue="((value:any) => setInput.interlocuteur = value )"
-                    name="interlocuteur"
-                    type="select"
-                    :select="ListOfInterlocuteurs"
-                  />
+                  <SelectedForm :modelValue="setInput.interlocuteur"
+                    @update:modelValue="((value: any) => setInput.interlocuteur = value)" name="interlocuteur"
+                    type="select" :select="ListOfInterlocuteurs" />
                 </div>
               </div>
             </div>
@@ -50,13 +40,9 @@
               <div class="flex gap-4 w-full">
                 <div class="flex flex-col w-full gap-1">
                   <Label> Clients </Label>
-                  <SelectedForm
-                    :modelValue="setInput.client"
-                    @update:modelValue="((value:any) => setInput.client = value )"
-                    name="client"
-                    type="select"
-                    :select="ListOfPartners"
-                  />
+                  <SelectedForm :modelValue="setInput.client"
+                    @update:modelValue="((value: any) => setInput.client = value)" name="client" type="select"
+                    :select="ListOfPartners" />
                 </div>
               </div>
             </div>
@@ -65,9 +51,7 @@
             <!-- Add produit -->
 
             <div class="flex w-full flex-col lg:flex-row gap-4">
-              <div
-                class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12"
-              >
+              <div class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12">
                 <div class="bg-gray-200 rounded-t-md p-3">
                   <span class="text-base font-bold">
                     Ajouter des produits ou services
@@ -79,11 +63,9 @@
                 <div class="gap-2 pb-2">
                   <div>
                     <div
-                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4"
-                    >
+                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4">
                       <div class="flex justify-between">
-                        <span class="text-sm font-black"
-                          >Ajouter produit et services
+                        <span class="text-sm font-black">Ajouter produit et services
                         </span>
 
                         <!-- <i
@@ -93,89 +75,51 @@
                       </div>
 
                       <div class="flex flex-col gap-2">
-                        <div class="">
+                        <div class="flex flex-col gap-1">
                           <Label>Réference</Label>
-                          <Input
-                            placeholder="RFE025632"
-                            v-model="ServiceToAdd.reference"
-                            name="reference"
-                            id="reference"
-                          />
+                          <input class="h-8 text-sm px-2 py-4 rounded-md bg-gray-100" list="references" name="reference" id="reference"  placeholder="RFE025632" v-model="ServiceToAdd.reference"
+                            @change="AllProduct" />
+
+                          <datalist id="references">
+                            <option :value="PR.reference" v-for="PR in ListOfAllProduct">
+                            </option>
+                          </datalist>
                         </div>
 
                         <div class="">
                           <Label>Description</Label>
-                          <Textarea
-                            placeholder="Creation de site web"
-                            v-model="ServiceToAdd.description"
-                            name="description"
-                            id="reference"
-                          />
+                          <Textarea placeholder="Creation de site web" v-model="ServiceToAdd.description"
+                            name="description" id="reference" />
                         </div>
 
                         <div class="">
                           <Label>Unités</Label>
-                          <Input
-                            placeholder="PCS"
-                            v-model="ServiceToAdd.unite"
-                            name="unite"
-                            id="reference"
-                          />
+                          <Input placeholder="PCS" v-model="ServiceToAdd.unite" name="unite" id="reference" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label>Quantité </Label>
-                          <Input
-                           type="number"
-                            placeholder="Quantités"
-                            v-model="ServiceToAdd.quantite"
-                            name="qunatite"
-                            id="reference"
-                          />
+                          <Input type="number" placeholder="Quantités" v-model="ServiceToAdd.quantite" name="qunatite"
+                            id="reference" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label class=""> Prix Unitaire </Label>
-                          <Input
-                           type="number"
-                            placeholder="Ex: 500.000 Fcfa"
-                            v-model="ServiceToAdd.prix_unitaire"
-                            name="prix_unitaire"
-                            id="reference"
-                          />
+                          <Input type="number" placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire"
+                            name="prix_unitaire" id="reference" />
                         </div>
 
                         <div class="flex flex-col w-full gap-1">
                           <Label> Devises </Label>
-                          <SelectedForm
-                            :modelValue="ServiceToAdd.devise" 
-                            @update:modelValue="((value:any) => ServiceToAdd.devise = value )"
-                            name="devise"
-                            type="select"
-                            :select="ListOfDevises"
-                          />
-                        </div>
-
-                        <div class="flex flex-col gap-1">
-                          <Label class=""> Marge commercial </Label>
-                          <Input
-                          type="number"
-                            placeholder="Ex: 2.6"
-                            v-model="ServiceToAdd.marge_commerciale"
-                            name="marge_commerciale"
-                            id="marge_commerciale"
-                          />
+                          <SelectedForm :modelValue="ServiceToAdd.devise"
+                            @update:modelValue="((value: any) => ServiceToAdd.devise = value)" name="devise"
+                            type="select" :select="ListOfDevises" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label class=""> Disponibilité </Label>
-                          <Textarea
-                            cclass="rounded-md text-sm p-2"
-                            placeholder="- Ajout de module"
-                            v-model="ServiceToAdd.disponibilite"
-                            name="description"
-                            id="reference"
-                          />
+                          <Textarea cclass="rounded-md text-sm p-2" placeholder="- Ajout de module"
+                            v-model="ServiceToAdd.disponibilite" name="description" id="reference" />
                         </div>
                       </div>
                     </div>
@@ -184,17 +128,13 @@
 
                 <div class="flex w-full m-auto">
                   <span class=""></span>
-                  <Button
-                    :disabled="
-                      ServiceToAdd.prix_unitaire == 0 &&
-                      ServiceToAdd.quantite == 0 && ServiceToAdd.reference == ''
-                    
-                        ? true
-                        : false
-                    "
-                    @click="AddServices(ServiceToAdd)"
-                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md"
-                  >
+                  <Button :disabled="ServiceToAdd.prix_unitaire == 0 &&
+                      ServiceToAdd.quantite == 0 &&
+                      ServiceToAdd.reference == ''
+                      ? true
+                      : false
+                    " @click="AddServices(ServiceToAdd)"
+                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md">
                     Ajouter
                   </Button>
                 </div>
@@ -214,10 +154,7 @@
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow
-                    v-for="(invoice, index) in ProductAndServices"
-                    :key="index"
-                  >
+                  <TableRow v-for="(invoice, index) in ProductAndServices" :key="index">
                     <TableCell>
                       <div class="">
                         <span class="flex flex-col gap-2">{{
@@ -230,10 +167,7 @@
                         <span class="flex flex-col gap-2">{{
                           invoice.description
                         }}</span>
-                        <span
-                          v-html="invoice.remarques"
-                          class="whitespace-pre-line"
-                        ></span>
+                        <span v-html="invoice.remarques" class="whitespace-pre-line"></span>
                       </div>
                     </TableCell>
                     <TableCell class="font-medium">
@@ -246,16 +180,13 @@
 
                     <TableCell class="font-medium">
                       {{
-                        Number(invoice?.prix_unitaire) *
-                        Number(invoice?.quantite)
+                        Number(Number(invoice?.prix_unitaire) *
+                        Number(invoice?.quantite)).toFixed(2)
                       }}
                     </TableCell>
 
                     <TableCell class="text-right">
-                      <i
-                        class="ri-close-fill cursor-pointer"
-                        @click="DeleteServices(invoice.id)"
-                      ></i>
+                      <i class="ri-close-fill cursor-pointer" @click="DeleteServices(invoice.id)"></i>
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -266,52 +197,36 @@
             <div class="mt-8 flex sm:justify-end">
               <div class="w-full text-base max-w-2xl sm:text-end space-y-2">
                 <!-- Grid -->
-                <div
-                  class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2 divide-y-[1px]"
-                >
+                <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2 divide-y-[1px]">
                   <dl class="grid sm:grid-cols-5 gap-x-3">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ _AmountHT }}
+                      {{ AmountHT }} {{ _AmountHT.toFixed(2) }} (GNF)
                     </dd>
                   </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       <span class=""> TVA{{ isTVA ? "(18%)" : null }}:</span>
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <Button
-                        :disabled="_AmountHT == 0 ? true : false"
+                      <Button :disabled="_AmountHT == 0 ? true : false"
                         class="px-2 text-white font-bold text-xs rounded-md"
-                        :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'"
-                        @click="_isTVA"
-                      >
+                        :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'" @click="_isTVA">
                         {{ isTVA ? "Retirer" : "Appliquer" }}
                       </Button>
                     </dd>
                   </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       REMISE:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <select
-                        @input="_isRemise"
-                        name=""
-                        id=""
-                        :disabled="_AmountHT == 0 ? true : false"
-                        class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2"
-                      >
+                      <select @input="_isRemise" name="" id="" :disabled="_AmountHT == 0 ? true : false"
+                        class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2">
                         <option v-for="J in REMISE_LIST" :value="J">
                           {{ J }}%
                         </option>
@@ -319,35 +234,24 @@
                     </dd>
                   </dl>
 
-                  <!-- <dl class="grid sm:grid-cols-5 gap-x-3 justify-between">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                  <dl class="grid sm:grid-cols-5 gap-x-3 justify-between items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       Marge Commerciale:
                     </dt>
-                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <div class="flex justify-end">
-                        <input
-                          type="checkbox"
-                          id="proforma_marge_commerciale"
-                          @change="MargeCommercial($event)"
-                          name="marge_commerciale"
-                          class="relative float-left -ms-[1.5rem] me-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-secondary-500 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-checkbox before:shadow-transparent before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ms-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-black/60 focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-black/60 focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-checkbox checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ms-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent rtl:float-right dark:border-neutral-400 dark:checked:border-primary dark:checked:bg-primary"
-                        />
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500 items-center h-full">
+                      <div class="flex justify-end items-center h-full">
+                        <Input type="number" class="w-4/12" placeholder="M.C" v-model="setInput.marge_commerciale"
+                          name="marge_commerciale" />
                       </div>
                     </dd>
-                  </dl> -->
+                  </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
-                      TotalTTC:
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      TotalTTC: 
                     </dt>
-                    <dd
-                      class="col-span-2 font-black text-blue-500 dark:text-neutral-500"
-                    >
-                      {{ AmountHT }} {{ _AmountTTC }}
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
+                      {{ AmountHT }} {{ setInput.marge_commerciale > 1 ? (_AmountTTC * (Number(setInput.marge_commerciale)) ).toFixed(2) : _AmountTTC }} (GNF)
                     </dd>
                   </dl>
                 </div>
@@ -358,11 +262,8 @@
 
             <div class="pt-8 flex justify-between w-full">
               <span class=""></span>
-              <button
-                @click="sendProformaToBackend"
-                class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
-                :disabled="loadingProforma"
-              >
+              <button @click="sendProformaToBackend" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
+                :disabled="loadingProforma">
                 <SpinnerLoader size="w-6 h-6" v-if="loadingProforma" />
                 <span class="" v-else>
                   {{
@@ -398,6 +299,7 @@ import Button from "@/components/ui/button/Button.vue";
 import { useProformaHook } from "@/hooks/CRM/proforma.hook";
 import SelectedForm from "@/components/forms/selected.form.vue";
 import Textarea from "@/components/ui/textarea/Textarea.vue";
+
 import {
   Table,
   TableBody,
@@ -415,7 +317,6 @@ const state = reactive({
   loading: false,
 });
 
-
 interface PARTNERS {
   id: string;
   nom: string;
@@ -432,7 +333,6 @@ interface TYPE_DEVISE {
   code_devise: string;
   taux_change: string;
 }
-
 
 const route = useRoute();
 const REMISE_LIST = [
@@ -465,12 +365,13 @@ const REMISE_LIST = [
   70,
 ];
 
-
-
 const ListOfPartners = ref<PARTNERS[]>([]);
 const ListOfProduct = ref<PRODUCTS[]>([]);
 const ListOfInterlocuteurs = ref<any[]>([]);
 const ProductAndServices = ref<any[]>([]);
+const ListOfAllProduct = ref<any[]>([]);
+
+
 
 
 const ListOfDevises = ref<TYPE_DEVISE[]>([]);
@@ -495,10 +396,7 @@ const ServiceToAdd = ref({
   prix_unitaire: 0,
   disponibilite: "",
   devise: "",
-  marge_commerciale: 0
 });
-
-
 
 const _AmountHT = ref(0);
 const _AmountTTC = ref(0);
@@ -508,14 +406,28 @@ const isTVA = ref(false);
 const loadingProforma = ref(false);
 const router = useRouter();
 
-
-
 const setInput = reactive(<any>{
   client: "",
   ref_client: "",
   interlocuteur: "",
+  marge_commerciale: 1,
 });
 
+
+const AllProduct = (e: any) => {
+  console.log(e.target.value)
+  ListOfAllProduct.value.forEach((el: any) => {
+    if (el.reference == e.target.value) {
+      console.log(el)
+      ServiceToAdd.value.prix_unitaire = el.prix_unitaire
+      ServiceToAdd.value.devise = el.devise_id
+      ServiceToAdd.value.quantite = el.quantite
+      ServiceToAdd.value.unite = el.unite
+      ServiceToAdd.value.description = el.description
+    }
+  })
+
+}
 
 // Add Produit & services
 const AddServices = (service: any) => {
@@ -528,7 +440,6 @@ const AddServices = (service: any) => {
     quantite: service.quantite,
     prix_unitaire: service.prix_unitaire,
     disponibilite: service.disponibilite,
-    marge_commerciale: service.marge_commerciale
   });
 
   service.quantite = 0;
@@ -537,8 +448,9 @@ const AddServices = (service: any) => {
   service.description = "";
   service.disponibilite = "";
   service.unite = "";
-  service.devise = '';
-  service.marge_commerciale = 0
+  service.devise = "";
+  service.marge_commerciale = 1;
+  ServiceToAdd.value.reference = ''
 };
 
 const DeleteServices = (id: number) => {
@@ -546,8 +458,6 @@ const DeleteServices = (id: number) => {
     (el) => el.id !== id
   );
 };
-
-
 
 /*------------------------------------------ */
 // Function oiur calculer la remise
@@ -588,14 +498,12 @@ const AmountHT = computed(() => {
 });
 /*------------------------------------------ */
 
-
-
 const { formatProformaData } = useProformaHook();
 const sendProformaToBackend = async () => {
   try {
     loadingProforma.value = true;
 
-    const proformaData:any = {
+    const proformaData: any = {
       client: setInput.client,
       interlocuteur: setInput.interlocuteur,
       ref_client: setInput.ref_client,
@@ -605,18 +513,18 @@ const sendProformaToBackend = async () => {
       marge_commerciale: setInput.marge_commerciale,
     };
 
-    const KEYS = Object.keys(proformaData)
-    const proformaDatas = new FormData()
+    const KEYS = Object.keys(proformaData);
+    const proformaDatas = new FormData();
     for (let i = 0; i < KEYS.length; i++) {
       const el = KEYS[i];
-      proformaDatas.append(`${[el]}`, `${proformaData[el]}`)
+      proformaDatas.append(`${[el]}`, `${proformaData[el]}`);
     }
 
     const { data } = await axios.post(
       !route.query.id
         ? `${API_URL.PROFORMA_CREATE}`
         : `${API_URL.PROFORMA_UPDATE}/${route.query.id}`,
-        proformaDatas
+      proformaDatas
     );
 
     if (data) {
@@ -670,7 +578,6 @@ const sendProformaToBackend = async () => {
   }
 };
 
-
 // Detail Produit
 const FindAllProforma = () => {
   if (route.query.id) {
@@ -689,15 +596,14 @@ const FindAllProforma = () => {
           unite: service.unite,
           type: service.type,
           reference: service.reference,
-          marge_commerciale: service.marge_commerciale
+          marge_commerciale: service.marge_commerciale,
         }))
       );
     });
   }
 };
 
-
-// Get 
+// Get
 const FindAllService = () => {
   state.loading = true;
   readData(API_URL.PRODUCT_LIST)
@@ -735,12 +641,25 @@ const FindAllClient = () => {
     });
 };
 
+const FindAllProduct = () => {
+  state.loading = true;
+  readData(API_URL.PRODUCT_LIST)
+    .then((data: any) => {
+      ListOfAllProduct.value = data.datas;
+      state.loading = false;
+    })
+    .catch(() => {
+      state.loading = false;
+    });
+};
+
 onMounted(() => {
   FindAllClient();
   FindAllService();
   FindAllDevises();
   FindAllProforma();
   FindAllInterlocuteur();
+  FindAllProduct();
 });
 </script>
 <style lang="scss" scoped></style>

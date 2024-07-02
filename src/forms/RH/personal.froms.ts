@@ -265,7 +265,7 @@ export const UserForms = [
     },
     {
         label: "Role",
-        type: "text",
+        type: "select",
         placeholder: "Role de l'utilisateur",
         name: "role",
         value: "",

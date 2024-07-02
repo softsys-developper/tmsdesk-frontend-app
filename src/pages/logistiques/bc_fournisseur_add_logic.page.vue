@@ -35,7 +35,7 @@
                   <div class="flex flex-col w-full gap-1">
                     <!-- <SelectedForm :label="'Fournisseurs'" :select="ListOfPartners" n  /> -->
                     <Label> Fournisseur </Label>
-                    <SelectedForm :select="ListOfPartners" name="fournisseur_BDC" />
+                    <SelectedForm type="select" :select="ListOfPartners" name="fournisseur_BDC" />
                   </div>
   
                   
@@ -70,41 +70,49 @@
                         </div>
   
                         <div class="flex flex-col gap-2">
-                          <div class="">
-                            <Label>Réference</Label>
-                            <Input placeholder="RFE025632" v-model="ServiceToAdd.reference" name="" />
-                          </div>
-  
-                          <div class="">
-                            <Label>Description</Label>
-                            <Input placeholder="Creation de site web" v-model="ServiceToAdd.description" name="" />
-                          </div>
-  
-                          <div class="">
-                            <Label>Unités</Label>
-                            <Input placeholder="PCS" v-model="ServiceToAdd.unite" name="" />
-                          </div>
-  
-                          <div class="">
-                            <Label>Type</Label>
-                            <Input placeholder="Produits/Services/Autres" v-model="ServiceToAdd.type" name="" />
-                          </div>
+                         
   
                           <div class="flex flex-col gap-1">
-                            <Label>Quantité </Label>
-                            <Input placeholder="Quantités" v-model="ServiceToAdd.quantite" name="" />
-                          </div>
+                          <Label>Réference</Label>
+                          <input class="h-8 text-sm px-2 py-4 rounded-md bg-gray-100" list="references" name="reference" id="reference"  placeholder="RFE025632" v-model="ServiceToAdd.reference"
+                            @change="AllProduct" />
+
+                          <datalist id="references">
+                            <option :value="PR.reference" v-for="PR in ListOfAllProduct">
+                            </option>
+                          </datalist>
+                        </div>
   
-                          <div class="flex flex-col gap-1">
-                            <Label class=""> Prix Unitaire </Label>
-                            <Input placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire" name="" />
-                          </div>
-  
-                          <div class="flex flex-col gap-1">
-                            <Label class=""> Remarques </Label>
-                            <textarea cclass="rounded-md text-sm p-2" placeholder="- Ajout de module"
-                              v-model="ServiceToAdd.remarques" name="description" />
-                          </div>
+                        <div class="">
+                          <Label>Description</Label>
+                          <Textarea placeholder="Creation de site web" v-model="ServiceToAdd.description"
+                            name="description" id="reference" />
+                        </div>
+
+                        <div class="">
+                          <Label>Unités</Label>
+                          <Input placeholder="PCS" v-model="ServiceToAdd.unite" name="unite" id="reference" />
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                          <Label>Quantité </Label>
+                          <Input type="number" placeholder="Quantités" v-model="ServiceToAdd.quantite" name="qunatite"
+                            id="reference" />
+                        </div>
+
+                        <div class="flex flex-col gap-1">
+                          <Label class=""> Prix Unitaire </Label>
+                          <Input type="number" placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire"
+                            name="prix_unitaire" id="reference" />
+                        </div>
+
+
+                        <!-- <div class="flex flex-col gap-1">
+                          <Label class=""> Disponibilité </Label>
+                          <Textarea cclass="rounded-md text-sm p-2" placeholder="- Ajout de module"
+                            v-model="ServiceToAdd.disponibilite" name="description" id="reference" />
+                        </div>   -->
+
                         </div>
                       </div>
                     </div>
@@ -176,6 +184,35 @@
                   </TableBody>
                 </Table>
               </div>
+
+                                    <!-- Flex -->
+            <div class="mt-16 flex sm:justify-end">
+              <div class="w-full text-base max-w-2xl sm:text-end space-y-2">
+                <!-- Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2 divide-y-[1px]">
+                  <dl class="grid sm:grid-cols-5 gap-x-3">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      TOTAL HT:
+                    </dt>
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
+                      {{Amount}} (GNF)
+                    </dd>
+                  </dl>
+
+
+                  <dl class="grid sm:grid-cols-5 gap-x-3">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      TotalTTC: 
+                    </dt>
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
+                      {{Amount}} {{AmountTTc}} (GNF)
+                    </dd>
+                  </dl>
+                </div>
+                <!-- End Grid -->
+              </div>
+            </div>
+            <!-- End Flex -->
   
          
   
@@ -208,13 +245,14 @@
   import BaseLayout from "./../../layouts/base.layout.vue";
   import ContentLayout from "@/layouts/content.layout.vue";
   import { useApiServices } from "@/services/api.services";
-  import { onMounted, reactive, ref } from "vue";
+  import { computed, onMounted, reactive, ref } from "vue";
   import { API_URL } from "@/routes/api.route";
   import { useDataStore } from "@/stores/data.store";
   import { useRoute, useRouter } from "vue-router";
   import Button from "@/components/ui/button/Button.vue";
   import { useBCFournisseurHook } from "@/hooks/LOGISTIQUE/bc_fournisseur.hook";
 import SelectedForm from "@/components/forms/selected.form.vue";
+import Textarea from "@/components/ui/textarea/Textarea.vue";
   
   import Input from "@/components/ui/input/Input.vue";
   import Label from "@/components/ui/label/Label.vue";
@@ -254,7 +292,30 @@ import SelectedForm from "@/components/forms/selected.form.vue";
   
   const ListOfPartners = ref<PARTNERS[]>([]);
   const ListOfProduct = ref<PRODUCTS[]>([]);
+    const ListOfAllProduct = ref<any[]>([]);
   const route = useRoute();
+  const Amount = ref(0)
+
+  const AmountTTc = computed(() => {
+    Amount.value = 0
+    ProductAndServices.value.forEach((el:any) => {
+      Amount.value = Amount.value + ( Number(el.prix_unitaire)  * Number(el.quantite) )
+    })
+})
+
+const AllProduct = (e: any) => {
+  console.log(e.target.value)
+  ListOfAllProduct.value.forEach((el: any) => {
+    if (el.reference == e.target.value) {
+      console.log(el)
+      ServiceToAdd.value.prix_unitaire = el.prix_unitaire
+      ServiceToAdd.value.quantite = el.quantite
+      ServiceToAdd.value.unite = el.unite
+      ServiceToAdd.value.description = el.description
+    }
+  })
+
+}
  
   
   const FindAllFournisseur = () => {
@@ -282,6 +343,18 @@ import SelectedForm from "@/components/forms/selected.form.vue";
         state.loading = false;
       });
   };
+
+  const FindAllProduct = () => {
+  state.loading = true;
+  readData(API_URL.PRODUCT_LIST)
+    .then((data: any) => {
+      ListOfAllProduct.value = data.datas;
+      state.loading = false;
+    })
+    .catch(() => {
+      state.loading = false;
+    });
+};
   
 
   const ServiceToAdd = ref({
@@ -438,6 +511,7 @@ import SelectedForm from "@/components/forms/selected.form.vue";
     FindAllFournisseur();
     FindAllService();
     FindAllBC_Fournisseur();
+    FindAllProduct()
   });
   </script>
   <style lang="scss" scoped></style>

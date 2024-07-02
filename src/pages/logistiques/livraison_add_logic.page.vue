@@ -103,6 +103,9 @@
                         </div>
 
 
+     
+
+
 
 
 
@@ -183,6 +186,10 @@ const router = useRouter();
 
 const route = useRoute();
 
+
+
+
+
 const FindAllService = () => {
     state.loading = true;
 
@@ -251,7 +258,7 @@ const sendLivraisonToBackend = async () => {
         }
 
         const livraisonData = {
-            livraisonId: LivraisonId.value,
+            proformaId: LivraisonId.value,
             produits_livres: JSON.stringify(ProductAndServices.value),
             site_livraison: Query(`site_livraison`),
             date_depart: Query(`date_depart`),

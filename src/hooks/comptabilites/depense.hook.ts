@@ -23,10 +23,12 @@ export const useDepenseHook = () => {
          designation: depense.designation,
          recepteur: depense.recepteur,
          montant: depense.montant,
-         type_transaction: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${
+         type_transaction_label: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${
             depense.type_transaction !== 'entree' ? 'bg-red-500' : 'bg-green-500'
          }">${depense.type_transaction}</p>`,
          date_transaction: depense.date_transaction,
+
+         type_transaction: depense.type_transaction
       }));
    };
 

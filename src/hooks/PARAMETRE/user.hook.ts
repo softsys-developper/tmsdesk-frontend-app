@@ -34,6 +34,8 @@ export const useUserHook = () => {
       numero: User.telephone,
       utype: User.utype,
       date_creation: moment(User.created_at).format("l"),
+
+      role: User.utype,
     }));
   };
 

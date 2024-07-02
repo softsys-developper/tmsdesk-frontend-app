@@ -6,19 +6,22 @@ import { useUpdateStore } from "@/stores/update.store";
 
 const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
-  console.log(ToUpdate)
+
 
   setTimeout(() => {
     // useDataStore().Categories
     let Find: any = ToUpdate.find((el: any) => el.id == Id);
     const InputKey = Object.keys(Find);
 
+
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
       if (UpdateInput) {
-        UpdateInput.value = Find[el];
+        console.log(typeof Find[el], Find[el])
+        UpdateInput.value = typeof Find[el] == 'object' ? Find[el]?.id : Find[el];
       }
     });
+
 
     useUpdateStore().isUpdate = {
       is: true,

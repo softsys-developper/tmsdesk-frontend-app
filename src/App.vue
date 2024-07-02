@@ -50,11 +50,15 @@ onMounted(() => {
   // Définir le défilement à 0
   window.scrollTo(0, 0);
 });
+
+
 </script>
 
 <template>
-  <Toaster />
-  <RouterView></RouterView>
+  <Toaster  />
+  <!-- <ModalFormLayout v-if="open" /> -->
+  <RouterView>
+  </RouterView>
 </template>
 
 <style>

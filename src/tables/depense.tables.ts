@@ -34,7 +34,7 @@ export const DepenseTables = [
 },
 {
     label: 'Type de transaction',
-    field: 'type_transaction',
+    field: 'type_transaction_label',
     status: null,
     color: null,
     bgColor: null,

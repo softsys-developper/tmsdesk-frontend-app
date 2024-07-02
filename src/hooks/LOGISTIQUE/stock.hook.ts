@@ -36,7 +36,7 @@ export const useStockHook = () => {
    //
    const FindStockAll = () => {
       setStock.loading = true;
-      readData(API_URL.MARQUE_LIST)
+      readData(API_URL.STOCK_LIST)
          .then((data: any) => {
             useDataStore().Stocks =  formatStockData(data.datas);
             setStock.loading = false;
@@ -52,7 +52,7 @@ export const useStockHook = () => {
    //
    const CreateStock = async(values: any) => {
       setStock.loadingCreate = true;
-      const DataCreated = await createData(API_URL.MARQUE_CREATE, values)
+      const DataCreated = await createData(API_URL.STOCK_CREATE, values)
          .then((data: any) => {
             if (data) {
                EmptyFields(values); // Vider les champs
@@ -100,7 +100,7 @@ export const useStockHook = () => {
         useDataStore(),
         'Stocks',
         formatStockData
-      ).SetUpdate(API_URL.CLIENT_UPDATE, id, values);
+      ).SetUpdate(API_URL.STOCK_UPDATE, id, values);
     };
   
     //
@@ -110,7 +110,7 @@ export const useStockHook = () => {
         useDataStore(),
         'Stocks',
         formatStockData
-      ).SetDelete(API_URL.CLIENT_REMOVE, id);
+      ).SetDelete(API_URL.STOCK_REMOVE, id);
     };
   
     return {

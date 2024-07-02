@@ -98,6 +98,14 @@ interface Client {
     updated_at: string;
 }
 
+interface Ligne{
+  disponibilite: string
+}
+
+interface interlocuteur {
+  nom: string
+}
+
 export interface PROFORMA {
     id: number;
     numero_proforma: string;
@@ -119,5 +127,7 @@ export interface PROFORMA {
     produit_services: Item[];
     user: User;
     client: Client;
+    ligne_proformas: Ligne[];
+    interlocuteur: interlocuteur
 }
 

@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 
-export const ProspectForms = [
+export const ProspectForms = reactive([
   {
     label: "Nom",
     type: "text",
@@ -50,11 +50,11 @@ export const ProspectForms = [
     select: [
         {
             title: "Produit",
-            id: "produit",
+            id: "Produit",
         },
         {
             title: "Service",
-            id: "service",
+            id: "Service",
         }
     ],
   },
@@ -85,7 +85,7 @@ export const ProspectForms = [
     value: "",
     select: [],
   },
-];
+]);
 
 
 

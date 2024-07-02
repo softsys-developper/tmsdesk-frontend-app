@@ -38,6 +38,12 @@ export const MenuApp = [
             name: 'Fournisseurs',
             route: 'CRM_FOURNISSEURS'
          },
+         {
+            icon: 'ri-home-smile-2-line',
+            id: 'LOGISTIC_SERVICES_PRODUITS',
+            name: 'Produits',
+            route: 'LOGISC_PRODUCTS'
+         },
          // {
          //    icon: 'ri-user-search-line',
          //    id: 'CRM_FOURNISSEURS',
@@ -193,12 +199,12 @@ export const MenuApp = [
       list: 'Bon de commande, livraisons, Services & produits',
       route: 'LOGISC_PRODUCTS',
       children: [
-         {
-            icon: 'ri-home-smile-2-line',
-            id: 'LOGISTIC_SERVICES_PRODUITS',
-            name: 'Services & produits',
-            route: 'LOGISC_PRODUCTS'
-         },
+         // {
+         //    icon: 'ri-home-smile-2-line',
+         //    id: 'LOGISTIC_SERVICES_PRODUITS',
+         //    name: 'Services & produits',
+         //    route: 'LOGISC_PRODUCTS'
+         // },
          // {
          //    icon: 'ri-coupon-line',
          //    id: 'LOGISTIC_BON_COMMANDE_CLIENT',
@@ -235,7 +241,7 @@ export const MenuApp = [
          {
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
-            name: 'Parametre General',
+            name: 'Parametre',
             route: 'SYSTEM_PARAMETRE'
          },
          {
@@ -306,12 +312,12 @@ export const MenuApp = [
             name: 'Etapes Prospect',
             route: 'SYSTEM_STEP_PROSPECT'
          },
-         {
-            icon: 'ri-bill-line',
-            id: 'SYSTEM_HOLIDAY',
-            name: 'Jour férier',
-            route: 'SYSTEM_HOLIDAY'
-         },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_HOLIDAY',
+         //    name: 'Jour férier',
+         //    route: 'SYSTEM_HOLIDAY'
+         // },
       ],
    },
    // {
