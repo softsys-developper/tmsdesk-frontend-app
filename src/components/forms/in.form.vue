@@ -16,6 +16,14 @@
         :placeholder="placeholder ? placeholder : 'Entrez l\'information correspondante'  "
       />
 
+      <DatePicker
+      v-if=" ( type == 'date')"
+        :id="name"
+        :type="type"
+        :name="name"
+        @input="emitInput($event.target.value)"
+       showIcon :showOnFocus="false" />
+
       <Input
         v-if=" type == 'file'"
         :id="name"

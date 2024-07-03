@@ -29,6 +29,7 @@ export const usePersonalHook = () => {
   const formatPersonalData = (Personals: any) => {
     return Personals.map((Personal: any) => ({
       id: Personal.id,
+      matricule: Personal.matricule,
       nom: Personal.nom,
       prenoms: Personal.prenoms,
       email: Personal.email,
@@ -122,12 +123,13 @@ export const usePersonalHook = () => {
     return { data: DataCreated };
   };
 
-  const PersonalUpdate = (id: any, values: any) => {
+  const PersonalUpdate = (id: any, values: any, callback:any) => {
     setService(
       setPersonal,
       useDataStore(),
       "Personals",
-      formatPersonalData
+      formatPersonalData,
+      callback()
     ).SetUpdate(API_URL.USER_UPDATE, id, values);
   };
 

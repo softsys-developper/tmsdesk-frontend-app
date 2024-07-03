@@ -36,7 +36,7 @@ export const useLivraisonHook = () => {
         Livraison.status !== 'en cours' ? 'bg-green-500' : 'bg-blue-400'
          }">${Livraison.status}</p>`,
       produit_livres: Livraison.produit_livres.length,
-      date_livraison: moment(Livraison.created_at).format("l"),
+      date_livraison: moment(Livraison.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeLivraisons = computed(() => {

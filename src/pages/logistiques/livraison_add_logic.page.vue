@@ -231,6 +231,9 @@ const DeleteServices = (id: number) => {
     );
 };
 
+
+
+
 const LivraisonId = ref()
 const IsServiceLivraison = (e: any) => {
     console.log(e.target.value)
@@ -239,6 +242,7 @@ const IsServiceLivraison = (e: any) => {
         .then((data: any) => {
             ListOfLivraisonServices.value = data.datas;
             state.loading = false;
+            
         })
         .catch(() => {
             state.loading = false;

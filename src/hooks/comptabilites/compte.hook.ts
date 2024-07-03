@@ -24,7 +24,7 @@ export const useCompteHook = () => {
          numero_compte: compte.numero_compte,
          nom: compte.nom,
          solde: compte.solde,
-         date_creation: moment(compte.created_at).format("l"),
+         date_creation: moment(compte.created_at).format("DD/MM/YYYY"),
       }));
    };
 

@@ -1,5 +1,19 @@
 export const PersonalTables = [
    {
+      label: 'ID',
+      field: 'id',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
+      label: 'Matricule',
+      field: 'matricule',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
       label: 'Nom',
       field: 'nom',
       status: null,

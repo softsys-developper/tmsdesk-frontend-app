@@ -33,7 +33,7 @@ export const useUserHook = () => {
       password: User.password,
       numero: User.telephone,
       utype: User.utype,
-      date_creation: moment(User.created_at).format("l"),
+      date_creation: moment(User.created_at).format("DD/MM/YYYY"),
 
       role: User.utype,
     }));

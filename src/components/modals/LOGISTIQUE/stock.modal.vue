@@ -22,36 +22,39 @@
   import { useUpdateStore } from "@/stores/update.store";
   import { StockForms } from "@/forms/LOGISTIQUE/stock.forms";
   import InForm from "../../forms/in.form.vue";
-  import { useApiServices } from "@/services/api.services";
   import { onMounted } from "vue";
-  import { useUtilHook } from "@/hooks/utils.hook";
-  import { API_URL } from "@/routes/api.route";
+import { useModalStore } from "@/stores/modal.store";
+import { useDataStore } from "@/stores/data.store";
   
   const { CreateStock, StockUpdate, setStock } = useStockHook();
-  const { readData } = useApiServices()
-  const {remplacerObjetDansTableau} = useUtilHook()
   
   const onSubmit = (e: any) => {
     let values = new FormData(e.target);
+    values.append('produitId', `${useModalStore().StocksID}` )
     if (useUpdateStore().isUpdate.is) {
       StockUpdate(useUpdateStore().isUpdate.id, values);
     } else {
-      CreateStock(values);
+      CreateStock(values, () => {
+        const is:any = []
+        const toAdd = useDataStore().Products.filter((el: any) => el.id != useModalStore().StocksID);
+          is.unshift(...toAdd);
+          useDataStore().Products = is;
+      });
     }
   };
   
   onMounted(() => {
-    readData(API_URL.USER_LIST).then((data) =>
-      remplacerObjetDansTableau(
-        StockForms,
-        "name",
-        "categorie_id",
-        data.datas.map((el: any) => ({
-          id: el.id,
-          name: el.name,
-        }))
-      )
-    );
+    // readData(API_URL.USER_LIST).then((data) =>
+    //   remplacerObjetDansTableau(
+    //     StockForms,
+    //     "name",
+    //     "categorie_id",
+    //     data.datas.map((el: any) => ({
+    //       id: el.id,
+    //       name: el.name,
+    //     }))
+    //   )
+    // );
   });
   </script>
   <style lang="scss" scoped></style>

@@ -19,7 +19,7 @@ export const useMarqueHook = () => {
          categorie: Marque.categorie?.libelle,
          telephone: Marque.telephone,
          adresse: Marque.adresse,
-         date_creation: moment(Marque.created_at).format("l") ,
+         date_creation: moment(Marque.created_at).format("DD/MM/YYYY") ,
       }));
    };
 

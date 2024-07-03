@@ -35,7 +35,7 @@ export const useBCFournisseurHook = () => {
       adresse: BCFournisseur.adresse,
       pays: BCFournisseur.pays,
       site_internet: BCFournisseur.site_internet,
-      date_creation: moment(BCFournisseur.created_at).format("l"),
+      date_creation: moment(BCFournisseur.created_at).format("DD/MM/YYYY"),
     }));
   };
 

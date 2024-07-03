@@ -20,7 +20,7 @@ export const useNBCHook = () => {
       numero_proforma: NBC.proforma.numero_proforma,
       telephone: NBC.telephone,
       adresse: NBC.adresse,
-      date_creation: moment(NBC.created_at).format("l"),
+      date_creation: moment(NBC.created_at).format("DD/MM/YYYY"),
     }));
   };
 

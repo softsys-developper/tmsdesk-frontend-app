@@ -22,7 +22,7 @@ export const useRoleHook = () => {
       id: Role.id,
       name: Role.name,
       appareil: Role.guard_name,
-      date_creation: moment(Role.created_at).format("l"),
+      date_creation: moment(Role.created_at).format("DD/MM/YYYY"),
     }));
   };
 

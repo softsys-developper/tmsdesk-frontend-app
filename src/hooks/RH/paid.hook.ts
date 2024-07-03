@@ -23,7 +23,7 @@ export const usePaidHook = () => {
       periode_1: Paid.periode_1,
       // periode_2: Paid.periode_2,
       mode_paiement: Paid.mode_paiement,
-      date_creation: moment(Paid.created_at).format("l"),
+      date_creation: moment(Paid.created_at).format("DD/MM/YYYY"),
 
       // Les select
       employe: Paid?.employe.id

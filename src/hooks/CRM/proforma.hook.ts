@@ -31,7 +31,7 @@ export const useProformaHook = () => {
         Proforma.etat == 1
           ? StatusHtml("En cours", "bg-yellow-400")
           : Proforma.etat == 2
-          ? StatusHtml("Gagné", "bg-blue-500")
+          ? StatusHtml("Gagné", "bg-green-500")
           : Proforma.etat == 3 ?
            StatusHtml("Perdu", "bg-red-500")
            : StatusHtml("Abandonné", "bg-gray-500"),

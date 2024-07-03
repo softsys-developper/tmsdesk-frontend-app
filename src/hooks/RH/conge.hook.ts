@@ -35,7 +35,7 @@ export const useCongeHook = () => {
       nombre_jour: Conge.nombre_jour,
       solde_conge_annuel:  Conge.employe?.solde_conge_annuel,
       remarque: Conge.remarques,
-      date_creation: moment(Conge.created_at).format("l"),
+      date_creation: moment(Conge.created_at).format("DD/MM/YYYY"),
 
       // Les champs select
       employe: Conge.employe.id

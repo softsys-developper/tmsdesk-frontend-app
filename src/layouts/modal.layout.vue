@@ -12,6 +12,7 @@ defineProps([
   "isUpdated",
   "loading",
   "Func",
+  "isCloseBtn"
 ]);
 
 const open = computed(() => {
@@ -52,7 +53,7 @@ const setOpen = () => {
 <template>
   <!-- {{ is }} -->
   <div class="flex">
-    <Button class="bg-orange-400 font-bold text-base flex items-center jus gap-2" @click="setOpen">
+    <Button class="bg-orange-400 font-bold text-base flex items-center jus gap-2" v-if="!isCloseBtn" @click="setOpen">
       <i class="ri-add-line"></i>
       <span class="truncate lg:w-full md:w-32 w-24 font-bold hidden lg:flex">{{
         name

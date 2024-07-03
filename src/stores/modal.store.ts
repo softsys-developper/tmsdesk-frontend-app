@@ -16,7 +16,11 @@ export const useModalStore = defineStore('Modal', {
       },
 
 
+
       ProspectStep: false,
-      ProspectStepID: null
+      ProspectStepID: null,
+
+      Stocks: false,
+      StocksID: null,
    }),
 });

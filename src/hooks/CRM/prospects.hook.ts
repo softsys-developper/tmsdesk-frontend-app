@@ -23,7 +23,7 @@ export const useProspectHook = () => {
       proposition: Prospect.proposition, 
       status: StatusHtml(Prospect.etape?.nom, `bg`, Prospect.etape?.couleur),
       observation: Prospect.observation,
-      date_creation: moment(Prospect.created_at).format("l"),
+      date_creation: moment(Prospect.created_at).format("DD/MM/YYYY"),
       interlocuteurs: Prospect.interlocuteurs,
 
       etape: Prospect.etape_id,

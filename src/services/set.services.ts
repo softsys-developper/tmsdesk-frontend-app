@@ -18,7 +18,7 @@ export const setService = (
   callback?: any
 ) => {
   const SetCreate = async (URL: string, values: any) => {
-    // try {
+    try {
     loading.loadingCreate = true;
     const data = await createData(URL, values);
 
@@ -45,10 +45,10 @@ export const setService = (
       useUpdateStore().isUpdate.is = false;
     }
 
-    // } catch (err) {
-    //   loading.loadingCreate = false;
-    //   ServerError(err, toast);
-    // }
+    } catch (err) {
+      loading.loadingCreate = false;
+      ServerError(err, toast);
+    }
   };
 
   // Update
@@ -82,7 +82,7 @@ export const setService = (
           });
         }
       })
-      .catch((err) => {
+      .catch((err:any) => {
         loading.loadingCreate = false;
         ServerError(err, toast);
       });

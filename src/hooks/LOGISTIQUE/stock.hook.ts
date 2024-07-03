@@ -11,20 +11,20 @@ import { setService } from '@/services/set.services';
 
 export const useStockHook = () => {
    const { readData, createData } = useApiServices();
-   const { EmptyFields } = useUtilHook();
+   const { EmptyFields, StatusHtml } = useUtilHook();
    const setStock = reactive({ loading: false, loadingCreate: false });
    const stateStocks = ref<any[]>([]);
    stateStocks.value = useDataStore().Stocks;
    const { toast } = useToast();
 
    const formatStockData = (Stocks: any) => {
-      return Stocks.map((Stock: any, index:number) => ({
-         id: index  + 1,
-         libelle: Stock.libelle,
-         categorie: Stock.categorie?.libelle,
-         telephone: Stock.telephone,
-         adresse: Stock.adresse,
-         date_creation: moment(Stock.created_at).format("l") ,
+      return Stocks.map((Stock: any) => ({
+         id: Stock.id,
+         reference: Stock.reference,
+         prix_unitaire: Stock.prix_unitaire,
+         quantite: Stock.quantite,
+         status:  StatusHtml('En stock', 'bg-green-500'),
+         date_creation: moment(Stock.created_at).format("DD/MM/YYYY") ,
       }));
    };
 
@@ -50,7 +50,7 @@ export const useStockHook = () => {
    const FindStockOne = () => {};
 
    //
-   const CreateStock = async(values: any) => {
+   const CreateStock = async(values: any, callback:any) => {
       setStock.loadingCreate = true;
       const DataCreated = await createData(API_URL.STOCK_CREATE, values)
          .then((data: any) => {
@@ -64,6 +64,7 @@ export const useStockHook = () => {
                Stocks.unshift(...toAdd);
                useDataStore().Stocks = Stocks;
                useModalStore().open = false
+               callback()
 
                toast({
                   title: 'Enregistré',

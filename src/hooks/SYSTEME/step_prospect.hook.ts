@@ -14,11 +14,11 @@ export const useStepProspectHook = () => {
    stateStepProspects.value = useDataStore().StepProspects;
 
    const formatStepProspectData = (StepProspects: any) => {
-      return StepProspects.map((StepProspect: any, index:number) => ({
-         id: index  + 1,
+      return StepProspects.map((StepProspect: any) => ({
+         id: StepProspect.id,
          nom: StepProspect.nom,
          couleur: useUtilHook().StatusHtml(StepProspect.couleur, 'bg', StepProspect.couleur),
-         date_creation: moment(StepProspect.created_at).format("l") ,
+         date_creation: moment(StepProspect.created_at).format("DD/MM/YYYY") ,
       }));
    };
 

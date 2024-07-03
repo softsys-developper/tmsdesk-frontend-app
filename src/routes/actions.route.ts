@@ -161,6 +161,12 @@ export const MenuPersonalActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'RH_PERSONAL',
    },
+   {
+      id: 'MUA_detail',
+      name: 'Voir le detail',
+      icon: 'ri-eye-line',
+      route: 'RH_PERSONAL',
+   },
    
 ];
 export const MenuCongeActions = [
@@ -379,6 +385,12 @@ export const MenuProductActions = [
    //    icon: 'ri-delete-bin-3-line',
    //    route: 'COMPTA_COMPTE',
    // },
+   {
+      id: 'MUA_in_stock',
+      name: 'Mettre en stock',
+      icon: 'ri-store-3-line',
+      route: 'LOGISC_STOCK',
+   },
 ]
 export const MenuLivraisonActions = [
    {
@@ -409,12 +421,12 @@ export const MenuLivraisonActions = [
 
 export const MenuStockActions = [
  
-  {
-     id: 'MUA_delete',
-     name: 'Supprimer',
-     icon: 'ri-delete-bin-3-line',
-     route: 'LOGISC_LIVRAISONS',
-  }
+//   {
+//      id: 'MUA_delete',
+//      name: 'Supprimer',
+//      icon: 'ri-delete-bin-3-line',
+//      route: 'LOGISC_LIVRAISONS',
+//   }
 ]
 
 

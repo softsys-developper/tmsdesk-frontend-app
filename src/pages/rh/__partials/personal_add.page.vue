@@ -2,7 +2,8 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-                <ContentLayout :title="`R. Humaines | ${$route.query.id ? 'Modification employé' : 'Création employé' }`">
+                <ContentLayout
+                    :title="`R. Humaines | ${$route.query.id ? 'Modification employé' : 'Création employé'}`">
                     <template v-slot:created> </template>
                 </ContentLayout>
 
@@ -19,7 +20,8 @@
                         <button type="submit" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                             :disabled="setPersonal.loadingCreate">
                             <SpinnerLoader size="w-6 h-6" v-if="setPersonal.loadingCreate" />
-                            <span class="" v-else> {{route.query.id ? 'Modifer un employer' : 'Crée un employer'}} </span>
+                            <span class="" v-else> {{ route.query.id ? 'Modifer un employer' : 'Crée un employer' }}
+                            </span>
                         </button>
                     </div>
                 </form>
@@ -49,15 +51,14 @@ const { setPersonal, CreatePersonal, PersonalUpdate } = usePersonalHook();
 
 const onSubmit = (e: any) => {
     const values = new FormData(e.target);
-    if(!route.query.id){
-        CreatePersonal(values,route.query.id, route, router);
-    }else{
-        PersonalUpdate(route.query.id, values);
+    if (!route.query.id) {
+        CreatePersonal(values, route.query.id, route, router);
+    } else {
+        PersonalUpdate(route.query.id, values, () => {
+            router.push({ name: "RH_PERSONAL" });
+        });
     }
-    
 };
-
-
 
 
 const FindShowPersonal = () => {

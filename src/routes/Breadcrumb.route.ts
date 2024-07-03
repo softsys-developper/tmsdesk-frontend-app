@@ -321,7 +321,23 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
-
+  {
+    route: "RH_PERSONAL_SHOW",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_PERSONAL_SHOW",
+        title: "Détail de l'employé",
+      },
+    ],
+  },
 
   // Comptabilité
   {
@@ -446,6 +462,23 @@ export const BreadcrumbRoutes = [
 
 
   // Logistique
+  {
+    route: "LOGISC_STOCK",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_STOCK",
+        title: "Liste des stocks",
+      },
+    ],
+  },
   {
     route: "LOGISC_PRODUCTS",
     title: [

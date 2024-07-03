@@ -2,12 +2,12 @@
     <BaseLayout>
        <template v-slot:content>
           <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-             <ContentLayout title="COMPTABILITES | Stock">
+             <ContentLayout title="COMPTABILITES | Stocks">
                 <template v-slot:created>
-                   <StockModal name="Ajouter une stock" :title="useUpdateStore().isUpdate.is
+                   <!-- <StockModal name="Ajouter une stock" :title="useUpdateStore().isUpdate.is
                       ? 'Modifier Stocks'
                       : 'Ajouter Stocks'
-                      " />
+                      " /> -->
  
                    <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="StockDelete"
                       :id="useUpdateStore().isDelete.id" />
@@ -31,7 +31,6 @@
  import { StockTables } from '@/tables/LOGISTIQUE/stock.tabes';
  import { useStockHook } from '@/hooks/LOGISTIQUE/stock.hook.ts';
  import { useUpdateStore } from '@/stores/update.store';
- import StockModal from '@/components/modals/LOGISTIQUE/stock.modal.vue';
  import DeleteLayout from '@/layouts/delete.layout.vue';
  
  const { FindStockAll, storeStocks, StockDelete, setStock } = useStockHook();

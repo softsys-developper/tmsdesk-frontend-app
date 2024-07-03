@@ -18,11 +18,11 @@ export const usePrimeHook = () => {
   const { toast } = useToast();
 
   const formatPrimeData = (primes: any) => {
-    return primes.map((prime: any, index:any) => ({
-      id: index +1,
+    return primes.map((prime: any) => ({
+      id: prime.id,
       libelle: prime.libelle,
       nature: prime.nature,
-      date_creation: moment(prime.created_at).format("l") ,
+      date_creation: moment(prime.created_at).format("DD/MM/YYYY") ,
     }));
   };
 

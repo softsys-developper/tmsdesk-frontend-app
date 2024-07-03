@@ -21,7 +21,7 @@ export const useServiceHook = () => {
     return services.map((service: any) => ({
       id: service.id,
       libelle: service.libelle,
-      date_creation: moment(service.created_at).format("l"),
+      date_creation: moment(service.created_at).format("DD/MM/YYYY"),
     }));
   };
 

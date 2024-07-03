@@ -13,7 +13,6 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     let Find: any = ToUpdate.find((el: any) => el.id == Id);
     const InputKey = Object.keys(Find);
 
-
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
       if (UpdateInput) {
@@ -142,9 +141,11 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "RH_PERSONAL") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    } else {
+    } else if(menu.id == "MUA_modify") {
       // ToUpdateActions(id, useDataStore().Conges);
       router.push({name: "RH_PERSONAL_ADD", query: {id }})
+    }else{
+      router.push({name: "RH_PERSONAL_SHOW", query: {id }})
     }
   }
 
@@ -206,7 +207,15 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       // router.push("/proforma/detail/?id=" + id)
     } 
   }
-  
+
+  // 
+  if (menu.route == "LOGISC_STOCK") {
+    if (menu.id == "MUA_in_stock") {
+      useModalStore().Stocks = true
+      useModalStore().open = true
+      useModalStore().StocksID = id
+    } 
+  }
   
 
 
