@@ -1,17 +1,14 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/Livraison.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { useUpdateStore } from "@/stores/update.store";
+import { setService } from "@/services/set.services";
 
 export const useLivraisonHook = () => {
-  const { readData, createData, deleteData, updateData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData } = useApiServices();
   const setLivraison = reactive({
     loading: false,
     loadingCreate: false,
@@ -20,7 +17,6 @@ export const useLivraisonHook = () => {
   });
   const stateLivraisons = ref<any[]>([]);
   stateLivraisons.value = useDataStore().Livraisons;
-  const { toast } = useToast();
 
   // Get Update
   useUpdateStore().UpdateValue = useDataStore().Livraisons[0];
@@ -59,137 +55,37 @@ export const useLivraisonHook = () => {
   //
   const FindLivraisonOne = () => {};
 
+  const CreateLivraison = async(values: any, callback?:any) => {
+    setService(
+       setLivraison,
+       useDataStore(),
+       'Livraisons',
+       formatLivraisonData,
+       callback()
+     ).SetCreate(API_URL.LIVRAISON_CREATE, values);
+ };
+
   //
-  const CreateLivraison = async (values: any) => {
-    setLivraison.loadingCreate = true;
-    const DataCreated = await createData(API_URL.LIVRAISON_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setLivraison.loadingCreate = false;
-          let Livraisons = useDataStore().Livraisons;
-
-          //
-          const toAdd: [] = formatLivraisonData([data.data]);
-          Livraisons.unshift(...toAdd);
-          useDataStore().Livraisons = Livraisons;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setLivraison.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+  const LivraisonUpdate = (id: any, values: any, callback?:any) => {
+    setService(
+      setLivraison,
+      useDataStore(),
+      'Livraisons',
+      formatLivraisonData,
+      callback()
+    ).SetUpdate(API_URL.LIVRAISON_UPDATE, id, values);
   };
-
-  // Update
-  const LivraisonUpdate = (id: any, values: any) => {
-    setLivraison.loadingCreate = true;
-    updateData(API_URL.USER_UPDATE + "/" + id, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setLivraison.loadingCreate = false;
-          let Livraisons = useDataStore().Livraisons;
-
-          //
-          const toAdd: [] = formatLivraisonData([data.data]);
-          Livraisons.unshift(...toAdd);
-          useDataStore().Livraisons = Livraisons;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setLivraison.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-  };
-
+ 
   //
   const LivraisonDelete = (id: any) => {
-    setLivraison.loadingDelete = true;
-    deleteData(API_URL.USER_REMOVE + "/" + id)
-      .then((data: any) => {
-        if (data) {
-          setLivraison.loadingDelete = false;
-          let Livraisons = useDataStore().Livraisons;
-
-          //
-          const toAdd = Livraisons.filter((el: any) => el.id != id);
-          Livraisons.unshift(...toAdd);
-          useDataStore().Livraisons = Livraisons;
-          useModalStore().open = false;
-          useModalStore().delete = false;
-
-          toast({
-            title: "Supprimer",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setLivraison.loadingDelete = false;
-        useModalStore().delete = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
+    setService(
+      setLivraison,
+      useDataStore(),
+      'Livraisons',
+      formatLivraisonData
+    ).SetDelete(API_URL.LIVRAISON_REMOVE, id);
   };
+ 
 
   return {
     FindLivraisonAll,

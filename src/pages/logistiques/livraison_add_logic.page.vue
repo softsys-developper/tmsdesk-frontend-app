@@ -288,11 +288,11 @@ const sendLivraisonToBackend = async () => {
             });
 
             if (!route.query.id) {
-                useDataStore().Livraisons.unshift(...formatLivraisonData([data.data]));
+                const Delivery :any = data.data
+                useDataStore().Livraisons.unshift(...formatLivraisonData([Delivery]));
                 router.push({ name: "LOGISC_LIVRAISONS" });
             } else {
                 const isLivraison: any = useDataStore().Livraisons.map((el: any) => {
-                    console.log(el.id == route.query.id);
                     if (el.id == route.query.id) {
                         el = formatLivraisonData([data.data]);
                     }
