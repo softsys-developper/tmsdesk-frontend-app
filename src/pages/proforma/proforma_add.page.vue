@@ -550,7 +550,6 @@ const sendProformaToBackend = async () => {
         router.push({ name: "PROFORMA_LIST" });
       } else {
         const isProforma: any = useDataStore().Proformas.map((el: any) => {
-          console.log(el.id == route.query.id);
           if (el.id == route.query.id) {
             el = formatProformaData([data.data]);
           }

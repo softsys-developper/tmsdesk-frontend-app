@@ -4,7 +4,7 @@
          <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
             <ContentLayout title="Logistique | Bon de commande">
                <template v-slot:created>
-                 dfkls
+                 
                </template>
             </ContentLayout>
 

@@ -52,7 +52,7 @@
                     <h1 class="font-bold text-2xl">BON DE LIVRAISON</h1>
 
                     <div
-                      class="mt-1 border-[1px] px-4 py-1 block text-gray-500 dark:text-neutral-500"
+                      class="mt-1 border-[1px] text-sm px-4 py-1 block text-gray-500 dark:text-neutral-500"
                     >
                       QUOTE #
                       {{
@@ -60,22 +60,25 @@
                       }}
                     </div>
                   </div>
+
+                  <div class="h-24"><img class="h-full" src="/images/logo/tms.jpeg" alt=""></div>
                 </div>
                 <!-- End Grid -->
 
                 <!-- Grid -->
                 <div class="mt-8 grid sm:grid-cols-2 gap-3">
                   <div>
-                   
+                  
                   </div>
                   <!-- Col -->
 
                   <div class="sm:text-end space-y-2">
+                     
                     <!-- Grid -->
                     <div
                       class="grid grid-cols-2 text-sm sm:grid-cols-1 gap-3 sm:gap-2"
                     >
-                      <dl class="grid sm:grid-cols-5 gap-x-3">
+                      <dl class="grid sm:grid-cols-5 gap-x-3 text-xs">
                         <dt
                           class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
                         >
@@ -87,14 +90,14 @@
                           {{ LivraisonShow.date_livraison }}
                         </dd>
                       </dl>
-                      <dl class="grid sm:grid-cols-5  border-[1px]">
+                      <dl class="grid sm:grid-cols-5 text-xs ">
                         <dt
-                          class="col-span-3 font-semibold  border-[1px] text-gray-800 dark:text-neutral-200"
+                          class="col-span-3 font-semibold   text-gray-800 dark:text-neutral-200"
                         >
                           Votre commande N*:
                         </dt>
                         <dd
-                          class="col-span-2 text-gray-500 border-[1px] dark:text-neutral-500"
+                          class="col-span-2 text-gray-500  dark:text-neutral-500"
                         >
                           {{ LivraisonShow.reference }}
                         </dd>
@@ -113,7 +116,7 @@
                     class="min-w-full border-collapse border border-gray-200"
                   >
                     <thead>
-                      <tr class="text-sm">
+                      <tr class="text-xs">
                         <th class="border-[1px] px-4 py-2">No</th>
                         <th class="border-[1px] px-4 py-2">Description</th>
                         <th class="border-[1px] px-4 py-2">QTY PO</th>
@@ -122,13 +125,14 @@
                         <th class="border-[1px] px-4 py-2">Observation</th>
                       </tr>
                     </thead>
+              
                     <tbody
                       v-for="(service, index) in LivraisonShow.produit_livres"
                     >
                       <tr class="text-xs">
                         <td class="border-[1px] px-4 py-2">{{ index + 1 }}</td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ service.description }}
+                          {{ LivraisonShow.proforma.produit_services[index].description }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
                           {{ service.quantite_livree }}
@@ -137,10 +141,10 @@
                           {{ service.quantite_restante }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ service.prix_unitaire }}
+                          {{ LivraisonShow.proforma.produit_services[index].unite }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ service.remarques }}
+                          {{ LivraisonShow.proforma.produit_services[index].remarque }} 
                         </td>
                       </tr>
                     </tbody>
@@ -153,8 +157,8 @@
                   <div class=""></div>
 
                   <div class="flex justify-center items-center flex-col">
-                    <div class="font-bold border-2 text- text-gray-700 px-6 py-2">
-                        {{ LivraisonShow.user?.name }}
+                    <div class="font-bold border-2 text-xs text-gray-700 px-6 py-2">
+                        {{ LivraisonShow.proforma?.user?.name }}
                     </div>
                     
                   </div>

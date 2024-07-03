@@ -458,7 +458,7 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
-
+  
 
 
   // Logistique
@@ -492,7 +492,7 @@ export const BreadcrumbRoutes = [
       },
       {
         route: "LOGISC_PRODUCTS",
-        title: "Liste des transactions",
+        title: "Liste des produits & services",
       },
     ],
   },
@@ -532,7 +532,7 @@ export const BreadcrumbRoutes = [
   },
 
   {
-    route: "LOGISC_LIVRAISONS",
+    route: "LOGISC_LIVRAISONS_ADD",
     title: [
       {
         route: "HOME",
@@ -549,6 +549,28 @@ export const BreadcrumbRoutes = [
       {
         route: "LOGISC_LIVRAISONS_ADD",
         title: "Creation de livraison ",
+      },
+    ],
+  },
+
+  {
+    route: "LOGISC_LIVRAISONS_BL",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+      {
+        route: "LOGISC_LIVRAISONS_BL",
+        title: "Bon de livraison ",
       },
     ],
   },
