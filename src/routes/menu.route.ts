@@ -294,7 +294,7 @@ export const MenuApp = [
             id: 'SYSTEM_MAILS',
             name: 'Utilisateurs',
             route: 'SETTING_USER',
-            permission: 'liste-user'
+            permission: 'liste-utilisateur'
          },
          {
             icon: 'ri-mail-line',

@@ -298,7 +298,7 @@ import Input from "@/components/ui/input/Input.vue";
 import Label from "@/components/ui/label/Label.vue";
 import { Separator } from "@/components/ui/separator";
 import { useRoute, useRouter } from "vue-router";
-import { PROFORMA } from "@/types/CRM/proforma.type";
+// import { PROFORMA } from "@/types/CRM/proforma.type";
 import Button from "@/components/ui/button/Button.vue";
 import { useProformaHook } from "@/hooks/CRM/proforma.hook";
 import SelectedForm from "@/components/forms/selected.form.vue";
@@ -586,7 +586,7 @@ const sendProformaToBackend = async () => {
 const FindAllProforma = () => {
   if (route.query.id) {
     showData(API_URL.PROFORMA_DETAILS, "/" + route.query.id).then((data) => {
-      const ShowProforma: PROFORMA = data.data;
+      const ShowProforma: any = data.data;
       setInput.ref_client = ShowProforma.ref_client;
       setInput.marge_commerciale = ShowProforma.marge_commerciale;
       setInput.interlocuteur = ShowProforma.interlocuteur_id;
@@ -594,13 +594,14 @@ const FindAllProforma = () => {
       setInput.date_validite = ShowProforma.date_validite;
       isRemise.value = Math.floor(ShowProforma.remise_pourcentage)
       ProductAndServices.value.push(
-        ...ShowProforma.produit_services.map((service) => ({
+        ...ShowProforma.produit_services.map((service:any) => ({
           id: ProductAndServices.value.length + 1,
+          devise: service.devise_id,
           quantite: service.pivot.quantite,
           prix_unitaire: service.pivot.prix_unitaire,
           montant: service.pivot.prix_unitaire,
           description: service.description,
-          disponibilite: service.disponibilite,
+          disponibilite: service.ligne_proformas[0].disponibilite,
           code: ListOfDevises.value.find((el) => el.id == service.devise_id)?.code_devise,
           prix_unitaire_gnf: Number(service.pivot.prix_unitaire),
           unite: service.unite,
