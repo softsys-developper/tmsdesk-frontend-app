@@ -17,7 +17,7 @@ export const StepProspectTables = reactive([
     },
     {
         label: 'Couleur',
-        field: 'couleur',
+        field: 'color',
         status: null,
         color: null,
         bgColor: null,

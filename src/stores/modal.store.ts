@@ -22,5 +22,9 @@ export const useModalStore = defineStore('Modal', {
 
       Stocks: false,
       StocksID: null,
+
+
+      MenuSideBar: <any>[],
+      Permissions: <any>[]
    }),
 });

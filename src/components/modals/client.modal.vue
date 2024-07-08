@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit"  :loading="setClient.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setClient.loadingCreate" permissions="ajouter-clients" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in ClientForms">

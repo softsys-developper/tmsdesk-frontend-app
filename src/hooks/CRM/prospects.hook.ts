@@ -6,6 +6,7 @@ import moment from "moment";
 import { setService } from "@/services/set.services";
 import { useUtilHook } from "../utils.hook";
 
+
 export const useProspectHook = () => {
   const { readData } = useApiServices();
   const setProspect = reactive({ loading: false, loadingCreate: false });
@@ -39,6 +40,21 @@ export const useProspectHook = () => {
   const FindProspectAll = () => {
     setProspect.loading = true;
     readData(API_URL.PROSPECT_LIST)
+      .then((data: any) => {
+        useDataStore().Prospects = formatProspectData(data.datas);
+        useDataStore().Update.Prospects = data.datas;
+        setProspect.loading = false; 
+      })
+      .catch(() => {
+        setProspect.loading = false;
+      });
+  };
+
+  // 
+  
+  const FindProspectCommercialAll = () => {
+    setProspect.loading = true;
+    readData(API_URL.PROSPECT_COMMERCIAL_LIST)
       .then((data: any) => {
         useDataStore().Prospects = formatProspectData(data.datas);
         useDataStore().Update.Prospects = data.datas;
@@ -104,5 +120,6 @@ export const useProspectHook = () => {
     stateProspects,
     setProspect,
     storeProspects,
+    FindProspectCommercialAll
   };
 };

@@ -47,6 +47,7 @@ export const API_URL = {
   PROSPECT_CREATE: `${BASE_URL}/prospects/add`,
   PROSPECT_UPDATE: `${BASE_URL}/prospects/update`,
   PROSPECT_REMOVE: `${BASE_URL}/prospects/delete`,
+  PROSPECT_COMMERCIAL_LIST: `${BASE_URL}/mes-prospects`,
 
   CLIENT_PROSPECT_LIST: `${BASE_URL}/client-prospects`,
   CLIENT_PROSPECT_CREATE: `${BASE_URL}/client-prospects/add`,
@@ -66,6 +67,7 @@ export const API_URL = {
   PROFORMA_DETAILS: `${BASE_URL}/proformas`,
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
   PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
+  PROFORMA_COMMERCIAL_LIST: `${BASE_URL}/mes-proformas`,
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
@@ -230,11 +232,13 @@ export const API_URL = {
 
   // Gestion Permissions
   PERMISSIONS_LIST: `${BASE_URL}/permissions`,
-  PERMISSIONS_CREATE: `${BASE_URL}/permissions/add`,
+  PERMISSIONS_CREATE: `${BASE_URL}/permissions/user/add`,
   PERMISSIONS_UPDATE: `${BASE_URL}/permissions/update`,
   PERMISSIONS_REMOVE: `${BASE_URL}/permissions/delete`,
   PERMISSIONS_ROLE: `${BASE_URL}/permissions/role/`,
   PERMISSIONS_ROLE_CREATE: `${BASE_URL}/roles/permissions/add`,
+  PERMISSIONS_USER_CONNECTER: `${BASE_URL}/permissions/user-connecte`,
+  PERMISSIONS_USER: `${BASE_URL}/permissions/user/`,
 
   //Etape
   STEP_LIST: `${BASE_URL}/etapes`,

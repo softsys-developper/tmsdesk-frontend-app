@@ -6,7 +6,8 @@ export const MenuApp = [
       icon: `https://${AppService().url}/images/icons/dashboard.png`,
       list: '',
       route: 'HOME',
-      children: []
+      children: [],
+      
    },
    {
       name: 'CRM',
@@ -18,32 +19,63 @@ export const MenuApp = [
             icon: 'ri-user-search-line',
             id: 'CRM_PROSPECTS',
             name: 'Prospects',
-            route: 'CRM_PROSPECTS'
+            route: 'CRM_PROSPECTS',
+            permission: 'liste-prospects'
          },
          {
             icon: 'ri-user-2-line',
             id: 'PROFORMA_PROSPECTS',
             name: 'Proformas',
-            route: 'PROFORMA_LIST'
+            route: 'PROFORMA_LIST',
+            permission: 'liste-proformas'
          },
+
+          // Commerciale
+
+          {
+            icon: 'ri-user-search-line',
+            id: 'CRM_COMMERCIAL_PROSPECTS',
+            name: 'COM/Prospects',
+            route: 'CRM_COMMERCIAL_PROSPECTS',
+            permission: 'liste-prospects-commercial'
+         },
+         {
+            icon: 'ri-user-2-line',
+            id: 'PROFORMA_COMMERCIAL_LISTE',
+            name: 'COM/Proformas',
+            route: 'PROFORMA_COMMERCIAL_LISTE',
+            permission: 'liste-proformas-commercial'
+         },
+        
+
+         // End Commercial
+
          {
             icon: 'ri-user-star-line',
             id: 'CRM_CLIENTS',
             name: 'Clients',
-            route: 'CRM_CLIENTS'
+            route: 'CRM_CLIENTS',
+            permission: 'liste-clients'
          },
          {
             icon: 'ri-user-search-line',
             id: 'CRM_FOURNISSEURS',
             name: 'Fournisseurs',
-            route: 'CRM_FOURNISSEURS'
+            route: 'CRM_FOURNISSEURS',
+            permission: 'liste-fournisseurs'
          },
+
+
+         
          {
             icon: 'ri-home-smile-2-line',
             id: 'LOGISTIC_SERVICES_PRODUITS',
             name: 'Produits',
-            route: 'LOGISC_PRODUCTS'
+            route: 'LOGISC_PRODUCTS',
+            permission: 'liste-produits-services'
          },
+
+        
          // {
          //    icon: 'ri-user-search-line',
          //    id: 'CRM_FOURNISSEURS',
@@ -58,6 +90,7 @@ export const MenuApp = [
          // },
       ],
    },
+ 
    {
       name: 'R. HUMAINES',
       icon: `https://${AppService().url}/images/icons/customer-service.png`,
@@ -68,25 +101,29 @@ export const MenuApp = [
             icon: 'ri-user-2-line',
             id: 'HUMAINES_PERSONEL',
             name: 'Employés',
-            route: 'RH_PERSONAL'
+            route: 'RH_PERSONAL',
+            permission: 'liste-employes'
          },
          {
             icon: 'ri-user-shared-2-line',
             id: 'HUMAINES_CONGES',
             name: 'Congés',
-            route: 'RH_SALAIRE_CONGE'
+            route: 'RH_SALAIRE_CONGE',
+            permission: 'liste-conge'
          },
          {
             icon: 'ri-currency-line',
             id: 'HUMAINES_SALAIRE',
             name: 'Salaires',
-            route: 'RH_SALAIRE'
+            route: 'RH_SALAIRE',
+            permission: 'liste-salaires'
          },
          {
             icon: 'ri-cash-line',
             id: 'HUMAINES_PAID',
             name: 'Paiement de salaire',
-            route: 'RH_SALAIRE_PAID'
+            route: 'RH_SALAIRE_PAID',
+            permission: 'liste-paiement-salaire'
          },
          // {
          //    icon: 'ri-calendar-schedule-line',
@@ -98,13 +135,15 @@ export const MenuApp = [
             icon: 'ri-building-line',
             id: 'HUMAINES_DEPARTEMENT',
             name: 'Départements',
-            route: 'RH_DEPARTEMENT'
+            route: 'RH_DEPARTEMENT',
+            permission: 'liste-service'
          },
          {
             icon: 'ri-scan-line',
             id: 'HUMAINES_INDEMNITE_PRIME',
             name: 'Indemnité & Prime',
-            route: 'RH_INDEMNITE_PRIME'
+            route: 'RH_INDEMNITE_PRIME',
+            permission: 'liste-indemnite-primes'
          },
          // {
          //    icon: 'ri-user-follow-line',
@@ -156,22 +195,22 @@ export const MenuApp = [
             icon: 'ri-file-list-3-line',
             id: 'COMPTABILITE_PROFORMA',
             name: 'Factures',
-            route: 'COMPTA_FACTURE'
+            route: 'COMPTA_FACTURE',
+            permission: 'liste-facture-client'
          },
-
-
-         
          {
             icon: 'ri-bank-card-line',
             id: 'COMPTABILITE_DEPENSE',
-            name: 'Caisse',
-            route: 'COMPTA_DEPENSE'
+            name: 'Transaction Caisse',
+            route: 'COMPTA_DEPENSE',
+            permission: 'liste-transaction-caisse'
          },
          {
             icon: 'ri-safe-line',
             id: 'COMPTABILITE_COMPTE',
             name: 'Banques',
-            route: 'COMPTA_COMPTE'
+            route: 'COMPTA_COMPTE',
+            permission: 'liste-banque'
          },
          // {
          //    icon: 'ri-safe-line',
@@ -183,13 +222,15 @@ export const MenuApp = [
             icon: 'ri-git-branch-line',
             id: 'COMPTABILITE_GRAND_LIVRE',
             name: 'Grand livre',
-            route: 'COMPTA_LIVRE'
+            route: 'COMPTA_LIVRE',
+            permission: 'grand-livre-banque'
          },
          {
             icon: 'ri-funds-box-line',
             id: 'COMPTABILITE_DEVIS',
             name: 'Bilan',
-            route: 'COMPTA_BILAN'
+            route: 'COMPTA_BILAN',
+            permission: 'bilan'
          },
       ],
    },
@@ -215,19 +256,22 @@ export const MenuApp = [
             icon: 'ri-store-3-line',
             id: 'LOGISTIC_BON_COMMANDE_FOURNISSEUR',
             name: 'BC fournisseur',
-            route: 'LOGISC_BC_PARTENAIRES'
+            route: 'LOGISC_BC_PARTENAIRES',
+            permission: 'liste-bdc-fournisseur'
          },
          {
             icon: 'ri-store-3-line',
             id: 'LOGISTIC_BON_COMMANDE',
             name: 'Livraisons',
-            route: 'LOGISC_LIVRAISONS'
+            route: 'LOGISC_LIVRAISONS',
+            permission: 'liste-livraison'
          },
          {
             icon: 'ri-store-3-line',
             id: 'LOGISC_STOCK',
             name: 'Stocks',
-            route: 'LOGISC_STOCK'
+            route: 'LOGISC_STOCK',
+            permission: 'liste-stock'
          },
         
       ],
@@ -242,25 +286,29 @@ export const MenuApp = [
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
             name: 'Parametre',
-            route: 'SYSTEM_PARAMETRE'
+            route: 'SYSTEM_PARAMETRE',
+            permission: 'liste-parametres'
          },
          {
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
             name: 'Utilisateurs',
-            route: 'SETTING_USER'
+            route: 'SETTING_USER',
+            permission: 'liste-user'
          },
          {
             icon: 'ri-mail-line',
             id: 'SETTING_ROLES',
             name: 'Roles',
-            route: 'SETTING_ROLES'
+            route: 'SETTING_ROLES',
+            permission: 'liste-role'
          },
          {
             icon: 'ri-bill-line',
             id: 'SETTING_PERMISSION',
             name: 'Permissions',
-            route: 'SETTING_PERMISSION'
+            route: 'SETTING_PERMISSION',
+            permission: 'liste-permission'
          },
       ],
    },
@@ -274,7 +322,8 @@ export const MenuApp = [
             icon: 'ri-bill-line',
             id: 'SYSTEM_DA',
             name: 'Domaine d\'activité',
-            route: 'SYSTEM_DA'
+            route: 'SYSTEM_DA',
+            permission: 'liste-domaine-activite'
          },
          // {
          //    icon: 'ri-bill-line',
@@ -286,7 +335,8 @@ export const MenuApp = [
             icon: 'ri-bill-line',
             id: 'SYSTEM_CATEGORY',
             name: 'Categories',
-            route: 'SYSTEM_CATEGORY'
+            route: 'SYSTEM_CATEGORY',
+            permission: 'liste-categorie'
          },
          // {
          //    icon: 'ri-bill-line',
@@ -298,19 +348,22 @@ export const MenuApp = [
             icon: 'ri-bill-line',
             id: 'SYSTEM_DEVISE',
             name: 'Devises',
-            route: 'SYSTEM_DEVISE'
+            route: 'SYSTEM_DEVISE',
+            permission: 'liste-devies'
          },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_MARQUE',
             name: 'Marques',
-            route: 'SYSTEM_MARQUE'
+            route: 'SYSTEM_MARQUE',
+            permission: 'liste-marques'
          },
          {
             icon: 'ri-bill-line',
             id: 'SYSTEM_STEP_PROSPECT',
             name: 'Etapes Prospect',
-            route: 'SYSTEM_STEP_PROSPECT'
+            route: 'SYSTEM_STEP_PROSPECT',
+            permission: 'liste-etapes'
          },
          // {
          //    icon: 'ri-bill-line',

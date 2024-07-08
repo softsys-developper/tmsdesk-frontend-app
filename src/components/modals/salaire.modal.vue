@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit" :loading="setSalaire.loadingCreate">
+   <ModalLayout :Func="onSubmit" :loading="setSalaire.loadingCreate" permissions="ajouter-salaire">
         <template v-slot:form>
             <div class="w-full space-y-2">
                 <div class="" v-for="fr in SalaryForms">

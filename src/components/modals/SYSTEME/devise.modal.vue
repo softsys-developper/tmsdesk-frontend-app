@@ -1,5 +1,5 @@
 <template>
-    <ModalLayout :Func="onSubmit"  :loading="setDevise.loadingCreate">
+    <ModalLayout :Func="onSubmit"  :loading="setDevise.loadingCreate" permissions="ajouter-devise" >
       <template v-slot:form>
         <div class="w-full space-y-2">
           <div class="" v-for="fr in DeviseForms">

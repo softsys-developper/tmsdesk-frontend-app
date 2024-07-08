@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit" :loading="setPersonal.loadingCreate" >
+   <ModalLayout :Func="onSubmit" :loading="setPersonal.loadingCreate" permissions="ajouter-employes" >
       <template v-slot:form>
          <form class="w-full space-y-2" @submit="onSubmit">
             <!-- Name -->

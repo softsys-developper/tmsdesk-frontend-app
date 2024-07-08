@@ -57,6 +57,21 @@ export const useProformaHook = () => {
       });
   };
 
+    // 
+  
+    const FindProformaCommercialAll = () => {
+      setProforma.loading = true;
+      readData(API_URL.PROFORMA_COMMERCIAL_LIST)
+        .then((data: any) => {
+          useDataStore().Prospects = formatProformaData(data.datas);
+          useDataStore().Update.Prospects = data.datas;
+          setProforma.loading = false; 
+        })
+        .catch(() => {
+          setProforma.loading = false;
+        });
+    };
+
   //
   const FindProformaOne = () => {};
 
@@ -134,6 +149,7 @@ export const useProformaHook = () => {
     stateProformas,
     setProforma,
     storeProformas,
-    formatProformaData
+    formatProformaData,
+    FindProformaCommercialAll
   };
 };

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import Toaster from "@/components/ui/toast/Toaster.vue";
-import { onActivated, onMounted, onUnmounted, ref } from "vue";
+import { computed, onActivated, onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import { useChatStore } from "./stores/notifications/notif.store";
 
 const route = useRoute()
 // const router = useRouter()
@@ -42,11 +43,22 @@ onUnmounted(() => {
 });
 
 
+// const CHAT_ECHO = computed(() => {
+//   useChatStore().created()
+// })
+
+const CHAT_ECHO_MESSAGE = computed(() => {
+ console.log(useChatStore().messages)
+})
+
+
+
 
 onActivated(() => {
   window.scrollTo(0, 0);
 })
 onMounted(() => {
+  useChatStore().created()
   // Définir le défilement à 0
   window.scrollTo(0, 0);
 });
@@ -57,6 +69,8 @@ onMounted(() => {
 <template>
   <Toaster  />
   <!-- <ModalFormLayout v-if="open" /> -->
+   <!-- {{CHAT_ECHO}} -->
+    {{CHAT_ECHO_MESSAGE}}
   <RouterView>
   </RouterView>
 </template>

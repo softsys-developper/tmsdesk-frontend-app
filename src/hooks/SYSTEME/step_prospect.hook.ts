@@ -17,8 +17,9 @@ export const useStepProspectHook = () => {
       return StepProspects.map((StepProspect: any) => ({
          id: StepProspect.id,
          nom: StepProspect.nom,
-         couleur: useUtilHook().StatusHtml(StepProspect.couleur, 'bg', StepProspect.couleur),
-         date_creation: moment(StepProspect.created_at).format("DD/MM/YYYY") ,
+         color: useUtilHook().StatusHtml(StepProspect.couleur, 'bg', StepProspect.couleur),
+         date_creation: moment(StepProspect.created_at).format("DD/MM/YYYY"),
+         couleur: StepProspect.couleur
       }));
    };
 

@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit"  :loading="setPrime.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setPrime.loadingCreate" permissions="ajouter-indemnite-primes">
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in PrimeForms">

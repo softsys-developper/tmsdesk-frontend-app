@@ -248,7 +248,7 @@
                   </div>
 
                   <p class="text-gray-500 text-xs dark:text-neutral-500">
-                    A l'attention de {{ ProformaShow.interlocuteur?.nom }}:
+                    A l'attention de {{ ProformaShow.interlocuteur?.nom }}
                   </p>
                   <div class="mt-2">
                     <p class="block text-xs font-bold text-gray-800 dark:text-neutral-200">

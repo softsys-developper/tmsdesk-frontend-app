@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit" :loading="setDepense.loadingCreate">
+   <ModalLayout :Func="onSubmit" :loading="setDepense.loadingCreate" permissions="ajouter-transaction-caisse" >
      <template v-slot:form>
        <div class="w-full space-y-2">
          <div class="" v-for="fr in DepenseForms">
