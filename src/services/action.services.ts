@@ -8,7 +8,7 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
 
 
-  setTimeout(() => {
+ 
     // useDataStore().Categories
     let Find: any = ToUpdate.find((el: any) => el.id == Id);
     const InputKey = Object.keys(Find);
@@ -27,7 +27,7 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
       id: Id,
       data: Find ?? null,
     };
-  }, 500);
+
 };
 
 const ToDeleteActions = (Id: any) => {

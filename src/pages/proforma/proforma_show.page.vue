@@ -154,9 +154,9 @@
                         <td class="border-[1px] px-4 py-2"> {{ index + 1 }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.reference }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.description }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ service.quantite }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ Number(service.prix_unitaire) * service.quantite }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) * service.pivot.quantite).toFixed(0) }} </td>
                         <td class="border-[1px] px-4 py-2">  {{ProformaShow.ligne_proformas[index].disponibilite}} </td>
                        
                       </tr>

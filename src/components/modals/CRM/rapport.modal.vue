@@ -1,5 +1,5 @@
 <template>
-    <ModalLayout :Func="onSubmit"  :loading="setRapport.loadingCreate">
+    <ModalLayout :Func="onSubmit"  :loading="setRapport.loadingCreate" permissions="ajouter-rapport-prospect">
       <template v-slot:form>
         <div class="w-full space-y-2">
           <div class="" v-for="fr in RapportForms">
