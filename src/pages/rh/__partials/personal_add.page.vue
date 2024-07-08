@@ -20,7 +20,7 @@
                         <button type="submit" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                             :disabled="setPersonal.loadingCreate">
                             <SpinnerLoader size="w-6 h-6" v-if="setPersonal.loadingCreate" />
-                            <span class="" v-else> {{ route.query.id ? 'Modifer un employer' : 'Crée un employer' }}
+                            <span class="" v-else> {{ route.query.id ? 'Modifer un employée' : 'Crée un employée' }}
                             </span>
                         </button>
                     </div>

@@ -149,7 +149,7 @@
                     <TableHead>Description</TableHead>
                     <TableHead>Devise</TableHead>
                     <TableHead class="w-[100px]"> QTE </TableHead>
-                    <TableHead class="">PT</TableHead>
+                    <TableHead class="">PU</TableHead>
                     <TableHead class="">PT</TableHead>
                     <TableHead class=""> Actions </TableHead>
                   </TableRow>
@@ -179,13 +179,13 @@
                     </TableCell>
 
                     <TableCell class="font-medium">
-                      {{ invoice.prix_unitaire_gnf.toFixed(2) }}
+                      {{ invoice.prix_unitaire_gnf.toFixed(0) }}
                     </TableCell>
 
                     <TableCell class="font-medium">
                       {{
-                        Number(Number(invoice?.prix_unitaire_gnf) *
-                        Number(invoice?.quantite)).toFixed(2)
+                        Number(invoice?.prix_unitaire_gnf *
+                        invoice?.quantite).toFixed(0)
                       }}
                     </TableCell>
 
@@ -207,7 +207,7 @@
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ _AmountHT.toFixed(2) }} (GNF)
+                      {{ AmountHT }} {{ _AmountHT.toFixed(0) }} (GNF)
                     </dd>
                   </dl>
 
@@ -255,7 +255,7 @@
                       TotalTTC: 
                     </dt>
                     <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ setInput.marge_commerciale > 1 ? (_AmountTTC * (Number(setInput.marge_commerciale)) ).toFixed(2) : _AmountTTC }} (GNF)
+                      {{ AmountHT }} {{ setInput.marge_commerciale > 1 ? (_AmountTTC * (Number(setInput.marge_commerciale)) ).toFixed(0) : _AmountTTC }} (GNF)
                     </dd>
                   </dl>
                 </div>
@@ -489,7 +489,7 @@ const AmountHT = computed(() => {
      
       if (Price != undefined) {
         _AmountHT.value = _AmountHT.value + Number(Price) * Number(HT.quantite);
-        _AmountTTC.value = Number(_AmountHT.value.toFixed(2));
+        _AmountTTC.value = Number(_AmountHT.value.toFixed(0));
       }
     });
 
@@ -497,7 +497,7 @@ const AmountHT = computed(() => {
       console.log(_AmountTVA.value);
       _AmountTTC.value =
         _AmountHT.value * (1 - isRemise.value / 100) + _AmountTVA.value;
-      _AmountTTC.value = Number(_AmountTTC.value.toFixed(2));
+      _AmountTTC.value = Number(_AmountTTC.value.toFixed(0));
     }
   }
 });
@@ -601,7 +601,7 @@ const FindAllProforma = () => {
           prix_unitaire: service.pivot.prix_unitaire,
           montant: service.pivot.prix_unitaire,
           description: service.description,
-          disponibilite: service.ligne_proformas[0].disponibilite,
+          disponibilite: ShowProforma.ligne_proformas[0].disponibilite,
           code: ListOfDevises.value.find((el) => el.id == service.devise_id)?.code_devise,
           prix_unitaire_gnf: Number(service.pivot.prix_unitaire),
           unite: service.unite,
