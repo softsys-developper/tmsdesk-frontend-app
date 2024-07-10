@@ -7,7 +7,6 @@ export const MenuApp = [
       list: '',
       route: 'HOME',
       children: [],
-      
    },
    {
       name: 'CRM',
@@ -20,15 +19,16 @@ export const MenuApp = [
             id: 'CRM_PROSPECTS',
             name: 'Prospects',
             route: 'CRM_PROSPECTS',
-            permission: 'liste-prospects'
+            permission: 'liste-prospects-commercial' 
          },
          {
             icon: 'ri-user-2-line',
             id: 'PROFORMA_PROSPECTS',
             name: 'Proformas',
             route: 'PROFORMA_LIST',
-            permission: 'liste-proformas'
+            permission: 'liste-proformas-commercial'
          },
+         
 
           // Commerciale
 

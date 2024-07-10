@@ -75,6 +75,7 @@ export const API_URL = {
   PROFORMA_COMMERCIAL_LIST: `${BASE_URL}/mes-proformas`,
   PROFORMA_CHANGE_STATE: `${BASE_URL}/proformas/changer-etat`,
   PROFORMA_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/proformas/by-user/`,
+  PROFORMA_COMMERCIAL: `${BASE_URL}/mes-proformas`,
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,

@@ -5,6 +5,7 @@ import { useDataStore } from "./../../stores/data.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 import { useUtilHook } from "../utils.hook";
+import { useModalStore } from "@/stores/modal.store";
 
 
 export const useProspectHook = () => {
@@ -39,9 +40,8 @@ export const useProspectHook = () => {
   //
   const FindProspectAll = () => {
     setProspect.loading = true;
-    const GetUserConnect:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') ?? '' ) : null
-    console.log(GetUserConnect?.utype)
-    readData(API_URL.PROSPECT_LIST)
+
+    readData( useModalStore().Permissions.map((el:any) => el.name).includes('liste-prospects') ?  API_URL.PROSPECT_LIST   :  API_URL.PROSPECT_COMMERCIAL_LIST )
       .then((data: any) => {
         useDataStore().Prospects = formatProspectData(data.datas);
         useDataStore().Update.Prospects = data.datas;

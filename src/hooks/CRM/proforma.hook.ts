@@ -4,6 +4,7 @@ import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/Proforma.type';
 import { setService } from "@/services/set.services";
+import { useModalStore } from "@/stores/modal.store";
 
 export const useProformaHook = () => {
   const { readData } = useApiServices();
@@ -42,7 +43,8 @@ export const useProformaHook = () => {
   //
   const FindProformaAll = () => {
     setProforma.loading = true;
-    readData(API_URL.PROFORMA_LIST)
+    console.log(useModalStore().Permissions.map((el:any) => el.name).includes('liste-proformas'))
+    readData( useModalStore().Permissions.map((el:any) => el.name).includes('liste-proformas') ?  API_URL.PROFORMA_LIST : API_URL.PROFORMA_COMMERCIAL)
       .then((data: any) => {
         useDataStore().Proformas = formatProformaData(data.datas);
         setProforma.loading = false;
