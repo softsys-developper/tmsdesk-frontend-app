@@ -33,7 +33,7 @@ export const setService = (
       const toAdd = formatData([data?.data]);
        ISDATA.unshift(...toAdd);
       Store[LabelStore] = ISDATA;
-      callback();
+      callback;
 
       toast({
         title: "Enregistré",

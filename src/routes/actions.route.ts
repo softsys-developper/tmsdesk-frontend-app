@@ -484,12 +484,12 @@ export const MenuLivraisonActions = [
 
 export const MenuStockActions = [
  
-//   {
-//      id: 'MUA_delete',
-//      name: 'Supprimer',
-//      icon: 'ri-delete-bin-3-line',
-//      route: 'LOGISC_LIVRAISONS',
-//   }
+  {
+     id: 'MUA_delete',
+     name: 'Rétire',
+     icon: 'ri-delete-bin-2-line',
+     route: 'LOGISC_STOCK',
+  }
 ]
 
 

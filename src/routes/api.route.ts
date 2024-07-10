@@ -271,6 +271,7 @@ export const API_URL = {
   STOCK_CREATE: `${BASE_URL}/produits/in-stock/add`,
   STOCK_UPDATE: `${BASE_URL}/produits/in-stock/update`,
   STOCK_REMOVE: `${BASE_URL}/produits/in-stock/delete`,
+  STOCK_REMOVE_STOCK: `${BASE_URL}/produits/out-stock/`,
 
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
