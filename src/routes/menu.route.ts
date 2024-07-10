@@ -72,7 +72,7 @@ export const MenuApp = [
             id: 'LOGISTIC_SERVICES_PRODUITS',
             name: 'Produits',
             route: 'LOGISC_PRODUCTS',
-            permission: 'liste-produits-services'
+            permission: 'liste-produit-services'
          },
 
         

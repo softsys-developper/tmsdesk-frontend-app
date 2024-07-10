@@ -44,6 +44,9 @@
                         @input="IsServiceLivraison"
                         class="p-2 border-[1px] rounded-md"
                       >
+                      <option value="null" >
+                              Selectionnez une proforma
+                            </option>
                         <option
                           v-for="Livraison in ListOfLivraison"
                           :value="Livraison.id"
@@ -59,6 +62,7 @@
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel></SelectLabel>
+                            
                             <SelectItem
                               v-for="Product in ListOfLivraisonServices"
                               :value="Product.reference"
@@ -310,10 +314,13 @@ const sendLivraisonToBackend = async () => {
         title: "Livraisons",
         description: responseData.message,
       });
+     
+      router.push({ name: "LOGISC_LIVRAISONS" });
 
       if (!route.query.id) {
-        const Delivery: any = data.data;
-        useDataStore().Livraisons.unshift(...formatLivraisonData([Delivery]));
+        let Delivery: any = useDataStore().Livraisons;
+        Delivery.unshift(...formatLivraisonData(data.data));
+        useDataStore().Livraisons = Delivery
         router.push({ name: "LOGISC_LIVRAISONS" });
       } else {
         const isLivraison: any = useDataStore().Livraisons.map((el: any) => {

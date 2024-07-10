@@ -50,7 +50,7 @@ export const useNBCHook = () => {
       useDataStore(),
       'storeNBCs',
       formatNBCData,
-      callback()
+      callback
     ).SetCreate(API_URL.NBC_CREATE, values);
   };
 
