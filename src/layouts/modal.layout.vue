@@ -22,6 +22,10 @@ const open = computed(() => {
 
 const emit = defineEmits(["open"]);
 const setOpen = () => {
+
+  useModalStore().ProspectStep = false
+  useModalStore().Proforma = false
+
   emit("open", useModalStore().open);
   if (useModalStore().open) {
     useModalStore().open = false;
@@ -30,6 +34,7 @@ const setOpen = () => {
     useModalStore().open = true;
   }
   useUpdateStore().isUpdate.is = false;
+  
 };
 
 // const is = computed(() => {

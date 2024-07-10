@@ -220,7 +220,7 @@
 
                 <div class="">
                   <label for=""> Entête : {{ PARAMETRE.entete ? 'Updated' : 'Non Ajouter' }} </label>
-                  <Input type="file" name="entete" class="" />
+                  <Input type="file" name="en_tete" class="" />
                 </div>
 
                 <div class="">

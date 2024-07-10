@@ -47,6 +47,7 @@ export const useDataStore = defineStore('counter',() => {
    const StepProspects = ref(<any>[]);
    const Stocks = ref(<any>[]);
    const Holiday = ref(<any>[]);
+   const Interlocuteurs = ref(<any>[]);
 
 
    const Update = ref({
@@ -90,6 +91,7 @@ export const useDataStore = defineStore('counter',() => {
    StepProspects : [],
    Stocks : [],
    Holiday : [],
+   Interlocuteurs: []
    });
    
    // Vous pouvez maintenant retourner les valeurs comme suit
@@ -134,7 +136,8 @@ export const useDataStore = defineStore('counter',() => {
        StepProspects,
        Stocks,
        Holiday,
-       Update
+       Update,
+       Interlocuteurs
    };
   
 });

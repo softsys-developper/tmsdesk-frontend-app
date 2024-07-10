@@ -66,6 +66,21 @@ export const BreadcrumbRoutes = [
     ],
   },
 
+   // CRM Interlocuteur
+   {
+    route: "CRM_INTERLOCUTEUR",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "CRM_INTERLOCUTEUR",
+        title: "Liste interlocuteurs",
+      },
+    ],
+  },
+
   // CRM Partenaires
   {
     route: "PROFORMA_LIST",

@@ -39,6 +39,8 @@ export const useProspectHook = () => {
   //
   const FindProspectAll = () => {
     setProspect.loading = true;
+    const GetUserConnect:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') ?? '' ) : null
+    console.log(GetUserConnect?.utype)
     readData(API_URL.PROSPECT_LIST)
       .then((data: any) => {
         useDataStore().Prospects = formatProspectData(data.datas);

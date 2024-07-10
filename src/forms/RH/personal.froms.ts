@@ -11,7 +11,7 @@ export const PersonalForms = reactive([
     },
   
     {
-        label: "Nom de l'employé",
+        label: "Nom",
         type: "text",
         placeholder: "John Binaté",
         name: "nom",
@@ -81,6 +81,20 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
+    
+    {
+        label: "Situation matrimoniale",
+        type: "select",
+        placeholder: "Situation matrimoniale",
+        name: "situation_matrimoniale",
+        value: "",
+        select: [
+            { id: 'Célibataire', name: 'Célibataire' },
+            { id: 'Marié(e)', name: 'Marié(e)' },
+            { id: 'Veuf/Veuve', name: 'Veuf/Veuve' },
+            { id: 'Divorcé(e)', name: 'Divorcé(e)' }
+        ]
+    },
     {
         label: "Numéro CNI / PASSPORT",
         type: "text",
@@ -97,14 +111,8 @@ export const PersonalForms = reactive([
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },
-    {
-        label: "Contrat",
-        type: "file",
-        placeholder: "contrat",
-        name: "contrat",
-        value: "",
-        select: [], // Tableau vide pour les options de sélection
-    },
+
+    
     // {
     //     label: "Matricule",
     //     type: "text",
@@ -115,7 +123,7 @@ export const PersonalForms = reactive([
     // },
 
     {
-        label: "Nom personne à contacter",
+        label: "Personne à contacter",
         type: "text",
         placeholder: "Nom personne à contacter",
         name: "nom_personne_a_contacter",
@@ -123,19 +131,6 @@ export const PersonalForms = reactive([
         select: [], // Tableau vide pour les options de sélection
     },
 
-    {
-        label: "Situation matrimoniale",
-        type: "select",
-        placeholder: "Situation matrimoniale",
-        name: "situation_matrimoniale",
-        value: "",
-        select: [
-            { id: 'Célibataire', name: 'Célibataire' },
-            { id: 'Marié(e)', name: 'Marié(e)' },
-            { id: 'Veuf/Veuve', name: 'Veuf/Veuve' },
-            { id: 'Divorcé(e)', name: 'Divorcé(e)' }
-        ]
-    },
     {
         label: "Téléphone personne à contacter",
         type: "text",
@@ -165,6 +160,14 @@ export const PersonalForms = reactive([
             { id: 'Stage', name: 'Stage' },
             { id: 'Essai', name: 'Essai' }
         ], // Tableau vide pour les options de sélection
+    },
+    {
+        label: "Contrat (PDF) ",
+        type: "file",
+        placeholder: "contrat",
+        name: "contrat",
+        value: "",
+        select: [], // Tableau vide pour les options de sélection
     },
 
 
@@ -203,8 +206,8 @@ export const PersonalForms = reactive([
     {
         label: "Solde Conge Annuel",
         type: "text",
-        placeholder: "Liste de services",
-        name: "slode_conge_annuel",
+        placeholder: "Solde Conge Annuel",
+        name: "solde_conge_annuel",
         value: "",
         select: [], // Tableau vide pour les options de sélection
     },

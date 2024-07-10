@@ -51,7 +51,8 @@
           <div class="w-full  mx-auto  bg-white" id="printableDiv">
             <div class="sm:w-11/12 lg:w-4/4 mx-auto">
               <div class="">
-                <img :src="'https://apps.tmsdesk.com/parametres/' + Parametres.entete
+               
+                <img :src="'https://apps.tmsdesk.com/parametres/' + Parametres.en_tete
                   " alt="" />
               </div>
 
@@ -60,10 +61,10 @@
                 <!-- Grid -->
                 <div class="flex justify-between">
                   <div>
-                    <img :src="Parametres.logo" alt="" />
+                    <img :src="'https://apps.tmsdesk.com/parametres/'+Parametres.logo" class="h-16" alt="" />
 
                     <h1 class="mt-2 text-xl md:text-base font-semibold text-blue-600 dark:text-white">
-                      {{ Parametres.denomination }}
+                      <!-- {{ Parametres.denomination }} -->
                     </h1>
                   </div>
                   <!-- Col -->
@@ -259,7 +260,7 @@
                   </div>
                 </div>
 
-                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500 text-center border-t-[1px] pt-4">
+                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500 text-center border-t-[1px] pt-4 w-full">
                   <!-- SARL au capital 1 000 000Fcfa - RCCM : CI – ABJ-2016 – B - 4260
                   CC : 1608130K - Cocody Saint Jean GTBANK : 25101002356 -
                   www.softsys.ci Email : infos@softsys.ci - Tél. : +225 25 22 00

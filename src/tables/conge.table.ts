@@ -57,7 +57,7 @@ export const CongeTables = [
     // },
     {
         label: 'REMARQUES',
-        field: 'remarque',
+        field: 'remarques',
         status: null,
         color: null,
         bgColor: null,

@@ -17,9 +17,7 @@ export const useNBCHook = () => {
       id: NBC.id,
       numero_bon_de_commande: NBC.numero_bon_de_commande,
       montant: NBC.montant,
-      numero_proforma: NBC.proforma.numero_proforma,
-      telephone: NBC.telephone,
-      adresse: NBC.adresse,
+      numero_proforma: NBC.proforma?.numero_proforma,
       date_creation: moment(NBC.created_at).format("DD/MM/YYYY"),
     }));
   };
@@ -33,6 +31,7 @@ export const useNBCHook = () => {
     setNBC.loading = true;
     readData(API_URL.NBC_LIST)
       .then((data: any) => {
+        console.log('IKL : ', data)
         useDataStore().NBCs = formatNBCData(data.datas);
         setNBC.loading = false;
       })
@@ -49,7 +48,7 @@ export const useNBCHook = () => {
     setService(
       setNBC,
       useDataStore(),
-      'Fournisseurs',
+      'storeNBCs',
       formatNBCData,
       callback()
     ).SetCreate(API_URL.NBC_CREATE, values);

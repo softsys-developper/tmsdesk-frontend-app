@@ -32,20 +32,20 @@ export const MenuApp = [
 
           // Commerciale
 
-          {
-            icon: 'ri-user-search-line',
-            id: 'CRM_COMMERCIAL_PROSPECTS',
-            name: 'COM/Prospects',
-            route: 'CRM_COMMERCIAL_PROSPECTS',
-            permission: 'liste-prospects-commercial'
-         },
-         {
-            icon: 'ri-user-2-line',
-            id: 'PROFORMA_COMMERCIAL_LISTE',
-            name: 'COM/Proformas',
-            route: 'PROFORMA_COMMERCIAL_LISTE',
-            permission: 'liste-proformas-commercial'
-         },
+         //  {
+         //    icon: 'ri-user-search-line',
+         //    id: 'CRM_COMMERCIAL_PROSPECTS',
+         //    name: 'COM/Prospects',
+         //    route: 'CRM_COMMERCIAL_PROSPECTS',
+         //    permission: 'liste-prospects-commercial'
+         // },
+         // {
+         //    icon: 'ri-user-2-line',
+         //    id: 'PROFORMA_COMMERCIAL_LISTE',
+         //    name: 'COM/Proformas',
+         //    route: 'PROFORMA_COMMERCIAL_LISTE',
+         //    permission: 'liste-proformas-commercial'
+         // },
         
 
          // End Commercial
@@ -271,13 +271,13 @@ export const MenuApp = [
             id: 'LOGISC_STOCK',
             name: 'Stocks',
             route: 'LOGISC_STOCK',
-            permission: 'liste-stock'
+            permission: 'liste-produit-stock'
          },
         
       ],
    },
    {
-      name: 'Parametres',
+      name: 'Paramétres',
       icon: `https://${AppService().url}/images/icons/parametre.png`,
       list: 'Parametre géneral, utilisateurs, roles, permissions',
       route: '',
@@ -285,7 +285,7 @@ export const MenuApp = [
          {
             icon: 'ri-mail-line',
             id: 'SYSTEM_MAILS',
-            name: 'Parametre',
+            name: 'Paramétre',
             route: 'SYSTEM_PARAMETRE',
             permission: 'liste-parametres'
          },

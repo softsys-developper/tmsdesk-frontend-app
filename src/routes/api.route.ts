@@ -54,6 +54,8 @@ export const API_URL = {
   CLIENT_PROSPECT_UPDATE: `${BASE_URL}/client-prospects/update`,
   CLIENT_PROSPECT_REMOVE: `${BASE_URL}/client-prospects/delete`,
 
+  COMMERCIAL_LIST: `${BASE_URL}/commerciaux`,
+
   // Gestion utilisateur (employé)
   PARTNER_LIST: `${BASE_URL}/partenaires`,
   PARTNER_CREATE: `${BASE_URL}/partenaires/add`,
@@ -68,6 +70,7 @@ export const API_URL = {
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
   PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
   PROFORMA_COMMERCIAL_LIST: `${BASE_URL}/mes-proformas`,
+  PROFORMA_CHANGE_STATE: `${BASE_URL}/proformas/changer-etat`,
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
@@ -112,6 +115,11 @@ export const API_URL = {
   NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
 
   INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
+  INTERLOCUTEUR_PROSPECTS_LIST: `${BASE_URL}/interlocuteurs/prospect/`,
+  INTERLOCUTEUR_CREATE: `${BASE_URL}/interlocuteurs/add`,
+  INTERLOCUTEUR_UPDATE: `${BASE_URL}/interlocuteurs/update`,
+  INTERLOCUTEUR_REMOVE: `${BASE_URL}/interlocuteurs/delete`,
+  INTERLOCUTEUR_DETAILS: `${BASE_URL}/interlocuteurs/edit`,
 
   BC_FOURNISSEUR_LIST: `${BASE_URL}/fournisseurs/bdc`,
   BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,

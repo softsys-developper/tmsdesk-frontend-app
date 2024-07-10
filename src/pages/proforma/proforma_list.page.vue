@@ -5,10 +5,10 @@
         <ContentLayout title="Proforma | Listes">
           <template v-slot:created>
             <div class="flex gap-2">
-              <!-- <ClientdModal
-                      name="Nouveau Proforma"
-                      title="Nouveau Proforma"
-                   /> -->
+
+              <SelectedForm type="select" :select="[]" />
+
+              <ProformaState name="Changement status Proforma" title="Changement status Proforma" />
 
               <RouterLink :to="{ name: 'PROFORMA_NBC_LIST' }"
                 class="bg-blue-500 font-bold py-2 px-4 rounded-md text-white flex gap-1 items-center">
@@ -46,6 +46,8 @@ import { ProformaTables } from "@/tables/proforma.tables";
 import { useProformaHook } from "@/hooks/CRM/proforma.hook";
 import DeleteLayout from "@/layouts/delete.layout.vue";
 import { useUpdateStore } from "@/stores/update.store";
+import ProformaState from "@/components/modals/CRM/proforma_state.modal.vue"
+import SelectedForm from "@/components/forms/selected.form.vue";
 
 const { FindProformaAll, setProforma, storeProformas, ProformaDelete } =
   useProformaHook();

@@ -54,7 +54,7 @@ const emitInput = (value:any) => {
 
   <div class="" v-if="select?.length == 0  && type == 'select'">
     <select :id="name" :name="name" class="px-2 py-2 border-[1px] border-gray-300/80 rounded-lg w-full">
-      <option> Aucune donnée trouvée </option>
+      <option> Aucune donnée </option>
     </select>
   </div>
 

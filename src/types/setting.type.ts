@@ -41,5 +41,6 @@ export type SETTING = {
   updated_at: string;
   pied_de_page: string,
   entete: string,
-  jour_validite_document: string
+  jour_validite_document: string,
+  en_tete: string
 };

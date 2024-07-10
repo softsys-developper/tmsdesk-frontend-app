@@ -35,7 +35,6 @@ export const router = createRouter({
 router.beforeEach(async (to) => {
    // Storage
    const nToken = localStorage.getItem('nToken');
-   console.log(nToken);
 
    if (nToken && to.path.includes('/sign')) {
       return {

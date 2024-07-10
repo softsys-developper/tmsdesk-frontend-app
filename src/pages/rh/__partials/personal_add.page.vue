@@ -10,6 +10,7 @@
                 <form @submit.prevent="onSubmit" class="w-11/12 m-auto">
                     <div class="grid lg:grid-cols-3 md:grid-cols-3 grid-cols-1 gap-4">
                         <div class="" v-for="fr in PersonalForms">
+                           
                             <InForm :title="fr.label" :name="fr.name" :label="fr.label" :type="fr.type"
                                 :placeholder="fr.placeholder" :select="fr.select" />
                         </div>
@@ -20,7 +21,7 @@
                         <button type="submit" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                             :disabled="setPersonal.loadingCreate">
                             <SpinnerLoader size="w-6 h-6" v-if="setPersonal.loadingCreate" />
-                            <span class="" v-else> {{ route.query.id ? 'Modifer un employée' : 'Crée un employée' }}
+                            <span class="" v-else> {{ route.query.id ? 'Modifier un employé' : 'Créer un employé' }}
                             </span>
                         </button>
                     </div>
@@ -64,12 +65,17 @@ const onSubmit = (e: any) => {
 const FindShowPersonal = () => {
     if (route.query.id) {
         showData(API_URL.USER_SHOW, '/' + route.query.id).then((data) => {
-            const InputKey = Object.keys(data.data);
+
+            const PERSONAL: any = data.data
+            PERSONAL.salaire = data.data.salaire_id
+            PERSONAL.service =  data.data.service_id
+            const InputKey = Object.keys(PERSONAL);
 
             InputKey?.forEach((el) => {
                 let UpdateInput: any = document.querySelector(`#${el}`);
+                console.log(el)
                 if (UpdateInput) {
-                    UpdateInput.value = data.data[el];
+                    UpdateInput.value =  PERSONAL[el];
                 }
             });
         })
@@ -101,10 +107,10 @@ onMounted(() => {
         )
     );
     readData(API_URL.SALAIRE_LIST).then((data) =>
-        remplacerObjetDansTableau(PersonalForms, "name", "salaire", data.datas)
+        remplacerObjetDansTableau(PersonalForms, "name", "salaire", data.datas.map((el: any) => ({ id: el.id, libelle: el.categorie })))
     );
     readData(API_URL.SERVICE_LIST).then((data) =>
-        remplacerObjetDansTableau(PersonalForms, "name", "service", data.datas)
+        remplacerObjetDansTableau(PersonalForms, "name", "service", data.datas.map((el: any) => ({ id: el.id, libelle: el.libelle })))
     );
 });
 </script>

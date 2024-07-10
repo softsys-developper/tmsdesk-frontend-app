@@ -16,7 +16,6 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
       if (UpdateInput) {
-        console.log(typeof Find[el], Find[el])
         UpdateInput.value = typeof Find[el] == 'object' ? Find[el]?.id : Find[el];
       }
     });
@@ -71,6 +70,8 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       useModalStore().open = true
       useModalStore().ProspectStep = true
       useModalStore().ProspectStepID = id
+    } else if (menu.id == "MUA_interlocuteur") {
+      router.push({name: "CRM_INTERLOCUTEUR", query: {id}})
     }
   }
 
@@ -78,10 +79,19 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "CRM_FOURNISSEURS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    } else {
-      console.log(useDataStore().Fournisseurs)
+    } else if (menu.id == "MUA_interlocuteur") {
+      router.push({name: "CRM_INTERLOCUTEUR", query: {id}})
+    }else {
       ToUpdateActions(id, useDataStore().Fournisseurs);
-    }
+    } 
+  }
+
+  if (menu.route == "CRM_INTERLOCUTEUR") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Interlocuteurs);
+    } 
   }
 
    // CRM / Rapport
@@ -105,6 +115,13 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       router.push("/proforma/detail/?id=" + id)
     } else if (menu.id == "MUA_BC") {
       router.push({name: "PROFORMA_NBC", query: {id }})
+    }else if (menu.id == "MUA_state") {
+      useModalStore().open = true
+      useModalStore().Proforma = true
+      useModalStore().ProformaId = id
+    }
+    else if (menu.id == "MUA_interlocuteur") {
+      router.push({name: "CRM_INTERLOCUTEUR", params: {id}})
     }
   }
 

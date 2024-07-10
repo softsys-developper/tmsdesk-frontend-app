@@ -15,7 +15,8 @@ export const useModalStore = defineStore('Modal', {
          token: null
       },
 
-
+      Proforma: false,
+      ProformaId: null,
 
       ProspectStep: false,
       ProspectStepID: null,

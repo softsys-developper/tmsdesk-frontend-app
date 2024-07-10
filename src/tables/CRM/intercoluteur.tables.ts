@@ -1,0 +1,51 @@
+export const InterlocuteurTables = [
+  {
+    label: "ID",
+    field: "id",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Noms",
+    field: "nom",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Prénoms",
+    field: "prenoms",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Email",
+    field: "email",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Télephone",
+    field: "telephone",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Postes",
+    field: "poste",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+  {
+    label: "Date de creation",
+    field: "date_creation",
+    status: null,
+    color: null,
+    bgColor: null,
+  },
+];

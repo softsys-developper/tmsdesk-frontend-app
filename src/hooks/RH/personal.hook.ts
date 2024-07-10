@@ -39,6 +39,12 @@ export const usePersonalHook = () => {
       // role: Personal.utype,
       date_debut: Personal.date_debut,
       date_creation: moment(Personal.created_at).format("l"),
+
+      // 
+      date_fin: Personal.date_fin,
+      salaire: Personal.salaire_id,
+      service: Personal.service_id,
+      solde_conge_annuel: Personal.solde_conge_annuel
     }));
   };
 
@@ -92,12 +98,13 @@ export const usePersonalHook = () => {
 
             useDataStore().Personals = isPersonal;
           }
-          router.push({ name: "RH_PERSONAL" });
+          
 
           toast({
             title: "Enregistré",
             description: data.message,
           });
+          router.push({ name: "RH_PERSONAL" });
         }
       })
       .catch((err) => {
