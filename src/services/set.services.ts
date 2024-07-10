@@ -71,7 +71,7 @@ export const setService = (
               ...el,
             };
           });
-          callback;
+          callback();
 
           Store[LabelStore] = _Prospects;
           useModalStore().open = false;

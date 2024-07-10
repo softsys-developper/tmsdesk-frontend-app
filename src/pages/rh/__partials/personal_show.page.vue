@@ -6,22 +6,28 @@
                     <template v-slot:created> </template>
                 </ContentLayout>
 
-
+                <div class="flex w-11/12 m-auto object-cover">
+                    <img :src="'https://apps.tmsdesk.com/employes/photos/' + Personal[0]['photo']" class="size-36 rounded-full" alt="">
+                </div>
 
                 <div class="w-11/12 m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16 gap-4 ">
 
+                  
+               
+                    
 
                     <div v-for="JI in InputKey">
 
-                       <div class="flex flex-col gap-1">
-                        <div class=" rounded-sm bg-gray-50 rounded-xs px-2 py-1">
-                            <span class="first-letter:uppercase font-black text-[12px] capitalize ">{{ JI }}</span>
-                        </div>
+                        <div class="flex flex-col gap-0 ">
+                            <div class=" rounded-sm bg-gray-100 rounded-xs px-2 py-1">
+                           
+                                <span class="first-letter:uppercase font-black text-[12px] capitalize ">{{ JI }}</span>
+                            </div>
 
-                        <div class="">
-                            {{ Personal[0][JI] }}
+                            <div class="border-[1px] p-3">
+                                {{ Personal[0][JI] }}
+                            </div>
                         </div>
-                       </div>
 
                     </div>
 
@@ -57,6 +63,7 @@ const FindShowPersonal = () => {
     if (route.query.id) {
         showData(API_URL.USER_SHOW, '/' + route.query.id).then((data) => {
             Personal.value = [data.data].map((Personal: any) => ({
+                photo: Personal.photo,
                 matricule: Personal.matricule,
                 nom: Personal.nom,
                 prenoms: Personal.prenoms,

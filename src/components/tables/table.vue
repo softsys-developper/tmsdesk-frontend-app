@@ -135,7 +135,7 @@ const IsPageFun = () => {
 
             <TableCell class="font-medium text-sm whitespace-pre-wrap  border-[1px]"
                v-for="b in Object.keys(invoice).filter(el => display.some((d: any) => d.field === el))"
-               v-html="invoice[b] && invoice[b]?.length >= 30 && b != 'status' && display.length > 6 ? invoice[b].substring(0, 30) + '...' : invoice[b]">
+               v-html="invoice[b] && invoice[b]?.length >= 30 && b != 'status' && b != 'image' && display.length > 6 ? invoice[b].substring(0, 30) + '...' : invoice[b]">
             </TableCell>
 
             <TableCell class="text-right  border-[1px] ">

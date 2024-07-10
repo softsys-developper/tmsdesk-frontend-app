@@ -14,6 +14,13 @@ export const PersonalTables = [
       bgColor: null,
    },
    {
+      label: 'Photos',
+      field: 'image',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
       label: 'Nom',
       field: 'nom',
       status: null,
