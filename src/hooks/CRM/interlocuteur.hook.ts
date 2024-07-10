@@ -44,9 +44,9 @@ export const useInterlocuteurHook = () => {
   };
 
   //
-  const FindInterlocuteurOne = (id:any) => {
+  const FindInterlocuteurOne = (URL:any, id:any) => {
     setInterlocuteur.loading = true;
-    showData(API_URL.INTERLOCUTEUR_PROSPECTS_LIST, id)
+    showData(URL, id)
       .then((data: any) => {
         useDataStore().Interlocuteurs = formatInterlocuteurData(data.datas);
         setInterlocuteur.loading = false;

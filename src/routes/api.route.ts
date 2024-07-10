@@ -119,7 +119,8 @@ export const API_URL = {
   NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
 
   INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
-  INTERLOCUTEUR_PROSPECTS_LIST: `${BASE_URL}/interlocuteurs/prospect/`,
+  INTERLOCUTEUR_CLIENT_LIST: `${BASE_URL}/interlocuteurs/prospect/`,
+  INTERLOCUTEUR_FOURNISSUER_LIST: `${BASE_URL}/interlocuteurs/fournisseur/`,
   INTERLOCUTEUR_CLIENT_CREATE: `${BASE_URL}/interlocuteurs/client/add`,
   INTERLOCUTEUR_FOURNISSUER_CREATE: `${BASE_URL}/interlocuteurs/fournisseur/add`,
   INTERLOCUTEUR_UPDATE: `${BASE_URL}/interlocuteurs/update`,

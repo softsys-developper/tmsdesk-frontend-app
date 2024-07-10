@@ -50,6 +50,10 @@
   import { useUpdateStore } from "@/stores/update.store";
   import DeleteLayout from "@/layouts/delete.layout.vue";
 import { useRoute } from "vue-router";
+import { API_URL } from "@/routes/api.route";
+
+
+const route = useRoute()
   
   const { FindInterlocuteurOne,   InterlocuteurDelete, setInterlocuteur } = useInterlocuteurHook();
   const storeInterlocuteurs = computed(() => {
@@ -59,13 +63,13 @@ import { useRoute } from "vue-router";
   onActivated(() => {
     setInterlocuteur.loading = false
     useDataStore().Interlocuteurs = []
-    FindInterlocuteurOne(useRoute().query?.id);
+    FindInterlocuteurOne(route.query.type == 'prospect' ? API_URL.INTERLOCUTEUR_CLIENT_LIST : API_URL.INTERLOCUTEUR_FOURNISSUER_LIST, route.query?.id);
   });
 
   onMounted(() => {
     setInterlocuteur.loading = false
     useDataStore().Interlocuteurs = []
-    FindInterlocuteurOne(useRoute().query?.id);
+    FindInterlocuteurOne(route.query.type == 'prospect' ? API_URL.INTERLOCUTEUR_CLIENT_LIST : API_URL.INTERLOCUTEUR_FOURNISSUER_LIST, route.query?.id);
   });
 
   </script>

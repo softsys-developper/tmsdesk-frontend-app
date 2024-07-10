@@ -34,7 +34,7 @@ export const InterlocuteurForms = [
     {
         label: "Poste",
         type: "text",
-        placeholder: "Email du client",
+        placeholder: "Informaticien",
         name: "poste",
         value: "",
         select: [],
