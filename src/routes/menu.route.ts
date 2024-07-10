@@ -312,67 +312,67 @@ export const MenuApp = [
          },
       ],
    },
-   // {
-   //    name: 'Systèmes',
-   //    icon: `https://${AppService().url}/images/icons/content-management-system.png`,
-   //    list: "Domaine d'activités, categories, devises, marques",
-   //    route: '',
-   //    children: [
-   //       {
-   //          icon: 'ri-bill-line',
-   //          id: 'SYSTEM_DA',
-   //          name: 'Domaine d\'activité',
-   //          route: 'SYSTEM_DA',
-   //          permission: 'liste-domaine-activite'
-   //       },
-   //       // {
-   //       //    icon: 'ri-bill-line',
-   //       //    id: 'SYSTEM_NOTE',
-   //       //    name: 'Gestion des documents',
-   //       //    route: 'SYSTEM_MARQUE'
-   //       // },
-   //       {
-   //          icon: 'ri-bill-line',
-   //          id: 'SYSTEM_CATEGORY',
-   //          name: 'Categories',
-   //          route: 'SYSTEM_CATEGORY',
-   //          permission: 'liste-categorie'
-   //       },
-   //       // {
-   //       //    icon: 'ri-bill-line',
-   //       //    id: 'SYSTEM_DEVISE',
-   //       //    name: 'Domaine d\'activités',
-   //       //    route: 'SYSTEM_DEVISE'
-   //       // },
-   //       {
-   //          icon: 'ri-bill-line',
-   //          id: 'SYSTEM_DEVISE',
-   //          name: 'Devises',
-   //          route: 'SYSTEM_DEVISE',
-   //          permission: 'liste-devies'
-   //       },
-   //       {
-   //          icon: 'ri-bill-line',
-   //          id: 'SYSTEM_MARQUE',
-   //          name: 'Marques',
-   //          route: 'SYSTEM_MARQUE',
-   //          permission: 'liste-marques'
-   //       },
-   //       {
-   //          icon: 'ri-bill-line',
-   //          id: 'SYSTEM_STEP_PROSPECT',
-   //          name: 'Etapes Prospect',
-   //          route: 'SYSTEM_STEP_PROSPECT',
-   //          permission: 'liste-etapes'
-   //       },
-   //       // {
-   //       //    icon: 'ri-bill-line',
-   //       //    id: 'SYSTEM_HOLIDAY',
-   //       //    name: 'Jour férier',
-   //       //    route: 'SYSTEM_HOLIDAY'
-   //       // },
-   //    ],
-   // },
+   {
+      name: 'Systèmes',
+      icon: `https://${AppService().url}/images/icons/content-management-system.png`,
+      list: "Domaine d'activités, categories, devises, marques",
+      route: '',
+      children: [
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_DA',
+            name: 'Domaine d\'activité',
+            route: 'SYSTEM_DA',
+            permission: 'liste-domaine-activite'
+         },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_NOTE',
+         //    name: 'Gestion des documents',
+         //    route: 'SYSTEM_MARQUE'
+         // },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_CATEGORY',
+         //    name: 'Categories',
+         //    route: 'SYSTEM_CATEGORY',
+         //    permission: 'liste-categorie'
+         // },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_DEVISE',
+         //    name: 'Domaine d\'activités',
+         //    route: 'SYSTEM_DEVISE'
+         // },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_DEVISE',
+            name: 'Devises',
+            route: 'SYSTEM_DEVISE',
+            permission: 'liste-devises'
+         },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_MARQUE',
+         //    name: 'Marques',
+         //    route: 'SYSTEM_MARQUE',
+         //    permission: 'liste-marques'
+         // },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_STEP_PROSPECT',
+            name: 'Etapes Prospect',
+            route: 'SYSTEM_STEP_PROSPECT',
+            permission: 'liste-etapes'
+         },
+         // {
+         //    icon: 'ri-bill-line',
+         //    id: 'SYSTEM_HOLIDAY',
+         //    name: 'Jour férier',
+         //    route: 'SYSTEM_HOLIDAY'
+         // },
+      ],
+   },
    // {
    //    name: 'Mesageries',
    //    icon: `https://${AppService().url}/images/icons/messagerie.png`,

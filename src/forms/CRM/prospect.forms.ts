@@ -71,7 +71,7 @@ export const ProspectForms = reactive([
     label: "Domaine d'activite",
     type: "select",
     placeholder: "Domaine d'activite",
-    name: "domaine_activite_id",
+    name: "domaine_activite",
     value: "",
     select: [
         

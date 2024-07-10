@@ -120,7 +120,8 @@ export const API_URL = {
 
   INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
   INTERLOCUTEUR_PROSPECTS_LIST: `${BASE_URL}/interlocuteurs/prospect/`,
-  INTERLOCUTEUR_CREATE: `${BASE_URL}/interlocuteurs/add`,
+  INTERLOCUTEUR_CLIENT_CREATE: `${BASE_URL}/interlocuteurs/client/add`,
+  INTERLOCUTEUR_FOURNISSUER_CREATE: `${BASE_URL}/interlocuteurs/fournisseur/add`,
   INTERLOCUTEUR_UPDATE: `${BASE_URL}/interlocuteurs/update`,
   INTERLOCUTEUR_REMOVE: `${BASE_URL}/interlocuteurs/delete`,
   INTERLOCUTEUR_DETAILS: `${BASE_URL}/interlocuteurs/edit`,

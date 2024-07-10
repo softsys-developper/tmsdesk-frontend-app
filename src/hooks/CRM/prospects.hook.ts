@@ -28,7 +28,7 @@ export const useProspectHook = () => {
       interlocuteurs: Prospect.interlocuteurs,
 
       etape: Prospect.etape_id,
-      domaine_activite_id: Prospect.domaine_activite_id
+      domaine_activite: Prospect.domaine_activite_id
     }));
   };
 

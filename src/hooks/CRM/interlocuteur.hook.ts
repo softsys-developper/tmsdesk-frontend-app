@@ -57,14 +57,13 @@ export const useInterlocuteurHook = () => {
   };
 
   //
-  const CreateInterlocuteur = async (values: any, callback?:any) => {
+  const CreateInterlocuteur = async (URL:any, values: any) => {
     setService(
       setInterlocuteur,
       useDataStore(),
-      'storeInterlocuteurs',
+      'Interlocuteurs',
       formatInterlocuteurData,
-      callback()
-    ).SetCreate(API_URL.INTERLOCUTEUR_CREATE, values);
+    ).SetCreate(URL, values);
   };
 
   //

@@ -15,6 +15,7 @@ export const useChatStore = defineStore({
       const channel = pusher.subscribe("my-channel");
       channel.bind("new-message", (data: any) => {
         this.addMessage(data.message);
+        console.log(data.message)
       });
     },
   },

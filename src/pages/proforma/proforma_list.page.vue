@@ -6,7 +6,7 @@
           <template v-slot:created>
             <div class="flex gap-2">
 
-              <div class="flex flex-col relative" v-if="useModalStore().Permissions.map((el:any) => el.name).includes('liste-proformas-commercial')">
+              <div class="flex flex-col relative" v-if="useModalStore().Permissions.map((el:any) => el.name).includes('liste-proformas-par-commercial')">
                 <span class="text-[10px] text-black absolute px-2">Commercial</span>
                 <!-- <SelectedForm type="select" :select="ListCommercial" @input="SeeProspectCommercial" /> -->
                 <select name="" id="" @change="SeeProformaCommercial" class="p-3 rounded-md border-[1px] text-sm" >
