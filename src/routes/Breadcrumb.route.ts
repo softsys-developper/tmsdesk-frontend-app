@@ -66,6 +66,26 @@ export const BreadcrumbRoutes = [
     ],
   },
 
+  {
+    route: "LOGISC_BC_PARTENAIRES_ADD",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_BC_PARTENAIRES",
+        title: "Liste des BDC",
+      },
+      {
+        route: "LOGISC_BC_PARTENAIRES_ADD",
+        title: "Creation de BDC",
+      },
+    ],
+  },
+
+  
+
    // CRM Interlocuteur
    {
     route: "CRM_INTERLOCUTEUR",

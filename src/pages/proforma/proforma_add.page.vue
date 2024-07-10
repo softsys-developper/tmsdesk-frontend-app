@@ -184,8 +184,7 @@
 
                     <TableCell class="font-medium">
                       {{
-                        Number(invoice?.prix_unitaire_gnf *
-                        invoice?.quantite).toFixed(0)
+                        Number(invoice?.prix_unitaire_gnf * invoice.quantite).toFixed(0)
                       }}
                     </TableCell>
 
@@ -419,12 +418,11 @@ const setInput = reactive(<any>{
 
 
 const AllProduct = (e: any) => {
-  console.log(e.target.value)
   ListOfAllProduct.value.forEach((el: any) => {
     if (el.reference == e.target.value) {
-      ServiceToAdd.value.prix_unitaire = el.prix_unitaire
+      // ServiceToAdd.value.prix_unitaire = el.prix_unitaire ? el.prix_unitaire / parseInt(ListOfDevises.value.find((el) => el.id == el?.devise_id)?.taux_change ?? '') :  el.prix_unitaire
       ServiceToAdd.value.devise = el.devise_id
-      ServiceToAdd.value.quantite = el.quantite
+      ServiceToAdd.value.quantite = el.quantite || 1
       ServiceToAdd.value.unite = el.unite
       ServiceToAdd.value.description = el.description
     }
