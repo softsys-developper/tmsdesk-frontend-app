@@ -48,6 +48,9 @@ export const API_URL = {
   PROSPECT_UPDATE: `${BASE_URL}/prospects/update`,
   PROSPECT_REMOVE: `${BASE_URL}/prospects/delete`,
   PROSPECT_COMMERCIAL_LIST: `${BASE_URL}/mes-prospects`,
+  PROSPECT_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/prospects/by-user/`,
+
+  
 
   CLIENT_PROSPECT_LIST: `${BASE_URL}/client-prospects`,
   CLIENT_PROSPECT_CREATE: `${BASE_URL}/client-prospects/add`,
@@ -71,6 +74,7 @@ export const API_URL = {
   PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
   PROFORMA_COMMERCIAL_LIST: `${BASE_URL}/mes-proformas`,
   PROFORMA_CHANGE_STATE: `${BASE_URL}/proformas/changer-etat`,
+  PROFORMA_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/proformas/by-user/`,
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
@@ -151,7 +155,7 @@ export const API_URL = {
   BANQUE_TRANSACTION_REMOVE: `${BASE_URL}/banque/transactions/delete`,
   BANQUE_TRANSACTION_DETAILS: `${BASE_URL}/banque/transactions/details`,
 
-  LIVRE_LIST: `${BASE_URL}/grand-livre/banque`,
+  LIVRE_LIST: `${BASE_URL}/grand-livre/all-banques`,
   LIVRE_CREATE: `${BASE_URL}/grand-livre/banque/add`,
   LIVRE_UPDATE: `${BASE_URL}/grand-livre/banque/update`,
   LIVRE_REMOVE: `${BASE_URL}/grand-livre/banque/delete`,

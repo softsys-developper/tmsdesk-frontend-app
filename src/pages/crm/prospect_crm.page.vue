@@ -6,47 +6,33 @@
           <template v-slot:created>
             <div class="flex gap-2 items-center">
 
-              <div class="flex flex-col relative">
-                <span class="text-[10px] text-black absolute px-2" >Commercial</span>
-                <SelectedForm type="select" :select="ListCommercial" />
+              <div class="flex flex-col relative" v-if="useModalStore().Permissions.map((el:any) => el.name).includes('liste-prospects-par-commercial')">
+                <span class="text-[10px] text-black absolute px-2">Commercial</span>
+                <!-- <SelectedForm type="select" :select="ListCommercial" @input="SeeProspectCommercial" /> -->
+                <select name="" id="" @change="SeeProspectCommercial" class="p-3 rounded-md border-[1px] text-sm" >
+                  <option :value="0"> Mes Prospects </option>
+                  <option v-for="CRMList in ListCommercial" :value="CRMList.id"> {{ CRMList.nom }} </option>
+                </select>
               </div>
 
-              <ProspectModal  v-if="useModalStore().ProspectStep == false"
-              :name="'Ajouter Prospect'"
-              :title="
-                useUpdateStore().isUpdate.is
+              <ProspectModal v-if="useModalStore().ProspectStep == false" :name="'Ajouter Prospect'" :title="useUpdateStore().isUpdate.is
                   ? 'Modifier Prospect'
                   : 'Ajouter Prospect'
-              "
-            />
-            <ProspectStepModal v-if="useModalStore().ProspectStep == true "
-              :name="'Changer étape du prospect'"
-              :title="'Changer étape du prospect'"
-            />
+                " />
+              <ProspectStepModal v-if="useModalStore().ProspectStep == true" :name="'Changer étape du prospect'"
+                :title="'Changer étape du prospect'" />
 
-            
-            <DeleteLayout
-              name="Ajouter un categorie"
-              title="Ajouter un nouvel categorie"
-              :funDelete="ProspectDelete"
-              :id="useUpdateStore().isDelete.id"
-            />
+
+              <DeleteLayout name="Ajouter un categorie" title="Ajouter un nouvel categorie" :funDelete="ProspectDelete"
+                :id="useUpdateStore().isDelete.id" />
             </div>
           </template>
         </ContentLayout>
 
-        <Table
-          v-if="useDataStore().Prospects.length != 0"
-          :dataTables="useDataStore().Prospects"
-          :MenuActions="MenuProspectActions"
-          :display="ProspectTables"
-        />
+        <Table v-if="useDataStore().Prospects.length != 0" :dataTables="useDataStore().Prospects"
+          :MenuActions="MenuProspectActions" :display="ProspectTables" />
 
-        <PageLoader
-          :loading="setProspect.loading"
-          :data="useDataStore().Prospects"
-          name="Aucun prospects"
-        />
+        <PageLoader :loading="setProspect.loading" :data="useDataStore().Prospects" name="Aucun prospects" />
       </section>
     </template>
   </BaseLayout>
@@ -67,19 +53,36 @@ import { useProspectHook } from "@/hooks/CRM/prospects.hook";
 import { useUpdateStore } from "@/stores/update.store";
 import DeleteLayout from "@/layouts/delete.layout.vue";
 import { useModalStore } from "@/stores/modal.store";
-import SelectedForm from "@/components/forms/selected.form.vue";
+// import SelectedForm from "@/components/forms/selected.form.vue";
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
 // import { useUtilHook } from "@/hooks/utils.hook";
 
-const { FindProspectAll, setProspect, ProspectDelete } = useProspectHook();
+const { FindProspectAll, setProspect, ProspectDelete, formatProspectData } = useProspectHook();
 
 
 const ListCommercial = ref()
 
+const SeeProspectCommercial = (e: any) => {
+  useDataStore().Prospects = []
+  setProspect.loading = true
+
+  if (e.target.value == 0) {
+    FindProspectAll()
+  } else {
+    // Get Prospect Commercial By Id
+    useApiServices().showData(API_URL.PROSPECT_COMMERCIAL_BY_USER_LIST, e.target.value).then(({ datas }) => {
+      useDataStore().Prospects = formatProspectData(datas)
+      setProspect.loading = false
+    })
+  }
+
+
+}
+
 onMounted(() => {
   FindProspectAll();
-  useApiServices().readData(API_URL.COMMERCIAL_LIST).then(({datas}) => {
+  useApiServices().readData(API_URL.COMMERCIAL_LIST).then(({ datas }) => {
     ListCommercial.value = datas
   })
 

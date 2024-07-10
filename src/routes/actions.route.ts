@@ -147,6 +147,22 @@ export const MenuInterlocuteurActions = [
    }
 ];
 
+export const MenuBilanActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'CRM_INTERLOCUTEUR',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'CRM_INTERLOCUTEUR',
+   }
+];
+
+
 
 
 export const MenuRapportActions = [

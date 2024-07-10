@@ -8,7 +8,7 @@
         </div>
 
         <!-- {{Interlocuteur}} -->
-        <div class="mt-4" v-if="Interlocuteur.length != 0">
+        <div class="mt-4" v-if="Interlocuteur.length != 0 ">
           <div v-for="(Inter, index) in Interlocuteur">
             <div class="mt-4">
               <div class="w-full bg-gray-400 py-1 px-4 rounded-md flex justify-between">
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <div class="py-4">
+        <div class="py-4" v-if="!useUpdateStore().isUpdate.is" >
           <Button type="button" @click="AddInterlocuteur">Ajouter un interlocuteur</Button>
         </div>
       </div>

@@ -8,7 +8,7 @@
             <Table
                v-if="storeBilans.length != 0"
                :dataTables="storeBilans"
-               :MenuActions="MenuClientActions"
+               :MenuActions="MenuBilanActions"
                :display="BilanTables"
             />
 
@@ -25,7 +25,7 @@
 import Table from './../../components/tables/table.vue';
 import BaseLayout from './../../layouts/base.layout.vue';
 import ContentLayout from '@/layouts/content.layout.vue';
-import { MenuClientActions } from '@/routes/actions.route';
+import { MenuBilanActions } from '@/routes/actions.route';
 import { onMounted } from 'vue';
 import PageLoader from '@/components/loaders/page.loader.vue';
 import { BilanTables } from '@/tables/bilan.tables';
