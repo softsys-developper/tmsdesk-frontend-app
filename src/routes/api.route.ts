@@ -276,4 +276,12 @@ export const API_URL = {
 
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
+  
+
+  // 
+  STATS_BANQUE: `${BASE_URL}/statistiques/banques`,
+  STATS_CAISSE: `${BASE_URL}/statistiques/caisses`,
+  STATS_INVOICE: `${BASE_URL}/statistiques/factures/client`,
+  STATS_PROFORMA: `${BASE_URL}/statistiques/proformas`,
+  STATS_TURNOVER: `${BASE_URL}/statistiques/globales`,
 };

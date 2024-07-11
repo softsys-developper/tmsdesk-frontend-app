@@ -13,6 +13,8 @@
     "@primevue/themes": "4.0.0-rc.2",
     "@tanstack/vue-table": "^8.17.3",
     "@types/node": "^20.12.12",
+    "@unovis/ts": "^1.4.2",
+    "@unovis/vue": "^1.4.2",
     "@vee-validate/zod": "^4.12.8",
     "@vueuse/core": "^10.11.0",
     "autoprefixer": "^10.4.19",

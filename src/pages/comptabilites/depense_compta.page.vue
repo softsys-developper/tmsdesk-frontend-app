@@ -8,7 +8,9 @@
                   <div class="flex gap-2 items-center ">
                      <div class="lg:text-lg text-base bg-orange-500 text-white px-4 py-1 rounded-md font-black">
                         <span class="font-bold uppercase">solde : </span>
-                        {{ CountSolde }}
+                        {{ new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+    CountSolde,
+  )  }}
                      </div>
                      <DepenseModal  name="Nouvelle transaction" :title="useUpdateStore().isUpdate.is
                            ? 'Modifier la transaction'
@@ -47,13 +49,18 @@ const CoutSoldeRef = ref(0)
 
 const CountSolde = computed(() => {
    CoutSoldeRef.value = 0
-   storeDepenses.value.forEach((el: any) => {
-      if (el?.type_transaction.includes('red')) {
-         CoutSoldeRef.value = CoutSoldeRef.value - Number(el.montant)
+
+   if(storeDepenses.value){
+      storeDepenses.value.forEach((el: any) => {
+        
+      if (el?.type_transaction.includes('sortie')) {
+         CoutSoldeRef.value = CoutSoldeRef.value - Number(el.montant_trs)
       } else {
-         CoutSoldeRef.value = CoutSoldeRef.value + Number(el.montant)
+         CoutSoldeRef.value = CoutSoldeRef.value + Number(el.montant_trs)
       }
    })
+   }
+   
    return CoutSoldeRef.value
 })
 
