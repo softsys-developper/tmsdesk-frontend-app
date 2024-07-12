@@ -42,7 +42,7 @@ const emitInput = (value:any) => {
 
   <div class="" v-if="select?.length != 0 && type == 'select'" >
     <select :id="name" :name="name"  :value="modelValue"
-      class="px-2 py-2 border-[1px] border-gray-300/80 rounded-lg w-full"  @change="emitInput($event)" >
+      class="px-2 py-2 border-[1px] border-gray-300/80 bg-gray-100 rounded-lg w-full"  @change="emitInput($event)" >
       <option v-for="ins in select" :key="ins?.id" :value="ins?.id">
         {{ ins.title || ins.label || ins.name || ins.libelle_salaire || ins.numero_compte || ins.nom || ins.libelle || ins.categorie || ins.nom_devise || ins.numero_proforma 
         }}</option>

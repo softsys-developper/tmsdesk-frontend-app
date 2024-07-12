@@ -3,7 +3,7 @@
   <div class="flex w-full">
     <!--  -->
     <div class="flex flex-col w-full gap-1">
-      <label :for="name" class="text-sm font-bold"> {{ label }} </label>
+      <label :for="name" class="text-xs uppercase font-bold"> {{ label }} </label>
 
 
       <Input
@@ -12,8 +12,9 @@
         :type="type"
         :name="name"
         @input="emitInput($event.target.value)"
-        class="w-full h-full outline-none bg-transparent py-3"
+        class="w-full h-full outline-none bg-gray-100 py-3"
         :placeholder="placeholder ? placeholder : 'Entrez l\'information correspondante'  "
+        
       />
 
       <DatePicker
@@ -29,7 +30,7 @@
         :id="name"
         :type="type"
         :name="name"
-        class="w-full h-full outline-none bg-transparent py-3"
+        class="w-full h-full outline-none bg-gray-100 py-3"
         :placeholder="placeholder"
       />
 
@@ -38,7 +39,7 @@
         :id="name"
         :type="type"
         :name="name"
-        class="w-full h-full outline-none bg-transparent py-3"
+        class="w-full h-full  outline-none bg-gray-100 py-3"
         :placeholder="placeholder"
       />
       
