@@ -456,12 +456,12 @@ export const MenuProductActions = [
    },
 ]
 export const MenuLivraisonActions = [
-   {
-     id: 'MUA_modify',
-     name: 'Modifier',
-     icon: 'ri-refresh-line',
-     route: 'LOGISC_LIVRAISONS',
-  },
+//    {
+//      id: 'MUA_modify',
+//      name: 'Modifier',
+//      icon: 'ri-refresh-line',
+//      route: 'LOGISC_LIVRAISONS',
+//   },
   {
      id: 'MUA_delete',
      name: 'Supprimer',

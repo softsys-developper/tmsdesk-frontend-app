@@ -132,7 +132,7 @@
                       <tr class="text-xs">
                         <td class="border-[1px] px-4 py-2">{{ index + 1 }}</td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index].description }}
+                          {{ LivraisonShow.proforma.produit_services[index]?.description }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
                           {{ service.quantite_livree }}
@@ -141,10 +141,10 @@
                           {{ service.quantite_restante }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index].unite }}
+                          {{ LivraisonShow.proforma.produit_services[index]?.unite }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index].remarque }} 
+                          {{ LivraisonShow.proforma.produit_services[index]?.remarque }} 
                         </td>
                       </tr>
                     </tbody>
