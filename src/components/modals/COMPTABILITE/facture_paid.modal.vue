@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setFacturePaid.loadingCreate">
+  <ModalLayout :Func="onSubmit" :loading="setFacturePaid.loadingCreate" permissions="payer-facture-client" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in FacturePaidForms">
@@ -21,6 +21,9 @@ import { onMounted } from "vue";
 import { useDataStore } from "@/stores/data.store";
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
+import { useRoute } from "vue-router";
+
+const route:any = useRoute()
 
 
 const { CreateFacturePaid, FacturePaidUpdate, setFacturePaid } = useFacturePaidHook();
@@ -29,6 +32,7 @@ const { readData } = useApiServices()
 
 const onSubmit = (e: any) => {
   let values = new FormData(e.target);
+  values.append('factureId', route.query.id)
   if (useUpdateStore().isUpdate.is) {
     FacturePaidUpdate(useUpdateStore().isUpdate.id, values);
   } else {

@@ -486,10 +486,10 @@ export const MenuStockActions = [
  
   {
      id: 'MUA_delete',
-     name: 'Rétire',
+     name: 'retirer le produit',
      icon: 'ri-delete-bin-2-line',
      route: 'LOGISC_STOCK',
-  }
+  } 
 ]
 
 

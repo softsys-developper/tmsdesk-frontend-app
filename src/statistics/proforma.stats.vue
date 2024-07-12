@@ -51,13 +51,13 @@ onMounted(() => {
   
 
         <!--  -->
-        <div class="flex gap-4 pt-4 w-full justify-between ">
+        <div class="flex gap-4  w-full justify-between ">
             <!-- Turnovers -->
-            <div class="grid grid-cols-2 gap-1">
+            <div class="grid grid-cols-2 gap-1 w-full">
 
                 <div v-for="UJ in InvoiceData" >
                    
-                    <div class="flex flex-col rounded-md p-3 h-[100px] gap-2 text-white" :class="UJ.color" >
+                    <div class="flex flex-col rounded-md px-3 py-2 h-[90px] w-full gap-2 text-white" :class="UJ.color" >
                         <span class="text-3xl font-bold"> {{ UJ.count }}</span>
                         <span class="text-xs first-letter:uppercase ">  {{ UJ.name.replace("Facture ", '') }} </span>
                     </div>

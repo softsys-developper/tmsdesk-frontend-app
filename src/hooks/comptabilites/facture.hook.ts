@@ -31,7 +31,9 @@ export const useFactureHook = () => {
       numero_facture: Facture.numero_facture,
       // titre: Facture.titre,
       // client: Facture.client?.nom,
-      montant_ttc: Facture.montant_ttc,
+      montant_ttc:  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+        Facture.montant_ttc,
+      ),
       status:
         Facture.statut == 1
           ? StatusHtml("En attante", "bg-orange-500")

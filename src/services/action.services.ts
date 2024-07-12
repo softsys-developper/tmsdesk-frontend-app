@@ -228,7 +228,6 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   }
 
   // 
-  console.log(menu.route)
   if (menu.route == "LOGISC_STOCK") {
     console.log("tes")
     if (menu.id == "MUA_in_stock") {
@@ -236,7 +235,7 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       useModalStore().open = true
       useModalStore().StocksID = id
     }else if(menu.id == "MUA_delete"){
-      console.log("tes")
+      ToDeleteActions(id);
     }
   }
   

@@ -22,7 +22,9 @@ export const useProformaHook = () => {
       numero_proforma: Proforma.numero_proforma,
       ref_client: Proforma.ref_client,
       client: Proforma.client?.nom,
-      montant_ttc: Proforma.montant_ttc,
+      montant_ttc: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+        Proforma.montant_ttc,
+      ),
       status:
         Proforma.etat == 1
           ? StatusHtml("En cours", "bg-yellow-400")

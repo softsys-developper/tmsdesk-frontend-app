@@ -34,7 +34,7 @@ function template(d: any) {
 }
 
 function color(d: unknown, i: number) {
-  console.log(d)
+  d
   return props.colors[i] ?? 'transparent'
 }
 </script>

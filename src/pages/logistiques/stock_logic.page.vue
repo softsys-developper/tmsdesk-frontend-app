@@ -9,7 +9,7 @@
                       : 'Ajouter Stocks'
                       " /> -->
  
-                   <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="StockDelete"
+                   <DeleteLayout title_z="Êtes-vous sûr de vouloir retirer le produit du stocks ?" :funDelete="StockDelete"
                       :id="useUpdateStore().isDelete.id" />
                 </template>
              </ContentLayout>

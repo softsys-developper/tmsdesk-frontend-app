@@ -28,13 +28,6 @@ export const setService = (
       loading.loadingCreate = false;
       let ISDATA: any = Store[LabelStore];
 
-
-      //
-      const toAdd = formatData([data?.data]);
-       ISDATA.unshift(...toAdd);
-      Store[LabelStore] = ISDATA;
-      callback;
-
       toast({
         title: "Enregistré",
         description: data.message,
@@ -43,6 +36,13 @@ export const setService = (
       useModalStore().open = false;
       useUpdateStore().isUpdate.id = null;
       useUpdateStore().isUpdate.is = false;
+
+
+      //
+      const toAdd = formatData([data.data]);
+       ISDATA?.unshift(...toAdd);
+      Store[LabelStore] = ISDATA;
+      callback();
     }
 
     } catch (err) {
@@ -71,15 +71,15 @@ export const setService = (
               ...el,
             };
           });
-          callback();
-
-          Store[LabelStore] = _Prospects;
-          useModalStore().open = false;
-
+          
           toast({
             title: "Modifier",
             description: data.message,
           });
+
+          callback();
+          Store[LabelStore] = _Prospects;
+          useModalStore().open = false;
         }
       })
       .catch((err:any) => {

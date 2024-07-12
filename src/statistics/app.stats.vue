@@ -8,9 +8,9 @@ import ProformaStats from "@/statistics/proforma.stats.vue"
 
 <template>
 
-    <div class="w-full flex gap-4 flex-col md:flex-row">
+    <div class="w-full flex gap-4 flex-col lg:flex-row">
 
-        <div class="md:w-9/12 w-full flex flex-col gap-2">
+        <div class="lg:w-9/12 w-full flex flex-col gap-4">
 
            
 
@@ -22,7 +22,7 @@ import ProformaStats from "@/statistics/proforma.stats.vue"
             </div>
         </div>
 
-        <div class=" md:flex md:flex-col md:grid-cols-1 items-start justify-start h-auto gap-2 md:w-3/12 w-full ">
+        <div class=" flex lg:flex-col flex-col lg:grid-cols-1 items-start justify-start h-auto gap-2 lg:w-3/12 w-full ">
             <InvoiceStats />
             <!-- <DeliveryStats /> -->
             <ProformaStats />

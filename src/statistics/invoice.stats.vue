@@ -11,7 +11,7 @@ onMounted(() => {
     .then(({ data }) => {
       const colors = [
         "bg-blue-900",
-        "bg-blue-500",
+        "bg-yellow-400",
         "bg-orange-500",
         "bg-green-300",
       ];
@@ -36,7 +36,7 @@ onMounted(() => {
 <template>
   <div class="bg-white flex flex-col px-4 pt-2 pb-4 gap-2 rounded-md w-full">
     <!--  -->
-    <div class="flex justify-between items-center">
+    <div class="flex justify-between items-center w-full">
       <!--  -->
       <div class="text-sm font-black uppercase">Factures</div>
       <!--  -->
@@ -46,12 +46,12 @@ onMounted(() => {
     </div>
 
     <!--  -->
-    <div class="flex gap-4 pt-4 w-full justify-between">
+    <div class="flex gap-4 w-full ">
       <!-- Turnovers -->
-      <div class="grid grid-cols-2 gap-1">
+      <div class="grid grid-cols-2 gap-1 w-full">
         <div v-for="UJ in InvoiceData">
           <div
-            class="flex flex-col rounded-md p-3 h-[100px] gap-2 text-white"
+            class="flex flex-col rounded-md px-3 py-2 h-[90px] w-full gap-2 text-white"
             :class="UJ.color"
           >
             <span class="text-3xl font-bold"> {{ UJ.count }}</span>

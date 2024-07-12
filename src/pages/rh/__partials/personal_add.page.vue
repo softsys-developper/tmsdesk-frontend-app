@@ -47,7 +47,7 @@ import { useRoute, useRouter } from "vue-router";
 const route = useRoute()
 const router = useRouter()
 
-const { readData, showData } = useApiServices();
+const { readData } = useApiServices();
 const { setPersonal, CreatePersonal, PersonalUpdate } = usePersonalHook();
 
 const onSubmit = (e: any) => {
@@ -62,25 +62,24 @@ const onSubmit = (e: any) => {
 };
 
 
-const FindShowPersonal = () => {
-    if (route.query.id) {
-        showData(API_URL.USER_SHOW, '/' + route.query.id).then((data) => {
+// const FindShowPersonal = () => {
+//     if (route.query.id) {
+//         showData(API_URL.USER_SHOW, '/' + route.query.id).then((data) => {
 
-            const PERSONAL: any = data.data
-            PERSONAL.salaire = data.data.salaire_id
-            PERSONAL.service =  data.data.service_id
-            const InputKey = Object.keys(PERSONAL);
+//             const PERSONAL: any = data.data
+//             PERSONAL.salaire = data.data.salaire_id
+//             PERSONAL.service =  data.data.service_id
+//             const InputKey = Object.keys(PERSONAL);
 
-            InputKey?.forEach((el) => {
-                let UpdateInput: any = document.querySelector(`#${el}`);
-                console.log(el)
-                if (UpdateInput) {
-                    UpdateInput.value =  PERSONAL[el];
-                }
-            });
-        })
-    }
-}
+//             InputKey?.forEach((el) => {
+//                 let UpdateInput: any = document.querySelector(`#${el}`);
+//                 if (UpdateInput) {
+//                     UpdateInput.value =  PERSONAL[el];
+//                 }
+//             });
+//         })
+//     }
+// }
 
 function remplacerObjetDansTableau(
     tableau: any,
@@ -97,7 +96,7 @@ function remplacerObjetDansTableau(
 }
 
 onMounted(() => {
-    FindShowPersonal()
+    // FindShowPersonal()
     readData(API_URL.ROLE_LIST).then((data) =>
         remplacerObjetDansTableau(
             PersonalForms,

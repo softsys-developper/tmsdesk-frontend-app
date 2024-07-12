@@ -111,7 +111,7 @@ export const useStockHook = () => {
         useDataStore(),
         'Stocks',
         formatStockData
-      ).SetDelete(API_URL.STOCK_REMOVE, id);
+      ).SetDelete(API_URL.STOCK_REMOVE_STOCK, id);
     };
   
     return {
