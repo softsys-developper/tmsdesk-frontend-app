@@ -11,7 +11,7 @@
         <div class="flex flex-col gap-8" v-if="Parametres && ProformaShow && !loading">
           <!-- Buttons -->
           <div class="flex justify-end gap-x-3 w-11/12">
-            
+
             <Button :disabled="ProformaShow.etat == '3' || '2' ? true : false"
               class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-red-500 text-white shadow-sm align-middle hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
               @click="RejeterProforma">
@@ -51,8 +51,8 @@
           <div class="w-full  mx-auto  bg-white" id="printableDiv">
             <div class="sm:w-11/12 lg:w-4/4 mx-auto">
               <div class="">
-               
-                <img :src="'https://apps.tmsdesk.com/parametres/' + Parametres.en_tete
+
+                <img :src="'https://api.usimeca.ci/parametres/' + Parametres.en_tete
                   " alt="" />
               </div>
 
@@ -61,7 +61,7 @@
                 <!-- Grid -->
                 <div class="flex justify-between">
                   <div>
-                    <img :src="'https://apps.tmsdesk.com/parametres/'+Parametres.logo" class="h-16" alt="" />
+                    <img :src="'https://api.usimeca.ci/parametres/' + Parametres.logo" class="h-16" alt="" />
 
                     <h1 class="mt-2 text-xl md:text-base font-semibold text-blue-600 dark:text-white">
                       <!-- {{ Parametres.denomination }} -->
@@ -71,11 +71,11 @@
 
                   <div class="text-end">
                     <h2 class="text-sm md:text-base font-semibold text-gray-800 dark:text-neutral-200">
-                     {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
+                      {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
                     </h2>
                     <span class="mt-1 block text-gray-500 dark:text-neutral-500 text-sm">
-                     
-                     QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
+
+                      QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
                     </span>
 
                     <address class="mt-4 text-sm not-italic text-gray-800 dark:text-neutral-200">
@@ -157,9 +157,10 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.description }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) * service.pivot.quantite).toFixed(0) }} </td>
-                        <td class="border-[1px] px-4 py-2">  {{ProformaShow.ligne_proformas[index].disponibilite}} </td>
-                       
+                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) *
+                          service.pivot.quantite).toFixed(0) }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ ProformaShow?.ligne_proformas[index].disponibilite }} </td>
+
                       </tr>
                     </tbody>
                   </table>
@@ -348,12 +349,12 @@ const printDivAsPDF = () => {
       .set({
         margin: 0.5,
         filename: 'document.pdf',
-        image: {type: 'jpeg',quality: 1.0},
-            html2canvas: {dpi: 75, scale: 2, letterRendering: true},
-      jsPDF: {orientation: 'portrait', unit: 'in', format: 'a4'},
-      // pdfCallback: pdfCallback
-    }).save();
-     
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { dpi: 75, scale: 2, letterRendering: true },
+        jsPDF: { orientation: 'portrait', unit: 'in', format: 'a4' },
+        // pdfCallback: pdfCallback
+      }).save();
+
   }
 }
 </script>

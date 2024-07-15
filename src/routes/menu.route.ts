@@ -105,6 +105,13 @@ export const MenuApp = [
             permission: 'liste-employes'
          },
          {
+            icon: 'ri-user-2-line',
+            id: 'HUMAINES_STAGIAIRE',
+            name: 'Stagiaire',
+            route: 'RH_STAGIAIRE',
+            permission: 'liste-employes'
+         },
+         {
             icon: 'ri-user-shared-2-line',
             id: 'HUMAINES_CONGES',
             name: 'Congés',

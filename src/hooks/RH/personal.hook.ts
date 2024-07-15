@@ -32,7 +32,7 @@ export const usePersonalHook = () => {
       matricule: Personal.matricule,
       image: `<img src="${
         Personal.photo
-          ? `https://apps.tmsdesk.com/employes/photos/${Personal.photo}`
+          ? `https://apps.usimeca.ci/employes/photos/${Personal.photo}`
           : `https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-profile-glyph-black-icon-png-image_691589.jpg`
       }"class="size-12 rounded-full " alt=""> `,
       nom: Personal.nom,

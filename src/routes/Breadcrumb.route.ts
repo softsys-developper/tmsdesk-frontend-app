@@ -272,6 +272,44 @@ export const BreadcrumbRoutes = [
     ],
   },
   {
+    route: "RH_STAGIAIRE",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_STAGIAIRE",
+        title: "Liste des stagiaires",
+      },
+    ],
+  },
+  {
+    route: "RH_STAGIAIRE_ADD",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_STAGIAIRE",
+        title: "Liste des stagiaires",
+      },
+      {
+        route: "RH_STAGIAIRE_ADD",
+        title: "Creation de stagiaire",
+      },
+    ],
+  },
+  {
     route: "RH_SALAIRE_CONGE",
     title: [
       {
