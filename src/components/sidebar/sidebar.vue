@@ -8,7 +8,8 @@
 
 
       <div class=" mb-4">
-        <img class="h-16" src="/images/logo/tms.jpeg" alt="">
+        <!-- <img class="h-16" src="/images/logo/tms.jpeg" alt=""> -->
+        <span class="text-3xl text-blue-500 font-black">USIMECA</span>
       </div>
 
       <MenuHeaderCard

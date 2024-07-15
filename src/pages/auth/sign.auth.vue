@@ -73,11 +73,11 @@ const onSubmit = handleSubmit(async (values) => {
 
     <div class="flex h-full w-full">
       <div class="w-8/12 z-40 hidden lg:flex">
-        <img
+        <!-- <img
           class="w-full h-full object-contain"
           src="/images/PUB3.jpg"
           alt=""
-        />
+        /> -->
       </div>
 
       <Tabs
@@ -89,8 +89,9 @@ const onSubmit = handleSubmit(async (values) => {
             <div class="flex flex-col w-full">
               <CardHeader>
                 <CardTitle class="flex flex-col justify-center items-center">
-                  <div class="">
-                    <img class="h-24" src="/images/logo/tms.jpeg" alt="" />
+                  <div class="text-6xl font-black text-blue-500">
+                    <!-- <img class="h-24" src="/images/logo/tms.jpeg" alt="" /> -->
+                     USIMECA
                   </div>
                   <span class="text-xl opacity-90">Se connecter</span>
                 </CardTitle>
