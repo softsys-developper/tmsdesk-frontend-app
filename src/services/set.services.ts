@@ -5,7 +5,7 @@ import { useToast } from "@/components/ui/toast/use-toast";
 import { useUpdateStore } from "@/stores/update.store";
 const { toast } = useToast();
 
-const { updateData, deleteData, createData } = useApiServices();
+const { updateData, deleteData, createData, showData } = useApiServices();
 // API_URL.PROSPECT_UPDATE + '/' + id, values
 
 const { EmptyFields, ServerError } = useUtilHook();
@@ -17,6 +17,30 @@ export const setService = (
   formatData: any,
   callback?: any
 ) => {
+
+  const SetShow = async (URL: string, id:any) => {
+    try {
+    loading.loading = true;
+    const data = await showData(URL, id);
+
+    if (data) {
+
+      loading.loading = false;
+      let ISDATA: any = Store[LabelStore];
+
+      //
+      const toAdd = formatData(data.datas);
+       ISDATA?.unshift(...toAdd);
+      Store[LabelStore] = ISDATA;
+    }
+
+    } catch (err) {
+      loading.loading = false;
+      ServerError(err, toast);
+    }
+  };
+
+
   const SetCreate = async (URL: string, values: any) => {
     try {
     loading.loadingCreate = true;
@@ -123,5 +147,6 @@ export const setService = (
     SetUpdate,
     SetDelete,
     SetCreate,
+    SetShow
   };
 };

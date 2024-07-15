@@ -127,24 +127,24 @@
                     </thead>
               
                     <tbody
-                      v-for="(service, index) in LivraisonShow.produit_livres"
+                      v-for="(service, index) in LivraisonProducts"
                     >
                       <tr class="text-xs">
                         <td class="border-[1px] px-4 py-2">{{ index + 1 }}</td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index]?.description }}
+                          {{service.description }}
+                        </td>
+                        <td class="border-[1px] px-4 py-2">
+                          {{ service.quantite_proforma  }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
                           {{ service.quantite_livree }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ service.quantite_restante }}
+                          {{ service?.unite }}
                         </td>
                         <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index]?.unite }}
-                        </td>
-                        <td class="border-[1px] px-4 py-2">
-                          {{ LivraisonShow.proforma.produit_services[index]?.remarque }} 
+                          {{ service?.observation }} 
                         </td>
                       </tr>
                     </tbody>
@@ -197,6 +197,7 @@ import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
 
 const LivraisonShow = ref(<any>{});
+  const LivraisonProducts = ref(<any>{});
 const LivraisonMore = ref(<any>{});
 const Parametres = ref(<SETTING>{});
 const loading = ref(false);
@@ -214,6 +215,7 @@ const GetLivraison = async () => {
   );
   if (data) {
     loading.value = false;
+    LivraisonProducts.value = data.data.produits
     LivraisonShow.value = data.data.livraison;
     Parametres.value = data.parametre;
     LivraisonMore.value = data.facture;

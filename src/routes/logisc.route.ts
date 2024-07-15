@@ -52,7 +52,12 @@ export const routeLogisc = {
       children: [],
    },
 
-
+   {
+      path: 'livraison/details',
+      name: 'LOGISC_DETAIL_LIVRAISONS',
+      component: () => import('@/pages/logistiques/livraison_detail_logic.page.vue'),
+      children: [],
+   },
 
    {
       path: 'stock',

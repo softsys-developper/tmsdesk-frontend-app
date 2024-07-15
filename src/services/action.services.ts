@@ -210,7 +210,7 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       // ToUpdateActions(id, useDataStore().Prospects);
       router.push({name: "LOGISC_LIVRAISONS_ADD", query: {id }})
     } else if (menu.id == "MUA_details") {
-      // router.push("/proforma/detail/?id=" + id)
+      router.push({name: 'LOGISC_DETAIL_LIVRAISONS', query: {id}})
     } else if (menu.id == "MUA_livraison") {
       router.push({name: "LOGISC_LIVRAISONS_BL", query: {id }})
     }

@@ -208,6 +208,9 @@ export const API_URL = {
   LIVRAISON_DETAIL: `${BASE_URL}/livraisons/`,
   LIVRAISON_REMOVE: `${BASE_URL}/livraisons/delete`,
 
+  LIVRAISON_DETAIL_LIST: `${BASE_URL}/livraisons/produits/`,
+  LIVRAISON_DETAIL_REMOVE: `${BASE_URL}/livraisons/delete`,
+
   CATEGORIE_LIST: `${BASE_URL}/categories`,
   CATEGORIE_CREATE: `${BASE_URL}/categories/add`,
   CATEGORIE_UPDATE: `${BASE_URL}/categories/update`,

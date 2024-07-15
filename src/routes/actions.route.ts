@@ -482,6 +482,15 @@ export const MenuLivraisonActions = [
 },
 ]
 
+export const MenuBCLivraisonDetailActions = [
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'LOGISC_DETAIL_LIVRAISONS',
+   },
+]
+
 export const MenuStockActions = [
  
   {
