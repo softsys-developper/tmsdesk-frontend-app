@@ -8,6 +8,9 @@ import Service_rhPage from '@/pages/rh/service_rh.page.vue';
 import Personal_addPage from '@/pages/rh/__partials/personal_add.page.vue';
 import Personal_showPage from '@/pages/rh/__partials/personal_show.page.vue';
 
+import Stagiaire_addPage from '@/pages/rh/__partials/stagiaire_add.page.vue';
+import Stagiaire_rhPage from '@/pages/rh/__partials/stagiaire_add.page.vue';
+
 export const routeRh = {
    path: '/rh',
    children: [
@@ -64,6 +67,18 @@ export const routeRh = {
         name: 'RH_INDEMNITE_PRIME',
         component: Prime_rhPage,
         children: [],
-      }
+      },
+      {
+        path: 'stagiaire',
+        name: 'RH_STAGIAIRE',
+        component: Stagiaire_rhPage,
+        children: [],
+     },
+     {
+       path: 'stagiaire/add',
+       name: 'RH_STAGIAIRE_ADD',
+       component: Stagiaire_addPage,
+       children: [],
+    },
    ],
 };

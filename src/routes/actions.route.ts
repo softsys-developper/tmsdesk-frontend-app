@@ -245,6 +245,20 @@ export const MenuCongeActions = [
    },
 ];
 
+export const MenuStagiaireActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'HUMAINES_CONGES',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'HUMAINES_CONGES',
+   },
+];
 
 
 

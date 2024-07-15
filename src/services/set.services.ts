@@ -17,58 +17,52 @@ export const setService = (
   formatData: any,
   callback?: any
 ) => {
-
-  const SetShow = async (URL: string, id:any) => {
+  const SetShow = async (URL: string, id: any) => {
     try {
-    loading.loading = true;
-    const data = await showData(URL, id);
+      loading.loading = true;
+      const data = await showData(URL, id);
 
-    if (data) {
+      if (data) {
+        loading.loading = false;
+        let ISDATA: any = Store[LabelStore];
 
-      loading.loading = false;
-      let ISDATA: any = Store[LabelStore];
-
-      //
-      const toAdd = formatData(data.datas);
-       ISDATA?.unshift(...toAdd);
-      Store[LabelStore] = ISDATA;
-    }
-
+        //
+        const toAdd = formatData(data.datas);
+        ISDATA?.unshift(...toAdd);
+        Store[LabelStore] = ISDATA;
+      }
     } catch (err) {
       loading.loading = false;
       ServerError(err, toast);
     }
   };
 
-
   const SetCreate = async (URL: string, values: any) => {
     try {
-    loading.loadingCreate = true;
-    const data = await createData(URL, values);
+      loading.loadingCreate = true;
+      const data = await createData(URL, values);
 
-    if (data) {
-      EmptyFields(values); // Vider les champs
+      if (data) {
+        EmptyFields(values); // Vider les champs
 
-      loading.loadingCreate = false;
-      let ISDATA: any = Store[LabelStore];
+        loading.loadingCreate = false;
+        let ISDATA: any = Store[LabelStore];
 
-      toast({
-        title: "Enregistré",
-        description: data.message,
-      });
+        toast({
+          title: "Enregistré",
+          description: data.message,
+        });
 
-      useModalStore().open = false;
-      useUpdateStore().isUpdate.id = null;
-      useUpdateStore().isUpdate.is = false;
+        useModalStore().open = false;
+        useUpdateStore().isUpdate.id = null;
+        useUpdateStore().isUpdate.is = false;
 
-
-      //
-      const toAdd = formatData([data.data]);
-       ISDATA?.unshift(...toAdd);
-      Store[LabelStore] = ISDATA;
-      callback();
-    }
-
+        //
+        const toAdd = formatData([data.data]);
+        ISDATA?.unshift(...toAdd);
+        Store[LabelStore] = ISDATA;
+        callback();
+      }
     } catch (err) {
       loading.loadingCreate = false;
       ServerError(err, toast);
@@ -76,40 +70,40 @@ export const setService = (
   };
 
   // Update
-  const SetUpdate = (URL: string, id: any, values: any) => {
-    loading.loadingCreate = true;
-    updateData(URL + "/" + id, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          loading.loadingCreate = false;
-          let Prospects = Store[LabelStore];
-          const toAdd = formatData([data.data]);
+  const SetUpdate = async (URL: string, id: any, values: any) => {
+    try {
+      loading.loadingCreate = true;
+      const { data, message } = await updateData(URL + "/" + id, values);
 
-          const _Prospects: any = Prospects.map((el: any) => {
-            console.log(el.id == id);
-            if (el.id == id) {
-              el = toAdd[0];
-            }
-            return {
-              ...el,
-            };
-          });
-          
-          toast({
-            title: "Modifier",
-            description: data.message,
-          });
-
-          callback();
-          Store[LabelStore] = _Prospects;
-          useModalStore().open = false;
-        }
-      })
-      .catch((err:any) => {
+      if (data) {
+        EmptyFields(values); // Vider les champs
         loading.loadingCreate = false;
-        ServerError(err, toast);
-      });
+        let Prospects = Store[LabelStore];
+        const toAdd = formatData([data]);
+
+        const _Prospects: any = Prospects.map((el: any) => {
+          if (el.id == id) {
+            el = toAdd[0];
+          }
+          return {
+            ...el,
+          };
+        });
+
+        toast({
+          title: "Modifier",
+          description: message,
+        });
+
+        callback;
+
+        Store[LabelStore] = _Prospects;
+        useModalStore().open = false;
+      }
+    } catch (error) {
+      loading.loadingCreate = false;
+      ServerError(error, toast);
+    }
   };
 
   //
@@ -147,6 +141,6 @@ export const setService = (
     SetUpdate,
     SetDelete,
     SetCreate,
-    SetShow
+    SetShow,
   };
 };

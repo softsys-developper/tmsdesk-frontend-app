@@ -50,8 +50,6 @@ export const API_URL = {
   PROSPECT_COMMERCIAL_LIST: `${BASE_URL}/mes-prospects`,
   PROSPECT_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/prospects/by-user/`,
 
-  
-
   CLIENT_PROSPECT_LIST: `${BASE_URL}/client-prospects`,
   CLIENT_PROSPECT_CREATE: `${BASE_URL}/client-prospects/add`,
   CLIENT_PROSPECT_UPDATE: `${BASE_URL}/client-prospects/update`,
@@ -279,12 +277,18 @@ export const API_URL = {
 
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
-  
 
-  // 
+  //
   STATS_BANQUE: `${BASE_URL}/statistiques/banques`,
   STATS_CAISSE: `${BASE_URL}/statistiques/caisses`,
   STATS_INVOICE: `${BASE_URL}/statistiques/factures/client`,
   STATS_PROFORMA: `${BASE_URL}/statistiques/proformas`,
   STATS_TURNOVER: `${BASE_URL}/statistiques/globales`,
+
+  //
+  STAGE_LIST: `${BASE_URL}/stagaires`,
+  STAGE_CREATE: `${BASE_URL}/stagaires/add`,
+  STAGE_SHOW: `${BASE_URL}/stagaires/`,
+  STAGE_UPDATE: `${BASE_URL}/stagaires/update`,
+  STAGE_REMOVE: `${BASE_URL}/stagaires/delete`,
 };
