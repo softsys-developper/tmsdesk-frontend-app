@@ -1,2 +1,2 @@
 PUSH : git add ./ && git commit -m "updated App v0.12.1" && git push origin main
-PUSH_AND_DEPLOY_USIMECA : pnpm build && git add ./ && git commit -m "Version App 0.6.63 Tms" && git push -u origin main 
+PUSH_AND_DEPLOY_USIMECA : pnpm build && git add ./ && git commit -m "Version App 0.6.64 Tms" && git push -u origin main 
