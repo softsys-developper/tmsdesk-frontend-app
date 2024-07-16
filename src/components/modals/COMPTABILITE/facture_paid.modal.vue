@@ -21,9 +21,9 @@ import { onMounted } from "vue";
 import { useDataStore } from "@/stores/data.store";
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useRoute } from "vue-router";
+// import { useRoute } from "vue-router";
 
-const route:any = useRoute()
+// const route:any = useRoute()
 
 
 const { CreateFacturePaid, FacturePaidUpdate, setFacturePaid } = useFacturePaidHook();
@@ -32,7 +32,7 @@ const { readData } = useApiServices()
 
 const onSubmit = (e: any) => {
   let values = new FormData(e.target);
-  values.append('factureId', route.query.id)
+  // values.append('factureId', route.query.id)
   if (useUpdateStore().isUpdate.is) {
     FacturePaidUpdate(useUpdateStore().isUpdate.id, values);
   } else {
