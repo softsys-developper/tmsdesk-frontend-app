@@ -22,7 +22,7 @@ export const useProformaHook = () => {
       numero_proforma: Proforma.numero_proforma,
       ref_client: Proforma.ref_client,
       client: Proforma.client?.nom,
-      montant_ttc: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+      montant_ttc: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CFA' }).format(
         Proforma.montant_ttc,
       ),
       status:

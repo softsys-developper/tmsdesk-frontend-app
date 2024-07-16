@@ -74,6 +74,7 @@
                   placeholder="Cocody"
                   :value="PARAMETRE.quartier"
                   name="quartier"
+                 
                 />
                 <InputForm title="Rue" placeholder="B6 14" />
                 <InputForm
@@ -87,9 +88,12 @@
                   type="select"
                   title="Dévise"
                   placeholder="00000"
-                  :value="PARAMETRE.code_activite"
+                  :modelValue="PARAMETRE.devise_id"
+                  :value="PARAMETRE.devise_id"
                   name="devise"
                   :select="ListOfDevises"
+                   isLabel="true"
+                  class="p-4"
                 />
                 <InputForm
                   title="Lot"
@@ -203,7 +207,7 @@
 
               <div class="flex flex-col py-8 gap-4">
                 <div class="">
-                  <span class="text-base font-bold">Fichers</span>
+                  <span class="text-base font-bold">Fichiers</span>
                 </div>
 
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">

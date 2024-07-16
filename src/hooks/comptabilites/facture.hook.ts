@@ -31,7 +31,7 @@ export const useFactureHook = () => {
       numero_facture: Facture.numero_facture,
       // titre: Facture.titre,
       // client: Facture.client?.nom,
-      montant_ttc:  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+      montant_ttc:  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CFA' }).format(
         Facture.montant_ttc,
       ),
       status:

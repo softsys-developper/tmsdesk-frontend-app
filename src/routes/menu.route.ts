@@ -68,7 +68,7 @@ export const MenuApp = [
 
          
          {
-            icon: 'ri-home-smile-2-line',
+            icon: 'ri-shopping-bag-2-line',
             id: 'LOGISTIC_SERVICES_PRODUITS',
             name: 'Produits',
             route: 'LOGISC_PRODUCTS',
@@ -105,7 +105,7 @@ export const MenuApp = [
             permission: 'liste-employes'
          },
          {
-            icon: 'ri-user-2-line',
+            icon: 'ri-open-arm-line',
             id: 'HUMAINES_STAGIAIRE',
             name: 'Stagiaire',
             route: 'RH_STAGIAIRE',
@@ -290,28 +290,28 @@ export const MenuApp = [
       route: '',
       children: [
          {
-            icon: 'ri-mail-line',
-            id: 'SYSTEM_MAILS',
+            icon: 'ri-settings-line',
+            id: 'SYSTEM_PARAMETRE',
             name: 'Paramétre',
             route: 'SYSTEM_PARAMETRE',
             permission: 'liste-parametres'
          },
          {
-            icon: 'ri-mail-line',
-            id: 'SYSTEM_MAILS',
+            icon: 'ri-admin-line',
+            id: 'SETTING_USER',
             name: 'Utilisateurs',
             route: 'SETTING_USER',
             permission: 'liste-utilisateur'
          },
          {
-            icon: 'ri-mail-line',
+            icon: 'ri-spy-line',
             id: 'SETTING_ROLES',
             name: 'Roles',
             route: 'SETTING_ROLES',
             permission: 'liste-role'
          },
          {
-            icon: 'ri-bill-line',
+            icon: 'ri-key-line',
             id: 'SETTING_PERMISSION',
             name: 'Permissions',
             route: 'SETTING_PERMISSION',

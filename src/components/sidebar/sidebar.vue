@@ -13,7 +13,7 @@
       </div>
 
       <MenuHeaderCard
-        :content="isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'Proforma' && item.name != 'logistiques' && item.name != 'Utilisateurs') : MenuApp" />
+        :content="isApp == 'usimeca' ? MenuApp.filter(item => item.name != 'Proforma'  && item.name != 'Utilisateurs') : MenuApp" />
 
     </div>
   </aside>

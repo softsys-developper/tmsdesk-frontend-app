@@ -200,6 +200,14 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     }
   }
 
+  if (menu.route == "RH_STAGIAIRE") {
+    if (menu.id == "MUA_delete") {
+      ToDeleteActions(id);
+    } else {
+      ToUpdateActions(id, useDataStore().Stagiaires);
+    }
+  }
+
 
   // LOGGISTIQUE
   if (menu.route == "LOGISC_LIVRAISONS") {

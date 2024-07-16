@@ -220,7 +220,7 @@
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ Amount }} (GNF)
+                      {{ Amount }} (CFA)
                     </dd>
                   </dl> -->
 
@@ -230,7 +230,7 @@
                       Total Montant:
                     </dt>
                     <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
-                      {{ Amount }} {{ AmountTTc }} (GNF)
+                      {{ Amount }} {{ AmountTTc }} (CFA)
                     </dd>
                   </dl>
                 </div>

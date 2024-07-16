@@ -1,5 +1,5 @@
 <template>
-  <div class="w-11/12 m-auto flex flex-col gap-4 h-full text-black min-w-max pb-32 z-40">
+  <div class="w-11/12 m-auto flex flex-col gap-4 h-full text-white min-w-max pb-32 z-40">
     <!-- <div class="h-24 rounded-md bg-black">.</div> -->
 
     <div v-for="menu in useModalStore().MenuSideBar" class="">
@@ -15,8 +15,8 @@
             <div class="text-base font-bold">{{ menu.name }} </div>
           </div>
 
-          <div class="" v-if="menu.children?.length != 0">
-            <i class="ri-arrow-down-s-line"></i>
+          <div :class="useModalStore().isOpenMenu == menu.name ? 'rotate-180' : ''" v-if="menu.children?.length != 0">
+            <i class="ri-arrow-down-s-line translate"   ></i>
           </div>
           <!-- <BtnMore :isNotBg="true" :name="menu.name" :title="menu.name" :dataDropMenu="menu.children" /> -->
         </div>
@@ -24,16 +24,16 @@
         <!-- Menu Link -->
         <div class="flex flex-col gap-1 py-4 gap-1transition duration-75 cursor-pointer " v-if="
           (useModalStore().isOpenMenu == menu.name ||
-            menu.route == $route.name) &&
-          menu.children?.length != 0
+            menu.route == $route.name) 
         ">
           <div v-for="ch in menu.children">
             <RouterLink :to="{ name: ch.route }" @click="ChangeMenu(ch)"
-              class="flex items-center px-4 font-bold text-sm p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+              class="flex items-center px-4 font-bold text-sm p-2 gap-1 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
               :class="useModalStore().isOpenSubMenu == ch.name
-                ? 'bg-gray-200 dark:bg-gray-700'
+                ? 'bg-gray-300 dark:bg-gray-700'
                 : ''
                 ">
+                <i :class="ch.icon" ></i>
               {{ ch.name }}
             </RouterLink>
           </div>
@@ -58,7 +58,8 @@ const router = useRouter();
 const route = useRoute()
 
 const isClose = (menu: any) => {
-  if (useModalStore().isOpenMenu == menu.name && menu.route == route.name) {
+  console.log(useModalStore().isOpenMenu == menu.name, menu.route == route.name)
+  if (useModalStore().isOpenMenu == menu.name || menu.route == route.name) {
     useModalStore().isOpenMenu = ''
   } else {
     useModalStore().isOpenMenu = menu.name
@@ -67,7 +68,7 @@ const isClose = (menu: any) => {
 
 const ChangeMenu = (ch: any) => {
   useModalStore().isOpenSubMenu = ch.name
-  useModalStore().isMenu = !useModalStore().isMenu
+  // useModalStore().isMenu = !useModalStore().isMenu
 }
 
 const Redirect = (menu: any) => {

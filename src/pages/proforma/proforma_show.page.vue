@@ -218,7 +218,7 @@
 
                       <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
-                          Total HTVA (GNF):
+                          Total HTVA (CFA):
                         </dt>
                         <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
                           {{ ProformaShow.montant_ttc }}

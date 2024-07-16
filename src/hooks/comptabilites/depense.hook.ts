@@ -23,7 +23,7 @@ export const useDepenseHook = () => {
          numero_bon_de_caisse: depense.numero_bon_de_caisse,
          designation: depense.designation,
          recepteur: depense.recepteur,
-         montant:   new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+         montant:   new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CFA' }).format(
             depense.montant,
           ),
          type_transaction_label: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${

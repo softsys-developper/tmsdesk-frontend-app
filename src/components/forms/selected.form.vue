@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-defineProps(['select', 'name', 'label', 'value', 'type', 'modelValue'])
+defineProps(['select', 'name', 'label', 'value', 'type', 'modelValue', 'isLabel'])
 const emit = defineEmits(['update:modelValue']);
 
 
@@ -41,9 +41,9 @@ const emitInput = (value:any) => {
   </div> -->
 
   <div class="flex flex-col gap-1" v-if="select?.length != 0 && type == 'select'" >
-    <label for="ice-cream-choice" v-if="label" > {{ label }} </label>
+    <label for="" v-if="isLabel" class="text-xs uppercase font-extrabold" > {{ label }} </label>
     <select :id="name" :name="name"  :value="modelValue"
-      class="px-2 py-2 border-[1px] border-gray-300/80 bg-gray-100 rounded-lg w-full"  @change="emitInput($event)" >
+      class="px-2 py-2 border-[1px] border-gray-300/80 bg-gray-100 rounded-lg w-full" :class="isLabel ? 'py-4' : ''"  @change="emitInput($event)" >
       <option v-for="ins in select" :key="ins?.id" :value="ins?.id">
         {{ ins.title || ins.label || ins.name || ins.libelle_salaire || ins.numero_compte || ins.nom || ins.libelle || ins.categorie || ins.nom_devise || ins.numero_proforma 
         }}</option>
