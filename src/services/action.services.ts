@@ -18,6 +18,7 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
       if (UpdateInput) {
         UpdateInput.value = typeof Find[el] == 'object' ? Find[el]?.id : Find[el];
       }
+      if (el == "password") UpdateInput.value = "";
     });
 
 
