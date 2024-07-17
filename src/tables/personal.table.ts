@@ -79,7 +79,14 @@ export const UserTables = [
       color: null,
       bgColor: null,
    },
-  
+   
+   {
+      label: "Images",
+      field: 'image',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
    {
       label: "Nom d'utilisateur",
       field: 'nom_utilisateur',

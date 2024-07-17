@@ -3,10 +3,8 @@ import { useDataStore } from "@/stores/data.store";
 import { useModalStore } from "@/stores/modal.store";
 import { useUpdateStore } from "@/stores/update.store";
 
-
 const ToUpdateActions = (Id: any, ToUpdate: any) => {
   useModalStore().open = true;
-
 
   setTimeout(() => {
     // useDataStore().Categories
@@ -16,10 +14,12 @@ const ToUpdateActions = (Id: any, ToUpdate: any) => {
     InputKey?.forEach((el) => {
       let UpdateInput: any = document.querySelector(`#${el}`);
       if (UpdateInput) {
-        UpdateInput.value = typeof Find[el] == 'object' ? Find[el]?.id : Find[el];
+        UpdateInput.value =
+          typeof Find[el] == "object" ? Find[el]?.id : Find[el];
       }
-    });
 
+      if (el == "password") UpdateInput.value = "";
+    });
 
     useUpdateStore().isUpdate = {
       is: true,
@@ -37,11 +37,8 @@ const ToDeleteActions = (Id: any) => {
   };
 };
 
-
-
 //
-export const Fun_Actions = (menu: any, id: any, router?:any) => {
-
+export const Fun_Actions = (menu: any, id: any, router?: any) => {
   const { MenuProfileSignOut } = useProfileServices();
   if (menu.route == "MENU_SIGNOUT") {
     MenuProfileSignOut();
@@ -51,8 +48,8 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "CRM_CLIENTS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    }else if (menu.id == "MUA_interlocuteur") {
-      router.push({name: "CRM_INTERLOCUTEUR", query: {id}})
+    } else if (menu.id == "MUA_interlocuteur") {
+      router.push({ name: "CRM_INTERLOCUTEUR", query: { id } });
     } else {
       ToUpdateActions(id, useDataStore().Clients);
     }
@@ -63,17 +60,19 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "CRM_PROSPECTS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    }
-    else if (menu.id == "MUA_rapport") {
-      router.push({name: "CRM_RAPPORTS", query: {id }})
+    } else if (menu.id == "MUA_rapport") {
+      router.push({ name: "CRM_RAPPORTS", query: { id } });
     } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Update.Prospects);
-    }else if (menu.id == "MUA_step") {
-      useModalStore().open = true
-      useModalStore().ProspectStep = true
-      useModalStore().ProspectStepID = id
+    } else if (menu.id == "MUA_step") {
+      useModalStore().open = true;
+      useModalStore().ProspectStep = true;
+      useModalStore().ProspectStepID = id;
     } else if (menu.id == "MUA_interlocuteur") {
-      router.push({name: "CRM_INTERLOCUTEUR", query: {id, type: 'prospect'}})
+      router.push({
+        name: "CRM_INTERLOCUTEUR",
+        query: { id, type: "prospect" },
+      });
     }
   }
 
@@ -82,10 +81,13 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_interlocuteur") {
-      router.push({name: "CRM_INTERLOCUTEUR", query: {id, type: 'fournisseur'}})
-    }else {
+      router.push({
+        name: "CRM_INTERLOCUTEUR",
+        query: { id, type: "fournisseur" },
+      });
+    } else {
       ToUpdateActions(id, useDataStore().Fournisseurs);
-    } 
+    }
   }
 
   if (menu.route == "CRM_INTERLOCUTEUR") {
@@ -93,11 +95,11 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToDeleteActions(id);
     } else {
       ToUpdateActions(id, useDataStore().Interlocuteurs);
-    } 
+    }
   }
 
-   // CRM / Rapport
-   if (menu.route == "CRM_RAPPORTS") {
+  // CRM / Rapport
+  if (menu.route == "CRM_RAPPORTS") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else {
@@ -107,38 +109,33 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
 
   // CRM / Prospects
   if (menu.route == "PROFORMA_LIST") {
-   
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_modify") {
       // ToUpdateActions(id, useDataStore().Prospects);
-      router.push({name: "PROFORMA_ADD", query: {id }})
+      router.push({ name: "PROFORMA_ADD", query: { id } });
     } else if (menu.id == "MUA_details") {
-      router.push("/proforma/detail/?id=" + id)
+      router.push("/proforma/detail/?id=" + id);
     } else if (menu.id == "MUA_BC") {
-      router.push({name: "PROFORMA_NBC", query: {id }})
-    }else if (menu.id == "MUA_state") {
-      useModalStore().open = true
-      useModalStore().Proforma = true
-      useModalStore().ProformaId = id
-    }
-    else if (menu.id == "MUA_interlocuteur") {
-      router.push({name: "CRM_INTERLOCUTEUR", params: {id}})
+      router.push({ name: "PROFORMA_NBC", query: { id } });
+    } else if (menu.id == "MUA_state") {
+      useModalStore().open = true;
+      useModalStore().Proforma = true;
+      useModalStore().ProformaId = id;
+    } else if (menu.id == "MUA_interlocuteur") {
+      router.push({ name: "CRM_INTERLOCUTEUR", params: { id } });
     }
   }
 
   if (menu.route == "PROFORMA_NBC_LIST") {
-   
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Prospects);
     } else if (menu.id == "MUA_details") {
-      router.push("/proforma/detail/?id=" + id)
+      router.push("/proforma/detail/?id=" + id);
     }
   }
-
-  
 
   if (menu.route == "SYSTEM_CATEGORY") {
     if (menu.id == "MUA_delete") {
@@ -147,9 +144,9 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToUpdateActions(id, useDataStore().Categories);
     }
   }
-  
+
   // RH
-   if (menu.route == "HUMAINES_CONGES") {
+  if (menu.route == "HUMAINES_CONGES") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else {
@@ -160,11 +157,11 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
   if (menu.route == "RH_PERSONAL") {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
-    } else if(menu.id == "MUA_modify") {
+    } else if (menu.id == "MUA_modify") {
       // ToUpdateActions(id, useDataStore().Conges);
-      router.push({name: "RH_PERSONAL_ADD", query: {id }})
-    }else{
-      router.push({name: "RH_PERSONAL_SHOW", query: {id }})
+      router.push({ name: "RH_PERSONAL_ADD", query: { id } });
+    } else {
+      router.push({ name: "RH_PERSONAL_SHOW", query: { id } });
     }
   }
 
@@ -200,46 +197,41 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     }
   }
 
-
   // LOGGISTIQUE
   if (menu.route == "LOGISC_LIVRAISONS") {
-   
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_modify") {
       // ToUpdateActions(id, useDataStore().Prospects);
-      router.push({name: "LOGISC_LIVRAISONS_ADD", query: {id }})
+      router.push({ name: "LOGISC_LIVRAISONS_ADD", query: { id } });
     } else if (menu.id == "MUA_details") {
-      router.push({name: 'LOGISC_DETAIL_LIVRAISONS', query: {id}})
+      router.push({ name: "LOGISC_DETAIL_LIVRAISONS", query: { id } });
     } else if (menu.id == "MUA_livraison") {
-      router.push({name: "LOGISC_LIVRAISONS_BL", query: {id }})
+      router.push({ name: "LOGISC_LIVRAISONS_BL", query: { id } });
     }
   }
   if (menu.route == "LOGISC_BC_PARTENAIRES") {
-   
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_modify") {
       // ToUpdateActions(id, useDataStore().Prospects);
-      router.push({name: "LOGISC_BC_PARTENAIRES_ADD", query: {id }})
+      router.push({ name: "LOGISC_BC_PARTENAIRES_ADD", query: { id } });
     } else if (menu.id == "MUA_details") {
       // router.push("/proforma/detail/?id=" + id)
-    } 
+    }
   }
 
-  // 
+  //
   if (menu.route == "LOGISC_STOCK") {
-    console.log("tes")
+    console.log("tes");
     if (menu.id == "MUA_in_stock") {
-      useModalStore().Stocks = true
-      useModalStore().open = true
-      useModalStore().StocksID = id
-    }else if(menu.id == "MUA_delete"){
+      useModalStore().Stocks = true;
+      useModalStore().open = true;
+      useModalStore().StocksID = id;
+    } else if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     }
   }
-  
-
 
   // Comptabilité
   if (menu.route == "COMPTA_DEPENSE") {
@@ -262,12 +254,10 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
     } else if (menu.id == "MUA_modify") {
       ToUpdateActions(id, useDataStore().Factures);
     } else if (menu.id == "MUA_details") {
-      router.push({name: 'PROFORMA_DETAIL', query: {id, facture: true}})
+      router.push({ name: "PROFORMA_DETAIL", query: { id, facture: true } });
+    } else if (menu.id == "MUA_transactions") {
+      router.push({ name: "COMPTA_FACTURE_PAID", query: { id } });
     }
-    else if (menu.id == "MUA_transactions") {
-      router.push({name: 'COMPTA_FACTURE_PAID', query: {id}})
-    }
-    
   }
   if (menu.route == "COMPTA_FACTURE_PAID") {
     if (menu.id == "MUA_delete") {
@@ -276,8 +266,6 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToUpdateActions(id, useDataStore().FacturePaids);
     }
   }
-
-  
 
   // Roles
   if (menu.route == "SETTING_ROLES") {
@@ -296,7 +284,6 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToUpdateActions(id, useDataStore().Users);
     }
   }
-
 
   // SYSTEME
   if (menu.route == "SYSTEM_DA") {
@@ -346,5 +333,4 @@ export const Fun_Actions = (menu: any, id: any, router?:any) => {
       ToUpdateActions(id, useDataStore().Holiday);
     }
   }
-  
 };

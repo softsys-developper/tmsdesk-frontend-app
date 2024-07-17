@@ -234,15 +234,6 @@ export const UserForms = [
         select: [], // Tableau vide pour les options de sélection
     },
     {
-        label: "Nom de l'employé",
-        type: "text",
-        placeholder: "John Binaté",
-        name: "nom",
-        value: "",
-        select: [], // Tableau vide pour les options de sélection
-    },
-
-    {
         label: "Email",
         type: "text",
         placeholder: "Email",
@@ -277,7 +268,7 @@ export const UserForms = [
     {
         label: "Password",
         type: "text",
-        placeholder: "Passe de passe",
+        placeholder: "Mot de passe",
         name: "password",
         value: "",
         select: [], // Tableau vide pour les options de sélection

@@ -17,31 +17,31 @@ export const useBCLivraisonDetailHook = () => {
   const stateBCLivraisonDetails = ref<any[]>([]);
   stateBCLivraisonDetails.value = useDataStore().BCLivraisonDetails;
 
-  const StatusHtml = (name: string, bg: string) => {
-    return `<span class="flex  text-center text-sm font-bold max-w-max px-2 py-1 rounded-md justify-center text-white ${bg}" >${name}</span>`;
-  };
+  // const StatusHtml = (name: string, bg: string) => {
+  //   return `<span class="flex  text-center text-sm font-bold max-w-max px-2 py-1 rounded-md justify-center text-white ${bg}" >${name}</span>`;
+  // };
 
   const formatBCLivraisonDetailData = (BCLivraisonDetails: any) => {
     return BCLivraisonDetails.map((BCLivraisonDetail: any) => ({
       id: BCLivraisonDetail.id,
-      numero_bon_de_commande: BCLivraisonDetail.numero_bon_de_commande,
-      montant: BCLivraisonDetail.montant,
-      date_commande: BCLivraisonDetail.date_commande,
-      etat:
-        BCLivraisonDetail.etat == 1
-          ? StatusHtml("En cours", "bg-orange-500")
-          : BCLivraisonDetail.statut == 2
-          ? StatusHtml("Valider", "bg-green-500")
-          : StatusHtml("Rejeter", "bg-red-500"),
-      adresse: BCLivraisonDetail.adresse,
-      pays: BCLivraisonDetail.pays,
-      site_internet: BCLivraisonDetail.site_internet,
-      // numero_bon_de_commande: '',
-      // site_livraison: ''
-      // agent_livraison: ,
-      // chauffeu: ,
-      // date_livraison: ,
-      // date_retour
+      // numero_bon_de_commande: BCLivraisonDetail.numero_bon_de_commande,
+      // montant: BCLivraisonDetail.montant,
+      // date_commande: BCLivraisonDetail.date_commande,
+      // etat:
+      //   BCLivraisonDetail.etat == 1
+      //     ? StatusHtml("En cours", "bg-orange-500")
+      //     : BCLivraisonDetail.statut == 2
+      //     ? StatusHtml("Valider", "bg-green-500")
+      //     : StatusHtml("Rejeter", "bg-red-500"),
+      // adresse: BCLivraisonDetail.adresse,
+      // pays: BCLivraisonDetail.pays,
+      // site_internet: BCLivraisonDetail.site_internet,
+      reference: BCLivraisonDetail.livraison?.reference,
+      site_livraison: BCLivraisonDetail.livraison?.site_livraison,
+      agent_livraison: BCLivraisonDetail.livraison?.agent_livraison,
+      chauffeur: BCLivraisonDetail.livraison?.chauffeur,
+      date_livraison: BCLivraisonDetail.livraison?.date_livraison,
+      date_retour: BCLivraisonDetail.livraison?.date_retour,
       date_creation: moment(BCLivraisonDetail.created_at).format("DD/MM/YYYY"),
     }));
   };

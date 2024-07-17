@@ -40,6 +40,11 @@
         </div>
       </div>
     </div>
+
+
+
+
+
   </div>
 
   <!-- <BtnMore  /> -->
@@ -80,15 +85,15 @@ const { readData } = useApiServices()
 const PermissionRole: any = ref(<any>[])
 const GetUserRolePermission = () => {
 
-  
-    readData(API_URL.PERMISSIONS_USER_CONNECTER)
+
+  readData(API_URL.PERMISSIONS_USER_CONNECTER)
     .then((data: any) => {
       PermissionRole.value = data.datas
       useModalStore().Permissions = data.datas
       useModalStore().MenuSideBar = props.content.map((menuItem: any) => {
         return {
           ...menuItem,
-          children: menuItem.children.filter((child:any) => PermissionRole.value.some((p:any) => p.name === child.permission))
+          children: menuItem.children.filter((child: any) => PermissionRole.value.some((p: any) => p.name === child.permission))
         };
       }).filter((menuItem: any) => menuItem.children.length > 0);
 
@@ -97,17 +102,27 @@ const GetUserRolePermission = () => {
     .catch(() => {
       // state.loading = false;
     });
-  }
+}
 
-  
+
+
+// const dropdown = () => {
+//   document.querySelector("#submenu")?.classList.toggle("hidden");
+//   document.querySelector("#arrow")?.classList.toggle("rotate-0");
+// }
+
+
+// const openSidebar = () => {
+//   document.querySelector(".sidebar")?.classList.toggle("hidden");
+// }
 
 
 
 onMounted(() => {
 
-  if(useModalStore().MenuSideBar.length == 0){
-  GetUserRolePermission()
-}
+  if (useModalStore().MenuSideBar.length == 0) {
+    GetUserRolePermission()
+  }
 })
 
 </script>
