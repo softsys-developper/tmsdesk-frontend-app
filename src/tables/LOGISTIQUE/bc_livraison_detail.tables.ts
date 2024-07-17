@@ -8,16 +8,16 @@ export const BCLivraisonDetailTables = [
         bgColor: null,
     },
     {
-        label: 'N* BDC',
-        field: 'numero_bon_de_commande',
+        label: 'Reference',
+        field: 'reference',
         status: null,
         color: null,
         bgColor: null,
     },
 
     {
-        label: 'Montant',
-        field: 'montant',
+        label: 'Site livraison',
+        field: 'site_livraison',
         status: null,
         color: null,
         bgColor: null,
@@ -26,15 +26,30 @@ export const BCLivraisonDetailTables = [
     
 
     {
-        label: 'Date de la commande',
-        field: 'date_commande',
+        label: 'Agent livraison',
+        field: 'agent_livraison',
         status: null,
         color: null,
         bgColor: null,
     },
     {
-        label: 'Status',
-        field: 'etat',
+        label: 'Chauffeur',
+        field: 'chauffeur',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
+
+    {
+        label: 'Date livraison',
+        field: 'date_livraison',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
+    {
+        label: 'Date retour',
+        field: 'date_retour',
         status: null,
         color: null,
         bgColor: null,

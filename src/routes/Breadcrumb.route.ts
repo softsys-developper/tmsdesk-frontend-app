@@ -647,6 +647,29 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
+
+
+  {
+    route: "LOGISC_DETAIL_LIVRAISONS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+      {
+        route: "LOGISC_DETAIL_LIVRAISONS",
+        title: "Détail de livraison",
+      },
+    ],
+  },
   
 
   // PARAMETRE
