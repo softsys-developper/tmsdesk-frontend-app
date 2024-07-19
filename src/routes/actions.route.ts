@@ -393,12 +393,12 @@ export const MenuFacturePaidClientActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'COMPTA_FACTURE_PAID',
    },
-   {
-      id: 'MUA_details',
-      name: 'Voir les details',
-      icon: 'ri-eye-line',
-      route: 'COMPTA_FACTURE',
-   },
+   // {
+   //    id: 'MUA_details',
+   //    name: 'Voir les details',
+   //    icon: 'ri-eye-line',
+   //    route: 'COMPTA_FACTURE',
+   // },
 ];
 
 
