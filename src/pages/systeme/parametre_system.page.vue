@@ -87,9 +87,10 @@
                   type="select"
                   title="Dévise"
                   placeholder="00000"
-                  :value="PARAMETRE.code_activite"
-                  name="devise"
+                  :modelValue="PARAMETRE.devise_id"
+                  name="devise_id"
                   :select="ListOfDevises"
+                   isLabel="Devise"
                 />
                 <InputForm
                   title="Lot"

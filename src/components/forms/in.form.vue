@@ -3,7 +3,7 @@
   <div class="flex w-full">
     <!--  -->
     <div class="flex flex-col w-full gap-1">
-      <label :for="name" class="text-xs uppercase font-bold"> {{ label }} </label>
+      <label :for="name" class="text-xs uppercase font-extrabold"> {{ label }} </label>
 
 
       <Input
