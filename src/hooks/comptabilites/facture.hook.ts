@@ -31,17 +31,22 @@ export const useFactureHook = () => {
       numero_facture: Facture.numero_facture,
       // titre: Facture.titre,
       // client: Facture.client?.nom,
-      montant_ttc:  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CFA' }).format(
-        Facture.montant_ttc,
-      ),
+      montant_ttc: new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "CFA",
+      }).format(Facture.montant_ttc),
+      reste_a_payer: new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "CFA",
+      }).format(Facture.reste_a_payer),
       status:
         Facture.statut == 1
           ? StatusHtml("En attante", "bg-orange-500")
           : Facture.statut == 2
           ? StatusHtml("Partiellement", "bg-blue-500")
           : StatusHtml("Payer", "bg-green-500"),
-          date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
+      date_emission: Facture.date_emission,
+      date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeFactures = computed(() => {

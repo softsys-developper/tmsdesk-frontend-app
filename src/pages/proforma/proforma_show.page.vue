@@ -159,7 +159,7 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) *
                           service.pivot.quantite).toFixed(0) }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ ProformaShow?.ligne_proformas[index].disponibilite }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ ProformaLinge[index].disponibilite }} </td>
 
                       </tr>
                     </tbody>
@@ -294,6 +294,7 @@ import SpinnerLoading from "@/components/loaders/spinner.loading.vue";
 import ContentLayout from "@/layouts/content.layout.vue";
 import Button from "@/components/ui/button/Button.vue";
 
+const ProformaLinge = ref()
 const ProformaShow = ref(<PROFORMA>{});
 const FactureMore = ref(<any>{});
 const Parametres = ref(<SETTING>{});
@@ -316,6 +317,7 @@ const GetFacture = async () => {
   if (data) {
     loading.value = false;
     ProformaShow.value = data.data;
+    ProformaLinge.value = data.ligne_proformas;
     Parametres.value = data.parametre
     FactureMore.value = data.facture
   }

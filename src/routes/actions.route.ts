@@ -352,12 +352,12 @@ export const MenuPrimeActions = [
 // COMPTABILITÉ 
 
 export const MenuFactureClientActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'COMPTA_FACTURE',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_FACTURE',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
@@ -381,12 +381,12 @@ export const MenuFactureClientActions = [
 ];
 
 export const MenuFacturePaidClientActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'COMPTA_FACTURE_PAID',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_FACTURE_PAID',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
