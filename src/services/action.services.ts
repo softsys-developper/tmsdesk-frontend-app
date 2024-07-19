@@ -252,7 +252,7 @@ export const Fun_Actions = (menu: any, id: any, router?: any) => {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_modify") {
-      ToUpdateActions(id, useDataStore().Factures);
+      // ToUpdateActions(id, useDataStore().Factures);
     } else if (menu.id == "MUA_details") {
       router.push({ name: "PROFORMA_DETAIL", query: { id, facture: true } });
     } else if (menu.id == "MUA_transactions") {
@@ -263,7 +263,7 @@ export const Fun_Actions = (menu: any, id: any, router?: any) => {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else {
-      ToUpdateActions(id, useDataStore().FacturePaids);
+      // ToUpdateActions(id, useDataStore().FacturePaids);
     }
   }
 

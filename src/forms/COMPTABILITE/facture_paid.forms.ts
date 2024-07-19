@@ -51,3 +51,57 @@ export const FacturePaidForms =  [
         select: [],
       },
 ]
+
+export const FacturePaidShowForms =  [
+  // {
+  //     label: "Numéro Facture",
+  //     type: "select",
+  //     placeholder: "Choisir le numéro de la facture",
+  //     name: "factureId",
+  //     value: "",
+  //     select: [],
+  //   },
+    {
+      label: "Montant à payer",
+      type: "number",
+      placeholder: "Choisir le numéro de la facture",
+      name: "montant",
+      value: "",
+      select: [],
+    },
+    {
+      label: "Mode de paiement",
+      type: "select",
+      placeholder: "Choisir le numéro de la facture",
+      name: "mode_paiement",
+      value: "",
+      select: [{
+          id: 'cash',
+          name: 'Cash'
+      },
+      {
+          id: 'virement',
+          name: 'Virement'
+      },
+      {
+          id: 'cheque',
+          name: 'Cheque'
+      }],
+    },
+    {
+      label: "Banque",
+      type: "select",
+      placeholder: "Choisir la banque",
+      name: "banque",
+      value: "",
+      select: [],
+    },
+    {
+      label: "Désignation",
+      type: "text",
+      placeholder: "Choisir la banque",
+      name: "designation",
+      value: "",
+      select: [],
+    },
+]

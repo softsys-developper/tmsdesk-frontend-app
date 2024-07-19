@@ -158,7 +158,7 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) * service.pivot.quantite).toFixed(0) }} </td>
-                        <td class="border-[1px] px-4 py-2">  {{ProformaShow.ligne_proformas[index].disponibilite}} </td>
+                        <td class="border-[1px] px-4 py-2">  {{ProformaLinge[index].disponibilite}} </td>
                        
                       </tr>
                     </tbody>
@@ -296,6 +296,7 @@ import Button from "@/components/ui/button/Button.vue";
 const ProformaShow = ref(<PROFORMA>{});
 const FactureMore = ref(<any>{});
 const Parametres = ref(<SETTING>{});
+  const ProformaLinge = ref()
 const loading = ref(false);
 const route = useRoute();
 
@@ -317,6 +318,7 @@ const GetFacture = async () => {
     ProformaShow.value = data.data;
     Parametres.value = data.parametre
     FactureMore.value = data.facture
+    ProformaLinge.value = data.ligne_proformas
   }
 };
 
