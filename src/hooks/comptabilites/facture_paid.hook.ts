@@ -61,7 +61,10 @@ export const useFacturePaidHook = () => {
       setFacturePaid,
       useDataStore(),
       'FacturePaids',
-      formatFacturePaidData
+      formatFacturePaidData,
+      // () => { useDataStore().Factures.map((el) => {
+      //   if()
+      // }) }
     ).SetCreate(API_URL.FACTURE_PAID_CREATE, values);
   };
  
