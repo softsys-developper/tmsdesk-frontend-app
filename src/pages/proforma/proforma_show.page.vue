@@ -158,7 +158,7 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) * service.pivot.quantite).toFixed(0) }} </td>
-                        <td class="border-[1px] px-4 py-2">  {{ProformaLinge[index].disponibilite}} </td>
+                        <td class="border-[1px] px-4 py-2">  {{ ProformaLinge?  ProformaLinge[index].disponibilite :  ProformaShow.ligne_proformas[index].disponibilite }} </td>
                        
                       </tr>
                     </tbody>
