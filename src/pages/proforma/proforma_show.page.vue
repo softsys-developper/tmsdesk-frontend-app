@@ -11,7 +11,7 @@
         <div class="flex flex-col gap-8" v-if="Parametres && ProformaShow && !loading">
           <!-- Buttons -->
           <div class="flex justify-end gap-x-3 w-11/12">
-            
+
             <Button :disabled="ProformaShow.etat == '3' || '2' ? true : false"
               class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-red-500 text-white shadow-sm align-middle hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
               @click="RejeterProforma">
@@ -51,9 +51,9 @@
           <div class="w-full  mx-auto  bg-white" id="printableDiv">
             <div class="sm:w-11/12 lg:w-4/4 mx-auto">
               <div class="">
-               
-                <img :src="'https://apps.tmsdesk.com/parametres/' + Parametres.en_tete
-                  " alt="" />
+
+                <img :src="`data:image/${Parametres.en_tete?.split('.').pop()};base64,` + Parametres.en_tete_base64"
+                  alt="" />
               </div>
 
               <!-- Card -->
@@ -61,7 +61,8 @@
                 <!-- Grid -->
                 <div class="flex justify-between">
                   <div>
-                    <img :src="'https://apps.tmsdesk.com/parametres/'+Parametres.logo" class="h-16" alt="" />
+                    <img :src="`data:image/${Parametres.logo?.split('.').pop()};base64,` + Parametres.logo_base64"
+                      class="h-16" alt="" />
 
                     <h1 class="mt-2 text-xl md:text-base font-semibold text-blue-600 dark:text-white">
                       <!-- {{ Parametres.denomination }} -->
@@ -71,11 +72,11 @@
 
                   <div class="text-end">
                     <h2 class="text-sm md:text-base font-semibold text-gray-800 dark:text-neutral-200">
-                     {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
+                      {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
                     </h2>
                     <span class="mt-1 block text-gray-500 dark:text-neutral-500 text-sm">
-                     
-                     QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
+
+                      QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
                     </span>
 
                     <address class="mt-4 text-sm not-italic text-gray-800 dark:text-neutral-200">
@@ -157,9 +158,11 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.description }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) * service.pivot.quantite).toFixed(0) }} </td>
-                        <td class="border-[1px] px-4 py-2">  {{ ProformaLinge?  ProformaLinge[index].disponibilite :  ProformaShow.ligne_proformas[index].disponibilite }} </td>
-                       
+                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) *
+                          service.pivot.quantite).toFixed(0) }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ ProformaLinge ? ProformaLinge[index].disponibilite :
+                          ProformaShow.ligne_proformas[index].disponibilite }} </td>
+
                       </tr>
                     </tbody>
                   </table>
@@ -170,7 +173,7 @@
 
                 <!-- Flex -->
                 <div class="mt-8 flex sm:justify-end">
-                  <div class="w-full text-xs max-w-2xl sm:text-end space-y-2">
+                  <div class="w-full flex flex-col text-xs max-w-2xl sm:text-end space-y-2">
                     <!-- Grid -->
                     <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                       <dl class="grid sm:grid-cols-5 gap-x-3">
@@ -217,7 +220,7 @@
 
                       <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
-                          Total HTVA (GNF):
+                          Total (GNF):
                         </dt>
                         <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
                           {{ ProformaShow.montant_ttc }}
@@ -265,9 +268,9 @@
                   CC : 1608130K - Cocody Saint Jean GTBANK : 25101002356 -
                   www.softsys.ci Email : infos@softsys.ci - Tél. : +225 25 22 00
                   96 65 – Cel : 07 47 99 99 92 / 07 09 02 00 52 -->
-                  <img :src="'https://apps.tmsdesk.com/parametres/' +
-                    Parametres.pied_de_page
-                    " class="w-full h-full" alt="" />
+                  <img
+                    :src="`data:image/${Parametres.pied_de_page?.split('.').pop()};base64,` + Parametres.pied_de_page_base64"
+                    class="w-full h-full" alt="" />
                 </p>
               </div>
               <!-- End Card -->
@@ -296,7 +299,7 @@ import Button from "@/components/ui/button/Button.vue";
 const ProformaShow = ref(<PROFORMA>{});
 const FactureMore = ref(<any>{});
 const Parametres = ref(<SETTING>{});
-  const ProformaLinge = ref()
+const ProformaLinge = ref()
 const loading = ref(false);
 const route = useRoute();
 
@@ -319,6 +322,8 @@ const GetFacture = async () => {
     Parametres.value = data.parametre
     FactureMore.value = data.facture
     ProformaLinge.value = data.ligne_proformas
+
+
   }
 };
 
@@ -350,12 +355,12 @@ const printDivAsPDF = () => {
       .set({
         margin: 0.5,
         filename: 'document.pdf',
-        image: {type: 'jpeg',quality: 1.0},
-            html2canvas: {dpi: 75, scale: 2, letterRendering: true},
-      jsPDF: {orientation: 'portrait', unit: 'in', format: 'a4'},
-      // pdfCallback: pdfCallback
-    }).save();
-     
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { dpi: 75, scale: 2, letterRendering: true },
+        jsPDF: { orientation: 'portrait', unit: 'in', format: 'a4' },
+        // pdfCallback: pdfCallback
+      }).save();
+
   }
 }
 </script>

@@ -49,7 +49,7 @@ export const Fun_Actions = (menu: any, id: any, router?: any) => {
     if (menu.id == "MUA_delete") {
       ToDeleteActions(id);
     } else if (menu.id == "MUA_interlocuteur") {
-      router.push({ name: "CRM_INTERLOCUTEUR", query: { id } });
+      router.push({ name: "CRM_INTERLOCUTEUR",  query: { id, type: "prospect" },});
     } else {
       ToUpdateActions(id, useDataStore().Clients);
     }

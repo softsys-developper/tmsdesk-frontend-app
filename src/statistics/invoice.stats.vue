@@ -1,9 +1,44 @@
 <script setup lang="ts">
 import { API_URL } from "@/routes/api.route";
 import { useApiServices } from "@/services/api.services";
-import { onMounted, ref } from "vue";
+import Datepicker from "@vuepic/vue-datepicker";
+import "@vuepic/vue-datepicker/dist/main.css";
+import type { DatePickerInstance } from "@vuepic/vue-datepicker";
+import { computed, onMounted, ref } from "vue";
+
+const date: any = ref("");
+const datepicker = ref<DatePickerInstance>(null);
+const datepickers = computed(() => {
+  if (datepicker) {
+    SendFilter()
+  }
+});
+
+const format = (date: any) => {
+  // const day = date.getDate();
+  // const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  return `${year}`;
+};
+
 
 const InvoiceData: any = ref([]);
+const SendFilter = () => {
+  useApiServices()
+    .readData(API_URL.STATS_INVOICE + "?year=" + date.value.toString().split(' ')[3])
+    .then(({ data }) => {
+      if (data) {
+        InvoiceData.value = data.map((el: any) => {
+          return {
+            year: el.mois,
+            gain: Math.floor(el.gain),
+            depense: Math.floor(el.depense),
+          };
+        });
+      }
+    });
+}
+
 
 onMounted(() => {
   useApiServices()
@@ -40,8 +75,14 @@ onMounted(() => {
       <!--  -->
       <div class="text-sm font-black uppercase">Factures</div>
       <!--  -->
-      <div class="flex gap-2">
-        <i class="ri-calendar-2-line text-xl"></i>
+      <!--  -->
+      {{ datepickers }}
+
+
+
+      <div class="flex flex-col gap-2 w-24 text-xs">
+        <Datepicker v-model="date" :max-date="new Date()" :format="format" :year-only="true" class="w-full text-[10px]"
+          @change="SendFilter" ref="datepicker" /> 
       </div>
     </div>
 
@@ -50,10 +91,7 @@ onMounted(() => {
       <!-- Turnovers -->
       <div class="grid grid-cols-2 gap-1 w-full">
         <div v-for="UJ in InvoiceData">
-          <div
-            class="flex flex-col rounded-md px-3 py-2 h-[90px] w-full gap-2 text-white"
-            :class="UJ.color"
-          >
+          <div class="flex flex-col rounded-md px-3 py-2 h-[90px] w-full gap-2 text-white" :class="UJ.color">
             <span class="text-3xl font-bold"> {{ UJ.count }}</span>
             <span class="text-xs first-letter:uppercase">
               {{ UJ.name.replace("Facture ", "") }}

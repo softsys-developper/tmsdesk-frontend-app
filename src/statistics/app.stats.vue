@@ -15,7 +15,7 @@ import ProformaStats from "@/statistics/proforma.stats.vue"
            
 
             <TurnoverStats />
-            <div class=" gap-2 w-full grid grid-cols-2">
+            <div class=" gap-2 w-full grid grid-cols-1 lg:grid-cols-2">
                 <ExpensiveStats />
                 <BanqueStats />
                 <!-- <StockStats /> -->

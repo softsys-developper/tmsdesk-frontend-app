@@ -224,13 +224,30 @@
                     </dd>
                   </dl> -->
 
-
-                  <dl class="grid sm:grid-cols-5 gap-x-3">
+                  <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      Taxe:
+                    </dt>
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
+                      <Input placeholder="90%" type="number" v-model="setInput.taxe" name="ref_client" />
+                    </dd>
+                  </dl>
+                  <dl class="grid sm:grid-cols-5 gap-x-3  items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
+                      
+                      Expedition:
+                    </dt>
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
+                      <Input placeholder="1 000 000 Fcfa" type="number" v-model="setInput.expedition" name="ref_client" />
+                    </dd>
+                  </dl>
+                  <dl class="grid sm:grid-cols-5 gap-x-3 items-center py-2">
                     <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       Total Montant:
                     </dt>
                     <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
-                      {{ Amount }} {{ AmountTTc }} (GNF)
+                      {{ Amount }} {{ AmountTTc }} {{ ListOfDevises.find((el) => el.id ==
+                        ServiceToAdd.devise)?.code_devise }}
                     </dd>
                   </dl>
                 </div>
@@ -326,6 +343,10 @@ const ListOfDevises = ref<any[]>([]);
 
 const route = useRoute();
 const Amount = ref(0)
+const setInput = reactive({
+  taxe: '',
+  expedition: ''
+})
 
 const AmountTTc = computed(() => {
   Amount.value = 0
@@ -525,6 +546,8 @@ const sendBC_FournisseurToBackend = async () => {
       fournisseur: Dquery('fournisseur_BDC'),
       numero_proforma_fournisseur: Dquery(`proforma_BDC`),
       interlocuteur: Dquery(`interlocuteur_BDC`),
+      taxe: setInput.taxe,
+      expedition: setInput.expedition,
       produitsServices: JSON.stringify(ProductAndServices.value),
     };
 

@@ -2,9 +2,7 @@
   <BaseLayout>
     <template v-slot:content>
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-        <ContentLayout
-          :title="`Proforma | ${$route.query.id ? 'Modifier' : 'Création'}`"
-        >
+        <ContentLayout :title="`Proforma | ${$route.query.id ? 'Modifier' : 'Création'}`">
           <template v-slot:created> </template>
         </ContentLayout>
 
@@ -22,11 +20,7 @@
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
                   <Label> Réference client </Label>
-                  <Input
-                    placeholder="Reference client"
-                    v-model="setInput.ref_client"
-                    name="ref_client"
-                  />
+                  <Input placeholder="Reference client" v-model="setInput.ref_client" name="ref_client" />
                 </div>
               </div>
 
@@ -34,14 +28,9 @@
               <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
                   <Label> Choix de l'interlocuteur </Label>
-                  <SelectedForm
-                    :modelValue="setInput.interlocuteur"
-                    @update:modelValue="((value: any) => setInput.interlocuteur = value)"
-                    name="interlocuteur"
-                    type="select"
-                   
-                    :select="ListOfInterlocuteurs"
-                  />
+                  <SelectedForm :modelValue="setInput.interlocuteur"
+                    @update:modelValue="((value: any) => setInput.interlocuteur = value)" name="interlocuteur"
+                    type="select" :select="ListOfInterlocuteurs" />
                 </div>
               </div>
             </div>
@@ -51,13 +40,9 @@
               <div class="flex gap-4 w-full">
                 <div class="flex flex-col w-full gap-1">
                   <Label> Clients </Label>
-                  <SelectedForm
-                    :modelValue="setInput.client"
-                    @update:modelValue="((value: any) => setInput.client = value)"
-                    name="client"
-                    type="select"
-                    :select="ListOfPartners"
-                  />
+                  <SelectedForm :modelValue="setInput.client"
+                    @update:modelValue="((value: any) => setInput.client = value)" name="client" type="select"
+                    :select="ListOfPartners" />
                 </div>
               </div>
             </div>
@@ -66,9 +51,7 @@
             <!-- Add produit -->
 
             <div class="flex w-full flex-col lg:flex-row gap-4 items-start">
-              <div
-                class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12"
-              >
+              <div class="bg-white rounded-md flex flex-col gap-2 w-full lg:w-5/12">
                 <div class="bg-gray-200 rounded-t-md p-3">
                   <span class="text-base font-bold">
                     Ajouter des produits ou services
@@ -80,11 +63,9 @@
                 <div class="gap-2 pb-2">
                   <div>
                     <div
-                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4"
-                    >
+                      class="flex flex-col w-full m-auto gap-2 bg-gray-50/50 hover:bg-gray-100/40 border-[1px] rounded-lg p-4">
                       <div class="flex justify-between">
-                        <span class="text-sm font-black"
-                          >Ajouter produit et services
+                        <span class="text-sm font-black">Ajouter produit et services
                         </span>
 
                         <!-- <i
@@ -96,86 +77,49 @@
                       <div class="flex flex-col gap-2">
                         <div class="flex flex-col gap-1">
                           <Label>Réference</Label>
-                          <input
-                            class="h-8 text-sm px-2 py-4 rounded-md bg-gray-100"
-                            list="references"
-                            name="reference"
-                            id="reference"
-                            placeholder="RFE025632"
-                            v-model="ServiceToAdd.reference"
-                            @change="AllProduct"
-                          />
+                          <input class="h-8 text-sm px-2 py-4 rounded-md bg-gray-100" list="references" name="reference"
+                            id="reference" placeholder="RFE025632" v-model="ServiceToAdd.reference"
+                            @change="AllProduct" />
 
                           <datalist id="references">
-                            <option
-                              :value="PR.reference"
-                              v-for="PR in ListOfAllProduct"
-                            ></option>
+                            <option :value="PR.reference" v-for="PR in ListOfAllProduct"></option>
                           </datalist>
                         </div>
 
                         <div class="">
                           <Label>Description</Label>
-                          <Textarea
-                            placeholder="Creation de site web"
-                            v-model="ServiceToAdd.description"
-                            name="description"
-                            id="reference"
-                          />
+                          <Textarea placeholder="Creation de site web" v-model="ServiceToAdd.description"
+                            name="description" id="reference" />
                         </div>
 
                         <div class="">
                           <Label>Unités</Label>
-                          <Input
-                            placeholder="PCS"
-                            v-model="ServiceToAdd.unite"
-                            name="unite"
-                            id="reference"
-                          />
+                          <Input placeholder="PCS" v-model="ServiceToAdd.unite" name="unite" id="reference" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label>Quantité </Label>
-                          <Input
-                            type="number"
-                            placeholder="Quantités"
-                            v-model="ServiceToAdd.quantite"
-                            name="qunatite"
-                            id="reference"
-                          />
+                          <Input type="number" placeholder="Quantités" v-model="ServiceToAdd.quantite" name="qunatite"
+                            id="reference" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label class=""> Prix Unitaire </Label>
-                          <Input
-                            type="number"
-                            placeholder="Ex: 500.000 Fcfa"
-                            v-model="ServiceToAdd.prix_unitaire"
-                            name="prix_unitaire"
-                            id="reference"
-                          />
+                          <Input type="number" placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire"
+                            name="prix_unitaire" id="reference" />
                         </div>
 
                         <div class="flex flex-col w-full gap-1">
                           <Label> Devises </Label>
-                          <SelectedForm
-                            :modelValue="ServiceToAdd.devise"
-                            @update:modelValue="((value: any) => ServiceToAdd.devise = value)"
-                            name="devise"
-                            type="select"
-                            :select="ListOfDevises"
-                          />
+                          <SelectedForm :modelValue="ServiceToAdd.devise"
+                            @update:modelValue="((value: any) => ServiceToAdd.devise = value)" name="devise"
+                            type="select" :select="ListOfDevises" />
                         </div>
 
                         <div class="flex flex-col gap-1">
                           <Label class=""> Disponibilité </Label>
-                          <Textarea
-                            cclass="rounded-md text-sm p-2"
-                            placeholder="- Ajout de module"
-                            v-model="ServiceToAdd.disponibilite"
-                            name="description"
-                            id="reference"
-                          />
+                          <Textarea cclass="rounded-md text-sm p-2" placeholder="- Ajout de module"
+                            v-model="ServiceToAdd.disponibilite" name="description" id="reference" />
                         </div>
                       </div>
                     </div>
@@ -184,17 +128,13 @@
 
                 <div class="flex w-full m-auto">
                   <span class=""></span>
-                  <Button
-                    :disabled="
-                      ServiceToAdd.prix_unitaire == 0 &&
+                  <Button :disabled="ServiceToAdd.prix_unitaire == 0 &&
                       ServiceToAdd.quantite == 0 &&
                       ServiceToAdd.reference == ''
-                        ? true
-                        : false
-                    "
-                    @click="AddServices(ServiceToAdd)"
-                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md"
-                  >
+                      ? true
+                      : false
+                    " @click="AddServices(ServiceToAdd)"
+                    class="bg-gray-800 text-white px-3 text-sm font-bold py-2 rounded-md">
                     Ajouter
                   </Button>
                 </div>
@@ -215,10 +155,7 @@
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  <TableRow
-                    v-for="(invoice, index) in ProductAndServices"
-                    :key="index"
-                  >
+                  <TableRow v-for="(invoice, index) in ProductAndServices" :key="index">
                     <TableCell>
                       <div class="">
                         <span class="flex flex-col gap-2">{{
@@ -231,10 +168,7 @@
                         <span class="flex flex-col gap-2">{{
                           invoice.description
                         }}</span>
-                        <span
-                          v-html="invoice.remarques"
-                          class="whitespace-pre-line"
-                        ></span>
+                        <span v-html="invoice.remarques" class="whitespace-pre-line"></span>
                       </div>
                     </TableCell>
                     <TableCell class="font-medium">
@@ -258,10 +192,7 @@
                     </TableCell>
 
                     <TableCell class="text-right">
-                      <i
-                        class="ri-close-fill cursor-pointer"
-                        @click="DeleteServices(invoice.id)"
-                      ></i>
+                      <i class="ri-close-fill cursor-pointer" @click="DeleteServices(invoice.id)"></i>
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -272,13 +203,9 @@
             <div class="mt-8 flex sm:justify-end">
               <div class="w-full text-base max-w-2xl sm:text-end space-y-2">
                 <!-- Grid -->
-                <div
-                  class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2 divide-y-[1px]"
-                >
+                <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2 divide-y-[1px]">
                   <dl class="grid sm:grid-cols-5 gap-x-3">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
@@ -287,37 +214,25 @@
                   </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       <span class=""> TVA{{ isTVA ? "(18%)" : null }}:</span>
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <Button
-                        :disabled="_AmountHT == 0 ? true : false"
+                      <Button :disabled="_AmountHT == 0 ? true : false"
                         class="px-2 text-white font-bold text-xs rounded-md"
-                        :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'"
-                        @click="_isTVA"
-                      >
+                        :class="!isTVA ? 'bg-orange-500' : 'bg-red-500'" @click="_isTVA">
                         {{ isTVA ? "Retirer" : "Appliquer" }}
                       </Button>
                     </dd>
                   </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3 items-center">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       REMISE:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      <select
-                        v-model="isRemise"
-                        name="remise"
-                        id=""
-                        :disabled="_AmountHT == 0 ? true : false"
-                        class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2"
-                      >
+                      <select v-model="isRemise" name="remise" id="" :disabled="_AmountHT == 0 ? true : false"
+                        class="w-4/12 text-sm rounded-md py-2 border-[1px] px-2">
                         <option v-for="J in REMISE_LIST" :value="J">
                           {{ J }}%
                         </option>
@@ -325,44 +240,29 @@
                     </dd>
                   </dl>
 
-                  <dl
-                    class="grid sm:grid-cols-5 gap-x-3 justify-between items-center"
-                  >
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                  <dl class="grid sm:grid-cols-5 gap-x-3 justify-between items-center">
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       Marge Commerciale:
                     </dt>
-                    <dd
-                      class="col-span-2 text-gray-500 dark:text-neutral-500 items-center h-full"
-                    >
+                    <dd class="col-span-2 text-gray-500 dark:text-neutral-500 items-center h-full">
                       <div class="flex justify-end items-center h-full">
-                        <Input
-                          type="number"
-                          class="w-4/12"
-                          placeholder="M.C"
-                          v-model="setInput.marge_commerciale"
-                          name="marge_commerciale"
-                        />
+                        <Input type="number" class="w-4/12" placeholder="M.C" v-model="setInput.marge_commerciale"
+                          name="marge_commerciale" />
                       </div>
                     </dd>
                   </dl>
 
                   <dl class="grid sm:grid-cols-5 gap-x-3">
-                    <dt
-                      class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200"
-                    >
+                    <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                       TotalTTC:
                     </dt>
-                    <dd
-                      class="col-span-2 font-black text-blue-500 dark:text-neutral-500"
-                    >
+                    <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
                       {{ AmountHT }}
                       {{
                         setInput.marge_commerciale > 1
                           ? (
-                              _AmountTTC * Number(setInput.marge_commerciale)
-                            ).toFixed(0)
+                            _AmountTTC * Number(setInput.marge_commerciale)
+                          ).toFixed(0)
                           : _AmountTTC
                       }}
                       (GNF)
@@ -376,11 +276,8 @@
 
             <div class="pt-8 flex justify-between w-full">
               <span class=""></span>
-              <button
-                @click="sendProformaToBackend"
-                class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
-                :disabled="loadingProforma"
-              >
+              <button @click="sendProformaToBackend" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
+                :disabled="loadingProforma">
                 <SpinnerLoader size="w-6 h-6" v-if="loadingProforma" />
                 <span class="" v-else>
                   {{

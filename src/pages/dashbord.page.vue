@@ -28,4 +28,8 @@ onMounted(() => {
 })
 
 </script>
-<style lang="scss" scoped></style>
+<style lang="css">
+.dp__pointer {
+  font-size: 12px;
+}
+</style>

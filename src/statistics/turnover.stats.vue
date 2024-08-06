@@ -87,7 +87,7 @@ onMounted(() => {
             <!--  -->
             <div class="text-sm font-black uppercase"> Statistiques</div>
             <!--  -->
-            <div class="flex gap-2 w-56 text-xs">
+            <div class="flex gap-2 w-44 text-xs">
                 <Datepicker v-model="date" :max-date="new Date()" :format="format" :year-only="true" class="w-full text-xs"
                     range :partial-range="false" ref="datepicker" />
             </div>

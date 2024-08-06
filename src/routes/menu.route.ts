@@ -67,13 +67,13 @@ export const MenuApp = [
 
 
          
-         {
-            icon: 'ri-home-smile-2-line',
-            id: 'LOGISTIC_SERVICES_PRODUITS',
-            name: 'Produits',
-            route: 'LOGISC_PRODUCTS',
-            permission: 'liste-produit-services'
-         },
+         // {
+         //    icon: 'ri-home-smile-2-line',
+         //    id: 'LOGISTIC_SERVICES_PRODUITS',
+         //    name: 'Historique Produits',
+         //    route: 'LOGISC_PRODUCTS',
+         //    permission: 'liste-produit-services'
+         // },
 
         
          // {
@@ -267,6 +267,13 @@ export const MenuApp = [
             permission: 'liste-livraison'
          },
          {
+            icon: 'ri-home-smile-2-line',
+            id: 'LOGISTIC_SERVICES_PRODUITS',
+            name: ' Produits',
+            route: 'LOGISC_PRODUCTS',
+            permission: 'liste-produit-services'
+         },
+         {
             icon: 'ri-store-3-line',
             id: 'LOGISC_STOCK',
             name: 'Stocks',
@@ -310,6 +317,7 @@ export const MenuApp = [
             route: 'SETTING_PERMISSION',
             permission: 'liste-permission'
          },
+         
       ],
    },
    {
@@ -365,12 +373,13 @@ export const MenuApp = [
             route: 'SYSTEM_STEP_PROSPECT',
             permission: 'liste-etapes'
          },
-         // {
-         //    icon: 'ri-bill-line',
-         //    id: 'SYSTEM_HOLIDAY',
-         //    name: 'Jour férier',
-         //    route: 'SYSTEM_HOLIDAY'
-         // },
+         {
+            icon: 'ri-bill-line',
+            id: 'SYSTEM_HOLIDAY',
+            name: 'Jour férier',
+            route: 'SYSTEM_HOLIDAY',
+            permission: 'liste-jours-feries'
+         },
       ],
    },
    // {
