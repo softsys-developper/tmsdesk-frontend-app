@@ -26,6 +26,11 @@ export const useUserHook = () => {
   const formatUserData = (Users: any) => {
     return Users.map((User: any) => ({
       id: User.id,
+      image: `<img src="${
+        User.photo_employe
+          ? `https://apps.tmsdesk.com/utilisateurs/${User.photo_employe}`
+          : `https://png.pngtree.com/png-vector/20190223/ourmid/pngtree-profile-glyph-black-icon-png-image_691589.jpg`
+      }"class="size-12 rounded-full " alt=""> `,
       nom_utilisateur: User.name,
       nom: User.name,
       prenoms: User.prenoms,
@@ -33,7 +38,9 @@ export const useUserHook = () => {
       password: User.password,
       numero: User.telephone,
       utype: User.utype,
-      date_creation: moment(User.created_at).format("l"),
+      date_creation: moment(User.created_at).format("DD/MM/YYYY"),
+
+      role: User.utype,
     }));
   };
 

@@ -33,7 +33,7 @@ export const useProductHook = () => {
       quantite: Product.quantite,
       status: Product.quantite = 0 ? StatusHtml('Indisponible', 'bg-red-500') : StatusHtml('En stock', 'bg-green-500'),
       prix_unitaire: Product.prix_unitaire,
-      date_creation: moment(Product.created_at).format("l"),
+      date_creation: moment(Product.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeProducts = computed(() => {

@@ -11,6 +11,13 @@ export const MenuClientActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'CRM_CLIENTS',
    },
+   {
+      id: 'MUA_interlocuteur',
+      name: 'Interlocuteurs',
+      icon: 'ri-user-5-line',
+      route: 'CRM_CLIENTS',
+   },
+   
 ];
 export const MenuProspectActions = [
    {
@@ -34,8 +41,14 @@ export const MenuProspectActions = [
    },
    {
       id: 'MUA_step',
-      name: 'Changer l\'etat',
-      icon: 'ri-flag-2-line',
+      name: 'Changer l\'état',
+      icon: 'ri-exchange-2-line',
+      route: 'CRM_PROSPECTS',
+   },
+   {
+      id: 'MUA_interlocuteur',
+      name: 'Interlocuteurs',
+      icon: 'ri-user-5-line',
       route: 'CRM_PROSPECTS',
    },
 ];
@@ -55,6 +68,7 @@ export const MenuStepProspectActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'SYSTEM_STEP_PROSPECT',
    },
+  
 ];
 
 
@@ -89,6 +103,12 @@ export const MenuProformaActions = [
       icon: 'ri-file-line',
       route: 'PROFORMA_LIST',
    },
+   {
+      id: 'MUA_state',
+      name: 'Changer l\'état',
+      icon: 'ri-exchange-2-line',
+      route: 'PROFORMA_LIST',
+   },
 ];
 export const MenuFournisseurActions = [
    {
@@ -103,7 +123,48 @@ export const MenuFournisseurActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'CRM_FOURNISSEURS',
    },
+   {
+      id: 'MUA_interlocuteur',
+      name: 'Interlocuteurs',
+      icon: 'ri-user-5-line',
+      route: 'CRM_FOURNISSEURS',
+   },
 ];
+
+
+export const MenuInterlocuteurActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'CRM_INTERLOCUTEUR',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'CRM_INTERLOCUTEUR',
+   }
+];
+
+export const MenuBilanActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'CRM_INTERLOCUTEUR',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'CRM_INTERLOCUTEUR',
+   }
+];
+
+
+
+
 export const MenuRapportActions = [
    // {
    //    id: 'MUA_modify',
@@ -161,6 +222,12 @@ export const MenuPersonalActions = [
       icon: 'ri-delete-bin-3-line',
       route: 'RH_PERSONAL',
    },
+   {
+      id: 'MUA_detail',
+      name: 'Voir le detail',
+      icon: 'ri-eye-line',
+      route: 'RH_PERSONAL',
+   },
    
 ];
 export const MenuCongeActions = [
@@ -178,6 +245,20 @@ export const MenuCongeActions = [
    },
 ];
 
+export const MenuStagiaireActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'HUMAINES_CONGES',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'HUMAINES_CONGES',
+   },
+];
 
 
 
@@ -271,12 +352,12 @@ export const MenuPrimeActions = [
 // COMPTABILITÉ 
 
 export const MenuFactureClientActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'COMPTA_FACTURE',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_FACTURE',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
@@ -295,15 +376,17 @@ export const MenuFactureClientActions = [
       icon: 'ri-funds-box-line',
       route: 'COMPTA_FACTURE',
    },
+
+  
 ];
 
 export const MenuFacturePaidClientActions = [
-   {
-      id: 'MUA_modify',
-      name: 'Modifier',
-      icon: 'ri-refresh-line',
-      route: 'COMPTA_FACTURE_PAID',
-   },
+   // {
+   //    id: 'MUA_modify',
+   //    name: 'Modifier',
+   //    icon: 'ri-refresh-line',
+   //    route: 'COMPTA_FACTURE_PAID',
+   // },
    {
       id: 'MUA_delete',
       name: 'Supprimer',
@@ -379,14 +462,20 @@ export const MenuProductActions = [
    //    icon: 'ri-delete-bin-3-line',
    //    route: 'COMPTA_COMPTE',
    // },
+   {
+      id: 'MUA_in_stock',
+      name: 'Mettre en stock',
+      icon: 'ri-store-3-line',
+      route: 'LOGISC_STOCK',
+   },
 ]
 export const MenuLivraisonActions = [
-   {
-     id: 'MUA_modify',
-     name: 'Modifier',
-     icon: 'ri-refresh-line',
-     route: 'LOGISC_LIVRAISONS',
-  },
+//    {
+//      id: 'MUA_modify',
+//      name: 'Modifier',
+//      icon: 'ri-refresh-line',
+//      route: 'LOGISC_LIVRAISONS',
+//   },
   {
      id: 'MUA_delete',
      name: 'Supprimer',
@@ -407,14 +496,23 @@ export const MenuLivraisonActions = [
 },
 ]
 
+export const MenuBCLivraisonDetailActions = [
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'LOGISC_DETAIL_LIVRAISONS',
+   },
+]
+
 export const MenuStockActions = [
  
   {
      id: 'MUA_delete',
-     name: 'Supprimer',
-     icon: 'ri-delete-bin-3-line',
-     route: 'LOGISC_LIVRAISONS',
-  }
+     name: 'retirer le produit',
+     icon: 'ri-delete-bin-2-line',
+     route: 'LOGISC_STOCK',
+  } 
 ]
 
 

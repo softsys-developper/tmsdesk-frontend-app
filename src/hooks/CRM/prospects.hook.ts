@@ -5,6 +5,8 @@ import { useDataStore } from "./../../stores/data.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 import { useUtilHook } from "../utils.hook";
+import { useModalStore } from "@/stores/modal.store";
+
 
 export const useProspectHook = () => {
   const { readData } = useApiServices();
@@ -23,11 +25,11 @@ export const useProspectHook = () => {
       proposition: Prospect.proposition, 
       status: StatusHtml(Prospect.etape?.nom, `bg`, Prospect.etape?.couleur),
       observation: Prospect.observation,
-      date_creation: moment(Prospect.created_at).format("l"),
+      date_creation: moment(Prospect.created_at).format("DD/MM/YYYY"),
       interlocuteurs: Prospect.interlocuteurs,
 
       etape: Prospect.etape_id,
-      domaine_activite_id: Prospect.domaine_activite_id
+      domaine_activite: Prospect.domaine_activite_id
     }));
   };
 
@@ -38,7 +40,23 @@ export const useProspectHook = () => {
   //
   const FindProspectAll = () => {
     setProspect.loading = true;
-    readData(API_URL.PROSPECT_LIST)
+
+    readData( useModalStore().Permissions.map((el:any) => el.name).includes('liste-prospects') ?  API_URL.PROSPECT_LIST   :  API_URL.PROSPECT_COMMERCIAL_LIST )
+      .then((data: any) => {
+        useDataStore().Prospects = formatProspectData(data.datas);
+        useDataStore().Update.Prospects = data.datas;
+        setProspect.loading = false; 
+      })
+      .catch(() => {
+        setProspect.loading = false;
+      });
+  };
+
+  // 
+  
+  const FindProspectCommercialAll = () => {
+    setProspect.loading = true;
+    readData(API_URL.PROSPECT_COMMERCIAL_LIST)
       .then((data: any) => {
         useDataStore().Prospects = formatProspectData(data.datas);
         useDataStore().Update.Prospects = data.datas;
@@ -104,5 +122,7 @@ export const useProspectHook = () => {
     stateProspects,
     setProspect,
     storeProspects,
+    FindProspectCommercialAll,
+    formatProspectData
   };
 };

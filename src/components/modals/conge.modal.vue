@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setConge.loadingCreate">
+  <ModalLayout :Func="onSubmit" :loading="setConge.loadingCreate" permissions="ajouter-conge" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in CongeForms">

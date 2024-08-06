@@ -47,7 +47,7 @@ export const useCompte_transactionHook = () => {
           : "bg-green-500"
       }">${compte_transaction.type_transaction}</p>`,
       type_paiement: IsTypePaiments(compte_transaction),
-      date_creation: moment(compte_transaction.created_at).format("l"),
+      date_creation: moment(compte_transaction.created_at).format("DD/MM/YYYY"),
     }));
   };
 

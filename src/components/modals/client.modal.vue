@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit"  :loading="setClient.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setClient.loadingCreate" permissions="ajouter-client" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in ClientForms">
@@ -15,7 +15,7 @@
         
         </div>
 
-        <div class="mt-4" v-if="Interlocuteur.length != 0">
+        <div class="mt-4" v-if="Interlocuteur.length != 0 ">
         <div v-for="(Inter, index) in Interlocuteur">
           <div class="mt-4">
             <div
@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <div class="py-4">
+      <div class="py-4" v-if="!useUpdateStore().isUpdate.is" >
         <Button type="button" @click="AddInterlocuteur"
           >Ajouter un interlocuteur</Button
         >

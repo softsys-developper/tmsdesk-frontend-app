@@ -19,7 +19,7 @@ export const useClientHook = () => {
       email: Client.email,
       telephone: Client.telephone,
       adresse: Client.adresse,
-      date_creation: moment(Client.created_at).format("l"),
+      date_creation: moment(Client.created_at).format("DD/MM/YYYY"),
     }));
   };
 

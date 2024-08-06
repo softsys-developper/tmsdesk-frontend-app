@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit" >
+   <ModalLayout :Func="onSubmit" permissions="ajouter-bdc-client" >
       <template v-slot:form>
          <form class="w-full space-y-2" @submit="onSubmit">
             <!-- Nom du prospect ou raison sociale -->

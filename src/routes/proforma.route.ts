@@ -3,6 +3,7 @@ import Proforma_listPage from "@/pages/proforma/proforma_list.page.vue";
 import Proforma_nbcPage from "@/pages/proforma/proforma_nbc.page.vue";
 import Proforma_nbc_listPage from "@/pages/proforma/profoma_nbc_list.page.vue";
 import Proforma_showPage from "@/pages/proforma/proforma_show.page.vue";
+import Proforma_commercialPage from "@/pages/proforma/proforma_commercial.page.vue";
 
 export const routeProforma = {
   path: "/proforma",
@@ -11,6 +12,11 @@ export const routeProforma = {
       path: "",
       name: "PROFORMA_LIST",
       component: Proforma_listPage,
+      children: [],
+    }, {
+      path: "/commercial",
+      name: "PROFORMA_COMMERCIAL_LISTE",
+      component: Proforma_commercialPage,
       children: [],
     },
     {

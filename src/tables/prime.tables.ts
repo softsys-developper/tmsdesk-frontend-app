@@ -7,15 +7,15 @@ export const PrimeTables = [
         bgColor: null,
      },
      {
-      label: 'Libelle',
+      label: 'Libelles',
       field: 'libelle',
       status: null,
       color: null,
       bgColor: null,
    },
    {
-      label: 'Natures',
-      field: 'nature',
+      label: 'Pourcentages',
+      field: 'pourcentage_prime',
       status: null,
       color: null,
       bgColor: null,

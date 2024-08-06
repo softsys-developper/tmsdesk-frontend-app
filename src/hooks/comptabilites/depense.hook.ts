@@ -7,6 +7,7 @@ import { useDataStore } from './../../stores/data.store';
 import { useUtilHook } from '@/hooks/utils.hook';
 import { useModalStore } from '@/stores/modal.store';
 import { setService } from '@/services/set.services';
+import moment from 'moment';
 
 export const useDepenseHook = () => {
    const { readData, createData } = useApiServices();
@@ -22,11 +23,16 @@ export const useDepenseHook = () => {
          numero_bon_de_caisse: depense.numero_bon_de_caisse,
          designation: depense.designation,
          recepteur: depense.recepteur,
-         montant: depense.montant,
-         type_transaction: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${
+         montant:   new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+            depense.montant,
+          ),
+         type_transaction_label: `<p class="' py-1  capitalize max-w-min rounded-md px-4 flex justify-center font-bold text-xs text-white ' ${
             depense.type_transaction !== 'entree' ? 'bg-red-500' : 'bg-green-500'
          }">${depense.type_transaction}</p>`,
-         date_transaction: depense.date_transaction,
+         date_transaction: moment(depense.date_transaction).format('DD/MM/YYY HH:MM:SS'),
+
+         type_transaction: depense.type_transaction,
+         montant_trs: depense.montant
       }));
    };
 

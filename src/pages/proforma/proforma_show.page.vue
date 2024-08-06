@@ -11,15 +11,7 @@
         <div class="flex flex-col gap-8" v-if="Parametres && ProformaShow && !loading">
           <!-- Buttons -->
           <div class="flex justify-end gap-x-3 w-11/12">
-            <Button :disabled="ProformaShow.etat == '2' ? true : false"
-              class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-green-500 text-white shadow-sm align-middle hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
-              @click="ValidateProforma">
-              <SpinnerLoading v-if="setState.loading_validate" />
-              <div class="flex items-center gap-1" v-else>
-                <i class="ri-check-line text-base"></i>
-                Valider
-              </div>
-            </Button>
+
             <Button :disabled="ProformaShow.etat == '3' || '2' ? true : false"
               class="py-2 px-3 inline-flex justify-center items-center gap-2 rounded-lg border font-medium bg-red-500 text-white shadow-sm align-middle hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-neutral-800 dark:hover:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-white dark:focus:ring-offset-gray-800"
               @click="RejeterProforma">
@@ -59,8 +51,9 @@
           <div class="w-full  mx-auto  bg-white" id="printableDiv">
             <div class="sm:w-11/12 lg:w-4/4 mx-auto">
               <div class="">
-                <img :src="'https://apps.tmsdesk.com/parametres/' + Parametres.entete
-                  " alt="" />
+
+                <img :src="`data:image/${Parametres.en_tete?.split('.').pop()};base64,` + Parametres.en_tete_base64"
+                  alt="" />
               </div>
 
               <!-- Card -->
@@ -68,21 +61,22 @@
                 <!-- Grid -->
                 <div class="flex justify-between">
                   <div>
-                    <img :src="Parametres.logo" alt="" />
+                    <img :src="`data:image/${Parametres.logo?.split('.').pop()};base64,` + Parametres.logo_base64"
+                      class="h-16" alt="" />
 
                     <h1 class="mt-2 text-xl md:text-base font-semibold text-blue-600 dark:text-white">
-                      {{ Parametres.denomination }}
+                      <!-- {{ Parametres.denomination }} -->
                     </h1>
                   </div>
                   <!-- Col -->
 
                   <div class="text-end">
-                    <h2 class="text-lg md:text-xl font-semibold text-gray-800 dark:text-neutral-200">
-                     {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
+                    <h2 class="text-sm md:text-base font-semibold text-gray-800 dark:text-neutral-200">
+                      {{ $route.query.facture ? 'Facture' : 'Facture proforma' }}
                     </h2>
-                    <span class="mt-1 block text-gray-500 dark:text-neutral-500">
-                     
-                     QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
+                    <span class="mt-1 block text-gray-500 dark:text-neutral-500 text-sm">
+
+                      QUOTE # {{ $route.query.facture ? FactureMore.numero_facture : ProformaShow.numero_proforma }}
                     </span>
 
                     <address class="mt-4 text-sm not-italic text-gray-800 dark:text-neutral-200">
@@ -122,14 +116,14 @@
                           {{ ProformaShow.date_validite }}
                         </dd>
                       </dl>
-                      <dl class="grid sm:grid-cols-5 gap-x-3">
+                      <!-- <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                           VALID UNTIL:
                         </dt>
                         <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
                           {{ ProformaShow.date_validite }}
                         </dd>
-                      </dl>
+                      </dl> -->
                     </div>
                     <!-- End Grid -->
                   </div>
@@ -139,22 +133,22 @@
 
 
 
-                <div class="relative flex flex-col gap-3  sm:rounded-lg  mt-8">
+                <div class="relative flex flex-col gap-3  sm:rounded-lg  mt-6">
 
-                  <div class="bg-blue-500 flex justify-center font-bold text-white uppercase text-sm py-1">
+                  <div class="bg-blue-500 flex justify-center font-bold text-white uppercase text-xs h-8">
                     Quotation
                   </div>
 
                   <table class="min-w-full border-collapse border border-gray-200">
                     <thead>
-                      <tr class="text-sm">
+                      <tr class="text-xs">
                         <th class="border-[1px] px-4 py-2">No</th>
-                        <th class="border-[1px] px-4 py-2">Parts</th>
+                        <th class="border-[1px] px-4 py-2">Réference</th>
                         <th class="border-[1px] px-4 py-2">Description</th>
-                        <th class="border-[1px] px-4 py-2">Brands</th>
                         <th class="border-[1px] px-4 py-2">QTY</th>
                         <th class="border-[1px] px-4 py-2">PU</th>
                         <th class="border-[1px] px-4 py-2">PT</th>
+                        <th class="border-[1px] px-4 py-2">Disponibile</th>
                       </tr>
                     </thead>
                     <tbody v-for="(service, index) in ProformaShow.produit_services">
@@ -162,10 +156,13 @@
                         <td class="border-[1px] px-4 py-2"> {{ index + 1 }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.reference }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.description }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ service.remarques }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ service.quantite }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ Number(service.prix_unitaire) * service.quantite }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) *
+                          service.pivot.quantite).toFixed(0) }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ ProformaLinge ? ProformaLinge[index].disponibilite :
+                          ProformaShow.ligne_proformas[index].disponibilite }} </td>
+
                       </tr>
                     </tbody>
                   </table>
@@ -176,7 +173,7 @@
 
                 <!-- Flex -->
                 <div class="mt-8 flex sm:justify-end">
-                  <div class="w-full text-sm max-w-2xl sm:text-end space-y-2">
+                  <div class="w-full flex flex-col text-xs max-w-2xl sm:text-end space-y-2">
                     <!-- Grid -->
                     <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                       <dl class="grid sm:grid-cols-5 gap-x-3">
@@ -223,7 +220,7 @@
 
                       <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
-                          Total HTVA (GNF):
+                          Total (GNF):
                         </dt>
                         <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
                           {{ ProformaShow.montant_ttc }}
@@ -239,26 +236,26 @@
                   <div class=""></div>
 
                   <div class="flex justify-center items-center flex-col">
-                    <div class="font-bold bg-blue-500 text-white px-6"> Prepared by </div>
-                    <div class="text-base font-bold">{{ ProformaShow.user?.name }}</div>
+                    <div class="font-bold text-xs bg-blue-500 text-white px-6 h-6"> Prepared by </div>
+                    <div class="text-xs font-bold">{{ ProformaShow.user?.name }}</div>
                   </div>
                 </div>
 
                 <div class="mt-8 sm:mt-12 mb-2">
                   <div class="mt-2">
-                    <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">
+                    <p class="block text-xs font-medium text-gray-800 dark:text-neutral-200">
                       Arrêté le présent devis à la somme de
                     </p>
-                    <h4 class="text-base font-semibold text-gray-800 dark:text-neutral-200">
+                    <h4 class="text-xs font-semibold text-gray-800 dark:text-neutral-200">
                       {{ numberToWords(Number(ProformaShow.montant_ttc)) }}
                     </h4>
                   </div>
 
-                  <p class="text-gray-500 dark:text-neutral-500">
-                    A l'attention de {{ ProformaShow.client?.nom }}:
+                  <p class="text-gray-500 text-xs dark:text-neutral-500">
+                    A l'attention de {{ ProformaShow.interlocuteur?.nom }}
                   </p>
                   <div class="mt-2">
-                    <p class="block text-sm font-medium text-gray-800 dark:text-neutral-200">
+                    <p class="block text-xs font-bold text-gray-800 dark:text-neutral-200">
                       Cette proforma est valable pour
                       {{ Parametres.jour_validite_document }} jours à compter de
                       la date d'emission
@@ -266,14 +263,14 @@
                   </div>
                 </div>
 
-                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500 text-center border-t-[1px] pt-4">
+                <p class="mt-5 text-sm text-gray-500 dark:text-neutral-500 text-center border-t-[1px] pt-4 w-full">
                   <!-- SARL au capital 1 000 000Fcfa - RCCM : CI – ABJ-2016 – B - 4260
                   CC : 1608130K - Cocody Saint Jean GTBANK : 25101002356 -
                   www.softsys.ci Email : infos@softsys.ci - Tél. : +225 25 22 00
                   96 65 – Cel : 07 47 99 99 92 / 07 09 02 00 52 -->
-                  <img :src="'https://apps.tmsdesk.com/parametres/' +
-                    Parametres.pied_de_page
-                    " class="w-full h-full" alt="" />
+                  <img
+                    :src="`data:image/${Parametres.pied_de_page?.split('.').pop()};base64,` + Parametres.pied_de_page_base64"
+                    class="w-full h-full" alt="" />
                 </p>
               </div>
               <!-- End Card -->
@@ -302,6 +299,7 @@ import Button from "@/components/ui/button/Button.vue";
 const ProformaShow = ref(<PROFORMA>{});
 const FactureMore = ref(<any>{});
 const Parametres = ref(<SETTING>{});
+const ProformaLinge = ref()
 const loading = ref(false);
 const route = useRoute();
 
@@ -323,19 +321,14 @@ const GetFacture = async () => {
     ProformaShow.value = data.data;
     Parametres.value = data.parametre
     FactureMore.value = data.facture
+    ProformaLinge.value = data.ligne_proformas
+
+
   }
 };
 
 const { createData } = useApiServices();
-const ValidateProforma = () => {
-  setState.loading_validate = true
-  createData(API_URL.PROFORMA_VALIDATE, { proforma_id: route.query.id }).then(
-    (data) => {
-      ProformaShow.value.etat = data.data?.etat;
-      setState.loading_validate = false
-    }
-  );
-};
+
 
 const RejeterProforma = () => {
   setState.loading_rejete = true
@@ -362,9 +355,12 @@ const printDivAsPDF = () => {
       .set({
         margin: 0.5,
         filename: 'document.pdf',
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      })
-      .save();
+        image: { type: 'jpeg', quality: 1.0 },
+        html2canvas: { dpi: 75, scale: 2, letterRendering: true },
+        jsPDF: { orientation: 'portrait', unit: 'in', format: 'a4' },
+        // pdfCallback: pdfCallback
+      }).save();
+
   }
 }
 </script>

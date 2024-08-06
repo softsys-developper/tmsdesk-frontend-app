@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit" :loading="setPaid.loadingCreate">
+  <ModalLayout :Func="onSubmit" :loading="setPaid.loadingCreate" permissions="ajouter-paiement-salaire"  >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in PaidForms">
@@ -20,7 +20,7 @@
                     @change="toggleSelectAll($event)" />
                   <label :for="'checkbox-' + index"
                     class="text-base capitalize text-gray-500 ms-3 dark:text-neutral-400">{{
-                      Primes.libelle }}</label>
+                      Primes.libelle }} ({{ Primes.pourcentage }}%) </label>
                 </div>
               </div>
             </div>

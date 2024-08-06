@@ -22,10 +22,11 @@ defineProps(['name', 'title', 'dataDropMenu', 'actions', 'isNotBg', 'id']);
          :disabled="dataDropMenu.length == 0 ? true : false"
       >
       
-         <span class="text-base" v-if="name != 'Actions'">
+         <!-- <span class="text-base" v-if="name != 'Actionss'">
             {{ name }}
-         </span>
-         <i :class="name != 'Actions' ? 'ri-arrow-down-s-line' : 'ri-more-line'"></i>
+         </span> -->
+         <!-- <i :class="name != 'Actions' ? 'ri-arrow-down-s-line' : 'ri-more-line'"></i> -->
+           <i :class="'ri-more-line'"></i>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
          <DropdownMenuLabel> {{ title }} </DropdownMenuLabel>

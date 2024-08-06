@@ -66,6 +66,41 @@ export const BreadcrumbRoutes = [
     ],
   },
 
+  {
+    route: "LOGISC_BC_PARTENAIRES_ADD",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_BC_PARTENAIRES",
+        title: "Liste des BDC",
+      },
+      {
+        route: "LOGISC_BC_PARTENAIRES_ADD",
+        title: "Creation de BDC",
+      },
+    ],
+  },
+
+  
+
+   // CRM Interlocuteur
+   {
+    route: "CRM_INTERLOCUTEUR",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "CRM_INTERLOCUTEUR",
+        title: "Liste interlocuteurs",
+      },
+    ],
+  },
+
   // CRM Partenaires
   {
     route: "PROFORMA_LIST",
@@ -321,7 +356,23 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
-
+  {
+    route: "RH_PERSONAL_SHOW",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "RH_PERSONAL",
+        title: "RH",
+      },
+      {
+        route: "RH_PERSONAL_SHOW",
+        title: "Détail de l'employé",
+      },
+    ],
+  },
 
   // Comptabilité
   {
@@ -442,10 +493,27 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
-
+  
 
 
   // Logistique
+  {
+    route: "LOGISC_STOCK",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_STOCK",
+        title: "Liste des stocks",
+      },
+    ],
+  },
   {
     route: "LOGISC_PRODUCTS",
     title: [
@@ -459,7 +527,7 @@ export const BreadcrumbRoutes = [
       },
       {
         route: "LOGISC_PRODUCTS",
-        title: "Liste des transactions",
+        title: "Liste des produits & services",
       },
     ],
   },
@@ -499,7 +567,7 @@ export const BreadcrumbRoutes = [
   },
 
   {
-    route: "LOGISC_LIVRAISONS",
+    route: "LOGISC_LIVRAISONS_ADD",
     title: [
       {
         route: "HOME",
@@ -519,6 +587,52 @@ export const BreadcrumbRoutes = [
       },
     ],
   },
+
+  {
+    route: "LOGISC_LIVRAISONS_BL",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+      {
+        route: "LOGISC_LIVRAISONS_BL",
+        title: "Bon de livraison ",
+      },
+    ],
+  },
+
+  {
+    route: "LOGISC_DETAIL_LIVRAISONS",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "LOGISC_PRODUCTS",
+        title: "Logistiques",
+      },
+      {
+        route: "LOGISC_LIVRAISONS",
+        title: "Liste des livraisons",
+      },
+      {
+        route: "LOGISC_DETAIL_LIVRAISONS",
+        title: "Détail sur la livraison",
+      },
+    ],
+  },
+
+  
   
 
   // PARAMETRE

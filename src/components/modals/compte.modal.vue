@@ -1,5 +1,5 @@
 <template>
-   <ModalLayout :Func="onSubmit" :loading="setCompte.loadingCreate">
+   <ModalLayout :Func="onSubmit" :loading="setCompte.loadingCreate" permissions="ajouter-transaction-banque" >
        <template v-slot:form>
            <div class="w-full space-y-2">
                <div class="" v-for="fr in CompteForms">

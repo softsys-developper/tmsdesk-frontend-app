@@ -23,7 +23,7 @@ export const useDeviseHook = () => {
          nom_devise: Devise.nom_devise,
          code_devise: Devise.code_devise,
          taux_change: Devise.taux_change,
-         date_creation: moment(Devise.created_at).format("l"),
+         date_creation: moment(Devise.created_at).format("DD/MM/YYYY"),
       }));
    };
 

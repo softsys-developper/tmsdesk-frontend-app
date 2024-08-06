@@ -2,14 +2,12 @@
   <BaseLayout>
     <template v-slot:content>
       <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-        <ContentLayout :title="'Facture | Versements / ' + setFacturePaid.facture.numero_facture ">
+        <ContentLayout :title="'Facture | Versements ' + (setFacturePaid.facture.numero_facture != undefined ? setFacturePaid.facture.numero_facture : '') ">
           <template v-slot:created>
-            <FacturePaidModal name="Nouveau versement" :title="useUpdateStore().isUpdate.is
+            <FacturePaiShowdModal name="Nouveau versement" :title="useUpdateStore().isUpdate.is
                 ? 'Modifier le versement'
                 : 'Nouveau versement'
               " />
-
-            <DeleteLayout :funDelete="FacturePaidDelete" :id="useUpdateStore().isDelete.id" />
 
             <DeleteLayout :funDelete="FacturePaidDelete" :id="useUpdateStore().isDelete.id" />
           </template>
@@ -33,7 +31,7 @@ import { FacturePaidTables } from "@/tables/facture_paid.tables";
 import { useFacturePaidHook } from "@/hooks/comptabilites/facture_paid.hook.ts";
 import DeleteLayout from "@/layouts/delete.layout.vue";
 import { useUpdateStore } from "@/stores/update.store";
-import FacturePaidModal from "@/components/modals/COMPTABILITE/facture_paid.modal.vue";
+import FacturePaiShowdModal from "@/components/modals/COMPTABILITE/facture_paid_show.modal.vue";
 import { useRoute } from "vue-router";
 const route = useRoute()
 

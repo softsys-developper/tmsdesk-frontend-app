@@ -2,11 +2,11 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
-                <ContentLayout title="Parametre | Holiday">
+                <ContentLayout title="Parametre | jours feries">
                     <template v-slot:created>
-                        <HolidayModal :name="'Ajouter Holiday'" :title="useUpdateStore().isUpdate.is
-                            ? 'Modifier Holiday'
-                            : 'Ajouter Holiday'
+                        <HolidayModal :name="'Ajouter jours ferie'" :title="useUpdateStore().isUpdate.is
+                            ? 'Modifier jours ferie'
+                            : 'Ajouter jours ferie'
                             " />
 
                         <DeleteLayout title="Ajouter un nouvel categorie" :funDelete="HolidayDelete"

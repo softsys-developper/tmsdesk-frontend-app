@@ -82,11 +82,15 @@
                   :value="PARAMETRE.code_activite"
                   name="code_postal"
                 />
-                <InputForm
+                <SelectedForm
+                  label="Dévise"
+                  type="select"
                   title="Dévise"
                   placeholder="00000"
-                  :value="PARAMETRE.code_activite"
-                  name="devise"
+                  :modelValue="PARAMETRE.devise_id"
+                  name="devise_id"
+                  :select="ListOfDevises"
+                   isLabel="Devise"
                 />
                 <InputForm
                   title="Lot"
@@ -196,43 +200,46 @@
                   :value="PARAMETRE.jour_validite_document"
                   name="jour_validite_document"
                 />
-                
               </div>
 
               <div class="flex flex-col py-8 gap-4">
-
                 <div class="">
                   <span class="text-base font-bold">Fichers</span>
                 </div>
 
+                <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                  <div class="">
+                    <label for="">
+                      Signature :
+                      {{ PARAMETRE.signature ? "Updated" : "Non Ajouter" }}
+                    </label>
+                    <Input type="file" name="signature" class="" />
+                  </div>
 
-               <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
+                  <div class="">
+                    <label for="">
+                      Logo : {{ PARAMETRE.logo ? "Updated" : "Non Ajouter" }}
+                    </label>
+                    <Input type="file" name="logo" class="" />
+                  </div>
 
-                <div class="">
-                  <label for=""> Signature : {{ PARAMETRE.signature ? 'Updated' : 'Non Ajouter' }} </label>
-                  <Input type="file" name="signature" class="" />
+                  <div class="">
+                    <label for="">
+                      Entête :
+                      {{ PARAMETRE.entete ? "Updated" : "Non Ajouter" }}
+                    </label>
+                    <Input type="file" name="en_tete" class="" />
+                  </div>
+
+                  <div class="">
+                    <label for="">
+                      Pied de page :
+                      {{ PARAMETRE.pied_de_page ? "Updated" : "Non Ajouter" }}
+                    </label>
+                    <Input type="file" name="pied_de_page" class="" />
+                  </div>
                 </div>
-
-                <div class="">
-                  <label for=""> Logo :  {{ PARAMETRE.logo ? 'Updated' : 'Non Ajouter' }} </label>
-                  <Input type="file" name="logo" class="" />
-                </div>
-
-                <div class="">
-                  <label for=""> Entête : {{ PARAMETRE.entete ? 'Updated' : 'Non Ajouter' }} </label>
-                  <Input type="file" name="entete" class="" />
-                </div>
-
-                <div class="">
-                  <label for=""> Pied de page : {{ PARAMETRE.pied_de_page ? 'Updated' : 'Non Ajouter' }} </label>
-                  <Input type="file" name="pied_de_page" class="" />
-                </div>
-
-               </div>
-
-
               </div>
-
             </template>
           </SettingCard>
         </div>
@@ -251,6 +258,8 @@ import { onMounted, ref } from "vue";
 import { type SETTING } from "@/types/setting.type";
 import { useToast } from "@/components/ui/toast/use-toast";
 import Input from "@/components/ui/input/Input.vue";
+import { useApiServices } from "@/services/api.services";
+import SelectedForm from "@/components/forms/selected.form.vue";
 const { toast } = useToast();
 
 const PARAMETRE = ref(<SETTING>{});
@@ -265,44 +274,48 @@ const ListParametre = async () => {
   }
 };
 
-
 const SendSetting = async (e: any) => {
   e.preventDefault();
 
   try {
-const data = new FormData(e.target);
-
+    const data = new FormData(e.target);
 
     const response = await axios.post(API_URL.SETTING_UPDATE, data);
-    if(response.data){
+    if (response.data) {
       toast({
-              title: 'Succès !',
-              description: response.data.message,
-            });
+        title: "Succès !",
+        description: response.data.message,
+      });
     }
     // console.log(response);
-  } catch (err:any) {
+  } catch (err: any) {
     if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
+      const isErr = Object.keys(err.response.data.errors);
+      if (isErr) {
+        toast({
+          title: isErr[0],
+          variant: "destructive",
+          description: err.response.data.errors[isErr[0]][0],
+        });
+      } else {
+        toast({
+          title: "error",
+          variant: "destructive",
+          description: err.response.data.message,
+        });
+      }
+    }
   }
 };
 
+const ListOfDevises = ref([]);
 onMounted(() => {
   ListParametre();
+  useApiServices()
+    .readData(API_URL.DEVISE_LIST)
+    .then((data: any) => {
+      ListOfDevises.value = data.datas;
+    });
 });
 </script>
 <style lang="css" scoped></style>

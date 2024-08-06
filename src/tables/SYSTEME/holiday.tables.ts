@@ -9,15 +9,8 @@ export const HolidayTables = reactive([
         bgColor: null,
     },
     {
-        label: 'Libellé',
-        field: 'libelle',
-        status: null,
-        color: null,
-        bgColor: null,
-    },
-    {
-        label: 'Catégories',
-        field: 'categorie',
+        label: 'description',
+        field: 'description',
         status: null,
         color: null,
         bgColor: null,

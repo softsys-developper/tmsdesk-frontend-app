@@ -47,7 +47,7 @@
             />
           </svg>
           <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Êtes-vous sûr de vouloir supprimer ?
+           {{ title_z ? title_z : 'Êtes-vous sûr de vouloir supprimer' }}
           </h3>
           <button
           @click="funDelete(id)"
@@ -73,6 +73,6 @@
 <script lang="ts" setup>
 import { useModalStore } from "@/stores/modal.store";
 
-defineProps(['funDelete', 'id'])
+defineProps(['funDelete', 'id', 'title_z'])
 </script>
 <style lang="css" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit"  :loading="setCategorie.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setCategorie.loadingCreate" permissions="ajouter-categorie" >
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in CategorieForms">

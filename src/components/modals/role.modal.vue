@@ -1,5 +1,5 @@
 <template>
-    <ModalLayout :Func="onSubmit" :loading="setRole.loadingCreate">
+    <ModalLayout :Func="onSubmit" :loading="setRole.loadingCreate" permissions="ajouter-role">
         <template v-slot:form>
             <div class="w-full space-y-2">
                 <div class="" v-for="fr in RoleForms">

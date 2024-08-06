@@ -1,5 +1,26 @@
 export const PersonalTables = [
    {
+      label: 'ID',
+      field: 'id',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
+      label: 'Matricule',
+      field: 'matricule',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
+      label: 'Photos',
+      field: 'image',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+   {
       label: 'Nom',
       field: 'nom',
       status: null,
@@ -58,7 +79,14 @@ export const UserTables = [
       color: null,
       bgColor: null,
    },
-  
+   
+   {
+      label: "Images",
+      field: 'image',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
    {
       label: "Nom d'utilisateur",
       field: 'nom_utilisateur',

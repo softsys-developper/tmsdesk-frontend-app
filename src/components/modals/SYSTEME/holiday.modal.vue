@@ -1,5 +1,5 @@
 <template>
-    <ModalLayout :Func="onSubmit"  :loading="setHoliday.loadingCreate">
+    <ModalLayout :Func="onSubmit"  :loading="setHoliday.loadingCreate" permissions="ajouter-etape" >
       <template v-slot:form>
         <div class="w-full space-y-2">
           <div class="" v-for="fr in HolidayForms">

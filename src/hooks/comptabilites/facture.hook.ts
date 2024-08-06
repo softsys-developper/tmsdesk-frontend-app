@@ -31,7 +31,10 @@ export const useFactureHook = () => {
       numero_facture: Facture.numero_facture,
       // titre: Facture.titre,
       // client: Facture.client?.nom,
-      montant_ttc: Facture.montant_ttc,
+      montant_ttc:  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+        Facture.montant_ttc,
+      ),
+      reste_a_payer: Facture.reste_a_payer,
       status:
         Facture.statut == 1
           ? StatusHtml("En attante", "bg-orange-500")
@@ -39,7 +42,7 @@ export const useFactureHook = () => {
           ? StatusHtml("Partiellement", "bg-blue-500")
           : StatusHtml("Payer", "bg-green-500"),
           date_emission: Facture.date_emission,
-          date_creation: moment(Facture.created_at).format("l"),
+          date_creation: moment(Facture.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeFactures = computed(() => {

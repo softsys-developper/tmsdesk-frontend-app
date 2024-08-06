@@ -12,6 +12,8 @@ defineProps([
   "isUpdated",
   "loading",
   "Func",
+  "isCloseBtn",
+  "permissions"
 ]);
 
 const open = computed(() => {
@@ -20,6 +22,10 @@ const open = computed(() => {
 
 const emit = defineEmits(["open"]);
 const setOpen = () => {
+
+  useModalStore().ProspectStep = false
+  useModalStore().Proforma = false
+
   emit("open", useModalStore().open);
   if (useModalStore().open) {
     useModalStore().open = false;
@@ -28,6 +34,7 @@ const setOpen = () => {
     useModalStore().open = true;
   }
   useUpdateStore().isUpdate.is = false;
+  
 };
 
 // const is = computed(() => {
@@ -50,9 +57,12 @@ const setOpen = () => {
 </script>
 
 <template>
+
+  <!-- {{ useModalStore().Permissions }} -->
   <!-- {{ is }} -->
-  <div class="flex">
-    <Button class="bg-orange-400 font-bold text-base flex items-center jus gap-2" @click="setOpen">
+  
+  <div class="flex"> 
+    <Button class="bg-orange-400 font-bold text-base flex items-center jus gap-2" v-if="!isCloseBtn && useModalStore().Permissions.map((el:any) => el.name).includes(permissions)" @click="setOpen">
       <i class="ri-add-line"></i>
       <span class="truncate lg:w-full md:w-32 w-24 font-bold hidden lg:flex">{{
         name

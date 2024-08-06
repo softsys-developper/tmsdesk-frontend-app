@@ -23,7 +23,7 @@ export const usePartnerHook = () => {
          email: Partner.email,
          telephone: Partner.telephone,
          adresse: Partner.adresse,
-         date_creation: moment(Partner.created_at).format("l") ,
+         date_creation: moment(Partner.created_at).format("DD/MM/YYYY") ,
       }));
    };
 

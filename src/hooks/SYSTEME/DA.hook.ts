@@ -24,7 +24,7 @@ export const useDAHook = () => {
     return DAs.map((DA: any) => ({
       id: DA.id,
       libelle: DA.libelle,
-      date_creation: moment(DA.created_at).format("l"),
+      date_creation: moment(DA.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeDAs = computed(() => {

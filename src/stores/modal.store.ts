@@ -15,8 +15,17 @@ export const useModalStore = defineStore('Modal', {
          token: null
       },
 
+      Proforma: false,
+      ProformaId: null,
 
       ProspectStep: false,
-      ProspectStepID: null
+      ProspectStepID: null,
+
+      Stocks: false,
+      StocksID: null,
+
+
+      MenuSideBar: <any>[],
+      Permissions: <any>[]
    }),
 });

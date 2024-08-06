@@ -20,7 +20,7 @@ export const useSalaireHook = () => {
       id: salaire.id,
       categorie: salaire.categorie,
       montant: salaire.montant,
-      date_creation: moment(salaire.created_at).format("l") ,
+      date_creation: moment(salaire.created_at).format("DD/MM/YYYY") ,
     }));
   };
 

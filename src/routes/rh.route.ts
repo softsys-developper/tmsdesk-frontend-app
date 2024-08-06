@@ -6,6 +6,10 @@ import Heure_supp_rhPage from '@/pages/rh/heure_supp_rh.page.vue';
 import Prime_rhPage from "@/pages/rh/prime_rh.page.vue"
 import Service_rhPage from '@/pages/rh/service_rh.page.vue';
 import Personal_addPage from '@/pages/rh/__partials/personal_add.page.vue';
+import Personal_showPage from '@/pages/rh/__partials/personal_show.page.vue';
+
+import Stagiaire_addPage from '@/pages/rh/__partials/stagiaire_add.page.vue';
+import Stagiaire_rhPage from '@/pages/rh/__partials/stagiaire_add.page.vue';
 
 export const routeRh = {
    path: '/rh',
@@ -22,6 +26,12 @@ export const routeRh = {
         component: Personal_addPage,
         children: [],
      },
+     {
+      path: 'personal/show',
+      name: 'RH_PERSONAL_SHOW',
+      component: Personal_showPage,
+      children: [],
+   },
       {
         path: 'salaires',
         name: 'RH_SALAIRE',
@@ -57,6 +67,18 @@ export const routeRh = {
         name: 'RH_INDEMNITE_PRIME',
         component: Prime_rhPage,
         children: [],
-      }
+      },
+      {
+        path: 'stagiaire',
+        name: 'RH_STAGIAIRE',
+        component: Stagiaire_rhPage,
+        children: [],
+     },
+     {
+       path: 'stagiaire/add',
+       name: 'RH_STAGIAIRE_ADD',
+       component: Stagiaire_addPage,
+       children: [],
+    },
    ],
 };

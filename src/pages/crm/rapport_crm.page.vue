@@ -72,7 +72,7 @@ import moment from "moment";
         id: Rapport.id,
       message: Rapport.message,
       commercial: Rapport.name,
-      date_creation: moment(Rapport.created_at).format("l"),
+      date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
       }))
     })
     // FindRapportAll();

@@ -1,20 +1,15 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "./../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/facturePaid.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import { setService } from "@/services/set.services";
 
 export const useFacturePaidHook = () => {
-  const { readData, createData, showData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData, showData } = useApiServices();
   const setFacturePaid = reactive({ loading: false, loadingCreate: false, facture: <any>{} });
   const stateFacturePaids = ref<any[]>([]);
   stateFacturePaids.value = useDataStore().FacturePaids;
-  const { toast } = useToast();
 
   const formatFacturePaidData = (facturePaids: any) => {
     return facturePaids.map((facturePaid: any) => ({
@@ -62,48 +57,17 @@ export const useFacturePaidHook = () => {
 
   //
   const CreateFacturePaid = async (values: any) => {
-    setFacturePaid.loadingCreate = true;
-    const DataCreated = await createData(API_URL.FACTURE_PAID_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setFacturePaid.loadingCreate = false;
-          let FacturePaids = useDataStore().FacturePaids;
-
-          //
-          const toAdd: [] = formatFacturePaidData([data.data]);
-          FacturePaids.unshift(...toAdd);
-          useDataStore().FacturePaids = FacturePaids;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setFacturePaid.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+    setService(
+      setFacturePaid,
+      useDataStore(),
+      'FacturePaids',
+      formatFacturePaidData,
+      // () => { useDataStore().Factures.map((el) => {
+      //   if()
+      // }) }
+    ).SetCreate(API_URL.FACTURE_PAID_CREATE, values);
   };
+ 
 
   //
   const FacturePaidUpdate = (id: any, values: any) => {

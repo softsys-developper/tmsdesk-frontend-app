@@ -2,7 +2,8 @@
     <BaseLayout>
         <template v-slot:content>
             <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-4">
-                <ContentLayout :title="`R. Humaines | ${$route.query.id ? 'Modification employé' : 'Création employé' }`">
+                <ContentLayout
+                    :title="`R. Humaines | ${$route.query.id ? 'Modification employé' : 'Création employé'}`">
                     <template v-slot:created> </template>
                 </ContentLayout>
 
@@ -19,7 +20,8 @@
                         <button type="submit" class="bg-gray-800 px-4 py-2 font-bold text-white rounded-md"
                             :disabled="setPersonal.loadingCreate">
                             <SpinnerLoader size="w-6 h-6" v-if="setPersonal.loadingCreate" />
-                            <span class="" v-else> {{route.query.id ? 'Modifer un employer' : 'Crée un employer'}} </span>
+                            <span class="" v-else> {{ route.query.id ? 'Modifier un employé' : 'Créer un employé' }}
+                            </span>
                         </button>
                     </div>
                 </form>
@@ -49,28 +51,45 @@ const { setPersonal, CreatePersonal, PersonalUpdate } = usePersonalHook();
 
 const onSubmit = (e: any) => {
     const values = new FormData(e.target);
-    if(!route.query.id){
-        CreatePersonal(values,route.query.id, route, router);
-    }else{
-        PersonalUpdate(route.query.id, values);
+    if (!route.query.id) {
+        CreatePersonal(values, route.query.id, route, router);
+    } else {
+        PersonalUpdate(route.query.id, values, () => {
+            router.push({ name: "RH_PERSONAL" });
+        });
     }
-    
 };
-
-
 
 
 const FindShowPersonal = () => {
     if (route.query.id) {
         showData(API_URL.USER_SHOW, '/' + route.query.id).then((data) => {
-            const InputKey = Object.keys(data.data);
+
+            const PERSONAL: any = data.data
+            const InputKey = Object.keys(PERSONAL).filter((el) => {
+                return el != 'photo' && el != 'fiche_poste' && el != 'contrat'
+            });
+
+           
 
             InputKey?.forEach((el) => {
                 let UpdateInput: any = document.querySelector(`#${el}`);
-                if (UpdateInput) {
-                    UpdateInput.value = data.data[el];
+               
+                if (UpdateInput != null) {
+                    console.log(UpdateInput)
+                    UpdateInput.value =  PERSONAL[el];
                 }
             });
+
+    
+            setTimeout(() => {
+                // const solde_conge_annuel:any = document.querySelector(`#solde_conge_annuel`)
+            const service:any = document.querySelector(`#service`)
+            const salaire:any = document.querySelector(`#salaire`)
+            // solde_conge_annuel.value = PERSONAL['solde_conge_annuel']
+            service.value = PERSONAL['service_id']
+            salaire.value = PERSONAL['salaire_id']
+            }, 500)
         })
     }
 }
@@ -103,7 +122,7 @@ onMounted(() => {
         remplacerObjetDansTableau(PersonalForms, "name", "salaire", data.datas)
     );
     readData(API_URL.SERVICE_LIST).then((data) =>
-        remplacerObjetDansTableau(PersonalForms, "name", "service", data.datas)
+        remplacerObjetDansTableau(PersonalForms, "name", "service", data.datas.map((el: any) => ({ id: el.id, libelle: el.libelle })))
     );
 });
 </script>

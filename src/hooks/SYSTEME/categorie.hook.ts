@@ -31,7 +31,7 @@ export const useCategorieHook = () => {
     return Categories.map((Categorie: CATEGORIE_DATA) => ({
       id: Categorie.id,
       libelle: Categorie.libelle,
-      date_creation: moment(Categorie.created_at).format("l"),
+      date_creation: moment(Categorie.created_at).format("DD/MM/YYYY"),
     }));
   };
   const storeCategories = computed(() => {

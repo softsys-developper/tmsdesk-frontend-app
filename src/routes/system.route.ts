@@ -7,6 +7,7 @@ import Permisson_systemPage from "@/pages/systeme/permission_system.page.vue";
 import DA_systemPage from "@/pages/systeme/DA_system.page.vue";
 import Parametre_systemPage from "@/pages/systeme/parametre_system.page.vue";
 import Step_systemPage from "@/pages/systeme/step_system.page.vue";
+import Holiday_systemPage from "@/pages/systeme/holiday_system.page.vue";
 
 export const routeSystem = {
   path: "/system",
@@ -70,7 +71,7 @@ export const routeSystem = {
     {
       path: "jour-ferier",
       name: "SYSTEM_HOLIDAY",
-      component: Step_systemPage,
+      component: Holiday_systemPage,
       children: [],
     },
 

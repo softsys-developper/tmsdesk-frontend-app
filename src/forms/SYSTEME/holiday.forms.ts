@@ -1,9 +1,17 @@
 export const HolidayForms = [
     {
-      label: "Libelle domaine d'activité",
+      label: "Description",
       type: "text",
-      placeholder: "libelle",
-      name: "libelle",
+      placeholder: "Description",
+      name: "description",
+      value: "",
+      select: [],
+    },
+    {
+      label: "Date",
+      type: "date",
+      placeholder: "Date du jours ferie",
+      name: "date",
       value: "",
       select: [],
     },

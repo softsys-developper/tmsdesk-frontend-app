@@ -47,11 +47,15 @@ export const API_URL = {
   PROSPECT_CREATE: `${BASE_URL}/prospects/add`,
   PROSPECT_UPDATE: `${BASE_URL}/prospects/update`,
   PROSPECT_REMOVE: `${BASE_URL}/prospects/delete`,
+  PROSPECT_COMMERCIAL_LIST: `${BASE_URL}/mes-prospects`,
+  PROSPECT_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/prospects/by-user/`,
 
   CLIENT_PROSPECT_LIST: `${BASE_URL}/client-prospects`,
   CLIENT_PROSPECT_CREATE: `${BASE_URL}/client-prospects/add`,
   CLIENT_PROSPECT_UPDATE: `${BASE_URL}/client-prospects/update`,
   CLIENT_PROSPECT_REMOVE: `${BASE_URL}/client-prospects/delete`,
+
+  COMMERCIAL_LIST: `${BASE_URL}/commerciaux`,
 
   // Gestion utilisateur (employé)
   PARTNER_LIST: `${BASE_URL}/partenaires`,
@@ -66,6 +70,10 @@ export const API_URL = {
   PROFORMA_DETAILS: `${BASE_URL}/proformas`,
   PROFORMA_VALIDATE: `${BASE_URL}/proformas/valider-proforma`,
   PROFORMA_REJETE: `${BASE_URL}/proformas/rejeter-proforma`,
+  PROFORMA_COMMERCIAL_LIST: `${BASE_URL}/mes-proformas`,
+  PROFORMA_CHANGE_STATE: `${BASE_URL}/proformas/changer-etat`,
+  PROFORMA_COMMERCIAL_BY_USER_LIST: `${BASE_URL}/proformas/by-user/`,
+  PROFORMA_COMMERCIAL: `${BASE_URL}/mes-proformas`,
 
   // Gestion roles
   ROLE_LIST: `${BASE_URL}/roles`,
@@ -110,12 +118,19 @@ export const API_URL = {
   NBC_DETAILS: `${BASE_URL}/bon-de-commandes/details`,
 
   INTERLOCUTEUR_LIST: `${BASE_URL}/interlocuteurs`,
+  INTERLOCUTEUR_CLIENT_LIST: `${BASE_URL}/interlocuteurs/prospect/`,
+  INTERLOCUTEUR_FOURNISSUER_LIST: `${BASE_URL}/interlocuteurs/fournisseur/`,
+  INTERLOCUTEUR_CLIENT_CREATE: `${BASE_URL}/interlocuteurs/client/add`,
+  INTERLOCUTEUR_FOURNISSUER_CREATE: `${BASE_URL}/interlocuteurs/fournisseur/add`,
+  INTERLOCUTEUR_UPDATE: `${BASE_URL}/interlocuteurs/update`,
+  INTERLOCUTEUR_REMOVE: `${BASE_URL}/interlocuteurs/delete`,
+  INTERLOCUTEUR_DETAILS: `${BASE_URL}/interlocuteurs/edit`,
 
   BC_FOURNISSEUR_LIST: `${BASE_URL}/fournisseurs/bdc`,
   BC_FOURNISSEUR_CREATE: `${BASE_URL}/fournisseurs/bdc/add`,
   BC_FOURNISSEUR_UPDATE: `${BASE_URL}/fournisseurs/bdc/update`,
-  BC_FOURNISSEUR_REMOVE: `${BASE_URL}/fournisseurs/bdc-delete`,
-  BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc-edit`,
+  BC_FOURNISSEUR_REMOVE: `${BASE_URL}/fournisseurs/bdc/delete`,
+  BC_FOURNISSEUR_DETAILS: `${BASE_URL}/fournisseurs/bdc/edit`,
 
   CAISSE_TRANSACTION_LIST: `${BASE_URL}/caisse/transactions`,
   CAISSE_TRANSACTION_CREATE: `${BASE_URL}/caisse/transaction/add`,
@@ -141,7 +156,7 @@ export const API_URL = {
   BANQUE_TRANSACTION_REMOVE: `${BASE_URL}/banque/transactions/delete`,
   BANQUE_TRANSACTION_DETAILS: `${BASE_URL}/banque/transactions/details`,
 
-  LIVRE_LIST: `${BASE_URL}/grand-livre/banque`,
+  LIVRE_LIST: `${BASE_URL}/grand-livre/all-banques`,
   LIVRE_CREATE: `${BASE_URL}/grand-livre/banque/add`,
   LIVRE_UPDATE: `${BASE_URL}/grand-livre/banque/update`,
   LIVRE_REMOVE: `${BASE_URL}/grand-livre/banque/delete`,
@@ -191,6 +206,9 @@ export const API_URL = {
   LIVRAISON_DETAIL: `${BASE_URL}/livraisons/`,
   LIVRAISON_REMOVE: `${BASE_URL}/livraisons/delete`,
 
+  LIVRAISON_DETAIL_LIST: `${BASE_URL}/livraisons/produits/`,
+  LIVRAISON_DETAIL_REMOVE: `${BASE_URL}/livraisons/delete`,
+
   CATEGORIE_LIST: `${BASE_URL}/categories`,
   CATEGORIE_CREATE: `${BASE_URL}/categories/add`,
   CATEGORIE_UPDATE: `${BASE_URL}/categories/update`,
@@ -230,11 +248,13 @@ export const API_URL = {
 
   // Gestion Permissions
   PERMISSIONS_LIST: `${BASE_URL}/permissions`,
-  PERMISSIONS_CREATE: `${BASE_URL}/permissions/add`,
+  PERMISSIONS_CREATE: `${BASE_URL}/permissions/user/add`,
   PERMISSIONS_UPDATE: `${BASE_URL}/permissions/update`,
   PERMISSIONS_REMOVE: `${BASE_URL}/permissions/delete`,
   PERMISSIONS_ROLE: `${BASE_URL}/permissions/role/`,
   PERMISSIONS_ROLE_CREATE: `${BASE_URL}/roles/permissions/add`,
+  PERMISSIONS_USER_CONNECTER: `${BASE_URL}/permissions/user-connecte`,
+  PERMISSIONS_USER: `${BASE_URL}/permissions/user/`,
 
   //Etape
   STEP_LIST: `${BASE_URL}/etapes`,
@@ -243,17 +263,32 @@ export const API_URL = {
   STEP_REMOVE: `${BASE_URL}/etapes/delete`,
 
   //Jours Ferier
-  HOLIDAY_LIST: `${BASE_URL}/jours-feriers`,
-  HOLIDAY_CREATE: `${BASE_URL}/jours-feriers/add`,
-  HOLIDAY_UPDATE: `${BASE_URL}/jours-feriers/update`,
-  HOLIDAY_REMOVE: `${BASE_URL}/jours-feriers/delete`,
+  HOLIDAY_LIST: `${BASE_URL}/jours-feries`,
+  HOLIDAY_CREATE: `${BASE_URL}/jours-feries/add`,
+  HOLIDAY_UPDATE: `${BASE_URL}/jours-feries/update`,
+  HOLIDAY_REMOVE: `${BASE_URL}/jours-feries/delete`,
 
   //Stocks
-  STOCK_LIST: `${BASE_URL}/produits/in-stocks`,
-  STOCK_CREATE: `${BASE_URL}/produits/in-stocks/add`,
-  STOCK_UPDATE: `${BASE_URL}/produits/in-stocks/update`,
-  STOCK_REMOVE: `${BASE_URL}/produits/in-stocks/delete`,
+  STOCK_LIST: `${BASE_URL}/produits/in-stock`,
+  STOCK_CREATE: `${BASE_URL}/produits/in-stock/add`,
+  STOCK_UPDATE: `${BASE_URL}/produits/in-stock/update`,
+  STOCK_REMOVE: `${BASE_URL}/produits/in-stock/delete`,
+  STOCK_REMOVE_STOCK: `${BASE_URL}/produits/out-stock`,
 
   //Etape
   PROSPECT_STEP_CHANGE: `${BASE_URL}/prospects/change/etape`,
+
+  //
+  STATS_BANQUE: `${BASE_URL}/statistiques/banques`,
+  STATS_CAISSE: `${BASE_URL}/statistiques/caisses`,
+  STATS_INVOICE: `${BASE_URL}/statistiques/factures/client`,
+  STATS_PROFORMA: `${BASE_URL}/statistiques/proformas`,
+  STATS_TURNOVER: `${BASE_URL}/statistiques/globales`,
+
+  //
+  STAGE_LIST: `${BASE_URL}/stagaires`,
+  STAGE_CREATE: `${BASE_URL}/stagaires/add`,
+  STAGE_SHOW: `${BASE_URL}/stagaires/`,
+  STAGE_UPDATE: `${BASE_URL}/stagaires/update`,
+  STAGE_REMOVE: `${BASE_URL}/stagaires/delete`,
 };

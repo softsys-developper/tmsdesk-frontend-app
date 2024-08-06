@@ -34,6 +34,16 @@ export const FactureTables = [
        color: null,
        bgColor: null,
     },
+
+    {
+      label: 'Reste à payer',
+      field: 'reste_a_payer',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+    
+
     {
        label: 'Statut',
        field: 'status',

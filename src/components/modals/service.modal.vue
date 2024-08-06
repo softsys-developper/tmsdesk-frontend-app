@@ -1,5 +1,5 @@
 <template>
-  <ModalLayout :Func="onSubmit"  :loading="setService.loadingCreate">
+  <ModalLayout :Func="onSubmit"  :loading="setService.loadingCreate" permissions="ajouter-service">
     <template v-slot:form>
       <div class="w-full space-y-2">
         <div class="" v-for="fr in ServiceForms">
@@ -10,6 +10,7 @@
             :type="fr.type"
             :placeholder="fr.placeholder"
             :select="fr.select"
+            
           />
         </div>
       </div>

@@ -61,7 +61,7 @@ import { MenuPersonal } from "@/routes/menu.route";
       </div>
     </Breadcrumb>
     <div>
-      <div class="flex gap-4">
+      <div class=" gap-4 hidden">
         <div v-for="item in MenuPersonal">
           <div class="flex gap-2 items-center min-w-max">
             <i class="text-2xl text-blue-500" :class="item.icon"></i>
