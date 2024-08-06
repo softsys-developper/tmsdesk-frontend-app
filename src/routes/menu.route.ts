@@ -371,7 +371,7 @@ export const MenuApp = [
             id: 'SYSTEM_STEP_PROSPECT',
             name: 'Etapes Prospect',
             route: 'SYSTEM_STEP_PROSPECT',
-            permission: 'liste-etapes'
+            permission: 'liste-etape'
          },
          {
             icon: 'ri-bill-line',

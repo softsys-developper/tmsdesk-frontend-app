@@ -18,19 +18,17 @@ export const useHolidayHook = () => {
     return useDataStore().Holiday
    })
 
-   const formatHolidayData = (comptes: any) => {
-      return comptes.map((compte: any) => ({
-         id: compte.id,
-         numero_compte: compte.numero_compte,
-         nom: compte.nom,
-         solde: compte.solde,
-         date_creation: moment(compte.created_at).format("DD/MM/YYYY"),
+   const formatHolidayData = (holiday: any) => {
+      return holiday.map((holiday: any) => ({
+         id: holiday.id,
+         description: holiday.description,
+         date_creation: moment(holiday.created_at).format("DD/MM/YYYY"),
       }));
    };
 
    const FindHolidayAll = () => {
       setHoliday.loading = true;
-      readData(API_URL.BANQUE_LIST)
+      readData(API_URL.HOLIDAY_LIST)
          .then((data: any) => {
             
             useDataStore().Holiday = formatHolidayData(data.datas);
@@ -47,7 +45,7 @@ export const useHolidayHook = () => {
          useDataStore(),
          'Holiday',
          formatHolidayData
-       ).SetCreate(API_URL.BANQUE_CREATE, values);
+       ).SetCreate(API_URL.HOLIDAY_CREATE, values);
    };
 
     //
@@ -57,7 +55,7 @@ export const useHolidayHook = () => {
         useDataStore(),
         'Holiday',
         formatHolidayData
-      ).SetUpdate(API_URL.BANQUE_UPDATE, id, values);
+      ).SetUpdate(API_URL.HOLIDAY_UPDATE, id, values);
     };
    
     //
@@ -67,7 +65,7 @@ export const useHolidayHook = () => {
         useDataStore(),
         'Holiday',
         formatHolidayData
-      ).SetDelete(API_URL.BANQUE_REMOVE, id);
+      ).SetDelete(API_URL.HOLIDAY_REMOVE, id);
     };
    
     return {

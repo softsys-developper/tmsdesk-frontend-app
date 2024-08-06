@@ -263,10 +263,10 @@ export const API_URL = {
   STEP_REMOVE: `${BASE_URL}/etapes/delete`,
 
   //Jours Ferier
-  HOLIDAY_LIST: `${BASE_URL}/jours-feriers`,
-  HOLIDAY_CREATE: `${BASE_URL}/jours-feriers/add`,
-  HOLIDAY_UPDATE: `${BASE_URL}/jours-feriers/update`,
-  HOLIDAY_REMOVE: `${BASE_URL}/jours-feriers/delete`,
+  HOLIDAY_LIST: `${BASE_URL}/jours-feries`,
+  HOLIDAY_CREATE: `${BASE_URL}/jours-feries/add`,
+  HOLIDAY_UPDATE: `${BASE_URL}/jours-feries/update`,
+  HOLIDAY_REMOVE: `${BASE_URL}/jours-feries/delete`,
 
   //Stocks
   STOCK_LIST: `${BASE_URL}/produits/in-stock`,
