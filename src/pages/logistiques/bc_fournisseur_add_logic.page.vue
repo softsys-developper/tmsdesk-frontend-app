@@ -220,7 +220,7 @@
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ Amount }} (GNF)
+                      {{ Amount }} (CFA)
                     </dd>
                   </dl> -->
 

@@ -209,7 +209,7 @@
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ _AmountHT.toFixed(0) }} (GNF)
+                      {{ AmountHT }} {{ _AmountHT.toFixed(0) }} (CFA)
                     </dd>
                   </dl>
 
@@ -265,7 +265,7 @@
                           ).toFixed(0)
                           : _AmountTTC
                       }}
-                      (GNF)
+                      (CFA)
                     </dd>
                   </dl>
                 </div>

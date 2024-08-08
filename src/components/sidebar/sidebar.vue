@@ -8,7 +8,7 @@
 
 
       <div class=" mb-4">
-        <img class="h-16" src="/images/logo/tms.jpeg" alt="">
+        <img class="h-16" src="/images/logo/logo_softsys.png" alt="">
       </div>
 
       <MenuHeaderCard

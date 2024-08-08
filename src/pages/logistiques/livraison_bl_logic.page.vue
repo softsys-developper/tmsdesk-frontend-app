@@ -61,7 +61,7 @@
                     </div>
                   </div>
 
-                  <div class="h-24"><img class="h-full" src="/images/logo/tms.jpeg" alt=""></div>
+                  <div class="h-24"><img class="h-full" src="/images/logo/logo_softsys.png" alt=""></div>
                 </div>
                 <!-- End Grid -->
 

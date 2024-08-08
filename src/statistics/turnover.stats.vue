@@ -110,7 +110,7 @@ onMounted(() => {
                             <span class="text-bold text-3xl" :class="colors[index]" > {{  `${turnover.name == "Chiffre d'Affaire"
                                 ? new Intl.NumberFormat("de-DE", {
                                     style: "currency",
-                                    currency: "GNF",
+                                    currency: "CFA",
                                 }).format(turnover.count)
                                 : `${turnover.count}`
                             }` }} </span>
@@ -124,7 +124,7 @@ onMounted(() => {
                             `${turnover.name == "Chiffre d'Affaire"
                                 ? new Intl.NumberFormat("de-DE", {
                                     style: "currency",
-                                    currency: "GNF",
+                                    currency: "CFA",
                                 }).format(turnover.count)
                                 : `${turnover.count} ${turnover.name}(s)`
                             }`

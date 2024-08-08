@@ -8,7 +8,7 @@
                   <div class="flex gap-2 items-center ">
                      <div class="lg:text-lg text-base bg-orange-500 text-white px-4 py-1 rounded-md font-black">
                         <span class="font-bold uppercase">solde : </span>
-                        {{ new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
+                        {{ new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'CFA' }).format(
     CountSolde,
   )  }}
                      </div>

@@ -103,7 +103,7 @@ const onSubmit = handleSubmit(async (values) => {
       <div class="w-8/12 z-40 hidden lg:flex">
         <img
           class="w-full h-full object-contain"
-          src="/images/PUB3.jpg"
+          src="/images/portfolio.jpg"
           alt=""
         />
       </div>
@@ -118,7 +118,7 @@ const onSubmit = handleSubmit(async (values) => {
               <CardHeader>
                 <CardTitle class="flex flex-col justify-center items-center">
                   <div class="">
-                    <img class="h-24" src="/images/logo/tms.jpeg" alt="" />
+                    <img class="h-24" src="/images/logo/logo_softsys.png" alt="" />
                   </div>
                   <span class="text-xl opacity-90"
                     >Changer votre mot de passe</span
