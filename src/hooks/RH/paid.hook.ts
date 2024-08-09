@@ -21,7 +21,6 @@ export const usePaidHook = () => {
       designation: Paid.designation,
       
       periode_1: Paid.periode_1,
-      // periode_2: Paid.periode_2,
       mode_paiement: Paid.mode_paiement,
       date_creation: moment(Paid.created_at).format("DD/MM/YYYY"),
 
@@ -39,7 +38,15 @@ export const usePaidHook = () => {
     setPaid.loading = true;
     readData(API_URL.SALAIRE_PAYMENT_LIST)
       .then((data: any) => {
-        useDataStore().Paids = formatPaidData(data.datas);
+
+        const allPaiements = data.datas.flatMap((entry: any) =>
+          entry.paiements.map((paiement: any) => ({
+             mois: entry.mois,
+             ...paiement
+          }))
+       );
+
+        useDataStore().Paids = formatPaidData(allPaiements);
         setPaid.loading = false;
       })
       .catch(() => {

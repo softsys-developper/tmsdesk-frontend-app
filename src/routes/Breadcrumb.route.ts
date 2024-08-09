@@ -779,6 +779,25 @@ export const BreadcrumbRoutes = [
         title: "Liste des étapes",
       },
     ],
+  },
+
+
+  {
+    route: "SUPPORT_TICKET",
+    title: [
+      {
+        route: "HOME",
+        title: "Tableau de bord",
+      },
+      {
+        route: "SUPPORT_TICKET",
+        title: "Supports",
+      },
+      {
+        route: "SUPPORT_TICKET",
+        title: "Liste des tickets",
+      },
+    ],
   }
   
 ];

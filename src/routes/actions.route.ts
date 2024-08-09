@@ -637,3 +637,17 @@ export const MenuHolidayActions = [
    },
 ];
 
+export const MenuTicketActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SYSTEM_HOLIDAY',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SYSTEM_HOLIDAY',
+   },
+];
