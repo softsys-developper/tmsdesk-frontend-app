@@ -15,7 +15,7 @@ export const useTicketHook = () => {
   const formatTicketData = (Tickets: any) => {
     return Tickets.map((Ticket: any) => ({
       id: Ticket.id,
-      object: Ticket.object,
+      objet: Ticket.objet,
       message: Ticket.message,
       status: Ticket.status,
       date_creation: moment(Ticket.created_at).format("DD/MM/YYYY"),

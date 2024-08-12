@@ -7,8 +7,15 @@ export const TicketTables = [
         bgColor: null,
     },
     {
-        label: 'Libellé',
-        field: 'libelle',
+        label: 'Objets',
+        field: 'objet',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
+    {
+        label: 'Messages',
+        field: 'message',
         status: null,
         color: null,
         bgColor: null,
