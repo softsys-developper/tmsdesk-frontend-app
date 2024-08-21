@@ -107,7 +107,7 @@ const IsPageFun = () => {
       </div>
    </div>
 
-   <Table class="bg-white">
+   <Table class="bg-white" id="PaidDivPdf">
       <!-- <TableCaption>A list of your recent dataTables.</TableCaption> -->
       <TableHeader class="bg-blue-200 px-8">
          <TableRow class="font-black">

@@ -7,8 +7,8 @@
 
 const Softsys = {
   name: "Softsys",
-  url: "gestim.softsys.ci",
-  api: "https://gestim.softsys.ci/api",
+  url: "https://api.astech.ci",
+  api: "https://api.astech.ci/api",
   logo: "",
 };
 

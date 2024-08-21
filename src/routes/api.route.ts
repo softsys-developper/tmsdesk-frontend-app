@@ -291,4 +291,11 @@ export const API_URL = {
   STAGE_SHOW: `${BASE_URL}/stagaires/`,
   STAGE_UPDATE: `${BASE_URL}/stagaires/update`,
   STAGE_REMOVE: `${BASE_URL}/stagaires/delete`,
+
+  //
+  TICKET_LIST: `${BASE_URL}/support/contact`,
+  TICKET_CREATE: `${BASE_URL}/support/contact/add`,
+  TICKET_SHOW: `${BASE_URL}/support/contact/`,
+  TICKET_UPDATE: `${BASE_URL}/support/contact/update`,
+  TICKET_REMOVE: `${BASE_URL}/support/contact/delete`,
 };

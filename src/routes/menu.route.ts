@@ -22,7 +22,7 @@ export const MenuApp = [
             permission: 'liste-prospects-commercial' 
          },
          {
-            icon: 'ri-user-2-line',
+            icon: 'ri-sticky-note-2-line',
             id: 'PROFORMA_PROSPECTS',
             name: 'Proformas',
             route: 'PROFORMA_LIST',
@@ -58,7 +58,7 @@ export const MenuApp = [
             permission: 'liste-clients'
          },
          {
-            icon: 'ri-user-search-line',
+            icon: 'ri-building-2-line',
             id: 'CRM_FOURNISSEURS',
             name: 'Fournisseurs',
             route: 'CRM_FOURNISSEURS',
@@ -253,14 +253,14 @@ export const MenuApp = [
          //    route: 'LOGISC_BC_CLIENTS'
          // },
          {
-            icon: 'ri-store-3-line',
+            icon: 'ri-shape-line',
             id: 'LOGISTIC_BON_COMMANDE_FOURNISSEUR',
             name: 'BC fournisseur',
             route: 'LOGISC_BC_PARTENAIRES',
             permission: 'liste-bdc-fournisseur'
          },
          {
-            icon: 'ri-store-3-line',
+            icon: 'ri-truck-line',
             id: 'LOGISTIC_BON_COMMANDE',
             name: 'Livraisons',
             route: 'LOGISC_LIVRAISONS',
@@ -290,28 +290,28 @@ export const MenuApp = [
       route: '',
       children: [
          {
-            icon: 'ri-mail-line',
+            icon: 'ri-settings-line',
             id: 'SYSTEM_MAILS',
             name: 'Paramétre',
             route: 'SYSTEM_PARAMETRE',
             permission: 'liste-parametres'
          },
          {
-            icon: 'ri-mail-line',
+            icon: 'ri-group-line',
             id: 'SYSTEM_MAILS',
             name: 'Utilisateurs',
             route: 'SETTING_USER',
             permission: 'liste-utilisateur'
          },
          {
-            icon: 'ri-mail-line',
+            icon: 'ri-user-received-2-line',
             id: 'SETTING_ROLES',
             name: 'Roles',
             route: 'SETTING_ROLES',
             permission: 'liste-role'
          },
          {
-            icon: 'ri-bill-line',
+            icon: 'ri-lock-line',
             id: 'SETTING_PERMISSION',
             name: 'Permissions',
             route: 'SETTING_PERMISSION',
@@ -327,7 +327,7 @@ export const MenuApp = [
       route: '',
       children: [
          {
-            icon: 'ri-bill-line',
+            icon: 'ri-list-settings-line',
             id: 'SYSTEM_DA',
             name: 'Domaine d\'activité',
             route: 'SYSTEM_DA',
@@ -353,7 +353,7 @@ export const MenuApp = [
          //    route: 'SYSTEM_DEVISE'
          // },
          {
-            icon: 'ri-bill-line',
+            icon: 'ri-copper-coin-line',
             id: 'SYSTEM_DEVISE',
             name: 'Devises',
             route: 'SYSTEM_DEVISE',
@@ -367,14 +367,14 @@ export const MenuApp = [
          //    permission: 'liste-marques'
          // },
          {
-            icon: 'ri-bill-line',
+            icon: 'ri-color-filter-line',
             id: 'SYSTEM_STEP_PROSPECT',
-            name: 'Etapes Prospect',
+            name: 'Etapes prospect',
             route: 'SYSTEM_STEP_PROSPECT',
             permission: 'liste-etape'
          },
          {
-            icon: 'ri-bill-line',
+            icon: ' ri-calendar-close-fill',
             id: 'SYSTEM_HOLIDAY',
             name: 'Jour férier',
             route: 'SYSTEM_HOLIDAY',
@@ -397,6 +397,13 @@ export const MenuApp = [
       list: 'Conctez softsys en cas de disfonctionnement de votre logicel',
       route: '',
       children: [
+         {
+            icon: 'ri-ticket-2-line',
+            id: 'SUPPORT_TICKET',
+            name: 'Tickets',
+            route: 'SUPPORT_TICKET',
+            permission: 'liste-jours-feries'
+         }
       ],
    }
 ];

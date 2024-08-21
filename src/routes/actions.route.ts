@@ -637,3 +637,18 @@ export const MenuHolidayActions = [
    },
 ];
 
+
+export const MenuTicketActions = [
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'SUPPORT_TICKET',
+   },
+   {
+      id: 'MUA_delete',
+      name: 'Supprimer',
+      icon: 'ri-delete-bin-3-line',
+      route: 'SUPPORT_TICKET',
+   }
+]

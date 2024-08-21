@@ -9,6 +9,7 @@ export const usePaidHook = () => {
   const { readData } = useApiServices();
   const setPaid = reactive({ loading: false, loadingCreate: false });
   const statePaids = ref<any[]>([]);
+  const stateIsCache = ref<any[]>([]);
   statePaids.value = useDataStore().Paids;
 
 
@@ -17,11 +18,10 @@ export const usePaidHook = () => {
       id: Paid.id,
       fullname: Paid?.employe?.nom,
       montant_paye: Paid.montant_paye,
-      date_paiement: Paid.date_paiement,
+      date_paiement:  moment(Paid.date_paiement).format("DD/MM/YYYY HH:mm"),
       designation: Paid.designation,
       
       periode_1: Paid.periode_1,
-      // periode_2: Paid.periode_2,
       mode_paiement: Paid.mode_paiement,
       date_creation: moment(Paid.created_at).format("DD/MM/YYYY"),
 
@@ -39,7 +39,16 @@ export const usePaidHook = () => {
     setPaid.loading = true;
     readData(API_URL.SALAIRE_PAYMENT_LIST)
       .then((data: any) => {
-        useDataStore().Paids = formatPaidData(data.datas);
+
+        const allPaiements = data.datas.flatMap((entry: any) =>
+          entry.paiements.map((paiement: any) => ({
+             mois: entry.mois,
+             ...paiement
+          }))
+       );
+
+        useDataStore().Paids = formatPaidData(allPaiements);
+        stateIsCache.value = useDataStore().Paids;
         setPaid.loading = false;
       })
       .catch(() => {
@@ -89,5 +98,6 @@ export const usePaidHook = () => {
     statePaids,
     setPaid,
     storePaids,
+    stateIsCache
   };
 };
