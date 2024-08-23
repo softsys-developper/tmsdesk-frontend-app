@@ -34,8 +34,6 @@ import { useUpdateStore } from "@/stores/update.store";
 
 const { FindTicketAll, TicketDelete, storeTickets, setTicket } = useTicketHook();
 
-
-
 onMounted(() => {
     FindTicketAll();
 });
