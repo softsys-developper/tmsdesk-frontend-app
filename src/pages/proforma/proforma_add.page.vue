@@ -105,7 +105,7 @@
 
                         <div class="flex flex-col gap-1">
                           <Label class=""> Prix Unitaire </Label>
-                          <Input type="number" placeholder="Ex: 500.000 Fcfa" v-model="ServiceToAdd.prix_unitaire"
+                          <Input type="number" placeholder="Ex: 500.000 GNF" v-model="ServiceToAdd.prix_unitaire"
                             name="prix_unitaire" id="reference" />
                         </div>
 
@@ -188,7 +188,7 @@
                           invoice?.prix_unitaire_gnf * invoice.quantite
                         ).toFixed(0)
                       }}
-                      {{ invoice.id }}
+                     
                     </TableCell>
 
                     <TableCell class="text-right">
@@ -209,7 +209,7 @@
                       TOTAL HT:
                     </dt>
                     <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                      {{ AmountHT }} {{ _AmountHT.toFixed(0) }} (GNF)
+                      {{ AmountHT }} {{ Currency(_AmountHT.toFixed(0))  }} 
                     </dd>
                   </dl>
 
@@ -261,11 +261,11 @@
                       {{
                         setInput.marge_commerciale > 1
                           ? (
-                            _AmountTTC * Number(setInput.marge_commerciale)
-                          ).toFixed(0)
-                          : _AmountTTC
+                            Currency(Number(_AmountTTC * Number(setInput.marge_commerciale)).toFixed(0))
+                          )
+                          : Currency(_AmountTTC.toFixed(0)) 
                       }}
-                      (GNF)
+                      
                     </dd>
                   </dl>
                 </div>
@@ -324,6 +324,7 @@ import {
 } from "@/components/ui/table";
 import axios from "axios";
 import { useToast } from "@/components/ui/toast/use-toast";
+import { Currency } from "@/utils/currency.utils";
 const { toast } = useToast();
 
 const { readData, showData } = useApiServices();

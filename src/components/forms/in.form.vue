@@ -43,6 +43,7 @@
         :placeholder="placeholder"
       />
       
+      {{ value }}
       <SelectedForm
         :value="value"
         :select="select"

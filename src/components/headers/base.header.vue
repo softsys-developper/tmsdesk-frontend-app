@@ -21,7 +21,7 @@
 
         <div class="flex items-center  justify-end gap-4">
           <!-- Notifications -->
-          <div class="flex gap-3 relative items-center  ">
+          <div class=" gap-3 relative items-center hidden  ">
             <div class="absolute bg-red-500 size-5 flex justify-center items-center rounded-full bottom-3 left-2">
               <span class="text-[8px] font-bold">99</span>
             </div>

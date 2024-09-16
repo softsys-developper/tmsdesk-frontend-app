@@ -30,4 +30,12 @@ export const RapportTables = [
         color: null,
         bgColor: null,
     },
+
+    {
+        label: 'Prospect',
+        field: 'prospect',
+        status: null,
+        color: null,
+        bgColor: null,
+    },
 ]

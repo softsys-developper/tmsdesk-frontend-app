@@ -20,8 +20,10 @@ export const useProformaHook = () => {
     return Proformas.map((Proforma: any) => ({
       id: Proforma.id,
       numero_proforma: Proforma.numero_proforma,
+      client: `${Proforma.client?.nom} ${Proforma.client?.prenoms ? Proforma.client?.prenoms : ''}`,
       ref_client: Proforma.ref_client,
-      client: Proforma.client?.nom,
+      interlocuteur: `${Proforma.interlocuteur?.nom} ${Proforma.interlocuteur?.prenoms ? Proforma.interlocuteur?.prenoms : ''}`,
+      
       montant_ttc: new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'GNF' }).format(
         Proforma.montant_ttc,
       ),

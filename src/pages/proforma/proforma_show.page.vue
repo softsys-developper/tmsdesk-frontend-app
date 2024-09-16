@@ -50,9 +50,9 @@
           <!-- Invoice -->
           <div class="w-full  mx-auto  bg-white" id="printableDiv">
             <div class="sm:w-11/12 lg:w-4/4 mx-auto">
-              <div class="">
+              <div class="w-full flex justify-end">
 
-                <img :src="`data:image/${Parametres.en_tete?.split('.').pop()};base64,` + Parametres.en_tete_base64"
+                <img class="" :src="`data:image/${Parametres.en_tete?.split('.').pop()};base64,` + Parametres.en_tete_base64"
                   alt="" />
               </div>
 
@@ -81,7 +81,7 @@
 
                     <address class="mt-4 text-sm not-italic text-gray-800 dark:text-neutral-200">
                       {{ Parametres.adresse }}<br />
-                      {{ Parametres.telephone_1 }}<br />
+                      <!-- {{ Parametres.telephone_1 }}<br /> -->
                     </address>
                   </div>
                   <!-- Col -->
@@ -148,7 +148,7 @@
                         <th class="border-[1px] px-4 py-2">QTY</th>
                         <th class="border-[1px] px-4 py-2">PU</th>
                         <th class="border-[1px] px-4 py-2">PT</th>
-                        <th class="border-[1px] px-4 py-2">Disponibile</th>
+                        <th class="border-[1px] px-4 py-2">Disponibilité</th>
                       </tr>
                     </thead>
                     <tbody v-for="(service, index) in ProformaShow.produit_services">
@@ -157,9 +157,9 @@
                         <td class="border-[1px] px-4 py-2"> {{ service.reference }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.description }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ service.pivot.quantite }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ service.prix_unitaire }} </td>
-                        <td class="border-[1px] px-4 py-2"> {{ (Number(service.prix_unitaire) *
-                          service.pivot.quantite).toFixed(0) }} </td>
+                        <td class="border-[1px] px-4 py-2 "> {{ Currency(Number(service.prix_unitaire).toFixed(0)) }} </td>
+                        <td class="border-[1px] px-4 py-2"> {{ Currency((Number(service.prix_unitaire) *
+                          service.pivot.quantite)) }} </td>
                         <td class="border-[1px] px-4 py-2"> {{ ProformaLinge ? ProformaLinge[index].disponibilite :
                           ProformaShow.ligne_proformas[index].disponibilite }} </td>
 
@@ -173,7 +173,7 @@
 
                 <!-- Flex -->
                 <div class="mt-8 flex sm:justify-end">
-                  <div class="w-full flex flex-col text-xs max-w-2xl sm:text-end space-y-2">
+                  <div class="w-full flex flex-col text-xs max-w-sm sm:text-end space-y-2">
                     <!-- Grid -->
                     <div class="grid grid-cols-2 sm:grid-cols-1 gap-3 sm:gap-2">
                       <dl class="grid sm:grid-cols-5 gap-x-3">
@@ -181,7 +181,7 @@
                           TOTAL HT:
                         </dt>
                         <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
-                          {{ ProformaShow.montant_ht }}
+                          {{ Currency(ProformaShow.montant_ht) }}
                         </dd>
                       </dl>
 
@@ -191,8 +191,9 @@
                         </dt>
                         <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
                           {{
-                            Number(ProformaShow.montant_ht) *
-                            Number(ProformaShow.TVA ? ProformaShow.TVA : "0")
+                            Currency(Number(ProformaShow.montant_ht) *
+                            Number(ProformaShow.TVA ? ProformaShow.TVA : "0"))
+                            
                           }}
                         </dd>
                       </dl>
@@ -200,30 +201,33 @@
                       <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
                           REMISE ({{
+                            
+                              
                             ProformaShow.remise_pourcentage
-                              ? Math.floor(
-                                Number(ProformaShow.remise_pourcentage)
-                              )
+                              ? 
+                             Math.floor(Number(ProformaShow.remise_pourcentage))
                               : "0"
                           }}%)
                         </dt>
                         <dd class="col-span-2 text-gray-500 dark:text-neutral-500">
                           {{
-                            Number(
+                            Currency(Number(
                               ProformaShow.remise_forfaitaire
                                 ? ProformaShow.remise_forfaitaire
                                 : "0"
-                            )
+                            ))
+                            
                           }}
                         </dd>
                       </dl>
 
                       <dl class="grid sm:grid-cols-5 gap-x-3">
                         <dt class="col-span-3 font-semibold text-gray-800 dark:text-neutral-200">
-                          Total (GNF):
+                          Total:
                         </dt>
                         <dd class="col-span-2 font-black text-blue-500 dark:text-neutral-500">
-                          {{ ProformaShow.montant_ttc }}
+                          {{ Currency(ProformaShow.montant_ttc) }}
+                          
                         </dd>
                       </dl>
                     </div>
@@ -244,15 +248,12 @@
                 <div class="mt-8 sm:mt-12 mb-2">
                   <div class="mt-2">
                     <p class="block text-xs font-medium text-gray-800 dark:text-neutral-200">
-                      Arrêté le présent devis à la somme de
+                      Arrêté le présent devis à la somme de : {{ numberToWords(Number(ProformaShow.montant_ttc)) }}
                     </p>
-                    <h4 class="text-xs font-semibold text-gray-800 dark:text-neutral-200">
-                      {{ numberToWords(Number(ProformaShow.montant_ttc)) }}
-                    </h4>
                   </div>
 
                   <p class="text-gray-500 text-xs dark:text-neutral-500">
-                    A l'attention de {{ ProformaShow.interlocuteur?.nom }}
+                    A l'attention de {{ ProformaShow.interlocuteur?.nom + ' ' + ProformaShow.interlocuteur?.prenoms }}
                   </p>
                   <div class="mt-2">
                     <p class="block text-xs font-bold text-gray-800 dark:text-neutral-200">
@@ -346,6 +347,7 @@ onMounted(() => {
 
 
 import html2pdf from 'html2pdf.js';
+import { Currency } from "@/utils/currency.utils";
 
 const printDivAsPDF = () => {
   const element = document.getElementById('printableDiv');

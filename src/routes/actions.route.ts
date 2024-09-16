@@ -166,12 +166,12 @@ export const MenuBilanActions = [
 
 
 export const MenuRapportActions = [
-   // {
-   //    id: 'MUA_modify',
-   //    name: 'Modifier',
-   //    icon: 'ri-refresh-line',
-   //    route: 'CRM_RAPPORTS',
-   // },
+   {
+      id: 'MUA_modify',
+      name: 'Modifier',
+      icon: 'ri-refresh-line',
+      route: 'CRM_RAPPORTS',
+   },
    {
       id: 'MUA_delete',
       name: 'Supprimer',

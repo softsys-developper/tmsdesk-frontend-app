@@ -104,6 +104,7 @@ interface Ligne {
 
 interface interlocuteur {
   nom: string;
+  prenoms: string;
 }
 
 export interface PROFORMA {

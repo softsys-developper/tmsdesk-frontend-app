@@ -4,6 +4,7 @@
         <section class="flex flex-col w-full gap-4 bg-white rounded-lg mb-8">
           <ContentLayout :title="'CRM | ' + `${IsRapport ? IsRapport :  'Rapports'}` ">
             <template v-slot:created>
+              {{useUpdateStore().isUpdate}}
               <RapportModal
                 :name="'Ajouter Rapport'"
                 :title="
@@ -73,6 +74,8 @@ import moment from "moment";
       message: Rapport.message,
       commercial: Rapport.name,
       date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
+
+      prospect: 3,
       }))
     })
     // FindRapportAll();

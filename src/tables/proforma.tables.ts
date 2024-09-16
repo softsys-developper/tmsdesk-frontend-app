@@ -14,6 +14,13 @@ export const ProformaTables = [
        bgColor: null,
     },
     {
+      label: 'Client',
+      field: 'client',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
+    {
        label: 'Réference',
        field: 'ref_client',
        status: null,
@@ -21,12 +28,12 @@ export const ProformaTables = [
        bgColor: null,
     },
     {
-       label: 'Client',
-       field: 'client',
-       status: null,
-       color: null,
-       bgColor: null,
-    },
+      label: 'Interlocuteur',
+      field: 'interlocuteur',
+      status: null,
+      color: null,
+      bgColor: null,
+   },
     {
        label: 'Montant TTC',
        field: 'montant_ttc',

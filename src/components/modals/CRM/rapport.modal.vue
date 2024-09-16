@@ -11,6 +11,7 @@
               :placeholder="fr.placeholder"
               :select="fr.select"
             />
+
           </div>
         </div>
       </template>

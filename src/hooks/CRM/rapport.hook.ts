@@ -1,17 +1,13 @@
 import { useApiServices } from "@/services/api.services";
 import { API_URL } from "@/routes/api.route";
-import { useToast } from "@/components/ui/toast/use-toast";
 import { computed, reactive, ref } from "vue";
 import { useDataStore } from "../../stores/data.store";
 // import { LIST_DEPENSE } from '@/types/Rapport.type';
-import { useUtilHook } from "@/hooks/utils.hook";
-import { useModalStore } from "@/stores/modal.store";
 import moment from "moment";
 import { setService } from "@/services/set.services";
 
 export const useRapportHook = () => {
-  const { readData, createData } = useApiServices();
-  const { EmptyFields } = useUtilHook();
+  const { readData } = useApiServices();
   const setRapport = reactive({
     loading: false,
     loadingCreate: false,
@@ -20,14 +16,16 @@ export const useRapportHook = () => {
   });
   const stateRapports = ref<any[]>([]);
   stateRapports.value = useDataStore().Rapports;
-  const { toast } = useToast();
 
   const formatRapportData = (Rapports: any) => {
     return Rapports.map((Rapport: any) => ({
+      
       id: Rapport.id,
       message: Rapport.message,
       commercial: Rapport.name,
       date_creation: moment(Rapport.created_at).format("DD/MM/YYYY"),
+
+      prospect: 3,
     }));
   };
   const storeRapports = computed(() => {
@@ -67,47 +65,12 @@ export const useRapportHook = () => {
 
   //
   const CreateRapport = async (values: any) => {
-    setRapport.loadingCreate = true;
-    const DataCreated = await createData(API_URL.RAPPORT_CREATE, values)
-      .then((data: any) => {
-        if (data) {
-          EmptyFields(values); // Vider les champs
-          setRapport.loadingCreate = false;
-          let Echanges = useDataStore().Echanges;
-
-          //
-          const toAdd: [] = formatRapportData([data.data]);
-          Echanges.unshift(...toAdd);
-          useDataStore().Echanges = Echanges;
-          useModalStore().open = false;
-
-          toast({
-            title: "Enregistré",
-            description: data.message,
-          });
-        }
-      })
-      .catch((err) => {
-        setRapport.loadingCreate = false;
-        if (err) {
-          const isErr = Object.keys(err.response.data.errors);
-          if (isErr) {
-            toast({
-              title: isErr[0],
-              variant: "destructive",
-              description: err.response.data.errors[isErr[0]][0],
-            });
-          } else {
-            toast({
-              title: "error",
-              variant: "destructive",
-              description: err.response.data.message,
-            });
-          }
-        }
-      });
-
-    return { data: DataCreated };
+    setService(
+      setRapport,
+      useDataStore(),
+      'Rapports',
+      formatRapportData
+    ).SetCreate(API_URL.RAPPORT_CREATE, values); 
   };
 
   const RapportUpdate = (id: any, values: any) => {
@@ -134,7 +97,7 @@ export const useRapportHook = () => {
     setService(
       setRapport,
       useDataStore(),
-      'Echanges',
+      'Rapports',
       formatRapportData
     ).SetDelete(API_URL.RAPPORT_REMOVE, id);
   };

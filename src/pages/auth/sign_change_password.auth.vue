@@ -117,7 +117,7 @@ const onSubmit = handleSubmit(async (values) => {
               <CardHeader>
                 <CardTitle class="flex flex-col justify-center items-center">
                   <div class="">
-                    <img class="h-24" src="/images/logo/tms.jpeg" alt="" />
+                    <img class="h-24" src="/images/logo/tms.png" alt="" />
                   </div>
                   <span class="text-xl opacity-90">Changer votre mot de passe</span>
                 </CardTitle>
